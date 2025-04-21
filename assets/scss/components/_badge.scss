@@ -1,0 +1,19 @@
+@use '../abstracts/' as *;
+
+/* -------------------------------------------------------------------------- */
+/*                                    badge                                   */
+/* -------------------------------------------------------------------------- */
+
+$badgeDefaultColor:var(--kidi-bigin-default);
+ 
+.step{
+    &--badge{
+        @include flexCenter(inline-flex);
+        padding:7.2px 16px;
+        border: 1px solid $badgeDefaultColor;
+        border-radius: 28px;
+        font-size: 20px;
+        color: $badgeDefaultColor;
+        font-weight: 700;
+    }
+}

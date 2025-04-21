@@ -1,0 +1,133 @@
+@use './components/' as *;
+@use './page/' as *;
+@use './abstracts/' as *;
+
+/* 기본 리셋 및 기본 스타일 */
+// * {
+//     box-sizing: border-box;
+//   }
+//   body {
+//     margin: 0;
+//     padding: 0;
+//     font-family: Arial, sans-serif;
+//     background: #f2f2f2;
+//   }
+//   .container {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     padding: 2rem;
+//     text-align: center;
+//   }
+//   h1 {
+//     margin-bottom: 1rem;
+//     color: #333;
+//   }
+//   p.description {
+//     margin-bottom: 2rem;
+//     font-size: 1.1rem;
+//     color: #666;
+//   }
+//   .card-container {
+//     --column:2;
+//     display: grid;
+//     // grid-template-columns: repeat(3, minmax(250px, 1fr));
+//     grid-template-columns: repeat(var(--column), minmax(min(100%, 250px), 1fr));
+//     row-gap: 20px;
+//     column-gap: 20px;
+//     justify-content: center;
+//     align-items: center;
+//   }
+//   .card {
+//     max-width: 250px;
+//     width:100%;
+//     height: 150px;
+//     border-radius: 12px;
+//     background: #ffffff;
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 1.2rem;
+//     font-weight: bold;
+//     cursor: pointer;
+//     transition: transform 0.3s ease, box-shadow 0.3s ease;
+//     justify-self: center;
+//   }
+//   .card:hover {
+//     transform: scale(1.05);
+//     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+//   }
+//   /* Barba.js container 스타일 (필수) */
+//   [data-barba='container'] {
+//     position: relative;
+//   }
+  
+//   .card.selected {
+//     border: 2px solid #007bff;
+//   }
+//   .next-button{
+//     margin-top: 2rem;
+//     padding: 0.8rem 1.5rem;
+//     background-color: #007bff !important;
+//     color: #fff;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     font-size: 1rem;
+//     transition: background-color 0.3s ease;
+//   }
+//   .next-button:hover {
+//     background-color: #0056b3;
+//   }
+  
+//   .btn-wrap{
+//     width:100%;
+//     @include flexCenter();
+//   }
+//   #lifeStyle__Container{
+//     width:100%;
+    
+//   }
+//   #barba-wrapper{
+//     display: flex;
+//     flex-direction: column;
+//     position: relative;
+//     width:100%;
+//     height:100%;
+//     // min-height: 300px;
+//     transition: all .5s;
+//     .barba-container{
+//       width:100%;
+//       height:100%;
+//       transition: all .5s;
+//       &:nth-child(1){
+//         order:2
+//       }
+//       &:nth-child(2){
+//         order:1
+//       }
+//     }
+//   }
+//   .card--wrap{
+//     display: grid;
+//     grid-template-columns: repeat(var(--column), minmax(min(100%, 150px), 1fr));
+//     row-gap: 20px;
+//     column-gap: 20px;
+//   }
+
+
+//   .loader{
+//     width:100%;
+//     height:100vh;
+//     position: absolute;
+//     top:0;
+//     left:0;
+//     z-index: 100;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: black;
+//     span{
+//       color: #fff;;
+//     }
+//   }

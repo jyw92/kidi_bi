@@ -1,0 +1,200 @@
+@use "../abstracts/" as *;
+
+.barba-container {
+  /* ------------------------------- cardGlobal ------------------------------- */
+
+  //common
+  $cardLineColor: #c2c2c2;
+  $cardColor--active: #2d83f2;
+  $box-shadow: 4px 4px 4px 0px rgba(0, 133, 231, 0.5);
+  $borderWidth:2px;
+
+  //step01
+  $cardType-appIcon: url("/assets/img/ico/ico_app.svg");
+  $cardType-cardIcon: url("/assets/img/ico/ico_card.svg");
+  $cardType-appIcon--active: url("/assets/img/ico/ico_app_active.svg");
+  $cardType-cardIcon--active: url("/assets/img/ico/ico_card_active.svg");
+  
+  //step02
+  $genderIcon--m:'ico_m_';
+  $genderIcon--m--color:'ico_m_color_';
+  $genderIcon--w:'ico_w_';
+  $genderIcon--w--color:'ico_w_color_';
+
+
+  /* -------------------------------------------------------------------------- */
+  min-height: 500px;
+  .card {
+    border: $borderWidth solid $cardLineColor;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    aspect-ratio: 2/1;
+    transition: all 0.5s;
+    border-radius: 5px;
+    &:focus{
+      outline: none !important;
+    }
+    &.selected {
+      border: $borderWidth solid $cardColor--active;
+      box-shadow: $box-shadow;
+      transform: translateY(-4px);
+    }
+  }
+
+  &[data-barba-namespace="step1"] {
+    .card--container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 30px;
+      margin-block: 40px 35px;
+      padding-bottom: 35px;
+      border-bottom: 2px dashed #eee;
+    }
+    .card {
+      padding-inline-start: 260px;
+      background-repeat: no-repeat;
+      background-position-y: center;
+      background-position-x: 90px;
+      strong {
+        color: #999;
+        font-size: 22px;
+        transition: all 0.5s;
+      }
+      p {
+        color: #666;
+        text-align: left;
+        font-size: 16px;
+        transition: all 0.5s;
+      }
+
+      &.selected {
+        // border-radius: 10px 50px;
+        border: 2px solid $cardColor--active;
+        // padding: 0px 0px 0px 250px;
+        // background-position-y: calc(50% - 5px);
+        // background-position-x: calc(95px);
+        strong {
+          color: $cardColor--active;
+        }
+        :is(strong, p) {
+          // transform: translateY(10px);
+        }
+      }
+      &[data-type="card"] {
+        background-image: $cardType-cardIcon;
+        &.selected {
+          background-image: $cardType-cardIcon--active;
+        }
+      }
+
+      &[data-type="app"] {
+        background-image: $cardType-appIcon;
+        &.selected {
+          background-image: $cardType-appIcon--active;
+        }
+      }
+    }
+  }
+  &[data-barba-namespace="step2"] {
+    .card{
+      background-repeat: no-repeat;
+      background-position-y: center;
+      background-position-x:60px ;
+      padding-left: 140px;
+      color: #999;
+    }
+    .card[data-gender]{
+      background-size: 64px;
+      font-size: 24px;
+      &[data-gender="male"]{
+        background-image: url('/assets/img/ico/#{$genderIcon--m}3.svg');
+        &.selected{
+          background-image: url('/assets/img/ico/#{$genderIcon--m--color}3.svg');
+        }
+      }
+      &[data-gender="female"]{
+        background-image: url('/assets/img/ico/#{$genderIcon--w}3.svg');
+        &.selected{
+          background-image: url('/assets/img/ico/#{$genderIcon--w--color}3.svg');
+        }
+      }
+    }
+    &.male{
+      @for $i from 1 through 6 {
+       .card[data-age-group]:nth-child(#{$i}){
+        background-image: url('/assets/img/ico/#{$genderIcon--m}#{$i}.svg');
+        &.selected{
+          background-image: url('/assets/img/ico/#{$genderIcon--m--color}#{$i}.svg');
+         }
+       }
+      }
+    }
+    &.female{
+      @for $i from 1 through 6 {
+        .card[data-age-group]:nth-child(#{$i}){
+         background-image: url('/assets/img/ico/#{$genderIcon--w}#{$i}.svg');
+         &.selected{
+          background-image: url('/assets/img/ico/#{$genderIcon--w--color}#{$i}.svg');
+         }
+        }
+      }
+    }
+    :is(&.male, &.female){
+      transform: translateX(0);
+      .step--area{
+        &.age--area{
+          opacity: 1;
+        }
+      }
+      .card--step--option {
+        transform: translateX(0);
+      }
+    }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    transition: all .5s;
+    column-gap: 60px;
+    transform: translateX(25%);
+    .step--area {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      &.age--area{
+        opacity: 0;
+        .card{
+         
+          background-size: 50px auto;
+          background-position-x: 27px;
+          padding-left: 92px;
+        }
+      }
+      .remaining--area{
+        flex:1;
+        display: flex;
+        align-items: center;
+      }
+      .card--container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(var(--column), 1fr);
+        gap: 1rem;
+      }
+    }
+    .card--step--option {
+      grid-column: 1/3;
+      transform: translateX(-25%);
+      transition: all .5s;
+    }
+  }
+  &[data-barba-namespace="step3"] {
+    
+    .card--container{
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(var(--column), 1fr);
+      gap: 1rem;
+    }
+  }
+}

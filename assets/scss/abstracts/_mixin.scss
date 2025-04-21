@@ -1,0 +1,281 @@
+
+//https://yamoo9.gitbook.io/scss-mixins
+@use 'sass:meta'; // Import the meta module
+//============
+// Mixins
+//============
+
+
+/// 개발 라인을 표시하는 믹스인입니다.
+///
+/// @param {String} $className 표시할 텍스트 (문자열만 허용)
+/// @param {Color} $color 라인 및 텍스트 색상
+
+@mixin devLine($className, $color, $py: 10){ // $py 기본값 10
+  @if meta.type-of($className) != "string" {
+    @warn "devLine 믹스인의 \$className 매개변수는 문자열 타입이어야 합니다. 현재 타입: #{meta.type-of($className)}";
+  }
+  position: relative;
+  --py: #{$py};
+  --top: #{$py}px;
+  --right: #{$py}px;
+  &::before{
+    content: $className;
+    position: absolute;
+    top: #{$py}px;
+    right: #{$py}px;
+    color: $color;
+  }
+  border: 1px dashed $color;
+}
+
+
+@mixin flexCenter($db:flex) {
+    display: $db;
+    align-items: center;
+    justify-content: center;
+}
+
+// position center
+@mixin posCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+//Overlay
+//Ex: @include overlay(#000000, 0.2)
+@mixin overlay($color, $opacity) {
+    &::before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        background: $color;
+        opacity: $opacity;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+    }
+}
+
+//Square sized elements
+//Ex: @include square(8rem)
+@mixin square($size) {
+    width: $size;
+    height: $size;
+}
+
+//Pseudo default
+//Ex: @include pseudo
+@mixin pseudo {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+//Truncate Text
+//Ex: @inlcude truncate(480px)
+@mixin truncate($max-width) {
+    max-width: $max-width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//Helper
+//Ex: @include helper (will create a indicator showing the current breakpoint)
+@mixin helper {
+    &:before {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        content: 'Small';
+        font-family: sans-serif;
+        letter-spacing: 0.05rem;
+        color: #fff;
+        font-weight: 700;
+        background: #000;
+        padding: 1rem 2rem;
+    }
+
+    @include breakpoint(medium) {
+        &:before {
+            content: 'medium';
+        }
+    }
+
+    @include breakpoint(large) {
+        &:before {
+            content: 'large';
+        }
+    }
+
+    @include breakpoint(xlarge) {
+        &:before {
+            content: 'xlarge';
+        }
+    }
+}
+
+//Vendor prefix
+//Ex: @include vendor(transform, rotate(45deg);
+@mixin vendor($property, $value, $prefixes: (webkit, ms, moz)) {
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+    #{$property}: $value;
+}
+
+//Flexbox
+//Ex: @include flex-center-column
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-center-x {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-y {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-center-column {
+    @include flex-center;
+    flex-direction: column;
+}
+
+//Z-index
+//Ex: @inlcude z-index(modal)
+$modal: 100;
+$toast: 90;
+$drawer: 80;
+
+@mixin z-index($z-index) {
+    @if $z-index == modal {
+        z-index: $modal;
+    } @else if $z-index == toast {
+        z-index: $toast;
+    } @else if $z-index == drawer {
+        z-index: $drawer;
+    }
+}
+
+// Fade-in-out
+// @inlcude fade(out, 0.8s, ease-in)
+@mixin fade($type, $duration, $easing) {
+    @if $type== 'out' {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility opacity $duration $easing;
+    } @else if $type== 'in' {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility opacity $duration $easing;
+    }
+}
+
+//Background-1
+//Ex: @include background-cover
+@mixin background-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+//Background-2
+//Ex: @include background('/img/common/', 'root/[image-name]', center, #fff, 'size', '100%')
+@mixin background(
+  $imgUrl,
+  $filename,
+  $coordinate: null,
+  $color: null,
+  $option: null,
+  $value: null
+) {
+  @if meta.type-of($filename) != "string" or $filename == "" or $filename == ()
+  {
+    @error '이미지는 파일명.확장자까지 작성해야 합니다.';
+  }
+  background-image: url("#{$imgUrl}#{$filename}");
+  background-color: $color;
+  background-position: $coordinate;
+  background-repeat: no-repeat;
+
+  @if $option == "size" {
+    background-size: $value;
+  } @else if $option == "origin" {
+    background-origin: $value;
+  } @else if $option == "clip" {
+    background-clip: $value;
+  }
+}
+
+
+
+//a11y-hidden
+//Ex @a11y-hidden() or @a11y-hidden(true)
+
+/* -------------------------------------------------------------------------- */
+/*                                   result                                   */
+/* -------------------------------------------------------------------------- */
+/*    .a11y-hidden {
+/*        overflow: hidden;
+/*        position: absolute;
+/*        clip: rect(0, 0, 0, 0);
+/*        clip-path: circle(0);
+/*        width: 1px;
+/*        height: 1px;
+/*        margin: -1px;
+/*        border: 0;
+/*        padding: 0;
+/*        white-space: nowrap;
+/*    }
+/*    .a11y-hidden--focus:focus {
+/*        overflow: visible;
+/*        position: static;
+/*        clip: auto;
+/*        width: auto;
+/*        height: auto;
+/*        margin: 0;
+/*        white-space: normal;
+/*    } 
+/* -------------------------------------------------------------------------- */
+
+@mixin a11y-hidden($focus-visible: false, $focus-state-class: "focus") {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    clip-path: circle(0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+  
+    @if $focus-visible {
+      &#{"--" + $focus-state-class}:focus {
+        overflow: visible;
+        position: static;
+        clip: auto;
+        width: auto;
+        height: auto;
+        margin: 0;
+        white-space: normal;
+      }
+    }
+  }
+

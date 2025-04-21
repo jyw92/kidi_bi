@@ -1,0 +1,407 @@
+@charset "UTF-8";
+/* -------------------------------------------------------------------------- */
+/*                                   result                                   */
+/* -------------------------------------------------------------------------- */
+/*    .a11y-hidden {
+/*        overflow: hidden;
+/*        position: absolute;
+/*        clip: rect(0, 0, 0, 0);
+/*        clip-path: circle(0);
+/*        width: 1px;
+/*        height: 1px;
+/*        margin: -1px;
+/*        border: 0;
+/*        padding: 0;
+/*        white-space: nowrap;
+/*    }
+/*    .a11y-hidden--focus:focus {
+/*        overflow: visible;
+/*        position: static;
+/*        clip: auto;
+/*        width: auto;
+/*        height: auto;
+/*        margin: 0;
+/*        white-space: normal;
+/*    } 
+/* -------------------------------------------------------------------------- */
+:root {
+  --kidi-bigin-default: #2D83F2;
+}
+
+html.is-transitioning {
+  cursor: wait;
+}
+
+.barba-container {
+  /* ------------------------------- cardGlobal ------------------------------- */
+  /* -------------------------------------------------------------------------- */
+  min-height: 500px;
+}
+.barba-container .card {
+  border: 2px solid #c2c2c2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  aspect-ratio: 2/1;
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+.barba-container .card:focus {
+  outline: none !important;
+}
+.barba-container .card.selected {
+  border: 2px solid #2d83f2;
+  box-shadow: 4px 4px 4px 0px rgba(0, 133, 231, 0.5);
+  transform: translateY(-4px);
+}
+.barba-container[data-barba-namespace=step1] .card--container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 30px;
+  margin-block: 40px 35px;
+  padding-bottom: 35px;
+  border-bottom: 2px dashed #eee;
+}
+.barba-container[data-barba-namespace=step1] .card {
+  padding-inline-start: 260px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 90px;
+}
+.barba-container[data-barba-namespace=step1] .card strong {
+  color: #999;
+  font-size: 22px;
+  transition: all 0.5s;
+}
+.barba-container[data-barba-namespace=step1] .card p {
+  color: #666;
+  text-align: left;
+  font-size: 16px;
+  transition: all 0.5s;
+}
+.barba-container[data-barba-namespace=step1] .card.selected {
+  border: 2px solid #2d83f2;
+}
+.barba-container[data-barba-namespace=step1] .card.selected strong {
+  color: #2d83f2;
+}
+.barba-container[data-barba-namespace=step1] .card[data-type=card] {
+  background-image: url("/assets/img/ico/ico_card.svg");
+}
+.barba-container[data-barba-namespace=step1] .card[data-type=card].selected {
+  background-image: url("/assets/img/ico/ico_card_active.svg");
+}
+.barba-container[data-barba-namespace=step1] .card[data-type=app] {
+  background-image: url("/assets/img/ico/ico_app.svg");
+}
+.barba-container[data-barba-namespace=step1] .card[data-type=app].selected {
+  background-image: url("/assets/img/ico/ico_app_active.svg");
+}
+.barba-container[data-barba-namespace=step2] {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  transition: all 0.5s;
+  column-gap: 60px;
+  transform: translateX(25%);
+}
+.barba-container[data-barba-namespace=step2] .card {
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 60px;
+  padding-left: 140px;
+  color: #999;
+}
+.barba-container[data-barba-namespace=step2] .card[data-gender] {
+  background-size: 64px;
+  font-size: 24px;
+}
+.barba-container[data-barba-namespace=step2] .card[data-gender][data-gender=male] {
+  background-image: url("/assets/img/ico/ico_m_3.svg");
+}
+.barba-container[data-barba-namespace=step2] .card[data-gender][data-gender=male].selected {
+  background-image: url("/assets/img/ico/ico_m_color_3.svg");
+}
+.barba-container[data-barba-namespace=step2] .card[data-gender][data-gender=female] {
+  background-image: url("/assets/img/ico/ico_w_3.svg");
+}
+.barba-container[data-barba-namespace=step2] .card[data-gender][data-gender=female].selected {
+  background-image: url("/assets/img/ico/ico_w_color_3.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(1) {
+  background-image: url("/assets/img/ico/ico_m_1.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(1).selected {
+  background-image: url("/assets/img/ico/ico_m_color_1.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(2) {
+  background-image: url("/assets/img/ico/ico_m_2.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(2).selected {
+  background-image: url("/assets/img/ico/ico_m_color_2.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(3) {
+  background-image: url("/assets/img/ico/ico_m_3.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(3).selected {
+  background-image: url("/assets/img/ico/ico_m_color_3.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(4) {
+  background-image: url("/assets/img/ico/ico_m_4.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(4).selected {
+  background-image: url("/assets/img/ico/ico_m_color_4.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(5) {
+  background-image: url("/assets/img/ico/ico_m_5.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(5).selected {
+  background-image: url("/assets/img/ico/ico_m_color_5.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(6) {
+  background-image: url("/assets/img/ico/ico_m_6.svg");
+}
+.barba-container[data-barba-namespace=step2].male .card[data-age-group]:nth-child(6).selected {
+  background-image: url("/assets/img/ico/ico_m_color_6.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(1) {
+  background-image: url("/assets/img/ico/ico_w_1.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(1).selected {
+  background-image: url("/assets/img/ico/ico_w_color_1.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(2) {
+  background-image: url("/assets/img/ico/ico_w_2.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(2).selected {
+  background-image: url("/assets/img/ico/ico_w_color_2.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(3) {
+  background-image: url("/assets/img/ico/ico_w_3.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(3).selected {
+  background-image: url("/assets/img/ico/ico_w_color_3.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(4) {
+  background-image: url("/assets/img/ico/ico_w_4.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(4).selected {
+  background-image: url("/assets/img/ico/ico_w_color_4.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(5) {
+  background-image: url("/assets/img/ico/ico_w_5.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(5).selected {
+  background-image: url("/assets/img/ico/ico_w_color_5.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(6) {
+  background-image: url("/assets/img/ico/ico_w_6.svg");
+}
+.barba-container[data-barba-namespace=step2].female .card[data-age-group]:nth-child(6).selected {
+  background-image: url("/assets/img/ico/ico_w_color_6.svg");
+}
+:is(.barba-container[data-barba-namespace=step2].male, .barba-container[data-barba-namespace=step2].female) {
+  transform: translateX(0);
+}
+:is(.barba-container[data-barba-namespace=step2].male, .barba-container[data-barba-namespace=step2].female) .step--area.age--area {
+  opacity: 1;
+}
+:is(.barba-container[data-barba-namespace=step2].male, .barba-container[data-barba-namespace=step2].female) .card--step--option {
+  transform: translateX(0);
+}
+.barba-container[data-barba-namespace=step2] .step--area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.barba-container[data-barba-namespace=step2] .step--area.age--area {
+  opacity: 0;
+}
+.barba-container[data-barba-namespace=step2] .step--area.age--area .card {
+  background-size: 50px auto;
+  background-position-x: 27px;
+  padding-left: 92px;
+}
+.barba-container[data-barba-namespace=step2] .step--area .remaining--area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.barba-container[data-barba-namespace=step2] .step--area .card--container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--column), 1fr);
+  gap: 1rem;
+}
+.barba-container[data-barba-namespace=step2] .card--step--option {
+  grid-column: 1/3;
+  transform: translateX(-25%);
+  transition: all 0.5s;
+}
+.barba-container[data-barba-namespace=step3] .card--container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--column), 1fr);
+  gap: 1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    badge                                   */
+/* -------------------------------------------------------------------------- */
+.step--badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7.2px 16px;
+  border: 1px solid var(--kidi-bigin-default);
+  border-radius: 28px;
+  font-size: 20px;
+  color: var(--kidi-bigin-default);
+  font-weight: 700;
+}
+
+.transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 800;
+  pointer-events: none;
+  display: none;
+}
+
+.transition__screen {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  will-change: top;
+  background-color: var(--color-primary-400, #64acfe);
+}
+
+.transition__background {
+  width: 100%;
+}
+
+.transition__background path {
+  fill: var(--color-primary-400, #64acfe);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   buttons                                  */
+/* -------------------------------------------------------------------------- */
+.card-paging-button {
+  border-radius: 28px;
+  border: 1px solid #666;
+  padding: 7.2px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.5s;
+}
+.card-paging-button::after {
+  content: "";
+  background-position: center;
+  background-size: 100%;
+  width: 14px;
+  height: 15px;
+  display: block;
+  transition: background-image 0.5s;
+  background-image: url("/assets/img/ico/ico__arrow__down.svg");
+}
+.card-paging-button:hover {
+  background-color: var(--kidi-bigin-default);
+  border: 1px solid var(--kidi-bigin-default);
+  color: #fff;
+}
+.card-paging-button:hover::after {
+  background-image: url("/assets/img/ico/ico__arrow__down-white.svg");
+}
+.card-paging-button.prev-button::after {
+  transform: rotate(180deg);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   current                                  */
+/* -------------------------------------------------------------------------- */
+.loader {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  top: 0;
+  left: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                     dev                                    */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+#lifeStyle__Container {
+  width: 100%;
+}
+
+.card--step--wrapper {
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 11px;
+}
+.card--step--wrapper p {
+  color: #666;
+  font-size: 32px;
+  font-weight: 700;
+}
+.card--step--wrapper p em {
+  color: var(--kidi-bigin-default);
+}
+
+.card--step--option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.current--wrap {
+  position: fixed;
+  right: 37px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.current--wrap li {
+  width: 9px;
+  height: 9px;
+}
+.current--wrap li.on {
+  position: relative;
+}
+.current--wrap li.on svg circle {
+  stroke: #0069F6;
+}
+.current--wrap li.on::before {
+  content: attr(data-current-name);
+  position: absolute;
+  right: 21px;
+  font-size: 17px;
+  color: #0069F6;
+  font-weight: 700;
+}
+
+/* 기본 리셋 및 기본 스타일 */
+
+/*# sourceMappingURL=LifeStyle.css.map */

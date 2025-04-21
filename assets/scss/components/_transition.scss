@@ -1,0 +1,35 @@
+.transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 800;
+    pointer-events: none;
+    display: none;
+}
+
+.transition__screen {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    will-change: top;
+    background-color: var(--color-primary-400, #64acfe)
+}
+
+.transition__background {
+    width: 100%
+}
+
+.transition__background path {
+    fill: var(--color-primary-400, #64acfe);
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%
+}
+

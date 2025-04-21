@@ -1,0 +1,101 @@
+/* responsive */
+
+@media screen and (max-width: 1024px) {
+  #gnb  {
+    display: none;
+  }
+  .all_menu_wrap .menu-01 > li {
+    display: block;
+    padding: 25px 0 50px;
+  }
+
+  .all_menu_wrap .gnb_hover {
+
+    width: 100%;
+  }
+  .all_menu_wrap .gnb_hover .inner {
+    width: 100%;
+  }
+  .all_menu_wrap .dep1 {
+    width: inherit;
+    margin-bottom:30px;
+  }
+
+
+  .all_menu_wrap .dep2 > li {
+    width: 50%;
+    margin-right: 0;
+  }
+  .all_menu_wrap .dep2 > li:nth-child(n+3),
+  .all_menu_wrap .dep2 > li:nth-child(n+6) {
+    margin-top: 30px;
+  }
+
+
+
+  .footer_info .inner_1120 {
+    display: block;
+  }
+
+  .sub_visual .inner::after {
+    display: none;
+  }
+  .sub_visual {
+    background-image: url(../img/sub/info_Visual_bg_m.png);
+  }
+
+  .tab_dep1 ul {
+    flex-wrap: wrap;
+  }
+  .tab_dep1 ul li {
+    width: 33.333%;
+  }
+  .tab_dep1 ul li:nth-child(n+4) a {
+    border-top: none;
+  }
+  .tab_dep1 ul li:nth-child(4) a {
+    border-left: 1px solid #dbdbdb;
+  } 
+  .tab_dep2 ul {
+    justify-content: flex-start;
+  }
+
+
+  .table_wrap.gray_table table tbody td br {
+    display: none;
+  }
+
+
+  .rep_type_list .img_box {
+    max-width: 140px;
+    margin-right: 15px;
+  }
+
+  .rep_type_list .type_desc {
+    padding-top: 0;
+  }
+
+
+  .car_grade_sec, 
+  .price_chk_sec {
+    padding: 20px;
+  }
+
+  .monthly_group .img_text_wrap .monthly_text_box {
+    padding-left:20px;
+    padding-top: 10px;
+  }
+  .monthly_group .new_list li, .monthly_group .trend_list li {
+    padding: 15px
+  }
+
+
+/* 예측 결과서 */
+
+.percent_num {
+  font-size: 14px;
+}
+
+  
+}
+

@@ -1,0 +1,8 @@
+@use '../abstracts/variables' as variables;
+
+:root{
+    //colors
+	@each $color, $value in variables.$colors {
+		--#{variables.$prefix}-#{$color}: #{$value};
+	}
+}

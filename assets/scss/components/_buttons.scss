@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+/* -------------------------------------------------------------------------- */
+/*                                   buttons                                  */
+/* -------------------------------------------------------------------------- */
+
+// 다음스텝으로
+
+.card-paging-button {
+  border-radius: 28px;
+  border: 1px solid #666;
+  padding: 7.2px 16px;
+  @include flexCenter();
+  gap: 8px;
+  transition: all 0.5s;
+  &::after {
+    content: "";
+    background-position: center;
+    background-size: 100%;
+    width: 14px;
+    height: 15px;
+    display: block;
+    transition: background-image 0.5s;
+    background-image: url("/assets/img/ico/ico__arrow__down.svg");
+  }
+  &:hover {
+    background-color: var(--kidi-bigin-default);
+    border: 1px solid var(--kidi-bigin-default);
+    color: #fff;
+    &::after {
+      background-image: url("/assets/img/ico/ico__arrow__down-white.svg");
+    }
+  }
+  &.next-button {
+    &::after {
+        
+    }
+  }
+  &.prev-button{
+    &::after {
+        transform: rotate(180deg);
+    }
+  }
+  
+}
