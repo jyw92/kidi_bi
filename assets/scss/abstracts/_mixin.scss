@@ -156,7 +156,10 @@
     @include flex-center;
     flex-direction: column;
 }
-
+@mixin flex-center-row {
+    @include flex-center;
+    flex-direction: row;
+}
 //Z-index
 //Ex: @inlcude z-index(modal)
 $modal: 100;

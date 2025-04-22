@@ -12,16 +12,16 @@ barba.init({
     {
       name: "default-transition",
       async leave(data) {
-        // const done = this.async();
-        // Transiton.pageLeave(data);
-        // await Transiton.delay(1000);
-        // done();
+        const done = this.async();
+        Transiton.pageLeave(data);
+        await Transiton.delay(1000);
+        done();
       },
       async enter(data) {
-        // Transiton.pageEnter(data);
+        Transiton.pageEnter(data);
       },
       async once(data) {
-        // Transiton.pageOnce(data);
+        Transiton.pageOnce(data);
         
       },
     },

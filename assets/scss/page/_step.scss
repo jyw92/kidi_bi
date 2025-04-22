@@ -38,6 +38,8 @@
 .card--step--option{
     @include flexCenter();
     gap: 10px;
+    border-top: 2px dashed #eee;
+    padding-top: 35px;
 }
 
 
@@ -70,4 +72,6 @@
         font-weight: 700;
     }
 }
+
+
 
