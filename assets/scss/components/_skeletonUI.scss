@@ -1,100 +1,103 @@
-$skeleton-color: #e0e0e0;
+@use 'sass:color';
+
+$skeleton-color: #e0e0e0; // Ensure this is a valid hex color
 $skeleton-width: 320px;
 $skeleton-offset: 100px;
 
 $image-height: 120px;
-$content-width:100%;
+$content-width: 100%;
 $line-height: 35px;
 $line-1-width: 50%;
 $line-2-width: 80%;
 
 @mixin background {
-  background-image: linear-gradient(90deg, $skeleton-color 0px, lighten($skeleton-color, 5%) 30px, $skeleton-color 60px);
+  background-image: linear-gradient(
+    90deg,
+    $skeleton-color 0px,
+    #{color.adjust($skeleton-color, $lightness: 5%)},
+    $skeleton-color 60px
+  );
   background-size: calc(#{$skeleton-width} + #{$skeleton-offset});
 }
 
 .skeleton {
   display: flex;
-  .image, .line {
+  .image,
+  .line {
     @include background;
     animation: refresh 2s infinite ease-out;
   }
 }
 
-
-
-.skeleton{
-  &.step01{
-    width:100%;
-    padding:20px;
+.skeleton {
+  &.step01 {
+    width: 100%;
+    padding: 20px;
     justify-content: space-between;
-    gap:20px !important;
-    .image{
-      flex:1;
-      height:100%;
+    gap: 20px !important;
+    .image {
+      flex: 1;
+      height: 100%;
     }
-    .line--wrap{
-      flex:2;
+    .line--wrap {
+      flex: 2;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      height:100%;
-      .line{
-        width:$content-width;
-        height:32px;
-        &.long{
-          flex:1;
-          height:100%;
+      height: 100%;
+      .line {
+        width: $content-width;
+        height: 32px;
+        &.long {
+          flex: 1;
+          height: 100%;
         }
       }
     }
   }
-  &.step02{
+  &.step02 {
     gap: 10px;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     flex-direction: row;
     align-items: center;
-    padding:20px 30px;
-    .image{
-      width:100px;
-      height:100%;
+    padding: 20px 30px;
+    .image {
+      width: 100px;
+      height: 100%;
     }
-    .line{
-      height:32px;
-      flex:1;
+    .line {
+      height: 32px;
+      flex: 1;
     }
   }
-  &.step03{
+  &.step03 {
     gap: 10px;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: space-between;
-    padding:10px;
+    padding: 10px;
     gap: 10px;
-    .image{
-      width:100%;
-      height:118px;
+    .image {
+      width: 100%;
+      height: 118px;
     }
-    .line{
-      width:100%;
-      height:32px;
+    .line {
+      width: 100%;
+      height: 32px;
       position: relative !important;
     }
   }
 }
 
-
-
 @keyframes refresh {
   0% {
-    background-position: calc(-#{$skeleton-offset});
+    background-position: -#{$skeleton-offset};
   }
-    
-  40%, 100% {
-    background-position: $skeleton-width; 
+
+  40%,
+  100% {
+    background-position: #{$skeleton-width};
   }
 }
-  
-

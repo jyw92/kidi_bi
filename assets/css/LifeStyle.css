@@ -282,8 +282,9 @@ html.is-transitioning {
 .skeleton {
   display: flex;
 }
-.skeleton .image, .skeleton .line {
-  background-image: linear-gradient(90deg, #e0e0e0 0px, rgb(236.75, 236.75, 236.75) 30px, #e0e0e0 60px);
+.skeleton .image,
+.skeleton .line {
+  background-image: linear-gradient(90deg, #e0e0e0 0px, rgb(236.75, 236.75, 236.75), #e0e0e0 60px);
   background-size: calc(320px + 100px);
   animation: refresh 2s infinite ease-out;
 }
@@ -350,12 +351,16 @@ html.is-transitioning {
 
 @keyframes refresh {
   0% {
-    background-position: calc(-100px);
+    background-position: -100px;
   }
   40%, 100% {
     background-position: 320px;
   }
 }
+.barba-container[data-barba-namaspace=step4] {
+  background-color: #020438;
+}
+
 .select--item {
   padding: 20px;
   color: #fff;
@@ -363,6 +368,8 @@ html.is-transitioning {
   position: absolute;
   z-index: 100;
   border-radius: 50px;
+  font-weight: 700;
+  font-size: 24px;
 }
 .select--item:nth-child(1) {
   top: 5%;
@@ -375,14 +382,14 @@ html.is-transitioning {
   background-color: rgb(0, 169, 111);
 }
 .select--item:nth-child(3) {
-  top: 50%;
-  right: 0;
+  top: 40%;
+  right: 20%;
   background-color: rgb(252, 240, 18);
   color: #020438;
 }
 .select--item:nth-child(4) {
-  top: 50%;
-  left: 0;
+  top: 40%;
+  left: 20%;
   background-color: rgb(68, 94, 243);
 }
 
@@ -395,6 +402,28 @@ html.is-transitioning {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
+}
+.result--loading--guide {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 400;
+}
+.result--loading--guide .guide--txt01 {
+  font-size: 16px;
+}
+.result--loading--guide .guide--txt02 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.result--loading--guide .guide--txt02 .dotted {
+  width: 21px;
+  display: inline-block;
+  font-weight: 700;
 }
 
 .box {
@@ -430,7 +459,7 @@ html.is-transitioning {
   width: 100%;
   height: 100%;
   transform: translate(0, 100%);
-  background: #4D6DE3;
+  background: #4d6de3;
   transition: all 0.3s;
 }
 .box .water_wave {
@@ -440,12 +469,12 @@ html.is-transitioning {
 }
 .box .water_wave_back {
   right: 0;
-  fill: #C7EEFF;
+  fill: #c7eeff;
   animation: wave-back 1.4s infinite linear;
 }
 .box .water_wave_front {
   left: 0;
-  fill: #4D6DE3;
+  fill: #4d6de3;
   margin-bottom: -1px;
   animation: wave-front 0.7s infinite linear;
 }

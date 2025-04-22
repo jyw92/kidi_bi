@@ -1,93 +1,145 @@
-  @use '../abstracts/' as *;
-  
-  
-  $bgColor:#020438;
-  $boxColor:#020438;
-  $waterFColor:#4D6DE3;
-  $waterBColor:#C7EEFF;
-  
+@use '../abstracts/' as *;
 
-  .select--item{
-    padding:20px;
-    color: #fff;
-    display: inline-block;
-    position: absolute;
-    z-index: 100;
-    border-radius: 50px;
-    
-    &:nth-child(1){top:5%;left:25%;background-color: rgb(174, 59, 255);}
-    &:nth-child(2){top:5%;right:25%;background-color: rgb(0, 169, 111);}
-    &:nth-child(3){top:50%;right:0;background-color: rgb(252, 240, 18);color:#020438}
-    &:nth-child(4){top:50%;left:0;background-color: rgb(68, 94, 243);}
-  }
+$bgColor: #020438;
+$boxColor: #020438;
+$waterFColor: #4d6de3;
+$waterBColor: #c7eeff;
 
-  .result--loading{
-    position: absolute;
-    width:100vw;
-    height:100%;
-    @include posCenter();
-    background-color: #fff;
+.barba-container[data-barba-namaspace='step4'] {
+  background-color: $bgColor;
+}
+.select--item {
+  padding: 20px;
+  color: #fff;
+  display: inline-block;
+  position: absolute;
+  z-index: 100;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 24px;
+
+  &:nth-child(1) {
+    top: 5%;
+    left: 25%;
+    background-color: rgb(174, 59, 255);
   }
-  .box{
-    height: 280px;
-    width: 280px;
+  &:nth-child(2) {
+    top: 5%;
+    right: 25%;
+    background-color: rgb(0, 169, 111);
+  }
+  &:nth-child(3) {
+    top: 40%;
+    right: 20%;
+    background-color: rgb(252, 240, 18);
+    color: #020438;
+  }
+  &:nth-child(4) {
+    top: 40%;
+    left: 20%;
+    background-color: rgb(68, 94, 243);
+  }
+}
+
+.result--loading {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  @include posCenter();
+  background-color: #fff;
+  &--guide {
     position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background: $boxColor;
-    border-radius:100%;
-    overflow: hidden; 
-    .percent{
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index:3;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: 400;
+    .guide--txt01 {
+      font-size: 16px;
+    }
+    .guide--txt02 {
       width: 100%;
-      height: 100%;
       display: flex;
-      display: -webkit-flex;
-      align-items:center;
-      justify-content:center; 
-      color:#fff;
-      font-size:64px;
-    } 
-    .water{
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      // animation: blink 2s infinite ease-in-out;
+      .dotted {
+        width: 21px;
+        display: inline-block;
+        font-weight: 700;
+      }
+      // @keyframes blink {
+      //   0%,
+      //   100% {
+      //     opacity: 1;
+      //   }
+      //   50% {
+      //     opacity: 0;
+      //   }
+      // }
+    }
+  }
+}
+.box {
+  height: 280px;
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: $boxColor;
+  border-radius: 100%;
+  overflow: hidden;
+  .percent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 64px;
+  }
+  .water {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    transform: translate(0, 100%);
+    background: $waterFColor;
+    transition: all 0.3s;
+    &_wave {
+      width: 200%;
       position: absolute;
-      left: 0;
-      top: 0;
-      z-index:2;
-      width: 100%;
-      height: 100%;
-      transform:translate(0,100%);
-      background:$waterFColor;
-      transition: all .3s;
-      &_wave{
-        width: 200%;
-        position: absolute;
-        bottom: 100%;
-        &_back {
-          right: 0;
-          fill: $waterBColor;
-          animation: wave-back 1.4s infinite linear;
-        }
-        &_front {
-          left: 0;
-          fill: $waterFColor;
-          margin-bottom: -1px;
-          animation: wave-front .7s infinite linear;
-        }
+      bottom: 100%;
+      &_back {
+        right: 0;
+        fill: $waterBColor;
+        animation: wave-back 1.4s infinite linear;
+      }
+      &_front {
+        left: 0;
+        fill: $waterFColor;
+        margin-bottom: -1px;
+        animation: wave-front 0.7s infinite linear;
       }
     }
   }
-  @keyframes wave-front {
-    100% {
-      transform: translate(-50%, 0);
-    }
+}
+@keyframes wave-front {
+  100% {
+    transform: translate(-50%, 0);
   }
-  
-  @keyframes wave-back {
-    100% {
-      transform: translate(50%, 0);
-    }
+}
+
+@keyframes wave-back {
+  100% {
+    transform: translate(50%, 0);
   }
+}

@@ -20,17 +20,10 @@
       name="Description"
       content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
     />
-    <meta
-      name="naver-site-verification"
-      content="a11274d57827bab6314487d2c003bd1dbae2edc9"
-    />
+    <meta name="naver-site-verification" content="a11274d57827bab6314487d2c003bd1dbae2edc9" />
     <title>[MY보험, 실손24(실손보험 청구 전산화 시스템)]</title>
 
-    <link
-      rel="shortcut icon"
-      href="https://bigin.kidi.or.kr:9443/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="https://bigin.kidi.or.kr:9443/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/css/base/reset.css" />
     <link rel="stylesheet" href="/assets/css/base/root.css" />
     <link rel="stylesheet" href="/assets/css/base/custom.css" />
@@ -38,10 +31,7 @@
 
     <!-- vendors -->
     <link rel="stylesheet" href="/assets/plugin/pqgrid/pqgrid.min.css" />
-    <link
-      rel="stylesheet"
-      href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css"
-    />
+    <link rel="stylesheet" href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css" />
     <link rel="stylesheet" href="/assets/css/lib/swiper.min.css" />
     <link rel="stylesheet" href="/assets/css/common.css" />
     <link rel="stylesheet" href="/assets/css/sub.css" />
@@ -50,55 +40,19 @@
     <link rel="stylesheet" href="/assets/css/mo_common.css" />
     <link rel="stylesheet" href="/assets/css/mo_sub.css" />
     <link rel="stylesheet" href="/assets/css/LifeStyle.css" />
-    <script
-      type="text/javascript"
-      src="/assets/js/lib/jquery-3.5.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/js/lib/jquery-ui.min.js"
-    ></script>
+    <script type="text/javascript" src="/assets/js/lib/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/assets/js/lib/swiper.min.js"></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/pqgrid.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/localize/pq-localize-en.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/ckeditor/ckeditor.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/highcharts.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/series-label.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/data.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/exporting.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/export-data.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/accessibility.js"
-    ></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/pqgrid.min.js"></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/localize/pq-localize-en.js"></script>
+    <script type="text/javascript" src="/assets/plugin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/highcharts.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/series-label.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/data.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/exporting.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/export-data.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/accessibility.js"></script>
     <script type="text/javascript" src="/assets/js/includeHTML.js"></script>
     <!-- <script type="text/javascript" src="/assets/js/menu.js"></script> -->
     <!-- <script type="text/javascript" src="/assets/js/improveAccessibility.js"></script>' -->
@@ -107,22 +61,22 @@
     <script type="text/javascript" src="/assets/js/script.js"></script>
     <script type="text/javascript" src="/assets/js/common.js"></script>
     <script>
-      var notiMap = "";
-      var notibool = "";
+      var notiMap = '';
+      var notibool = '';
       $(function () {
         //  기본 include
-        notiMap = getCookieVal("notiMap");
+        notiMap = getCookieVal('notiMap');
         //console.log("-------------------------------");
         // console.log("notiMap::"+notiMap);
-        if (notiMap != "hide") {
-          $("#noti").show();
+        if (notiMap != 'hide') {
+          $('#noti').show();
         }
 
-        var no_look = document.getElementById("no_look");
-        var link = document.getElementById("link");
+        var no_look = document.getElementById('no_look');
+        var link = document.getElementById('link');
 
         if (no_look != null) {
-          no_look.addEventListener("change", function () {
+          no_look.addEventListener('change', function () {
             if (no_look.checked) {
               notibool = true;
             } else {
@@ -133,18 +87,14 @@
       });
 
       function getCookieVal(name) {
-        return (
-          document.cookie
-            .match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")
-            ?.pop() || ""
-        );
+        return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
       }
 
       function closeTopAlertBox(notibool) {
         if (notibool == true) {
-          link.addEventListener("click", HandleClosePopupToday("#noti"));
+          link.addEventListener('click', HandleClosePopupToday('#noti'));
         } else if (notibool == false) {
-          $(".top_alert_box").css("display", "none");
+          $('.top_alert_box').css('display', 'none');
         }
       }
     </script>
@@ -177,9 +127,7 @@
     </div>
     <div id="bantop"></div>
     <div id="wrap">
-      <header id="header">
-  
-      </header>
+      <header id="header"></header>
 
       <!-- container -->
       <main id="container">
@@ -206,7 +154,7 @@
           <div class="transition">
             <div class="transition__screen">
               <svg class="transition__background" viewBox="0 0 100 100" fill="none">
-                <path d="M0,0 V0 Q50,0 100,0 V100 Q50,100 0,100 z"/>
+                <path d="M0,0 V0 Q50,0 100,0 V100 Q50,100 0,100 z" />
               </svg>
             </div>
           </div>
@@ -217,66 +165,111 @@
                 <ul class="current--wrap">
                   <li data-current-name="STEP1.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP2.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP3.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP4.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                 </ul>
-                <div
-                  class="barba-container"
-                  data-barba="container"
-                  data-barba-namespace="step4"
-                >
-                <div class="select--wrap">
-                  <div class="select--item">남자</div>
-                  <div class="select--item">20대</div>
-                  <div class="select--item">라이프스타일</div>
-                  <div class="select--item">카드</div>
-                </div>
-                <div class="result--loading">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
-                    <symbol id="wave">
-                      <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
-                      <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
-                      <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
-                      <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
-                    </symbol>
-                  </svg>
-                  <div class="box">
-                    
-                    <div class="percent">
-                      <div class="percentNum" id="count">0</div>
-                      <div class="percentB">%</div>
-                    </div>
-                    <div id="water" class="water">
-                      <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
-                        <use xlink:href="#wave"></use>
-                      </svg>
-                      <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
-                        <use xlink:href="#wave"></use>
-                      </svg>
+                <div class="barba-container" data-barba="container" data-barba-namespace="step4">
+                  <div class="select--wrap">
+                    <div class="select--item">남자</div>
+                    <div class="select--item">20대</div>
+                    <div class="select--item">라이프스타일</div>
+                    <div class="select--item">카드</div>
+                  </div>
+                  <div class="result--loading">
+                    <strong class="result--loading--guide">
+                      <div class="guide--txt01">선택하신 정보를 기반으로 추천보험을 산출하고 있습니다.</div>
+                      <div class="guide--txt02">
+                        <em style="font-weight: 700">잠시만 기다려 주세요</em>
+                        <span class="dotted" id="dots">...</span>
+                      </div>
+                    </strong>
+                    <svg
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      x="0px"
+                      y="0px"
+                      style="display: none"
+                    >
+                      <symbol id="wave">
+                        <path
+                          d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"
+                        ></path>
+                        <path
+                          d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"
+                        ></path>
+                        <path
+                          d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"
+                        ></path>
+                        <path
+                          d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"
+                        ></path>
+                      </symbol>
+                    </svg>
+                    <div class="box">
+                      <div class="percent">
+                        <div class="percentNum" id="count">0</div>
+                        <div class="percentB">%</div>
+                      </div>
+                      <div id="water" class="water">
+                        <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
+                          <use xlink:href="#wave"></use>
+                        </svg>
+                        <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
+                          <use xlink:href="#wave"></use>
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div class="card--step--wrapper">
-                  <span class="step--badge">STEP4.</span>
-                  <p><em>결과</em> 화면</p>
-                </div>
+
+                  <div class="card--step--wrapper">
+                    <span class="step--badge">STEP4.</span>
+                    <p><em>결과</em> 화면</p>
+                  </div>
                 </div>
               </div>
               <!-- -------------------------------------------------------------------------------- -->
@@ -285,9 +278,7 @@
         </div>
       </main>
 
-      <footer id="footer">
-     
-      </footer>
+      <footer id="footer"></footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
