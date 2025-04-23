@@ -23,23 +23,27 @@ export default function resultTemplate(data) {
     acdtInjrSrgRtScor,
     rcmdInsuCtt,
   } = data;
-const generateRatingStars = (score, fieldName) => {
-    return [...Array(5)].map((_, i) => {
+  const generateRatingStars = (score, fieldName) => {
+    return [...Array(5)]
+      .map((_, i) => {
         const ratingValue = 5 - i;
         return `
-            <input type="radio" name="${fieldName}" value="${ratingValue}" ${Number(score) === ratingValue ? 'checked' : ''} disabled/>
+            <input type="radio" name="${fieldName}" value="${ratingValue}" ${
+          Number(score) === ratingValue ? 'checked' : ''
+        } disabled/>
             <label class="full" for="${fieldName}Star${ratingValue}" title="${ratingValue} stars"></label>
         `;
-    }).join('');
-};
+      })
+      .join('');
+  };
 
-return `
+  return `
             <div class="card--step--wrapper">
                     <span class="step--badge">STEP4.</span>
                     <p>당신은 <em class="var">${lfstlNm}</em> 유형</p>
             </div>
             <article>
-                    <h2>[${typeName}] 사용정보를 토대로 분류한 당신의 유형은 아래와 같은 관심사를 보입니다.</h2>
+                    <h2><em class="var">[${typeName}]</em> 사용정보를 토대로 분류한 당신의 유형은 아래와 같은 관심사를 보입니다.</h2>
                     <div class="result--area">
                     <!-- ----------------------------------------------------------------------- -->
                     <div class="result--area--inner">

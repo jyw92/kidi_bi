@@ -1,5 +1,7 @@
 import {store} from '../store/store.js';
-import  resultTemplate  from '../modules/_resultTemplate.js';
+import resultTemplate from '../modules/_resultTemplate.js';
+import {Transiton} from './_index.js';
+gsap.registerPlugin(ScrollTrigger);
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
@@ -156,7 +158,7 @@ const cardConfig = {
   step02: {
     containerSelector: '.gender--area .card--container',
     dataAttribute: 'gender',
-    dataAttributeName:'gender-name',
+    dataAttributeName: 'gender-name',
     template: (item) => `
       <img src="${IMAGE_PROXY}${item.image}" alt="">${item.name}
     `,
@@ -446,7 +448,6 @@ async function setupStep3Events() {
 }
 
 async function setupResultEvents() {
-  
   const state = store.getState();
   console.log('결과 페이지 상태', state);
   //결과 페이지에 state를 사용하여 결과 표시 로직 구현.
@@ -454,8 +455,13 @@ async function setupResultEvents() {
   const cardSelectWrap = document.querySelector('.select--wrap');
   const resultContainer = document.querySelector('.result--container');
   const resultLoadingContainer = document.querySelector('.result--loaded--container');
-  const { typeName, genderName, ageGroupName, lifeStyleName } = state;
+  const resultLoadingGuide = document.querySelector('.result--loading--guide');
+  const contentInner1120 = document.querySelector('.inner_1120');
+  const box = document.querySelector('.box');
+  const footer = document.querySelector('#footer');
+  const {typeName, genderName, ageGroupName, lifeStyleName} = state;
   resultContainer.style.display = 'none';
+  footer.style.display = 'none';
   async function updateSelection() {
     const template = `
       <div class="select--item">${typeName}</div>
@@ -464,15 +470,87 @@ async function setupResultEvents() {
       <div class="select--item">${lifeStyleName}</div>
     `;
     cardSelectWrap.innerHTML = template;
+    await delay(1000);
     await resultLoader();
   }
+
   updateSelection();
   const data = await fetchResultData(state.type, state.gender, state.ageGroup, state.lifeStyle);
-  const lastData = { typeName, genderName, ageGroupName, lifeStyleName, ...data };
-  await delay(10000);
-  resultLoadingContainer.style.display = 'none';
-  resultContainer.style.display = 'block';
-  resultContainer.innerHTML = resultTemplate(lastData);
+  await delay(6000);
+  const lastData = {typeName, genderName, ageGroupName, lifeStyleName, ...data};
+  resultLoadingGuide.innerHTML = completeMessage();
+  setupScrollAnimation(contentInner1120, box, resultLoadingContainer, resultContainer, lastData);
+}
+
+function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultContainer, lastData) {
+  ScrollTrigger.create({
+    id: 'main-vis',
+    trigger: contentInner,
+    start: 'top top',
+    end: '+=100%',
+    pin: true,
+    pinSpacing: false,
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+    markers: true,
+  });
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: contentInner,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+        id: 'main-ani',
+        onLeave: () => {
+          Transiton.pageLeave();
+          setTimeout(() => {
+            Transiton.pageEnter();
+            resultLoadingContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            resultContainer.innerHTML = resultTemplate(lastData);
+            footer.style.display = 'block';
+            //gsap 종료
+            ScrollTrigger.getById('main-ani')?.kill();
+            ScrollTrigger.getById('main-vis')?.kill();
+            scrollToInnerContent();
+          }, 800);
+        },
+        onLeaveBack: () => {},
+      },
+    })
+    .to(box, {
+      yPercent: 200,
+      duration: 2,
+      ease: 'none', // 부드러운 효과로 자연스러운 표현
+    });
+}
+
+function completeMessage() {
+  return `
+    <div class="guide--txt02" id="completionMessage">
+      <em>추천 보험 산출이 완료되었습니다!</em>
+      <span class="var" style="font-weight:700">결과를 확인해보세요.</span>
+      <div class="kidi--scroll-view">
+        <div class="kidi--scroll-inner">
+          <div class="mouse"></div>
+          <p class="kidi--en">Scroll</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function scrollToInnerContent() {
+  const innerContent = document.querySelector('.inner_1120');
+  if (innerContent) {
+    const offsetTop = innerContent.offsetTop;
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth',
+    });
+  }
 }
 
 function setupPageEvents(namespace) {
@@ -483,18 +561,21 @@ function setupPageEvents(namespace) {
       store.dispatch({type: 'SET_CURRENT', payload: current});
       realTimeCurrentState(store.getState().current);
       setupStep1Events();
+      scrollToInnerContent();
       break;
     case 'step2':
       current = 1;
       store.dispatch({type: 'SET_CURRENT', payload: current});
       realTimeCurrentState(store.getState().current);
       setupStep2Events();
+      scrollToInnerContent();
       break;
     case 'step3':
       current = 2;
       store.dispatch({type: 'SET_CURRENT', payload: current});
       realTimeCurrentState(store.getState().current);
       setupStep3Events();
+      scrollToInnerContent();
 
       break;
     case 'step4':
@@ -502,6 +583,7 @@ function setupPageEvents(namespace) {
       store.dispatch({type: 'SET_CURRENT', payload: current});
       realTimeCurrentState(store.getState().current);
       setupResultEvents();
+      scrollToInnerContent();
       break;
     default:
       console.log('알 수 없는 namespace입니다.');

@@ -1,4 +1,4 @@
-@use "../abstracts/" as *;
+@use '../abstracts/' as *;
 
 .barba-container {
   /* ------------------------------- cardGlobal ------------------------------- */
@@ -7,19 +7,17 @@
   $cardLineColor: #c2c2c2;
   $cardColor--active: #2d83f2;
   $box-shadow: 4px 4px 4px 0px rgba(0, 133, 231, 0.5);
-  $borderWidth:1px;
-  $radius:0px;
+  $borderWidth: 1px;
+  $radius: 0px;
 
   //step01
 
-  
   //step02
 
-  
   /* -------------------------------------------------------------------------- */
 
   min-height: 500px;
-  .card--container{
+  .card--container {
     margin-block: 40px 35px;
   }
   .card {
@@ -29,23 +27,23 @@
     justify-content: center;
     transition: all 0.5s;
     border-radius: $radius;
-    &:focus{
+    &:focus {
       outline: none !important;
     }
-    img{
+    img {
       filter: grayscale(100%);
     }
     &.selected {
       border: $borderWidth solid $cardColor--active;
       box-shadow: $box-shadow;
       transform: translateY(-4px);
-      img{
+      img {
         filter: grayscale(0);
       }
     }
   }
 
-  &[data-barba-namespace="step1"] {
+  &[data-barba-namespace='step1'] {
     .card--container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -55,24 +53,20 @@
       aspect-ratio: 2/1;
       @include flex-center-row;
       gap: 50px;
-      .card--info{
+      .card--info {
         text-align: left;
         strong {
           color: #999;
           font-size: 22px;
           transition: all 0.5s;
-         
         }
         p {
           color: #666;
           text-align: left;
           font-size: 16px;
           transition: all 0.5s;
-          
         }
       }
-      
-      
 
       &.selected {
         // border-radius: 10px 50px;
@@ -80,46 +74,44 @@
         strong {
           color: $cardColor--active;
         }
-        
       }
     }
   }
-  &[data-barba-namespace="step2"] {
-    .card{
+  &[data-barba-namespace='step2'] {
+    .card {
       color: #999;
       aspect-ratio: 2/1;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 20px;
-      img{
-        
-        height:64px;
+      img {
+        height: 64px;
       }
     }
-    .card[data-gender]{
+    .card[data-gender] {
       font-size: 24px;
     }
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    transition: all .5s;
+    transition: all 0.5s;
     column-gap: 60px;
     .step--area {
       display: flex;
       flex-direction: column;
       width: 100%;
-      .remaining--area{
-        flex:1;
+      .remaining--area {
+        flex: 1;
         display: flex;
         align-items: center;
         min-height: 320px;
         position: relative;
-        .none-data{
+        .none-data {
           position: absolute;
-          width:100%;
-          height:calc(100% - 50px);
+          width: 100%;
+          height: calc(100% - 50px);
           @include flexCenter();
-          color:#666;
+          color: #666;
           font-size: 20px;
           font-weight: 300;
           background-color: #f1f1f1;
@@ -138,14 +130,14 @@
       padding-top: 0;
     }
   }
-  &[data-barba-namespace="step3"] {
-    .card--container{
+  &[data-barba-namespace='step3'] {
+    .card--container {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(var(--column), 1fr);
       gap: 1rem;
       margin-block-start: 40px;
-      .card{
+      .card {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -157,96 +149,96 @@
         position: relative;
         opacity: 0.5;
         min-height: 182px;
-        p{
+        p {
           position: absolute;
         }
-        img{
+        img {
           object-fit: cover;
-          transition: all .5s;
+          transition: all 0.5s;
         }
-        &.selected{
-          color: #0069F6;
+        &.selected {
+          color: #0069f6;
           opacity: 1;
         }
       }
     }
   }
-  &[data-barba-namespace="step4"] {
-    .result--container{
-      min-height:100vh;
-      article{
+  &[data-barba-namespace='step4'] {
+    .result--container {
+      min-height: 100vh;
+      article {
         margin-block-start: 65px;
-        h2{
+        h2 {
           border-radius: 50px;
-          background: #F1F1F1;
-          color: #4B4B4B;
+          background: #f1f1f1;
+          color: #4b4b4b;
           font-size: 18px;
-          font-weight: 700; 
+          font-weight: 700;
           letter-spacing: -0.36px;
           text-align: center;
-          padding:13px;
+          padding: 13px;
         }
-        .result--area{
+        .result--area {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          &--title{
+          &--title {
             text-align: center;
-            margin-block:27px 43px;
-            h3{
+            margin-block: 27px 43px;
+            h3 {
               color: #343434;
               font-size: 28px;
               font-weight: 700;
-              background: linear-gradient(#e7f6ff,  #e7f6ff) no-repeat center bottom / 100% 25px;
+              background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom / 100% 25px;
               padding-block: 5px 10px;
               padding-inline: 10px;
               display: inline-block;
             }
           }
-          &--info{
+          &--info {
             margin-top: 18px;
             column-gap: 33px;
             display: grid;
             grid-template-columns: 186px 1fr;
             padding-inline: 22px 52px;
-            &--thumbnail{
-              height:250px;
-              max-height:250px;
+            &--thumbnail {
+              height: 250px;
+              max-height: 250px;
               border-radius: 800px;
               border: 1px solid var(--borderColor);
               background-color: var(--bgColor);
               @include flexCenter();
-              img{
+              img {
                 object-fit: contain;
                 object-position: center;
               }
             }
-            &--table{
+            &--table {
               display: grid;
               grid-template-columns: 2fr 1fr;
               grid-template-rows: repeat(var(--rows, 2), 1fr);
-              padding:7px 12px 14px;
+              padding: 7px 12px 14px;
               position: relative;
               border-width: 2px 0 1px 0;
               border-style: solid;
-              border-color: #CACACA;
-              
-              & > div{
+              border-color: #cacaca;
+
+              & > div {
                 font-weight: 700;
                 display: flex;
                 align-items: flex-end;
-                border-top:1px dotted #ccc;
+                border-top: 1px dotted #ccc;
                 min-height: 66px;
                 padding-bottom: 12px;
-                &:nth-child(-n+2) {
+                &:nth-child(-n + 2) {
                   border-top: 0;
                 }
               }
-              &--name{
+              &--name {
                 color: #666;
                 font-size: 20px;
-                
               }
-              &--counter, &--rating{
+              &--counter,
+              &--rating {
                 color: var(--kidi-bigin-default);
                 font-size: 40px;
               }
@@ -255,13 +247,13 @@
         }
       }
     }
-    .result--last--container{
+    .result--last--container {
       min-height: 350px;
       margin-block-start: 27px;
       border-radius: 10px 50px;
-      border: 5px solid #0069F6;
-      background: #2D83F3;
-      padding:45px 478px 50px 31px;
+      border: 5px solid #0069f6;
+      background: #2d83f3;
+      padding: 45px 478px 50px 31px;
       background-image: url('/assets/img/lifeStyle/ico_result_5.svg');
       background-repeat: no-repeat;
       background-size: contain;
@@ -269,28 +261,28 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      .user--target{
+      .user--target {
         display: flex;
         gap: 18px;
-        span{
+        span {
           @include flexCenter();
           padding: 6px 18px;
           border-radius: 80px;
-          background: #FFF;
-          color: #2D83F3;
+          background: #fff;
+          color: #2d83f3;
           font-size: 18px;
           font-weight: 700;
         }
-        p{
-          color: #FFF;
+        p {
+          color: #fff;
           text-align: center;
           font-size: 24px;
           font-weight: 700;
         }
       }
-      .result--last--info{
+      .result--last--info {
         margin-block-start: 30px;
-        color: #FFF;
+        color: #fff;
         text-align: center;
         font-size: 18px;
         font-weight: 400;

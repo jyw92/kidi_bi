@@ -20,17 +20,10 @@
       name="Description"
       content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
     />
-    <meta
-      name="naver-site-verification"
-      content="a11274d57827bab6314487d2c003bd1dbae2edc9"
-    />
+    <meta name="naver-site-verification" content="a11274d57827bab6314487d2c003bd1dbae2edc9" />
     <title>[MY보험, 실손24(실손보험 청구 전산화 시스템)]</title>
 
-    <link
-      rel="shortcut icon"
-      href="https://bigin.kidi.or.kr:9443/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="https://bigin.kidi.or.kr:9443/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/assets/css/base/reset.css" />
     <link rel="stylesheet" href="/assets/css/base/root.css" />
     <link rel="stylesheet" href="/assets/css/base/custom.css" />
@@ -38,10 +31,7 @@
 
     <!-- vendors -->
     <link rel="stylesheet" href="/assets/plugin/pqgrid/pqgrid.min.css" />
-    <link
-      rel="stylesheet"
-      href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css"
-    />
+    <link rel="stylesheet" href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css" />
     <link rel="stylesheet" href="/assets/css/lib/swiper.min.css" />
     <link rel="stylesheet" href="/assets/css/common.css" />
     <link rel="stylesheet" href="/assets/css/sub.css" />
@@ -50,55 +40,19 @@
     <link rel="stylesheet" href="/assets/css/mo_common.css" />
     <link rel="stylesheet" href="/assets/css/mo_sub.css" />
     <link rel="stylesheet" href="/assets/css/LifeStyle.css" />
-    <script
-      type="text/javascript"
-      src="/assets/js/lib/jquery-3.5.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/js/lib/jquery-ui.min.js"
-    ></script>
+    <script type="text/javascript" src="/assets/js/lib/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/assets/js/lib/swiper.min.js"></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/pqgrid.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/pqgrid/localize/pq-localize-en.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/ckeditor/ckeditor.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/highcharts.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/series-label.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/data.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/exporting.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/export-data.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="/assets/plugin/highchart/code/modules/accessibility.js"
-    ></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/pqgrid.min.js"></script>
+    <script type="text/javascript" src="/assets/plugin/pqgrid/localize/pq-localize-en.js"></script>
+    <script type="text/javascript" src="/assets/plugin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/highcharts.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/series-label.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/data.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/exporting.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/export-data.js"></script>
+    <script type="text/javascript" src="/assets/plugin/highchart/code/modules/accessibility.js"></script>
     <script type="text/javascript" src="/assets/js/includeHTML.js"></script>
     <!-- <script type="text/javascript" src="/assets/js/menu.js"></script> -->
     <!-- <script type="text/javascript" src="/assets/js/improveAccessibility.js"></script>' -->
@@ -107,22 +61,22 @@
     <script type="text/javascript" src="/assets/js/script.js"></script>
     <script type="text/javascript" src="/assets/js/common.js"></script>
     <script>
-      var notiMap = "";
-      var notibool = "";
+      var notiMap = '';
+      var notibool = '';
       $(function () {
         //  기본 include
-        notiMap = getCookieVal("notiMap");
+        notiMap = getCookieVal('notiMap');
         //console.log("-------------------------------");
         // console.log("notiMap::"+notiMap);
-        if (notiMap != "hide") {
-          $("#noti").show();
+        if (notiMap != 'hide') {
+          $('#noti').show();
         }
 
-        var no_look = document.getElementById("no_look");
-        var link = document.getElementById("link");
+        var no_look = document.getElementById('no_look');
+        var link = document.getElementById('link');
 
         if (no_look != null) {
-          no_look.addEventListener("change", function () {
+          no_look.addEventListener('change', function () {
             if (no_look.checked) {
               notibool = true;
             } else {
@@ -133,18 +87,14 @@
       });
 
       function getCookieVal(name) {
-        return (
-          document.cookie
-            .match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")
-            ?.pop() || ""
-        );
+        return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '';
       }
 
       function closeTopAlertBox(notibool) {
         if (notibool == true) {
-          link.addEventListener("click", HandleClosePopupToday("#noti"));
+          link.addEventListener('click', HandleClosePopupToday('#noti'));
         } else if (notibool == false) {
-          $(".top_alert_box").css("display", "none");
+          $('.top_alert_box').css('display', 'none');
         }
       }
     </script>
@@ -162,12 +112,18 @@
     </style>
   </head>
   <body data-barba="wrapper">
-    
     <div id="wrap">
       <header id="header"></header>
 
       <!-- container -->
       <main id="container">
+        <div class="transition">
+          <div class="transition__screen">
+            <svg class="transition__background" viewBox="0 0 100 100" fill="none">
+              <path d="M0,0 V0 Q50,0 100,0 V100 Q50,100 0,100 z" />
+            </svg>
+          </div>
+        </div>
         <!-- sub_visual -->
         <section class="sub_visual">
           <div class="inner">
@@ -188,13 +144,6 @@
         </section>
         <!-- //sub_visual -->
         <div class="inner_1120 content">
-          <div class="transition">
-            <div class="transition__screen">
-              <svg class="transition__background" viewBox="0 0 100 100" fill="none">
-                <path d="M0,0 V0 Q50,0 100,0 V100 Q50,100 0,100 z"/>
-              </svg>
-            </div>
-          </div>
           <section class="Information_page">
             <div id="lifeStyle__Container">
               <!-- ----------------------------- 라이프스타일 컨텐츠 ------------------------------ -->
@@ -202,30 +151,54 @@
                 <ul class="current--wrap">
                   <li data-current-name="STEP1.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP2.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP3.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                   <li data-current-name="STEP4.">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                      <circle cx="4.5" cy="4.5" r="3.15" transform="rotate(90 4.5 4.5)" stroke="#AFAFAF" stroke-width="2.7"/>
+                      <circle
+                        cx="4.5"
+                        cy="4.5"
+                        r="3.15"
+                        transform="rotate(90 4.5 4.5)"
+                        stroke="#AFAFAF"
+                        stroke-width="2.7"
+                      />
                     </svg>
                   </li>
                 </ul>
-                <div
-                  class="barba-container"
-                  data-barba="container"
-                  data-barba-namespace="step1"
-                >
+                <div class="barba-container" data-barba="container" data-barba-namespace="step1">
                   <div class="card--step--wrapper">
                     <span class="step--badge">STEP1.</span>
                     <p><em>기준</em> 정하기</p>
@@ -244,7 +217,7 @@
                     </button>
                   </div>
                   <div class="card--step--option">
-                    <button class="next-button card-paging-button">다음</button> 
+                    <button class="next-button card-paging-button">다음</button>
                   </div>
                 </div>
               </div>
@@ -260,6 +233,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
     <script src="../assets/js/lifeStyleApp.js" type="module"></script>
   </body>
 </html>

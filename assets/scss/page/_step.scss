@@ -1,77 +1,69 @@
 @use '../abstracts/' as *;
 
-
 /* -------------------------------------------------------------------------- */
 /*                                     dev                                    */
 /* -------------------------------------------------------------------------- */
-.content{
-    // @include devLine('.content', red, 10);
-    .Information_page{
-        // @include devLine('.Information_page', green, 10);
-        #lifeStyle__Container{
-            // @include devLine('#lifeStyle__Container', blue, 20);
-        }
+.content {
+  // @include devLine('.content', red, 10);
+  .Information_page {
+    // @include devLine('.Information_page', green, 10);
+    #lifeStyle__Container {
+      // @include devLine('#lifeStyle__Container', blue, 20);
     }
+  }
 }
 /* -------------------------------------------------------------------------- */
 
-
-
-#lifeStyle__Container{
-    width:100%;
+#lifeStyle__Container {
+  width: 100%;
 }
-.card--step--wrapper{
-    width:inherit;
-    @include flex-center-column();
-    gap: 11px;
-    p{
-        color: #666;
-        font-size: 32px;
-        font-weight: 700;
-        em{
-            color: var(--kidi-bigin-default);
-        }
+.card--step--wrapper {
+  width: inherit;
+  @include flex-center-column();
+  gap: 11px;
+  p {
+    color: #666;
+    font-size: 32px;
+    font-weight: 700;
+    em {
+      color: var(--kidi-bigin-default);
     }
+  }
 }
 
-
-.card--step--option{
-    @include flexCenter();
-    gap: 10px;
-    border-top: 2px dashed #eee;
-    padding-top: 35px;
+.card--step--option {
+  @include flexCenter();
+  gap: 10px;
+  border-top: 2px dashed #eee;
+  padding-top: 35px;
 }
 
-
-.current--wrap{
-    position: fixed;
-    right:37px;;
-    top:50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    li{
-        width:9px;
-        height:9px;
+.current--wrap {
+  position: fixed;
+  right: 37px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  li {
+    width: 9px;
+    height: 9px;
+  }
+  li.on {
+    position: relative;
+    svg {
+      circle {
+        stroke: #0069f6;
+      }
     }
-    li.on{
-        position: relative;
-        svg{
-            circle{
-                stroke:#0069F6;
-            }
-        }
-    }
-    li.on::before{
-        content:attr(data-current-name);
-        position: absolute;
-        right:21px;
-        font-size: 17px;
-        color: #0069F6;
-        font-weight: 700;
-    }
+  }
+  li.on::before {
+    content: attr(data-current-name);
+    position: absolute;
+    right: 21px;
+    font-size: 17px;
+    color: #0069f6;
+    font-weight: 700;
+  }
 }
-
-
-
