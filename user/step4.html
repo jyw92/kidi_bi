@@ -60,6 +60,7 @@
     <script type="text/javascript" src="/assets/js/custom.js"></script>
     <script type="text/javascript" src="/assets/js/script.js"></script>
     <script type="text/javascript" src="/assets/js/common.js"></script>
+    <script src="/assets/plugin/gsap/lordicon.min.js"></script>
     <script>
       var notiMap = '';
       var notibool = '';
@@ -134,7 +135,7 @@
         <!-- sub_visual -->
         <section class="sub_visual">
           <div class="inner">
-            <h2 class="sub_visual_ttl">라이프스타일 기반 AI추천보험</h2>
+            <h2 class="sub_visual_ttl">라이프스타일 기반 추천보험</h2>
             <!-- 2024.02.05 : menu_ttl 메뉴설명 있던 자리 기존에 text_conts 데이터를 불러왔으나 value값 삭제 처리함 -->
             <em class="menu_ttl"></em>
 
@@ -143,7 +144,7 @@
                 <li><span class="home"></span></li>
                 <li><span> MY보험</span></li>
                 <li aria-current="page">
-                  <span>라이프스타일 기반 AI추천보험</span>
+                  <span>라이프스타일 기반 추천보험</span>
                 </li>
               </ol>
             </nav>
@@ -213,63 +214,240 @@
                   </li>
                 </ul>
                 <div class="barba-container" data-barba="container" data-barba-namespace="step4">
-                  <div class="select--wrap">
-                    <div class="select--item">남자</div>
-                    <div class="select--item">20대</div>
-                    <div class="select--item">라이프스타일</div>
-                    <div class="select--item">카드</div>
-                  </div>
-                  <div class="result--loading">
-                    <strong class="result--loading--guide">
-                      <div class="guide--txt01">선택하신 정보를 기반으로 추천보험을 산출하고 있습니다.</div>
-                      <div class="guide--txt02">
-                        <em style="font-weight: 700">잠시만 기다려 주세요</em>
-                        <span class="dotted" id="dots">...</span>
-                      </div>
-                    </strong>
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      style="display: none"
-                    >
-                      <symbol id="wave">
-                        <path
-                          d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"
-                        ></path>
-                        <path
-                          d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"
-                        ></path>
-                        <path
-                          d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"
-                        ></path>
-                        <path
-                          d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"
-                        ></path>
-                      </symbol>
-                    </svg>
-                    <div class="box">
-                      <div class="percent">
-                        <div class="percentNum" id="count">0</div>
-                        <div class="percentB">%</div>
-                      </div>
-                      <div id="water" class="water">
-                        <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
-                          <use xlink:href="#wave"></use>
-                        </svg>
-                        <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
-                          <use xlink:href="#wave"></use>
-                        </svg>
+                  <div class="result--loaded--container">
+                    <div class="select--wrap">
+                      
+                    </div>
+                    <div class="result--loading">
+                      <strong class="result--loading--guide">
+                        <div class="guide--txt01">선택하신 정보를 기반으로 추천보험을 산출하고 있습니다.</div>
+                        <div class="guide--txt02">
+                          <em style="font-weight: 700">잠시만 기다려 주세요</em> 
+                          <span class="dotted" id="dots">...</span>
+                        </div>
+                      </strong>
+                      <svg
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        style="display: none"
+                      >
+                        <symbol id="wave">
+                          <path
+                            d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"
+                          ></path>
+                          <path
+                            d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"
+                          ></path>
+                          <path
+                            d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"
+                          ></path>
+                          <path
+                            d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"
+                          ></path>
+                        </symbol>
+                      </svg>
+                      <div class="box">
+                        <div class="percent">
+                          <div class="percentNum" id="count">0</div>
+                          <div class="percentB">%</div>
+                        </div>
+                        <div id="water" class="water">
+                          <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
+                            <use xlink:href="#wave"></use>
+                          </svg>
+                          <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
+                            <use xlink:href="#wave"></use>
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div class="card--step--wrapper">
-                    <span class="step--badge">STEP4.</span>
-                    <p><em>결과</em> 화면</p>
-                  </div>
+                  <section class="result--container">
+                    <div class="card--step--wrapper">
+                      <span class="step--badge">STEP4.</span>
+                      <p>당신은 <em class="var">[변수]</em> 유형</p>
+                    </div>
+                    <article>
+                      <h2>[앱] 사용정보를 토대로 분류한 당신의 유형은 아래와 같은 관심사를 보입니다.</h2>
+                      <div class="result--area">
+                        <!-- ----------------------------------------------------------------------- -->
+                        <div class="result--area--inner">
+                          <div class="result--area--title">
+                            <h3>같은 <em class="var">[50대 여성]</em> 대비 관심분야</h3>
+                          </div>
+                          <div class="result--area--info">
+                            <div class="result--area--info--thumbnail" style="--borderColor:#064291;--bgColor:#2D83F3;">
+                              <img src="../assets/img/lifeStyle/ico_result_1.svg" alt="">
+                            </div>
+                            <div class="result--area--info--table">
+                              <div class="result--area--info--table--name">증권</div>
+                              <div class="result--area--info--table--counter">61%</div>
+                              <div class="result--area--info--table--name">암호화폐</div>
+                              <div class="result--area--info--table--counter">54%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ----------------------------------------------------------------------- -->
+                        <div class="result--area--inner">
+                          <div class="result--area--title">
+                            <h3>같은 <em class="var">[50대 여성]</em> 대비 낮은 관심분야</h3>
+                          </div>
+                          <div class="result--area--info">
+                            <div class="result--area--info--thumbnail" style="--borderColor:#2D83F3;--bgColor:#064392;">
+                              <img src="../assets/img/lifeStyle/ico_result_2.svg" alt="">
+                            </div>
+                            <div class="result--area--info--table">
+                              <div class="result--area--info--table--name">증권</div>
+                              <div class="result--area--info--table--counter">61%</div>
+                              <div class="result--area--info--table--name">암호화폐</div>
+                              <div class="result--area--info--table--counter">54%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ----------------------------------------------------------------------- -->
+                    </article>
+                    <article>
+                      <h2>당신의 유형은 아래와 같은 보험특성을 보입니다.</h2>
+                      <div class="result--area">
+                        <!-- ----------------------------------------------------------------------- -->
+                        <div class="result--area--inner">
+                          <div class="result--area--title">
+                            <h3>보험가입정보</h3>
+                          </div>
+                          <div class="result--area--info">
+                            <div class="result--area--info--thumbnail" style="--borderColor:#2D83F3;--bgColor:#064291;">
+                              <img src="../assets/img/lifeStyle/ico_result_3.svg" alt="">
+                            </div>
+                            <div class="result--area--info--table" style="--rows:5">
+                              <div class="result--area--info--table--name">종신보험</div>
+                              <div class="result--area--info--table--rating">
+                                <fieldset class="rating" data-rating="5">
+                                  <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                  <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                  <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                  <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                  <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                </fieldset>
+                              </div>
+                              <div class="result--area--info--table--name">암보험</div>
+                              <div class="result--area--info--table--rating">
+                                <fieldset class="rating" data-rating="5">
+                                  <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                  <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                  <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                  <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                  <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                </fieldset>
+                              </div>
+                              <div class="result--area--info--table--name">연금보험</div>
+                              <div class="result--area--info--table--rating">
+                                <fieldset class="rating" data-rating="5">
+                                  <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                  <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                  <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                  <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                  <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                </fieldset>
+                              </div>
+                              <div class="result--area--info--table--name">상해보험</div>
+                              <div class="result--area--info--table--rating">
+                                <fieldset class="rating" data-rating="5">
+                                  <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                  <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                  <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                  <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                  <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                </fieldset>
+                              </div>
+                              <div class="result--area--info--table--name">질병보험</div>
+                              <div class="result--area--info--table--rating">
+                                <fieldset class="rating" data-rating="5">
+                                  <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                  <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                  <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                  <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                  <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ----------------------------------------------------------------------- -->
+                        <div class="result--area--inner">
+                          <div class="result--area--title">
+                            <h3>보험사고정보</h3>
+                          </div>
+                          <div class="result--area--info">
+                            <div class="result--area--info--thumbnail" style="--borderColor:#064291;--bgColor:#2D83F3;">
+                              <img src="../assets/img/lifeStyle/ico_result_4.svg" alt="">
+                            </div>
+                            <div class="result--area--info--table" style="--rows:4">
+                                <div class="result--area--info--table--name">암 발생률</div>
+                                <div class="result--area--info--table--rating">
+                                  <fieldset class="rating" data-rating="5">
+                                    <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                  </fieldset>
+                                </div>
+                                <div class="result--area--info--table--name">질병 발생률</div>
+                                <div class="result--area--info--table--rating">
+                                  <fieldset class="rating" data-rating="5">
+                                    <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                  </fieldset>
+                                </div>
+                                <div class="result--area--info--table--name">상해 입원률</div>
+                                <div class="result--area--info--table--rating">
+                                  <fieldset class="rating" data-rating="5">
+                                    <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                  </fieldset>
+                                </div>
+                                <div class="result--area--info--table--name">상해 수술률</div>
+                                <div class="result--area--info--table--rating">
+                                  <fieldset class="rating" data-rating="5">
+                                    <input type="radio" name="rating" value="5" disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" name="rating" value="4" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                  </fieldset>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ----------------------------------------------------------------------- -->
+                      </div>
+                    </article>
+                    <article>
+                      <h2>당신이 속한 라이프스타일 그룹이 갖는 보험특성에 따라 추천드리는 보험은 아래와 같습니다.</h2>
+                      <div class="result--last--container">
+                        <div class="user--target">
+                          <span>대상</span>
+                          <p>[30대] [여성]</p>
+                        </div>
+                        <div class="result--last--info">
+                          [30대] [여성] 대비 전반적인 모든 사고율이 낮게 나타남에도 관련 보험 가입을 매우 잘하고 있습니다.
+                          혹시 가입하지 않은 것이 있는지만 확인해주세요. 
+                          또한, 당신이 속한 그룹은 노후 대비를 위한 연금보험 가입률이 높습니다.
+                          미래를 대비하기 위한 연금보험 가입 추천드립니다.
+                        </div>
+                      </div>
+                    </article>
+                  </section>
                 </div>
               </div>
               <!-- -------------------------------------------------------------------------------- -->
@@ -284,6 +462,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+   
     <script src="../assets/js/lifeStyleApp.js" type="module"></script>
   </body>
 </html>

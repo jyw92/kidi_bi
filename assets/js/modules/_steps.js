@@ -1,11 +1,11 @@
 import {store} from '../store/store.js';
-
+import  resultTemplate  from '../modules/_resultTemplate.js';
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
 const IMAGE_PROXY = '../assets/img/lifeStyle/';
 
-function resultLoader() {
+async function resultLoader() {
   const cnt = document.getElementById('count');
   const water = document.getElementById('water');
   const items = document.querySelectorAll('.select--item');
@@ -144,6 +144,7 @@ const cardConfig = {
   step01: {
     containerSelector: '.card--container',
     dataAttribute: 'type',
+    dataAttributeName: 'type-name',
     template: (item) => `
       <img src="${IMAGE_PROXY}${item.image}" alt="">
       <div class="card--info">
@@ -155,6 +156,7 @@ const cardConfig = {
   step02: {
     containerSelector: '.gender--area .card--container',
     dataAttribute: 'gender',
+    dataAttributeName:'gender-name',
     template: (item) => `
       <img src="${IMAGE_PROXY}${item.image}" alt="">${item.name}
     `,
@@ -162,6 +164,7 @@ const cardConfig = {
   step03: {
     containerSelector: '.age--area .card--container',
     dataAttribute: 'age-group',
+    dataAttributeName: 'age-group-name',
     template: (item) => `
       <img src="${IMAGE_PROXY}${item.image}" alt="">${item.name}
     `,
@@ -169,6 +172,7 @@ const cardConfig = {
   step04: {
     containerSelector: '.card--container',
     dataAttribute: 'life-style',
+    dataAttributeName: 'life-style-name',
     template: (item) => `
       <p>${item.name}</p>
       <img src="${IMAGE_PROXY}${item.image}" alt="">
@@ -193,7 +197,7 @@ async function createCards(step, data) {
   cardContainer.innerHTML = data
     .map(
       (item) => `
-    <button class="card" data-${config.dataAttribute}="${item.id}">
+    <button class="card" data-${config.dataAttribute}="${item.id}" data-${config.dataAttributeName}="${item.name}">
       ${config.template(item)}
     </button>
   `
@@ -227,6 +231,10 @@ async function fetchStep03Data(gender) {
 
 async function fetchStep04Data(type, gender, ageGroup) {
   return await fetchData('http://localhost:3000/step4', {type, gender, ageGroup});
+}
+
+async function fetchResultData(type, gender, ageGroup, lifeStyle) {
+  return await fetchData('http://localhost:3000/result', {type, gender, ageGroup, lifeStyle});
 }
 
 async function setupStep1Events() {
@@ -271,7 +279,8 @@ async function setupStep1Events() {
   nextButton.addEventListener('click', () => {
     if (selectedCard) {
       const type = selectedCard.dataset.type;
-      store.dispatch({type: 'SET_TYPE', payload: type});
+      const typeName = selectedCard.dataset.typeName;
+      store.dispatch({type: 'SET_TYPE', payload: {type, typeName}});
       // incrementCurrent();
       barba.go('step2.html');
     } else {
@@ -368,10 +377,12 @@ async function setupStep2Events() {
   nextButton.addEventListener('click', () => {
     if (selectedGender && selectedAgeGroup) {
       const gender = selectedGender.dataset.gender;
+      const genderName = selectedGender.dataset.genderName;
       const ageGroup = selectedAgeGroup.dataset.ageGroup;
+      const ageGroupName = selectedAgeGroup.dataset.ageGroupName;
       store.dispatch({
         type: 'SET_GENDER_AND_AGE_GROUP',
-        payload: {gender, ageGroup},
+        payload: {gender, genderName, ageGroup, ageGroupName},
       });
       barba.go('step3.html');
     } else {
@@ -424,7 +435,8 @@ async function setupStep3Events() {
   nextButton.addEventListener('click', () => {
     if (selectedLifeCard) {
       const lifeStyle = selectedLifeCard.dataset.lifeStyle;
-      store.dispatch({type: 'SET_LIFESTYLE', payload: lifeStyle});
+      const lifeStyleName = selectedLifeCard.dataset.lifeStyleName;
+      store.dispatch({type: 'SET_LIFESTYLE', payload: {lifeStyle, lifeStyleName}});
       barba.go('step4.html');
       // incrementCurrent();
     } else {
@@ -433,11 +445,34 @@ async function setupStep3Events() {
   });
 }
 
-function setupResultEvents() {
-  resultLoader();
+async function setupResultEvents() {
+  
   const state = store.getState();
   console.log('결과 페이지 상태', state);
   //결과 페이지에 state를 사용하여 결과 표시 로직 구현.
+
+  const cardSelectWrap = document.querySelector('.select--wrap');
+  const resultContainer = document.querySelector('.result--container');
+  const resultLoadingContainer = document.querySelector('.result--loaded--container');
+  const { typeName, genderName, ageGroupName, lifeStyleName } = state;
+  resultContainer.style.display = 'none';
+  async function updateSelection() {
+    const template = `
+      <div class="select--item">${typeName}</div>
+      <div class="select--item">${genderName}</div>
+      <div class="select--item">${ageGroupName}</div>
+      <div class="select--item">${lifeStyleName}</div>
+    `;
+    cardSelectWrap.innerHTML = template;
+    await resultLoader();
+  }
+  updateSelection();
+  const data = await fetchResultData(state.type, state.gender, state.ageGroup, state.lifeStyle);
+  const lastData = { typeName, genderName, ageGroupName, lifeStyleName, ...data };
+  await delay(10000);
+  resultLoadingContainer.style.display = 'none';
+  resultContainer.style.display = 'block';
+  resultContainer.innerHTML = resultTemplate(lastData);
 }
 
 function setupPageEvents(namespace) {

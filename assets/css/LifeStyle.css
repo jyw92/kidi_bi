@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* -------------------------------------------------------------------------- */
 /*                                   result                                   */
 /* -------------------------------------------------------------------------- */
@@ -30,6 +31,10 @@
 
 html.is-transitioning {
   cursor: wait;
+}
+
+.var {
+  color: var(--kidi-bigin-default);
 }
 
 .barba-container {
@@ -138,7 +143,8 @@ html.is-transitioning {
   color: #666;
   font-size: 20px;
   font-weight: 300;
-  background-color: transparent;
+  background-color: #f1f1f1;
+  border-radius: 5px;
 }
 .barba-container[data-barba-namespace=step2] .step--area .card--container {
   width: 100%;
@@ -180,6 +186,135 @@ html.is-transitioning {
 .barba-container[data-barba-namespace=step3] .card--container .card.selected {
   color: #0069F6;
   opacity: 1;
+}
+.barba-container[data-barba-namespace=step4] .result--container {
+  min-height: 100vh;
+}
+.barba-container[data-barba-namespace=step4] .result--container article {
+  margin-block-start: 65px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article h2 {
+  border-radius: 50px;
+  background: #F1F1F1;
+  color: #4B4B4B;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  text-align: center;
+  padding: 13px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--title {
+  text-align: center;
+  margin-block: 27px 43px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--title h3 {
+  color: #343434;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom/100% 25px;
+  padding-block: 5px 10px;
+  padding-inline: 10px;
+  display: inline-block;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info {
+  margin-top: 18px;
+  column-gap: 33px;
+  display: grid;
+  grid-template-columns: 186px 1fr;
+  padding-inline: 22px 52px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--thumbnail {
+  height: 250px;
+  max-height: 250px;
+  border-radius: 800px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--bgColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--thumbnail img {
+  object-fit: contain;
+  object-position: center;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(var(--rows, 2), 1fr);
+  padding: 7px 12px 14px;
+  position: relative;
+  border-width: 2px 0 1px 0;
+  border-style: solid;
+  border-color: #CACACA;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table > div {
+  font-weight: 700;
+  display: flex;
+  align-items: flex-end;
+  border-top: 1px dotted #ccc;
+  min-height: 66px;
+  padding-bottom: 12px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table > div:nth-child(-n+2) {
+  border-top: 0;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--name {
+  color: #666;
+  font-size: 20px;
+}
+.barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--counter, .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--rating {
+  color: var(--kidi-bigin-default);
+  font-size: 40px;
+}
+.barba-container[data-barba-namespace=step4] .result--last--container {
+  min-height: 350px;
+  margin-block-start: 27px;
+  border-radius: 10px 50px;
+  border: 5px solid #0069F6;
+  background: #2D83F3;
+  padding: 45px 478px 50px 31px;
+  background-image: url("/assets/img/lifeStyle/ico_result_5.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.barba-container[data-barba-namespace=step4] .result--last--container .user--target {
+  display: flex;
+  gap: 18px;
+}
+.barba-container[data-barba-namespace=step4] .result--last--container .user--target span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 18px;
+  border-radius: 80px;
+  background: #FFF;
+  color: #2D83F3;
+  font-size: 18px;
+  font-weight: 700;
+}
+.barba-container[data-barba-namespace=step4] .result--last--container .user--target p {
+  color: #FFF;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+.barba-container[data-barba-namespace=step4] .result--last--container .result--last--info {
+  margin-block-start: 30px;
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 35px; /* 159.091% */
+  letter-spacing: -0.66px;
+  white-space: normal;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -373,28 +508,32 @@ html.is-transitioning {
 }
 .select--item:nth-child(1) {
   top: 5%;
-  left: 25%;
+  left: 20%;
   background-color: rgb(174, 59, 255);
 }
 .select--item:nth-child(2) {
   top: 5%;
-  right: 25%;
+  right: 20%;
   background-color: rgb(0, 169, 111);
 }
 .select--item:nth-child(3) {
   top: 40%;
-  right: 20%;
+  right: 15%;
   background-color: rgb(252, 240, 18);
   color: #020438;
 }
 .select--item:nth-child(4) {
   top: 40%;
-  left: 20%;
+  left: 15%;
   background-color: rgb(68, 94, 243);
 }
 
+.result--loaded--container {
+  position: relative;
+  height: 500px;
+}
+
 .result--loading {
-  position: absolute;
   width: 100vw;
   height: 100%;
   position: absolute;
@@ -489,6 +628,46 @@ html.is-transitioning {
     transform: translate(50%, 0);
   }
 }
+/****** Style Star Rating Widget *****/
+.rating {
+  display: flex;
+  pointer-events: none;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px 5px 0 5px;
+  font-size: 20px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+} /* hover previous stars in list */
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                     dev                                    */
 /* -------------------------------------------------------------------------- */

@@ -122,7 +122,8 @@
           color:#666;
           font-size: 20px;
           font-weight: 300;
-          background-color: transparent;
+          background-color: #f1f1f1;
+          border-radius: 5px;
         }
       }
       .card--container {
@@ -167,6 +168,135 @@
           color: #0069F6;
           opacity: 1;
         }
+      }
+    }
+  }
+  &[data-barba-namespace="step4"] {
+    .result--container{
+      min-height:100vh;
+      article{
+        margin-block-start: 65px;
+        h2{
+          border-radius: 50px;
+          background: #F1F1F1;
+          color: #4B4B4B;
+          font-size: 18px;
+          font-weight: 700; 
+          letter-spacing: -0.36px;
+          text-align: center;
+          padding:13px;
+        }
+        .result--area{
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          &--title{
+            text-align: center;
+            margin-block:27px 43px;
+            h3{
+              color: #343434;
+              font-size: 28px;
+              font-weight: 700;
+              background: linear-gradient(#e7f6ff,  #e7f6ff) no-repeat center bottom / 100% 25px;
+              padding-block: 5px 10px;
+              padding-inline: 10px;
+              display: inline-block;
+            }
+          }
+          &--info{
+            margin-top: 18px;
+            column-gap: 33px;
+            display: grid;
+            grid-template-columns: 186px 1fr;
+            padding-inline: 22px 52px;
+            &--thumbnail{
+              height:250px;
+              max-height:250px;
+              border-radius: 800px;
+              border: 1px solid var(--borderColor);
+              background-color: var(--bgColor);
+              @include flexCenter();
+              img{
+                object-fit: contain;
+                object-position: center;
+              }
+            }
+            &--table{
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+              grid-template-rows: repeat(var(--rows, 2), 1fr);
+              padding:7px 12px 14px;
+              position: relative;
+              border-width: 2px 0 1px 0;
+              border-style: solid;
+              border-color: #CACACA;
+              
+              & > div{
+                font-weight: 700;
+                display: flex;
+                align-items: flex-end;
+                border-top:1px dotted #ccc;
+                min-height: 66px;
+                padding-bottom: 12px;
+                &:nth-child(-n+2) {
+                  border-top: 0;
+                }
+              }
+              &--name{
+                color: #666;
+                font-size: 20px;
+                
+              }
+              &--counter, &--rating{
+                color: var(--kidi-bigin-default);
+                font-size: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .result--last--container{
+      min-height: 350px;
+      margin-block-start: 27px;
+      border-radius: 10px 50px;
+      border: 5px solid #0069F6;
+      background: #2D83F3;
+      padding:45px 478px 50px 31px;
+      background-image: url('/assets/img/lifeStyle/ico_result_5.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position-x: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .user--target{
+        display: flex;
+        gap: 18px;
+        span{
+          @include flexCenter();
+          padding: 6px 18px;
+          border-radius: 80px;
+          background: #FFF;
+          color: #2D83F3;
+          font-size: 18px;
+          font-weight: 700;
+        }
+        p{
+          color: #FFF;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+        }
+      }
+      .result--last--info{
+        margin-block-start: 30px;
+        color: #FFF;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 35px; /* 159.091% */
+        letter-spacing: -0.66px;
+        white-space: normal;
       }
     }
   }

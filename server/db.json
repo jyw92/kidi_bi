@@ -15,12 +15,12 @@
   ],
   "step2": [
     {
-      "id": "male",
+      "id": "1",
       "name": "남성",
       "image": "ico_m_color_3.svg"
     },
     {
-      "id": "female",
+      "id": "2",
       "name": "여성",
       "image": "ico_w_color_3.svg"
     }
@@ -158,5 +158,27 @@
       "name": "취미 생활에 열정적이에요",
       "image":"bg_lf_1.svg"
     }
-  ]
+  ],
+  "result": {
+    "lfstlNm":"유형결과명",
+    "lfstlSeqno": "순번",
+    "hatmtFrstTitlNm":"좌측1번항목명",
+    "hatmtFrstRt":"100%",
+    "hatmtScndTitlNm":"좌측2번항목명",
+    "hatmtScndRt":"100%",
+    "latmtFrstTitlNm":"우측1번항목명",
+    "latmtFrstRt":"100%",
+    "latmtScndTitlNm":"우측2번항목명",
+    "latmtScndRt":"100%",
+    "cntrWlinsuScor":"3",
+    "cntrCninsuScor":"2",
+    "cntrPsinsuScor":"1",
+    "cntrljinsuScor":"5",
+    "cntrDsinsuScor":"4",
+    "acdtCnillOccrRtScor":"2",
+    "acdtDissHsptzRtScor":"3",
+    "acdtInjrHsptzRtScor":"4",
+    "acdtInjrSrgRtScor":"5",
+    "rcmdInsuCtt":"대비 전반적인 모든 사고율이 낮게 나타남에도 관련 보험 가입을 매우 잘하고 있습니다. 혹시 가입하지 않은 것이 있는지만 확인해주세요. 또한, 당신이 속한 그룹은 노후 대비를 위한 연금보험 가입률이 높습니다.  미래를 대비하기 위한 연금보험 가입 추천드립니다."
+  }
 }
