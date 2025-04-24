@@ -7,6 +7,27 @@ gsap.registerPlugin(ScrollTrigger);
 /* -------------------------------------------------------------------------- */
 const IMAGE_PROXY = '../assets/img/lifeStyle/';
 
+const lenis = new Lenis({
+  // 옵션 (선택 사항)
+  duration: 1.2, // 스크롤 애니메이션 지속 시간 (초)
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing 함수
+  direction: 'vertical', // 스크롤 방향 ('vertical', 'horizontal')
+  gestureDirection: 'both', // 제스처 스크롤 방향 ('vertical', 'horizontal', 'both')
+  smoothWheel: true, // 마우스 휠 스크롤 부드럽게
+  wheelMultiplier: 1,
+  smoothTouch: false, // 터치 스크롤 부드럽게
+  touchMultiplier: 2,
+  infinite: false, // 무한 스크롤
+});
+
+// Lenis를 통해 스크롤 이벤트 감지 및 업데이트
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
 async function resultLoader() {
   const cnt = document.getElementById('count');
   const water = document.getElementById('water');
@@ -196,7 +217,7 @@ async function createCards(step, data) {
   }
 
   cardContainer.innerHTML = '';
-  console.log('data', data)
+  console.log('data', data);
   cardContainer.innerHTML = data
     .map(
       (item) => `
@@ -404,6 +425,7 @@ async function setupStep3Events() {
   const data = await fetchStep04Data(state.type, state.gender, state.ageGroup);
   cardContainer.innerHTML = '';
   await createCards('step04', data);
+
   const cards = document.querySelectorAll('[data-barba-namespace="step3"] .card');
   const nextButton = document.querySelector('.next-button');
   const prevButton = document.querySelector('.prev-button');
@@ -453,7 +475,6 @@ async function setupResultEvents() {
   console.log('결과 페이지 상태', state);
   //결과 페이지에 state를 사용하여 결과 표시 로직 구현.
 
-  
   const cardSelectWrap = document.querySelector('.select--wrap');
   const resultContainer = document.querySelector('.result--container');
   const resultLoadingContainer = document.querySelector('.result--loaded--container');
@@ -486,24 +507,24 @@ async function setupResultEvents() {
   document.addEventListener('click', (event) => {
     const reloadButton = event.target.closest('.reload');
     if (reloadButton) {
-      store.dispatch({ type: 'RESET_STATE' });
+      store.dispatch({type: 'RESET_STATE'});
       barba.go('step1.html');
     }
   });
 }
 
 function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultContainer, lastData) {
-  const body = document.querySelector('body');
+  // const body = document.querySelector('body');
   ScrollTrigger.create({
     id: 'main-vis',
     trigger: contentInner,
     start: 'top top',
     end: '+=100%',
     pin: true,
-    pinSpacing: false,
-    invalidateOnRefresh: true,
-    anticipatePin: 1,
-    markers: true,
+    // pinSpacing: false,
+    // invalidateOnRefresh: true,
+    // anticipatePin: 1,
+    // markers: true,
   });
 
   gsap
@@ -511,29 +532,28 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
       scrollTrigger: {
         trigger: contentInner,
         start: 'top top',
-        end: 'bottom bottom',
+        end: '+=100',
         scrub: 1,
         id: 'main-ani',
         onLeave: () => {
           Transiton.pageLeave();
-          setTimeout(async() => {
-            body.style.overflow = 'hidden';
-            scrollToInnerContent();
+          setTimeout(async () => {
+            // body.style.overflow = 'hidden';
             Transiton.pageEnter();
             resultLoadingContainer.style.display = 'none';
             resultContainer.style.display = 'block';
             resultContainer.innerHTML = resultTemplate(lastData);
+
             await delay(800);
-            body.style.overflow = 'auto';
+            scrollToInnerContent();
+            // body.style.overflow = 'auto';
             footer.style.display = 'block';
-            
+
             //gsap 종료
             ScrollTrigger.getById('main-ani')?.kill();
             ScrollTrigger.getById('main-vis')?.kill();
           }, 800);
-          
         },
-        onLeaveBack: () => {},
       },
     })
     .to(box, {
@@ -562,8 +582,13 @@ function scrollToInnerContent() {
   const innerContent = document.querySelector('.inner_1120');
   if (innerContent) {
     const offsetTop = innerContent.offsetTop;
-    window.scrollTo({
-      top: offsetTop,
+    // window.scrollTo({
+    //   top: offsetTop,
+    //   behavior: 'smooth',
+    // });
+    lenis.scrollTo(offsetTop, {
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Lenis easing function
     });
   }
 }

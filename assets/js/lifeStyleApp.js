@@ -1,57 +1,48 @@
-import { Transiton, Step } from "./modules/_index.js";
-import { store } from "./store/store.js";
+import {Transiton, Step} from './modules/_index.js';
+import {store} from './store/store.js';
 /* ------------------------------ Barba 초기화 ------------------------------ */
-
-
 
 barba.init({
   sync: true,
   views: [
     {
-      namespace: "step1",
+      namespace: 'step1',
       beforeEnter: (data) => {
-        console.log("진입 전");
+        console.log('진입 전');
         setTimeout(() => {
-          document.querySelector(".transition").style.display = "none";
-          console.log("진입 후");
-        }, 1000);
-      },
-      beforeLeave: (data) => {
-        console.log("step1 페이지 떠나기 전");
-        setTimeout(() => {
-          document.querySelector(".transition").style.display = "none";
-          console.log("진입 후");
+          document.querySelector('.transition').style.display = 'none';
+          console.log('진입 후');
         }, 1000);
       },
     },
     {
-      namespace: "step2",
+      namespace: 'step2',
       beforeEnter: (data) => {
         setTimeout(() => {
-          document.querySelector(".transition").style.display = "none";
+          document.querySelector('.transition').style.display = 'none';
         }, 1000);
       },
     },
     {
-      namespace: "step3",
+      namespace: 'step3',
       beforeEnter: (data) => {
         setTimeout(() => {
-          document.querySelector(".transition").style.display = "none";
+          document.querySelector('.transition').style.display = 'none';
         }, 1000);
       },
     },
     {
-      namespace: "step4",
+      namespace: 'step4',
       beforeEnter: (data) => {
         setTimeout(() => {
-          document.querySelector(".transition").style.display = "block";
+          document.querySelector('.transition').style.display = 'block';
         }, 1000);
       },
     },
   ],
   transitions: [
     {
-      name: "default-transition",
+      name: 'default-transition',
       async leave(data) {
         const done = this.async();
         Transiton.pageLeave(data);
@@ -59,7 +50,10 @@ barba.init({
         done();
       },
       async enter(data) {
+        // const done = this.async();
         Transiton.pageEnter(data);
+        // await Transiton.delay(1000);
+        // done();
       },
       async once(data) {
         Transiton.pageOnce(data);
@@ -77,11 +71,9 @@ barba.hooks.after((data) => {
 });
 
 // 초기 로딩 시에도 이벤트 리스너를 연결하고, 새로고침 시 step1.html로 이동 (확인 메시지 추가)
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded 이벤트 발생!");
-  const initialNamespace = document
-    .querySelector('[data-barba="container"]')
-    ?.getAttribute("data-barba-namespace");
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded 이벤트 발생!');
+  const initialNamespace = document.querySelector('[data-barba="container"]')?.getAttribute('data-barba-namespace');
   if (initialNamespace) {
     Step.setupPageEvents(initialNamespace);
   }

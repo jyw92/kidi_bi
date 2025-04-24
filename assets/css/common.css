@@ -10,10 +10,10 @@ body.fixed {
   overflow: hidden;
 }
 
-*:focus{
+*:focus {
   outline: 1px dashed #252525;
 }
-[class^="inner"] {
+[class^='inner'] {
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
@@ -23,6 +23,14 @@ body.fixed {
 }
 .inner_1120 {
   max-width: 1120px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .Information_page {
+    width: 100%;
+  }
 }
 .inner_920 {
   max-width: 920px;
@@ -32,17 +40,17 @@ body.fixed {
 }
 .hidden {
   position: absolute;
-    left: -5000px;
-    height: 0;
-    line-height: 0;
-    text-indent: -5000px;
-    overflow: hidden;
+  left: -5000px;
+  height: 0;
+  line-height: 0;
+  text-indent: -5000px;
+  overflow: hidden;
 }
 
 .text-hidden {
-    text-indent: -5000px;
-    overflow: hidden;
-    position: absolute;
+  text-indent: -5000px;
+  overflow: hidden;
+  position: absolute;
 }
 
 .cover-img {
@@ -118,7 +126,7 @@ body.fixed {
   z-index: 99999;
   top: 0;
   left: 0;
-  right: 0
+  right: 0;
 }
 #skip a {
   position: absolute;
@@ -183,8 +191,8 @@ body.fixed {
 }
 #header .h_btn_area .header_btn {
   display: block;
-/*   width: 2.625rem; */
-   width: 3.375rem;
+  /*   width: 2.625rem; */
+  width: 3.375rem;
   height: 90px;
   background: no-repeat center;
   flex-shrink: 0;
@@ -222,7 +230,7 @@ body.fixed {
   /*margin-right: 40px;*/
 }
 #gnb > ul {
-  display: flex;  
+  display: flex;
   align-items: center;
 }
 #gnb > ul > li + li {
@@ -280,7 +288,7 @@ body.fixed {
 .gnb_hover .gnb_ttl strong {
   font-size: 28px;
   font-weight: 700;
-  font-family: "OneMobile";
+  font-family: 'OneMobile';
   position: relative;
   padding-right: 10px;
 }
@@ -293,7 +301,7 @@ body.fixed {
   position: relative;
 }
 .gnb_hover .gnb_ttl strong::after {
-  content: "";
+  content: '';
   display: block;
   width: 6px;
   height: 6px;
@@ -310,14 +318,14 @@ body.fixed {
   /* display: none; */
   border-left: 1px solid #dbdbdb;
   width: 100%;
-  position:relative;
+  position: relative;
 }
 .gnb_hover .dep2 > li a {
   display: block;
   line-height: 56px;
   padding: 0 20px;
   font-weight: 500;
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
 }
 .gnb_hover .dep2 > li a:hover,
 .gnb_hover .dep2 > li a:focus,
@@ -370,7 +378,7 @@ body.fixed {
   width: 160px;
   flex: 0 0 auto;
   line-height: 1.44;
-  font-family: "OneMobile";
+  font-family: 'OneMobile';
   font-size: 22px;
   font-weight: 700;
 }
@@ -494,7 +502,7 @@ body.fixed {
   right: 0;
   transform: translateY(-50%);
   text-indent: -9999px;
-  overflow:hidden;
+  overflow: hidden;
 }
 .search_close {
   width: 46px;
@@ -504,8 +512,6 @@ body.fixed {
   display: block;
   margin-left: auto;
   margin-right: 62px;
-  
- 
 }
 .h_search_box .keyword_list {
   padding: 24px 30px 0;
@@ -580,7 +586,7 @@ body.fixed {
   position: relative;
 }
 #floating_quick ul li + li a::after {
-  content: "";
+  content: '';
   display: block;
   width: 56px;
   height: 1px;
@@ -596,7 +602,7 @@ body.fixed {
   border-top: 1px solid #e2e5eb;
 }
 #footer * {
-  font-family: "SUIT Variable", sans-serif;
+  font-family: 'SUIT Variable', sans-serif;
 }
 #fnb {
   display: flex;
@@ -613,16 +619,17 @@ body.fixed {
   background: #fff;
   /* border-top: 1px solid #e2e5eb; */
 }
-.right_logo_wrap .wa_logo{
+.right_logo_wrap .wa_logo {
   width: 107px;
 
-margin-left: 20px;}
-.right_logo_wrap{
+  margin-left: 20px;
+}
+.right_logo_wrap {
   display: flex;
   align-items: center;
 }
 
-.bot_logo_wrap{
+.bot_logo_wrap {
   display: none;
 }
 .footer_info .inner_1120 {
@@ -649,7 +656,7 @@ margin-left: 20px;}
   position: relative;
 }
 .footer_info .footer_area span.bar::after {
-  content: "";
+  content: '';
   display: block;
   width: 0.0625rem;
   height: 0.625rem;

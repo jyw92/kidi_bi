@@ -9,6 +9,7 @@ const tranDOM = {
   background: tranElement.querySelector('.transition__background'),
   svg: tranElement.querySelector('.transition__background svg'),
   path: tranElement.querySelector('.transition__background path'),
+  barbaContainer: document.querySelector('#barba-wrapper'),
 };
 
 /* -------------------------------- transiton ------------------------------- */
@@ -62,7 +63,7 @@ function outTransition() {
   document.documentElement.classList.remove('is-transitioning');
   setTimeout(() => {
     gsap.set('.transition__background path', {
-      fill: '#64acfe',
+      fill: '#2D83F3',
     });
   }, 2000);
 }
@@ -71,11 +72,55 @@ function pageLeave() {
   // alert('leave')
   inTransition();
   gsap.timeline().to(tranDOM.path, getPathScene(1)).to(tranDOM.path, getPathScene(2));
+  gsap.to(tranDOM.barbaContainer, {
+    duration: 1,
+    autoAlpha: 0,
+    ease: 'power3.inOut',
+  });
+  // const tl = gsap.timeline();
+  // document.querySelectorAll('.card--step--wrapper').forEach((el) => {
+  //   tl.to(
+  //     el,
+  //     {
+  //       opacity: 0,
+  //       y: -30,
+  //       duration: 0.3,
+  //       delay: Array.from(el.parentNode.children).indexOf(el) * 0.1,
+  //     },
+  //     '<'
+  //   );
+  // });
+  // document.querySelectorAll('.card').forEach((el) => {
+  //   tl.to(
+  //     el,
+  //     {
+  //       opacity: 0,
+  //       y: -30,
+  //       duration: 0.3,
+  //       delay: Array.from(el.parentNode.children).indexOf(el) * 0.1,
+  //     },
+  //     '<'
+  //   );
+  // });
+  // tl.to(
+  //   document.querySelectorAll('.card--step--option'),
+  //   {
+  //     opacity: 0,
+  //     y: -30,
+  //     duration: 0.3,
+  //   },
+  //   '<'
+  // );
 }
 
 function pageEnter() {
   // alert('enter')
   outTransition();
+  gsap.to(tranDOM.barbaContainer, {
+    duration: 1,
+    autoAlpha: 1,
+    ease: 'power3.inOut',
+  });
   gsap
     .timeline()
     .to(tranDOM.path, getPathScene(3))
