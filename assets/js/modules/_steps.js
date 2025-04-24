@@ -196,6 +196,7 @@ async function createCards(step, data) {
   }
 
   cardContainer.innerHTML = '';
+  console.log('data', data)
   cardContainer.innerHTML = data
     .map(
       (item) => `
@@ -320,7 +321,7 @@ async function setupStep2Events() {
       }
     });
 
-    const ageData = await fetchStep03Data(state.gender);
+    const ageData = await fetchStep03Data(state.genderName);
     cardContainerAge.innerHTML = '';
     noneAgeData.style.display = ageData.length > 0 ? 'none' : 'flex';
     await createCards('step03', ageData);
@@ -340,8 +341,8 @@ async function setupStep2Events() {
       this.classList.add('selected');
       selectedGender = this;
       console.log('selectedGender', selectedGender);
-
-      const ageData = await fetchStep03Data(state.gender);
+      const genderName = selectedGender.dataset.genderName;
+      const ageData = await fetchStep03Data(genderName);
       cardContainerAge.innerHTML = '';
       noneAgeData.style.display = ageData.length > 0 ? 'none' : 'flex';
       await createCards('step03', ageData);
@@ -452,6 +453,7 @@ async function setupResultEvents() {
   console.log('결과 페이지 상태', state);
   //결과 페이지에 state를 사용하여 결과 표시 로직 구현.
 
+  
   const cardSelectWrap = document.querySelector('.select--wrap');
   const resultContainer = document.querySelector('.result--container');
   const resultLoadingContainer = document.querySelector('.result--loaded--container');
@@ -480,9 +482,18 @@ async function setupResultEvents() {
   const lastData = {typeName, genderName, ageGroupName, lifeStyleName, ...data};
   resultLoadingGuide.innerHTML = completeMessage();
   setupScrollAnimation(contentInner1120, box, resultLoadingContainer, resultContainer, lastData);
+
+  document.addEventListener('click', (event) => {
+    const reloadButton = event.target.closest('.reload');
+    if (reloadButton) {
+      store.dispatch({ type: 'RESET_STATE' });
+      barba.go('step1.html');
+    }
+  });
 }
 
 function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultContainer, lastData) {
+  const body = document.querySelector('body');
   ScrollTrigger.create({
     id: 'main-vis',
     trigger: contentInner,
@@ -505,17 +516,22 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
         id: 'main-ani',
         onLeave: () => {
           Transiton.pageLeave();
-          setTimeout(() => {
+          setTimeout(async() => {
+            body.style.overflow = 'hidden';
+            scrollToInnerContent();
             Transiton.pageEnter();
             resultLoadingContainer.style.display = 'none';
             resultContainer.style.display = 'block';
             resultContainer.innerHTML = resultTemplate(lastData);
+            await delay(800);
+            body.style.overflow = 'auto';
             footer.style.display = 'block';
+            
             //gsap 종료
             ScrollTrigger.getById('main-ani')?.kill();
             ScrollTrigger.getById('main-vis')?.kill();
-            scrollToInnerContent();
           }, 800);
+          
         },
         onLeaveBack: () => {},
       },
@@ -529,10 +545,10 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
 
 function completeMessage() {
   return `
-    <div class="guide--txt02" id="completionMessage">
-      <em>추천 보험 산출이 완료되었습니다!</em>
-      <span class="var" style="font-weight:700">결과를 확인해보세요.</span>
-      <div class="kidi--scroll-view">
+    <div class="guide--txt01">추천 보험 산출이 완료되었습니다!</div>
+    <div class="guide--txt02">
+        <em class="var fw700">결과를 확인해보세요.</em>
+        <div class="kidi--scroll-view">
         <div class="kidi--scroll-inner">
           <div class="mouse"></div>
           <p class="kidi--en">Scroll</p>
@@ -548,7 +564,6 @@ function scrollToInnerContent() {
     const offsetTop = innerContent.offsetTop;
     window.scrollTo({
       top: offsetTop,
-      behavior: 'smooth',
     });
   }
 }

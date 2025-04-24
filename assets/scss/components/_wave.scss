@@ -159,13 +159,20 @@ $waterBColor: #c7eeff;
 }
 //비활성화 일단 안보이게
 .percent {
-  opacity: 0;
+  opacity: 0.8;
+  &>div{
+    font-size: 24px;
+    font-weight: 700;
+  }
 }
 #completionMessage {
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
+  em{
+    font-size: 16px;
+  }
 }
 @keyframes wave-front {
   100% {

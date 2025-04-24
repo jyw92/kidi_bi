@@ -15,6 +15,8 @@ const initialState = {
   /* -------------------------------- 리듀서 함수 정의 ------------------------------- */
   function reducer(state = initialState, action) {
     switch (action.type) {
+      case "RESET_STATE":
+        return initialState; // 상태 초기화
       case "SET_TYPE":
         return { ...state, type: action.payload.type, typeName: action.payload.typeName };
       case "SET_GENDER_AND_AGE_GROUP": // 액션 타입 수정

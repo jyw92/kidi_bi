@@ -180,5 +180,8 @@ export default function resultTemplate(data) {
                     </div>
                     </div>
             </article>
+            <div class="card--step--option">
+                    <button class="next-button card-paging-button reload">다시 진단하기</button>
+                  </div>
     `;
 }
