@@ -139,7 +139,7 @@ html.is-transitioning {
 .barba-container[data-barba-namespace=step2] .step--area .remaining--area .none-data {
   position: absolute;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@ html.is-transitioning {
   font-size: 20px;
   font-weight: 300;
   background-color: #f1f1f1;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 .barba-container[data-barba-namespace=step2] .step--area .card--container {
   width: 100%;
@@ -157,7 +157,6 @@ html.is-transitioning {
 }
 .barba-container[data-barba-namespace=step2] .card--step--option {
   grid-column: 1/3;
-  padding-top: 0;
 }
 .barba-container[data-barba-namespace=step3] .card--container {
   width: 100%;
@@ -408,8 +407,45 @@ html.is-transitioning {
 .card-paging-button:hover::after {
   background-image: url("/assets/img/ico/ico__arrow__down-white.svg");
 }
+.card-paging-button.reload::after {
+  background-image: url("/assets/img/lifeStyle/ico_reload.svg");
+  transform: translateY(1px);
+}
+.card-paging-button.reload:hover::after {
+  background-image: url("/assets/img/lifeStyle/ico_reload_white.svg");
+}
 .card-paging-button.prev-button::after {
   transform: rotate(180deg);
+}
+
+.btn {
+  padding: 1em 1.5em;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 0 #000, 0 3rem 0 #fff;
+  transition: background-color 150ms, text-shadow 200ms;
+  font-size: 1.1rem;
+}
+.btn:hover {
+  background-color: #3b5bdb;
+  text-shadow: 0 -4rem 0 #000, 0 0 0 #fff;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 0 #748ffc, 0 3rem 0 #fff;
+  transition: text-shadow 200ms;
+  vertical-align: bottom;
+}
+.link:hover {
+  text-shadow: 0 -3rem 0 #748ffc, 0 0 0 #fff;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -516,9 +552,22 @@ html.is-transitioning {
   border-radius: 50px;
   font-weight: 700;
   font-size: 24px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.select--item::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 8px;
+  box-shadow: 0 40px 15px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: 80px/4px;
 }
 .select--item:nth-child(1) {
-  top: 5%;
+  top: 10%;
   left: 20%;
   background-color: rgb(174, 59, 255);
   animation: moveUpDown 2s infinite ease-in-out;
@@ -531,14 +580,14 @@ html.is-transitioning {
 }
 .select--item:nth-child(3) {
   top: 40%;
-  right: 15%;
+  right: 30%;
   background-color: rgb(252, 240, 18);
   color: #020438;
   animation: moveUpDown 2.5s infinite ease-in-out;
 }
 .select--item:nth-child(4) {
   top: 40%;
-  left: 15%;
+  left: 10%;
   background-color: rgb(68, 94, 243);
   animation: moveUpDown 3s infinite ease-in-out;
 }

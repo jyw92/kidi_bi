@@ -626,7 +626,7 @@ function setupPageEvents(namespace) {
       scrollToInnerContent();
       break;
     default:
-      console.log('알 수 없는 namespace입니다.');
+      break;
   }
 }
 

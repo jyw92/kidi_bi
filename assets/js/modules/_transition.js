@@ -10,6 +10,8 @@ const tranDOM = {
   svg: tranElement.querySelector('.transition__background svg'),
   path: tranElement.querySelector('.transition__background path'),
   barbaContainer: document.querySelector('#barba-wrapper'),
+  cardContainer: document.querySelectorAll('.card--container'),
+  cardItem:document.querySelectorAll('.card')
 };
 
 /* -------------------------------- transiton ------------------------------- */
@@ -74,43 +76,10 @@ function pageLeave() {
   gsap.timeline().to(tranDOM.path, getPathScene(1)).to(tranDOM.path, getPathScene(2));
   gsap.to(tranDOM.barbaContainer, {
     duration: 1,
-    autoAlpha: 0,
-    ease: 'power3.inOut',
+    autoAlpha: 0.2,
+    ease: 'power1.inOut',
   });
-  // const tl = gsap.timeline();
-  // document.querySelectorAll('.card--step--wrapper').forEach((el) => {
-  //   tl.to(
-  //     el,
-  //     {
-  //       opacity: 0,
-  //       y: -30,
-  //       duration: 0.3,
-  //       delay: Array.from(el.parentNode.children).indexOf(el) * 0.1,
-  //     },
-  //     '<'
-  //   );
-  // });
-  // document.querySelectorAll('.card').forEach((el) => {
-  //   tl.to(
-  //     el,
-  //     {
-  //       opacity: 0,
-  //       y: -30,
-  //       duration: 0.3,
-  //       delay: Array.from(el.parentNode.children).indexOf(el) * 0.1,
-  //     },
-  //     '<'
-  //   );
-  // });
-  // tl.to(
-  //   document.querySelectorAll('.card--step--option'),
-  //   {
-  //     opacity: 0,
-  //     y: -30,
-  //     duration: 0.3,
-  //   },
-  //   '<'
-  // );
+  
 }
 
 function pageEnter() {
@@ -119,7 +88,7 @@ function pageEnter() {
   gsap.to(tranDOM.barbaContainer, {
     duration: 1,
     autoAlpha: 1,
-    ease: 'power3.inOut',
+    ease: 'power1.inOut',
   });
   gsap
     .timeline()

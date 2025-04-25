@@ -31,9 +31,15 @@
       background-image: url("/assets/img/ico/ico__arrow__down-white.svg");
     }
   }
-  &.next-button {
+  &.reload {
     &::after {
-        
+        background-image: url('/assets/img/lifeStyle/ico_reload.svg');
+        transform: translateY(1px);
+    }
+    &:hover{
+      &::after{
+        background-image: url('/assets/img/lifeStyle/ico_reload_white.svg');
+      }
     }
   }
   &.prev-button{
@@ -42,4 +48,52 @@
     }
   }
   
+}
+
+
+
+
+
+
+// ------------------------------------------
+// btn
+// ------------------------------------------
+$btn-bg: #fff;
+$btn-hover-bg: #3b5bdb;
+$btn-color: #000;
+$btn-hover-color: #fff;
+
+.btn {
+	padding: 1em 1.5em;
+	background-color: $btn-bg;
+	cursor: pointer;
+	border-radius: 3px;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0);
+	text-shadow: 0 0 0 $btn-color, 0 3rem 0 $btn-hover-color;
+	transition: background-color 150ms, text-shadow 200ms;
+	font-size: 1.1rem;
+	&:hover {
+		background-color: $btn-hover-bg;
+		text-shadow: 0 -4rem 0 $btn-color, 0 0 0 $btn-hover-color;
+	}
+}
+
+// ------------------------------------------
+// Link
+// ------------------------------------------
+$link-color: #748ffc;
+$link-hover-color: #fff;
+.link {
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	overflow: hidden;
+	color: rgba(0, 0, 0, 0);
+	text-shadow: 0 0 0 $link-color, 0 3rem 0 $link-hover-color;
+	transition: text-shadow 200ms;
+	vertical-align: bottom;
+	&:hover {
+		text-shadow: 0 -3rem 0 $link-color, 0 0 0 $link-hover-color;
+	}
 }

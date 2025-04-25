@@ -17,11 +17,24 @@ $waterBColor: #c7eeff;
   border-radius: 50px;
   font-weight: 700;
   font-size: 24px;
-
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 8px;
+    box-shadow: 0 40px 15px rgba(0, 0, 0, .2);
+    background-color: transparent;
+    border-radius: 80px / 4px;
+  }
   &:nth-child(1) {
-    top: 5%;
+    top:10%;
     left: 20%;
     background-color: rgb(174, 59, 255);
+    
     animation: moveUpDown 2s infinite ease-in-out;
   }
   &:nth-child(2) {
@@ -33,14 +46,14 @@ $waterBColor: #c7eeff;
 
   &:nth-child(3) {
     top: 40%;
-    right: 15%;
+    right: 30%;
     background-color: rgb(252, 240, 18);
     color: #020438;
     animation: moveUpDown 2.5s infinite ease-in-out;
   }
   &:nth-child(4) {
     top: 40%;
-    left: 15%;
+    left: 10%;
     background-color: rgb(68, 94, 243);
     animation: moveUpDown 3s infinite ease-in-out;
   }
