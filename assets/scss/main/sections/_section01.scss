@@ -1,0 +1,246 @@
+@use "../../abstracts/" as *;
+
+@mixin videoOveray() {
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0);
+    transition: all 0.5s;
+  }
+  &.on::after {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+  }
+}
+
+#container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+#section01 {
+  width: 100%;
+  height: 100vh;
+}
+.hero--action {
+  position: relative;
+  width: 0%;
+  height: 0%;
+  overflow: hidden;
+  background-color: #000;
+
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  @include videoOveray();
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &--text {
+    @include posCenter();
+    @include flex-center-column();
+    color: #fff;
+    z-index: 1;
+    width: 100%;
+    gap: 20px;
+    span {
+      font-size: 30px;
+      white-space: pre;
+    }
+    h2 {
+      font-size: 80px;
+      white-space: pre;
+    }
+  }
+}
+
+.hero--action.appears {
+  top: 50%;
+  left: 50%;
+  height: 0%;
+  width: 0%;
+  animation: appears 2s forwards;
+}
+
+.content--main{
+  @include videoOveray();
+  position: relative;
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .content--padded {
+    padding: var(--page-padding);
+  }
+  .content--full {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    grid-template-areas: 'main';
+    grid-template-rows: 100%;
+    grid-template-columns: 100%;
+  }
+  .content--main--info {
+    --color-text: #f5f3ee;
+    --color-bg: #0e0d0e;
+    --color-link: #ffffff;
+    --color-link-hover: #ffffff;
+    --page-padding: 0.5rem;
+    --grid-gap: var(--page-padding);
+    --color-bg-content: #0e0d0e;
+    --color-bg-frame: #7a7364;
+    --color-border: #46443e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: calc(100dvh - 90px);
+    height: calc(100vh - 90px);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    grid-template-areas: "main";
+    grid-template-rows: 100%;
+    grid-template-columns: 100%;
+    transform: translateY(90px);
+    z-index: 1;
+    .content__title {
+      grid-area: main;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+    }
+    
+    .content__title-main {
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      line-height: 1;
+      margin: 0.5rem 0 0;
+      font-weight: 500;
+      font-variation-settings: "wght" 500;
+      text-wrap: balance;
+      letter-spacing: -0.025em;
+      
+    }
+    
+    .content__title-main + p {
+      margin: 0;
+      max-width: 100px;
+    }
+    // .grid {
+    //   grid-area: main;
+    //   display: grid;
+    //   width: 100%;
+    //   height: 100%;
+    //   grid-template-columns: 333px 1fr 1fr;
+    //   grid-template-rows: 1fr 1fr;
+    //   padding:2rem;
+    //   /* 명시적인 영역 이름 정의 */
+    //   grid-template-areas:
+    //   "search cht1 cht2"
+    //   "shotcut cht3 .";
+    //   .grid--item:nth-child(1) { grid-area: search;background-color: red; }
+    //   .grid--item:nth-child(2) { grid-area: cht1;background-color: blue;}
+    //   .grid--item:nth-child(3) { grid-area: cht2;background-color: yellow;}
+    //   .grid--item:nth-child(4) { grid-area: shotcut;background-color: blueviolet;}
+    //   .grid--item:nth-child(5) { grid-area: cht3; grid-column: 2/4;background-color: green;}
+    // }
+    .grid{
+      grid-area: main;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      grid-template-columns: repeat(5,1fr);
+      grid-template-rows: 1fr 1fr 1fr;
+      transition: all .5s;
+      .grid--item:nth-child(1) {background-color: red; }
+      .grid--item:nth-child(2) {background-color: blue;}
+      .grid--item:nth-child(3) {background-color: yellow;}
+      .grid--item:nth-child(4) {background-color: blueviolet;}
+      .grid--item:nth-child(5) {background-color: green;}
+      &.change{
+        grid-template-columns: 333px 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding:2rem;
+        /* 명시적인 영역 이름 정의 */
+        grid-template-areas:
+        "search cht1 cht2"
+        "shotcut cht3 .";
+        .grid--item:nth-child(1) { grid-area: search;background-color: red; }
+        .grid--item:nth-child(2) { grid-area: cht1;background-color: blue;}
+        .grid--item:nth-child(3) { grid-area: cht2;background-color: yellow;}
+        .grid--item:nth-child(4) { grid-area: shotcut;background-color: blueviolet;}
+        .grid--item:nth-child(5) { grid-area: cht3; grid-column: 2/4;background-color: green;}
+        &{
+          gap: 2rem;
+          // grid-template-columns: repeat(3, 70%);
+          // grid-template-rows: repeat(2, 60%);
+          justify-content: center;
+          align-content: center;
+          aspect-ratio: 2 / 1;
+        }
+      }
+    }
+    
+    .grid--spaced {
+      gap: var(--grid-gap);
+    }
+    .grid--columns {
+      grid-template-columns: repeat(5,1fr);
+      grid-template-rows: repeat(2,min-content);
+      align-content: center;
+      .grid--item {
+        height: min-content;
+	      aspect-ratio: 2 / 3;
+      }
+    }
+    .grid--zoomed {
+      gap: 2rem;
+      // grid-template-columns: repeat(3, 70%);
+      // grid-template-rows: repeat(2, 60%);
+      justify-content: center;
+      align-content: center;
+      aspect-ratio: 2 / 1;
+      .grid--item {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    
+  }
+}
+
+@keyframes appears {
+  0% {
+    opacity: 1;
+    width: 0%;
+    height: 2px;
+  }
+
+  50% {
+    width: 100%;
+    height: 2px;
+    left: 0%;
+  }
+
+  75% {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+  }
+}

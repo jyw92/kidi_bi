@@ -67,3 +67,72 @@ https://tympanus.net/codrops/tag/page-transition/
 https://tympanus.net/Development/PageLoadingEffects/index10.html
 
 https://webflow.com/made-in-webflow/website/Barba-JS-Page-Transition-l25t4uje
+
+https://tympanus.net/codrops/demos/ 
+
+https://tympanus.net/Sketches/021-svg-path-page-transition-vertical/
+
+https://tympanus.net/Development/OnScrollShapeMorph/
+
+https://tympanus.net/Sketches/022-svg-path-page-transition-horizontal/
+
+https://tympanus.net/Development/MagneticButtons/
+
+
+https://bloomparis.tv/
+
+https://fashionpost.jp/special/coach/
+
+
+갤러리 애니메이션
+https://tympanus.net/Development/Scroll3DGrid/
+
+
+
+여러가지 컴포넌트 모달이나, 툴팁등등
+
+https://tympanus.net/codrops/demos/page/13/
+https://tympanus.net/Development/AnimatedSVGIcons/
+
+
+로딩이펙트
+https://tympanus.net/Development/CreativeLoadingEffects/
+
+드래그 효과
+
+https://tympanus.net/Development/DragDropInteractions/bottom-slide.html
+
+메뉴효과
+https://tympanus.net/Development/FullscreenOverlayStyles/index2.html
+
+
+전송버튼 효과
+https://tympanus.net/Tutorials/CircularProgressButton/
+https://tympanus.net/Development/MinimalForm/
+
+라디오버튼안에 라디오
+https://codepen.io/jh3y/pen/vEEZxOM
+
+
+
+모바일에서 유용할듯
+https://codepen.io/Vanaja-Kothai/pen/oNKKLWB
+
+
+
+Scroll Indicator (CSS)
+https://codepen.io/konstantindenerz/pen/dPyzqaZ
+
+
+text 애니메이션
+https://codepen.io/yemon/pen/YrPmQr
+
+progress
+https://tympanus.net/Development/ElasticProgress/
+
+boxhover
+https://tympanus.net/Development/HoverEffectIdeas/
+https://tympanus.net/Tutorials/CaptionHoverEffects/
+
+검색
+https://tympanus.net/Development/SearchUIEffects/index10.html

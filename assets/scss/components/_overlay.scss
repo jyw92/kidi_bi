@@ -1,0 +1,32 @@
+.overlay {
+	width: 100vw;
+    height: 100vh;
+    display: grid;
+    position: relative;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    --columns: 20;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    /* z-index: -1; */
+    opacity: 0;
+    position: fixed;
+}
+
+.overlay div {
+	background: var(--color-bg-overlay, #090772);
+}
+
+.content--wrap{
+    position: fixed;
+    top:-100%;
+}
+
+.intro--closed {
+	opacity: 0;
+	pointer-events: none;
+}
+.content--wrap.content--open {
+	opacity: 1;
+	pointer-events: auto;
+}

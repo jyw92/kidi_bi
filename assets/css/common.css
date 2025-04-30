@@ -5,11 +5,29 @@ body.fixed {
   overflow: hidden !important;
   touch-action: none;
 }
+
 #wrap {
   position: relative;
   overflow: hidden;
 }
 
+#header.main_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+#header.main_header .header_top {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#header.main_header #gnb .dep1,
+#header.main_header .logo span{
+  color: #fff;
+}
 *:focus {
   outline: 1px dashed #252525;
 }

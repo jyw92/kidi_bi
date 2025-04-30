@@ -23,6 +23,7 @@ export default function resultTemplate(data) {
     acdtInjrSrgRtScor,
     rcmdInsuCtt,
   } = data;
+  
   const generateRatingStars = (score, fieldName) => {
     return [...Array(5)]
       .map((_, i) => {

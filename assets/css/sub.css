@@ -13,7 +13,6 @@
 .sub_visual .inner {
   position: relative;
 }
-
 .sub_visual .inner::after {
   content: '';
   display: block;
