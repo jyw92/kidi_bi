@@ -62,6 +62,7 @@ https://codepen.io/mkkr/pen/VwwEPgJ
 
 
 트랜지션 모음집
+https://tympanus.net/codrops/tag/page-transition/page/4/
 https://tympanus.net/codrops/tag/page-transition/
 
 https://tympanus.net/Development/PageLoadingEffects/index10.html
@@ -136,3 +137,6 @@ https://tympanus.net/Tutorials/CaptionHoverEffects/
 
 검색
 https://tympanus.net/Development/SearchUIEffects/index10.html
+
+보그
+https://tympanus.net/Development/AnimatedImageColumns/

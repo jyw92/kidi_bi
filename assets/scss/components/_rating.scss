@@ -5,6 +5,7 @@
 .rating { 
  display: flex;
  pointer-events: none;
+ flex-direction: row-reverse;
 }
 
 .rating > input { display: none; } 

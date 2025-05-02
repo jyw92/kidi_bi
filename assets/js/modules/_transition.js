@@ -75,7 +75,7 @@ function pageLeave() {
   inTransition();
   gsap.timeline().to(tranDOM.path, getPathScene(1)).to(tranDOM.path, getPathScene(2));
   gsap.to(tranDOM.barbaContainer, {
-    duration: 1,
+    duration: 0.5,
     autoAlpha: 0.2,
     ease: 'power1.inOut',
   });
@@ -86,7 +86,7 @@ function pageEnter() {
   // alert('enter')
   outTransition();
   gsap.to(tranDOM.barbaContainer, {
-    duration: 1,
+    duration: 0.5,
     autoAlpha: 1,
     ease: 'power1.inOut',
   });

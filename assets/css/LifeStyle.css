@@ -2974,6 +2974,7 @@ a .icon-flip-vertical:before {
 .rating {
   display: flex;
   pointer-events: none;
+  flex-direction: row-reverse;
 }
 
 .rating > input {

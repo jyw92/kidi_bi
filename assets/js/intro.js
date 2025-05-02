@@ -33,7 +33,6 @@ function showHero() {
     document
       .querySelector(".PageTransitionCover_cover__pYL_k")
       .classList.add("off");
-    body.style.overflow = "auto";
   }, 500);
 }
 

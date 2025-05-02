@@ -67,7 +67,7 @@
   animation: appears 2s forwards;
 }
 
-.content--main{
+.content--main {
   @include videoOveray();
   position: relative;
   video {
@@ -82,7 +82,7 @@
     display: grid;
     height: 100vh;
     place-items: center;
-    grid-template-areas: 'main';
+    grid-template-areas: "main";
     grid-template-rows: 100%;
     grid-template-columns: 100%;
   }
@@ -117,7 +117,7 @@
       flex-direction: column;
       color: #fff;
     }
-    
+
     .content__title-main {
       font-size: clamp(2rem, 7vw, 4.5rem);
       line-height: 1;
@@ -126,13 +126,13 @@
       font-variation-settings: "wght" 500;
       text-wrap: balance;
       letter-spacing: -0.025em;
-      
     }
-    
+
     .content__title-main + p {
       margin: 0;
       max-width: 100px;
     }
+
     // .grid {
     //   grid-area: main;
     //   display: grid;
@@ -151,53 +151,106 @@
     //   .grid--item:nth-child(4) { grid-area: shotcut;background-color: blueviolet;}
     //   .grid--item:nth-child(5) { grid-area: cht3; grid-column: 2/4;background-color: green;}
     // }
-    .grid{
+    
+    .grid {
       grid-area: main;
       display: grid;
       width: 100%;
       height: 100%;
-      grid-template-columns: repeat(5,1fr);
-      grid-template-rows: 1fr 1fr 1fr;
-      transition: all .5s;
-      .grid--item:nth-child(1) {background-color: red; }
-      .grid--item:nth-child(2) {background-color: blue;}
-      .grid--item:nth-child(3) {background-color: yellow;}
-      .grid--item:nth-child(4) {background-color: blueviolet;}
-      .grid--item:nth-child(5) {background-color: green;}
-      &.change{
-        grid-template-columns: 333px 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        padding:2rem;
-        /* 명시적인 영역 이름 정의 */
-        grid-template-areas:
+      // grid-template-columns: repeat(3, 70%);
+      // grid-template-rows: repeat(2, 60%);
+      gap: 2rem;
+      justify-content: center;
+      align-content: center;
+      aspect-ratio: 2 / 1;
+      padding: 2rem;
+      grid-template-columns: 333px 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      /* 명시적인 영역 이름 정의 */
+      grid-template-areas:
         "search cht1 cht2"
         "shotcut cht3 .";
-        .grid--item:nth-child(1) { grid-area: search;background-color: red; }
-        .grid--item:nth-child(2) { grid-area: cht1;background-color: blue;}
-        .grid--item:nth-child(3) { grid-area: cht2;background-color: yellow;}
-        .grid--item:nth-child(4) { grid-area: shotcut;background-color: blueviolet;}
-        .grid--item:nth-child(5) { grid-area: cht3; grid-column: 2/4;background-color: green;}
-        &{
-          gap: 2rem;
-          // grid-template-columns: repeat(3, 70%);
-          // grid-template-rows: repeat(2, 60%);
-          justify-content: center;
-          align-content: center;
-          aspect-ratio: 2 / 1;
+      // transform: translateY(0);
+      opacity: 0;
+      transition: all 0.5s;
+      .grid--item{
+        transition: all .5s;
+      }
+      .grid--item:not(:nth-child(4), :nth-child(5)) {
+        border-radius: 35px;
+        border: 1px solid;
+        border-radius: 35px;
+      }
+      .grid--item:nth-child(1) {
+        grid-area: search;
+        border-color: #b3c8ff;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(7.5px);
+        transform: translateX(-100px);
+      }
+      .grid--item:nth-child(2) {
+        grid-area: cht1;
+        border-color: #193a98;
+        background: rgba(41, 76, 175, 0.5);
+        backdrop-filter: blur(11px);
+        transform: translateX(-100px);
+      }
+      .grid--item:nth-child(3) {
+        grid-area: cht2;
+        border-color: #193a98;
+        background: rgba(41, 76, 175, 0.5);
+        backdrop-filter: blur(11px);
+        transform: translateX(-100px);
+      }
+      .grid--item:nth-child(4) {
+        grid-area: shotcut;
+        border-color: none;
+        background: none;
+        backdrop-filter: none;
+        transform: translateX(100px);
+      }
+      .grid--item:nth-child(5) {
+        grid-area: cht3;
+        grid-column: 2/4;
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 2rem;
+        background: none;
+        backdrop-filter: none;
+        border: none;
+        transform: translateX(100px);
+        > * {
+          border-radius: 35px;
+        }
+        .chart--item {
+          border: 1px solid #193a98;
+          background: rgba(41, 76, 175, 0.5);
+          backdrop-filter: blur(11px);
+        }
+        .infographic--item {
+          border: 1px solid #6c42a4;
+          background: rgba(158, 118, 246, 0.75);
+          backdrop-filter: blur(11.70000171661377px);
+        }
+      }
+      &.change {
+        opacity: 1;
+        .grid--item{
+          transform: translateX(0);
         }
       }
     }
-    
+
     .grid--spaced {
       gap: var(--grid-gap);
     }
     .grid--columns {
-      grid-template-columns: repeat(5,1fr);
-      grid-template-rows: repeat(2,min-content);
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, min-content);
       align-content: center;
       .grid--item {
         height: min-content;
-	      aspect-ratio: 2 / 3;
+        aspect-ratio: 2 / 3;
       }
     }
     .grid--zoomed {
@@ -212,8 +265,6 @@
         height: 100%;
       }
     }
-
-    
   }
 }
 

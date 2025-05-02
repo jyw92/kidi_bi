@@ -1,18 +1,30 @@
-import {store} from '../store/store.js';
-import resultTemplate from '../modules/_resultTemplate.js';
-import {Transiton} from './_index.js';
+import skeletonUI from "../components/skeletonUI.js";
+import resultTemplate from "../modules/_resultTemplate.js";
+import createCards from "../components/createCards.js";
+import completeMessage from "../components/completeMessage.js";
+import scrollToInnerContent from "../components/scrollToInnerContent.js";
+import { store } from "../store/store.js";
+import {
+  fetchStep01Data,
+  fetchStep02Data,
+  fetchStep03Data,
+  fetchStep04Data,
+  fetchResultData,
+} from "../components/fetchData.js";
+import { Transiton } from "./_index.js";
+import { delay } from "../helper/helper.js";
+
 gsap.registerPlugin(ScrollTrigger);
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
-const IMAGE_PROXY = '../assets/img/lifeStyle/';
 
 const lenis = new Lenis({
   // 옵션 (선택 사항)
   duration: 1.2, // 스크롤 애니메이션 지속 시간 (초)
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing 함수
-  direction: 'vertical', // 스크롤 방향 ('vertical', 'horizontal')
-  gestureDirection: 'both', // 제스처 스크롤 방향 ('vertical', 'horizontal', 'both')
+  direction: "vertical", // 스크롤 방향 ('vertical', 'horizontal')
+  gestureDirection: "both", // 제스처 스크롤 방향 ('vertical', 'horizontal', 'both')
   smoothWheel: true, // 마우스 휠 스크롤 부드럽게
   wheelMultiplier: 1,
   smoothTouch: false, // 터치 스크롤 부드럽게
@@ -25,25 +37,27 @@ function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
 }
-
 requestAnimationFrame(raf);
 
 async function resultLoader() {
-  const cnt = document.getElementById('count');
-  const water = document.getElementById('water');
-  const items = document.querySelectorAll('.select--item');
-  const loadingBox = document.querySelector('.result--loading');
+  const cnt = document.getElementById("count");
+  const water = document.getElementById("water");
+  const items = document.querySelectorAll(".select--item");
+  const loadingBox = document.querySelector(".result--loading");
   let percent = 0;
   const animationDuration = 1.2; // 더 부드러운 애니메이션을 위해 속도 조절
   const totalItems = items.length;
   const percentIncrement = 100 / totalItems; // 각 아이템당 증가할 퍼센트
 
-  gsap.set(water, {transform: 'translateY(100%)'});
+  gsap.set(water, { transform: "translateY(100%)" });
 
   items.forEach((item, index) => {
     const itemRect = item.getBoundingClientRect();
     const loadingBoxRect = loadingBox.getBoundingClientRect();
-    const deltaX = loadingBoxRect.left + loadingBoxRect.width / 2 - (itemRect.left + itemRect.width / 2);
+    const deltaX =
+      loadingBoxRect.left +
+      loadingBoxRect.width / 2 -
+      (itemRect.left + itemRect.width / 2);
 
     const targetY = 80; // 물속으로 들어가는 y 값
     const delay = index * 1.0; // 딜레이를 늘려서 더 느리게
@@ -54,33 +68,85 @@ async function resultLoader() {
       opacity: 0,
       scale: 0.7,
       duration: animationDuration,
-      ease: 'power2.inOut', // 더 부드러운 easing 적용
+      ease: "power2.inOut", // 더 부드러운 easing 적용
       delay: delay,
       onStart: () => {
-        console.log('onStart 실행됨', index);
+        console.log("onStart 실행됨", index);
+      },
+      onUpdate: () => {
+        // 애니메이션 진행 중에도 퍼센트와 물 높이를 업데이트
+        const progress = gsap.getProperty(item, "progress");
+        const currentPercent = Math.min(
+          percent + percentIncrement * progress,
+          100
+        );
+        animatePercentage(
+          cnt,
+          parseInt(cnt.innerText) || 0,
+          Math.round(currentPercent),
+          0.6
+        );
+        gsap.to(water, {
+          y: `${100 - currentPercent}%`,
+          duration: 0.6,
+          ease: "power1.out",
+        });
       },
       onComplete: () => {
         percent += percentIncrement;
         if (percent > 100) percent = 100;
-        animatePercentage(cnt, parseInt(cnt.innerText) || 0, Math.round(percent), 0.6); // 부드러운 퍼센트 증가
+        animatePercentage(
+          cnt,
+          parseInt(cnt.innerText) || 0,
+          Math.round(percent),
+          0.6
+        ); // 부드러운 퍼센트 증가
         gsap.to(water, {
           y: `${100 - percent}%`,
           duration: 0.6, // 물 애니메이션 속도 조정
-          ease: 'power1.out', // 더 자연스러운 easing 적용
+          ease: "power1.out", // 더 자연스러운 easing 적용
         });
 
         if (index === totalItems - 1) {
           animatePercentage(cnt, parseInt(cnt.innerText) || 0, 100, 0.6);
-          gsap.to(water, {y: `0%`, duration: 0.6, ease: 'power1.out'});
+          gsap.to(water, { y: `0%`, duration: 0.6, ease: "power1.out" });
         }
       },
     });
+
+    // gsap.to(item, {
+    //   x: deltaX,
+    //   y: targetY,
+    //   opacity: 0,
+    //   scale: 0.7,
+    //   duration: animationDuration,
+    //   ease: 'power2.inOut', // 더 부드러운 easing 적용
+    //   delay: delay,
+    //   onStart: () => {
+    //   console.log('onStart 실행됨', index);
+    //   },
+    //   onComplete: () => {
+    //   percent += percentIncrement;
+    //   if (percent > 100) percent = 100;
+    //   animatePercentage(cnt, parseInt(cnt.innerText) || 0, Math.round(percent), 0.3); // 애니메이션 속도 증가
+    //   gsap.to(water, {
+    //     y: `${100 - percent}%`,
+    //     duration: 0.3, // 물 애니메이션 속도 증가
+    //     ease: 'power1.out', // 더 자연스러운 easing 적용
+    //   });
+
+    //   if (index === totalItems - 1) {
+    //     animatePercentage(cnt, parseInt(cnt.innerText) || 0, 100, 0.3); // 최종 애니메이션 속도 증가
+    //     gsap.to(water, {y: `0%`, duration: 0.3, ease: 'power1.out'});
+    //   }
+    //   },
+    // });
   });
   function dotted() {
-    const dots = document.getElementById('dots');
+    const dots = document.getElementById("dots");
     let dotCount = 0;
     setInterval(() => {
-      dots.textContent = '.'.repeat(dotCount);
+      dots.textContent = ".".repeat(dotCount);
       dotCount = dotCount === 3 ? 0 : dotCount + 1;
     }, 500);
   }
@@ -94,7 +160,10 @@ function animatePercentage(target, start, end, duration) {
 
   function step() {
     current += increment;
-    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+    if (
+      (increment > 0 && current >= end) ||
+      (increment < 0 && current <= end)
+    ) {
       current = end;
     }
     target.innerText = Math.round(current);
@@ -107,220 +176,72 @@ function animatePercentage(target, start, end, duration) {
   step();
 }
 
-function delay(n) {
-  n = n || 2000;
-  return new Promise((done) => {
-    setTimeout(() => {
-      done();
-    }, n);
-  });
-}
-
-const skeletonConfig = {
-  step01: {
-    template: () => {
-      return ` <div class="image"></div>
-          <div class="line--wrap">
-            <p class="line"></p>
-            <p class="line long"></p>
-          </div>
-        `;
-    },
-  },
-  step02: {
-    template: () => {
-      return ` <div class="image"></div>
-          <p class="line"></p>
-        `;
-    },
-  },
-  step03: {
-    template: () => {
-      return ` 
-          <p class="line"></p>
-          <div class="image"></div>
-        `;
-    },
-  },
-  step04: {
-    template: () => {
-      return ` 
-          <p class="line"></p>
-          <div class="image"></div>
-        `;
-    },
-  },
-};
-
-function skeletonUI(step, wrapper, column) {
-  const config = skeletonConfig[step];
-  let skeleton = '';
-  for (let i = 0; i < column; i++) {
-    skeleton += `<button class="card skeleton ${step}">
-      ${config.template()}
-    </button>`;
-  }
-  wrapper.innerHTML = skeleton;
-}
-
-const cardConfig = {
-  step01: {
-    containerSelector: '.card--container',
-    dataAttribute: 'type',
-    dataAttributeName: 'type-name',
-    template: (item) => `
-      <img src="${IMAGE_PROXY}${item.image}" alt="">
-      <div class="card--info">
-        <strong>${item.name}</strong>
-        <p>${item.desc}</p>
-      </div>
-    `,
-  },
-  step02: {
-    containerSelector: '.gender--area .card--container',
-    dataAttribute: 'gender',
-    dataAttributeName: 'gender-name',
-    template: (item) => `
-      <img src="${IMAGE_PROXY}${item.image}" alt="">${item.name}
-    `,
-  },
-  step03: {
-    containerSelector: '.age--area .card--container',
-    dataAttribute: 'age-group',
-    dataAttributeName: 'age-group-name',
-    template: (item) => `
-      <img src="${IMAGE_PROXY}${item.image}" alt="">${item.name}
-    `,
-  },
-  step04: {
-    containerSelector: '.card--container',
-    dataAttribute: 'life-style',
-    dataAttributeName: 'life-style-name',
-    template: (item) => `
-      <p>${item.name}</p>
-      <img src="${IMAGE_PROXY}${item.image}" alt="">
-    `,
-  },
-};
-
-async function createCards(step, data) {
-  const config = cardConfig[step];
-  if (!config || !config.containerSelector) {
-    console.error(`Configuration for step "${step}" not found.`);
-    return;
-  }
-
-  const cardContainer = document.querySelector(config.containerSelector);
-  if (!cardContainer) {
-    console.error(`Container with selector "${config.containerSelector}" not found.`);
-    return;
-  }
-
-  cardContainer.innerHTML = '';
-  console.log('data', data);
-  cardContainer.innerHTML = data
-    .map(
-      (item) => `
-    <button class="card" data-${config.dataAttribute}="${item.id}" data-${config.dataAttributeName}="${item.name}">
-      ${config.template(item)}
-    </button>
-  `
-    )
-    .join('');
-}
-
-async function fetchData(url, params = {}) {
-  try {
-    const response = await axios.get(url, {params});
-    return response.data;
-  } catch (error) {
-    console.error(`데이터를 가져오는 중 오류가 발생했습니다 (${url}):`, error);
-    alert(`데이터를 가져오는 중 오류가 발생했습니다.`);
-    return [];
-  }
-}
-
-// 각 단계별 데이터 fetching 함수 (통합된 fetchData 함수 사용)
-async function fetchStep01Data() {
-  return await fetchData('http://localhost:3000/step1');
-}
-
-async function fetchStep02Data() {
-  return await fetchData('http://localhost:3000/step2');
-}
-
-async function fetchStep03Data(gender) {
-  return await fetchData('http://localhost:3000/step3', {gender});
-}
-
-async function fetchStep04Data(type, gender, ageGroup) {
-  return await fetchData('http://localhost:3000/step4', {type, gender, ageGroup});
-}
-
-async function fetchResultData(type, gender, ageGroup, lifeStyle) {
-  return await fetchData('http://localhost:3000/result', {type, gender, ageGroup, lifeStyle});
-}
-
 async function setupStep1Events() {
   const state = store.getState();
-  const cardContainer = document.querySelector('.card--container');
-  console.log('step01/state', state);
+  const cardContainer = document.querySelector(".card--container");
+  console.log("step01/state", state);
 
   // skeletonUI("step01", cardContainer, 2)
   // await delay(500);
 
   const data = await fetchStep01Data();
 
-  cardContainer.innerHTML = '';
+  cardContainer.innerHTML = "";
 
-  await createCards('step01', data);
+  await createCards("step01", data);
 
-  const cards = document.querySelectorAll('[data-barba-namespace="step1"] .card');
-  const nextButton = document.querySelector('.next-button');
+  const cards = document.querySelectorAll(
+    '[data-barba-namespace="step1"] .card'
+  );
+  const nextButton = document.querySelector(".next-button");
   let selectedCard = null;
 
   // 뒤로 가기로 돌아왔을 때 선택 상태 복원
   if (state.type) {
     cards.forEach((card) => {
       if (card.dataset.type === state.type) {
-        card.classList.add('selected');
+        card.classList.add("selected");
         selectedCard = card;
       }
     });
   }
 
   cards.forEach((card) => {
-    card.addEventListener('click', function () {
+    card.addEventListener("click", function () {
       if (selectedCard) {
-        selectedCard.classList.remove('selected');
+        selectedCard.classList.remove("selected");
       }
-      this.classList.add('selected');
+      this.classList.add("selected");
       selectedCard = this;
-      nextButton.style.display = 'flex';
+
+      // nextButton.style.display = 'flex';
     });
   });
-
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
     if (selectedCard) {
       const type = selectedCard.dataset.type;
       const typeName = selectedCard.dataset.typeName;
-      store.dispatch({type: 'SET_TYPE', payload: {type, typeName}});
+      store.dispatch({ type: "SET_TYPE", payload: { type, typeName } });
       // incrementCurrent();
-      barba.go('step2.html');
+      barba.go("step2.html");
     } else {
-      alert('카드를 선택해주세요.');
+      alert("카드를 선택해주세요.");
     }
   });
 }
 
 async function setupStep2Events() {
   const state = store.getState();
-  console.log('step02/state', state);
-  const nextButton = document.querySelector('.next-button');
-  const prevButton = document.querySelector('.prev-button');
-  const cardContainerGender = document.querySelector('.gender--area .card--container');
-  const cardContainerAge = document.querySelector('.age--area .card--container');
-  const noneAgeData = document.querySelector('.none-data');
+  console.log("step02/state", state);
+  const nextButton = document.querySelector(".next-button");
+  const prevButton = document.querySelector(".prev-button");
+  const cardContainerGender = document.querySelector(
+    ".gender--area .card--container"
+  );
+  const cardContainerAge = document.querySelector(
+    ".age--area .card--container"
+  );
+  const noneAgeData = document.querySelector(".none-data");
   let selectedGender = null;
   let selectedAgeGroup = null;
 
@@ -328,65 +249,65 @@ async function setupStep2Events() {
   // await delay(500);
 
   const genderData = await fetchStep02Data();
-  cardContainerGender.innerHTML = '';
-  await createCards('step02', genderData);
-  const genderCards = document.querySelectorAll('[data-gender]');
+  cardContainerGender.innerHTML = "";
+  await createCards("step02", genderData);
+  const genderCards = document.querySelectorAll("[data-gender]");
 
   // 뒤로 가기로 돌아왔을 때 성별 선택 상태 복원 및 연령대 데이터 로드
   if (state.gender) {
-    noneAgeData.style.display = 'none';
+    noneAgeData.style.display = "none";
     genderCards.forEach((card) => {
       if (card.dataset.gender === state.gender) {
-        card.classList.add('selected');
+        card.classList.add("selected");
         selectedGender = card;
       }
     });
 
     const ageData = await fetchStep03Data(state.genderName);
-    cardContainerAge.innerHTML = '';
-    noneAgeData.style.display = ageData.length > 0 ? 'none' : 'flex';
-    await createCards('step03', ageData);
+    cardContainerAge.innerHTML = "";
+    noneAgeData.style.display = ageData.length > 0 ? "none" : "flex";
+    await createCards("step03", ageData);
     attachAgeCardEventListeners(); // 연령대 이벤트 리스너 등록
   } else {
     // 초기 로딩 시 연령대 영역 비워두기
-    cardContainerAge.innerHTML = '';
-    noneAgeData.style.display = 'flex';
+    cardContainerAge.innerHTML = "";
+    // noneAgeData.style.display = 'flex';
     attachAgeCardEventListeners(); // 연령대 이벤트 리스너 등록 (데이터 없을 때도)
   }
 
   genderCards.forEach((card) => {
-    card.addEventListener('click', async function () {
+    card.addEventListener("click", async function () {
       if (selectedGender) {
-        selectedGender.classList.remove('selected');
+        selectedGender.classList.remove("selected");
       }
-      this.classList.add('selected');
+      this.classList.add("selected");
       selectedGender = this;
-      console.log('selectedGender', selectedGender);
+      console.log("selectedGender", selectedGender);
       const genderName = selectedGender.dataset.genderName;
       const ageData = await fetchStep03Data(genderName);
-      cardContainerAge.innerHTML = '';
-      noneAgeData.style.display = ageData.length > 0 ? 'none' : 'flex';
-      await createCards('step03', ageData);
+      cardContainerAge.innerHTML = "";
+      noneAgeData.style.display = ageData.length > 0 ? "none" : "flex";
+      await createCards("step03", ageData);
       attachAgeCardEventListeners(); // 연령대 이벤트 리스너 등록 (성별 클릭 후)
     });
   });
 
   function attachAgeCardEventListeners() {
-    const ageGroupCards = document.querySelectorAll('[data-age-group]');
+    const ageGroupCards = document.querySelectorAll("[data-age-group]");
     if (state.ageGroup) {
       ageGroupCards.forEach((card) => {
         if (card.dataset.ageGroup === state.ageGroup) {
-          card.classList.add('selected');
+          card.classList.add("selected");
           selectedAgeGroup = card;
         }
       });
     }
     ageGroupCards.forEach((card) => {
-      card.addEventListener('click', function () {
+      card.addEventListener("click", function () {
         if (selectedAgeGroup) {
-          selectedAgeGroup.classList.remove('selected');
+          selectedAgeGroup.classList.remove("selected");
         }
-        this.classList.add('selected');
+        this.classList.add("selected");
         selectedAgeGroup = this;
         if (selectedGender) {
           // nextButton.style.display = "flex";
@@ -395,96 +316,112 @@ async function setupStep2Events() {
     });
   }
 
-  prevButton.addEventListener('click', () => {
-    barba.go('step1.html');
+  prevButton.addEventListener("click", () => {
+    barba.go("step1.html");
   });
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
     if (selectedGender && selectedAgeGroup) {
       const gender = selectedGender.dataset.gender;
       const genderName = selectedGender.dataset.genderName;
       const ageGroup = selectedAgeGroup.dataset.ageGroup;
       const ageGroupName = selectedAgeGroup.dataset.ageGroupName;
       store.dispatch({
-        type: 'SET_GENDER_AND_AGE_GROUP',
-        payload: {gender, genderName, ageGroup, ageGroupName},
+        type: "SET_GENDER_AND_AGE_GROUP",
+        payload: { gender, genderName, ageGroup, ageGroupName },
       });
-      barba.go('step3.html');
+      barba.go("step3.html");
     } else {
-      alert('성별과 연령대를 선택해주세요.');
+      alert("성별과 연령대를 선택해주세요.");
     }
   });
 }
 
 async function setupStep3Events() {
   const state = store.getState();
-  const cardContainer = document.querySelector('.card--container');
-  console.log('step03/state', state);
+  const cardContainer = document.querySelector(".card--container");
+  console.log("step03/state", state);
 
-  skeletonUI('step03', cardContainer, 20);
+  skeletonUI("step03", cardContainer, 20);
   await delay(500);
   const data = await fetchStep04Data(state.type, state.gender, state.ageGroup);
-  cardContainer.innerHTML = '';
-  await createCards('step04', data);
+  cardContainer.innerHTML = "";
+  await createCards("step04", data);
 
-  const cards = document.querySelectorAll('[data-barba-namespace="step3"] .card');
-  const nextButton = document.querySelector('.next-button');
-  const prevButton = document.querySelector('.prev-button');
+  const cards = document.querySelectorAll(
+    '[data-barba-namespace="step3"] .card'
+  );
+  const nextButton = document.querySelector(".next-button");
+  const prevButton = document.querySelector(".prev-button");
   let selectedLifeCard = null;
 
   // 뒤로 가기로 돌아왔을 때 선택 상태 복원
   if (state.lifeStyle) {
     cards.forEach((card) => {
       if (card.dataset.lifeStyle === state.lifeStyle) {
-        card.classList.add('selected');
+        card.classList.add("selected");
         selectedLifeCard = card;
-        // nextButton.style.display = "flex";
       }
+    });
+  } else {
+    // 초기 로딩 시 선택 상태 초기화
+    cards.forEach((card) => {
+      card.classList.remove("selected");
     });
   }
 
   cards.forEach((card) => {
-    card.addEventListener('click', function () {
+    card.addEventListener("click", function () {
       if (selectedLifeCard) {
-        selectedLifeCard.classList.remove('selected');
+        selectedLifeCard.classList.remove("selected");
       }
-      this.classList.add('selected');
+      this.classList.add("selected");
       selectedLifeCard = this;
       // nextButton.style.display = "flex";
     });
   });
 
-  prevButton.addEventListener('click', () => {
-    barba.go('step2.html');
+  prevButton.addEventListener("click", () => {
+    barba.go("step2.html");
   });
 
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
     if (selectedLifeCard) {
       const lifeStyle = selectedLifeCard.dataset.lifeStyle;
       const lifeStyleName = selectedLifeCard.dataset.lifeStyleName;
-      store.dispatch({type: 'SET_LIFESTYLE', payload: {lifeStyle, lifeStyleName}});
-      barba.go('step4.html');
+      store.dispatch({
+        type: "SET_LIFESTYLE",
+        payload: { lifeStyle, lifeStyleName },
+      });
+      barba.go("step4.html");
       // incrementCurrent();
     } else {
-      alert('라이프스타일을 선택해주세요.');
+      alert("라이프스타일을 선택해주세요.");
     }
   });
 }
 
 async function setupResultEvents() {
   const state = store.getState();
-  console.log('결과 페이지 상태', state);
+  console.log("결과 페이지 상태", state);
   //결과 페이지에 state를 사용하여 결과 표시 로직 구현.
 
-  const cardSelectWrap = document.querySelector('.select--wrap');
-  const resultContainer = document.querySelector('.result--container');
-  const resultLoadingContainer = document.querySelector('.result--loaded--container');
-  const resultLoadingGuide = document.querySelector('.result--loading--guide');
-  const contentInner1120 = document.querySelector('.inner_1120');
-  const box = document.querySelector('.box');
-  const footer = document.querySelector('#footer');
-  const {typeName, genderName, ageGroupName, lifeStyleName} = state;
-  resultContainer.style.display = 'none';
-  footer.style.display = 'none';
+  const cardSelectWrap = document.querySelector(".select--wrap");
+  const resultContainer = document.querySelector(".result--container");
+  const resultLoadingContainer = document.querySelector(
+    ".result--loaded--container"
+  );
+  const resultLoadingGuide = document.querySelector(".result--loading--guide");
+  const contentInner1120 = document.querySelector(".inner_1120");
+  const box = document.querySelector(".box");
+  const footer = document.querySelector("#footer");
+  const reloadButton = document.querySelector(".reload");
+  const prevButton = document.querySelector(".prev-button");
+
+  const { typeName, genderName, ageGroupName, lifeStyleName } = state;
+  resultContainer.style.display = "none";
+  footer.style.display = "none";
+  const buttonOptionWrap = document.querySelector(".card--step--option");
+  buttonOptionWrap.style.display = "none";
   async function updateSelection() {
     const template = `
       <div class="select--item">${typeName}</div>
@@ -498,28 +435,55 @@ async function setupResultEvents() {
   }
 
   updateSelection();
-  const data = await fetchResultData(state.type, state.gender, state.ageGroup, state.lifeStyle);
+  const data = await fetchResultData(
+    state.type,
+    state.gender,
+    state.ageGroup,
+    state.lifeStyle
+  );
   await delay(6000);
-  const lastData = {typeName, genderName, ageGroupName, lifeStyleName, ...data};
+  const lastData = {
+    typeName,
+    genderName,
+    ageGroupName,
+    lifeStyleName,
+    ...data,
+  };
   resultLoadingGuide.innerHTML = completeMessage();
-  setupScrollAnimation(contentInner1120, box, resultLoadingContainer, resultContainer, lastData);
+  setupScrollAnimation(
+    contentInner1120,
+    box,
+    resultLoadingContainer,
+    resultContainer,
+    lastData,
+    buttonOptionWrap
+  );
 
-  document.addEventListener('click', (event) => {
-    const reloadButton = event.target.closest('.reload');
-    if (reloadButton) {
-      store.dispatch({type: 'RESET_STATE'});
-      barba.go('step1.html');
-    }
+  prevButton.addEventListener("click", () => {
+    barba.go("step3.html");
+  });
+  reloadButton.addEventListener("click", () => {
+    store.dispatch({ type: "RESET_STATE" });
+    barba.go("step1.html");
   });
 }
 
-function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultContainer, lastData) {
+function setupScrollAnimation(
+  contentInner,
+  box,
+  resultLoadingContainer,
+  resultContainer,
+  lastData,
+  buttonShow
+) {
+  const subVisualHeight = document.querySelector(".sub_visual").clientHeight;
+  const headerHeight = document.querySelector("#header").clientHeight;
   // const body = document.querySelector('body');
   ScrollTrigger.create({
-    id: 'main-vis',
+    id: "main-vis",
     trigger: contentInner,
-    start: 'top top',
-    end: '+=100%',
+    start: "top top",
+    end: "+=100%",
     pin: true,
     // pinSpacing: false,
     // invalidateOnRefresh: true,
@@ -531,27 +495,33 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
     .timeline({
       scrollTrigger: {
         trigger: contentInner,
-        start: 'top top',
-        end: '+=100',
+        start: "top top",
+        end: "+=100",
         scrub: 1,
-        id: 'main-ani',
+        id: "main-ani",
         onLeave: () => {
           Transiton.pageLeave();
+          // lenis.stop();
+          // document.body.style.overflow = 'hidden';
           setTimeout(async () => {
-            // body.style.overflow = 'hidden';
             Transiton.pageEnter();
-            resultLoadingContainer.style.display = 'none';
-            resultContainer.style.display = 'block';
+            resultLoadingContainer.style.display = "none";
+            resultContainer.style.display = "block";
             resultContainer.innerHTML = resultTemplate(lastData);
-
             await delay(800);
-            scrollToInnerContent();
+            lenis.scrollTo(subVisualHeight + headerHeight, {
+              duration: 0, // 즉시 이동
+              easing: (t) => t, // 선형 이동
+            });
+            lenis.scrollTo(subVisualHeight + headerHeight);
             // body.style.overflow = 'auto';
-            footer.style.display = 'block';
-
+            footer.style.display = "block";
+            buttonShow.style.display = "flex";
+            // lenis.start();
+            // document.body.style.overflow = 'auto';
             //gsap 종료
-            ScrollTrigger.getById('main-ani')?.kill();
-            ScrollTrigger.getById('main-vis')?.kill();
+            ScrollTrigger.getById("main-ani")?.kill();
+            ScrollTrigger.getById("main-vis")?.kill();
           }, 800);
         },
       },
@@ -559,68 +529,38 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
     .to(box, {
       yPercent: 200,
       duration: 2,
-      ease: 'none', // 부드러운 효과로 자연스러운 표현
+      ease: "none", // 부드러운 효과로 자연스러운 표현
     });
-}
-
-function completeMessage() {
-  return `
-    <div class="guide--txt01">추천 보험 산출이 완료되었습니다!</div>
-    <div class="guide--txt02">
-        <em class="var fw700">결과를 확인해보세요.</em>
-        <div class="kidi--scroll-view">
-        <div class="kidi--scroll-inner">
-          <div class="mouse"></div>
-          <p class="kidi--en">Scroll</p>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function scrollToInnerContent() {
-  const innerContent = document.querySelector('.inner_1120');
-  if (innerContent) {
-    const offsetTop = innerContent.offsetTop;
-    // window.scrollTo({
-    //   top: offsetTop,
-    //   behavior: 'smooth',
-    // });
-    lenis.scrollTo(offsetTop, {
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Lenis easing function
-    });
-  }
 }
 
 function setupPageEvents(namespace) {
   let current;
   switch (namespace) {
-    case 'step1':
+    case "step1":
       current = 0;
-      store.dispatch({type: 'SET_CURRENT', payload: current});
+      store.dispatch({ type: "SET_CURRENT", payload: current });
       realTimeCurrentState(store.getState().current);
       setupStep1Events();
       scrollToInnerContent();
       break;
-    case 'step2':
+    case "step2":
       current = 1;
-      store.dispatch({type: 'SET_CURRENT', payload: current});
+      store.dispatch({ type: "SET_CURRENT", payload: current });
       realTimeCurrentState(store.getState().current);
       setupStep2Events();
       scrollToInnerContent();
       break;
-    case 'step3':
+    case "step3":
       current = 2;
-      store.dispatch({type: 'SET_CURRENT', payload: current});
+      store.dispatch({ type: "SET_CURRENT", payload: current });
       realTimeCurrentState(store.getState().current);
       setupStep3Events();
       scrollToInnerContent();
 
       break;
-    case 'step4':
+    case "step4":
       current = 3;
-      store.dispatch({type: 'SET_CURRENT', payload: current});
+      store.dispatch({ type: "SET_CURRENT", payload: current });
       realTimeCurrentState(store.getState().current);
       setupResultEvents();
       scrollToInnerContent();
@@ -631,12 +571,12 @@ function setupPageEvents(namespace) {
 }
 
 function realTimeCurrentState(current) {
-  const currentWrap = document.querySelector('.current--wrap');
-  const currentItem = currentWrap.querySelectorAll('li');
+  const currentWrap = document.querySelector(".current--wrap");
+  const currentItem = currentWrap.querySelectorAll("li");
   currentItem.forEach((item) => {
-    item.classList.remove('on');
+    item.classList.remove("on");
   });
-  currentItem[current].classList.add('on');
+  currentItem[current].classList.add("on");
 }
 
 export default {

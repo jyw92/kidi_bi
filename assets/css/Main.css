@@ -190,58 +190,83 @@ html.is-transitioning {
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 1fr 1fr;
-  transition: all 0.5s;
-}
-.content--main .content--main--info .grid .grid--item:nth-child(1) {
-  background-color: red;
-}
-.content--main .content--main--info .grid .grid--item:nth-child(2) {
-  background-color: blue;
-}
-.content--main .content--main--info .grid .grid--item:nth-child(3) {
-  background-color: yellow;
-}
-.content--main .content--main--info .grid .grid--item:nth-child(4) {
-  background-color: blueviolet;
-}
-.content--main .content--main--info .grid .grid--item:nth-child(5) {
-  background-color: green;
-}
-.content--main .content--main--info .grid.change {
-  grid-template-columns: 333px 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  padding: 2rem;
-  /* 명시적인 영역 이름 정의 */
-  grid-template-areas: "search cht1 cht2" "shotcut cht3 .";
-}
-.content--main .content--main--info .grid.change .grid--item:nth-child(1) {
-  grid-area: search;
-  background-color: red;
-}
-.content--main .content--main--info .grid.change .grid--item:nth-child(2) {
-  grid-area: cht1;
-  background-color: blue;
-}
-.content--main .content--main--info .grid.change .grid--item:nth-child(3) {
-  grid-area: cht2;
-  background-color: yellow;
-}
-.content--main .content--main--info .grid.change .grid--item:nth-child(4) {
-  grid-area: shotcut;
-  background-color: blueviolet;
-}
-.content--main .content--main--info .grid.change .grid--item:nth-child(5) {
-  grid-area: cht3;
-  grid-column: 2/4;
-  background-color: green;
-}
-.content--main .content--main--info .grid.change {
   gap: 2rem;
   justify-content: center;
   align-content: center;
   aspect-ratio: 2/1;
+  padding: 2rem;
+  grid-template-columns: 333px 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* 명시적인 영역 이름 정의 */
+  grid-template-areas: "search cht1 cht2" "shotcut cht3 .";
+  opacity: 0;
+  transition: all 0.5s;
+}
+.content--main .content--main--info .grid .grid--item {
+  transition: all 0.5s;
+}
+.content--main .content--main--info .grid .grid--item:not(:nth-child(4), :nth-child(5)) {
+  border-radius: 35px;
+  border: 1px solid;
+  border-radius: 35px;
+}
+.content--main .content--main--info .grid .grid--item:nth-child(1) {
+  grid-area: search;
+  border-color: #b3c8ff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(7.5px);
+  transform: translateX(-100px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(2) {
+  grid-area: cht1;
+  border-color: #193a98;
+  background: rgba(41, 76, 175, 0.5);
+  backdrop-filter: blur(11px);
+  transform: translateX(-100px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(3) {
+  grid-area: cht2;
+  border-color: #193a98;
+  background: rgba(41, 76, 175, 0.5);
+  backdrop-filter: blur(11px);
+  transform: translateX(-100px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(4) {
+  grid-area: shotcut;
+  border-color: none;
+  background: none;
+  backdrop-filter: none;
+  transform: translateX(100px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(5) {
+  grid-area: cht3;
+  grid-column: 2/4;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  background: none;
+  backdrop-filter: none;
+  border: none;
+  transform: translateX(100px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(5) > * {
+  border-radius: 35px;
+}
+.content--main .content--main--info .grid .grid--item:nth-child(5) .chart--item {
+  border: 1px solid #193a98;
+  background: rgba(41, 76, 175, 0.5);
+  backdrop-filter: blur(11px);
+}
+.content--main .content--main--info .grid .grid--item:nth-child(5) .infographic--item {
+  border: 1px solid #6c42a4;
+  background: rgba(158, 118, 246, 0.75);
+  backdrop-filter: blur(11.7000017166px);
+}
+.content--main .content--main--info .grid.change {
+  opacity: 1;
+}
+.content--main .content--main--info .grid.change .grid--item {
+  transform: translateX(0);
 }
 .content--main .content--main--info .grid--spaced {
   gap: var(--grid-gap);

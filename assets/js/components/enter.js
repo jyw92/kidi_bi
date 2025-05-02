@@ -1,55 +1,60 @@
 import { Overlay } from "./overlay.js";
 import { delay } from "../helper/helper.js";
 
+async function requestOnComplete(elm) {
+  //server요청완료되면
+  //delay는 임시로 작성
+  //axios or ajax로 호출완료하면 grid change
+  await delay(500);
 
-async function requestOnComplete(elm){
-    //server요청완료되면
-    //delay는 임시로 작성
-    //axios or ajax로 호출완료하면 grid change
-    await delay(10000);
-    
-   
-    /* ------------------------------- server code ------------------------------ */
-     //여기에 서버요청 완료되면 아래코드 적용
-    elm.classList.remove('grid--columns')
-    elm.classList.add('change');
-    elm.style.pointerEvents = 'auto';
+  /* ------------------------------- server code ------------------------------ */
+  //여기에 서버요청 완료되면 아래코드 적용
+  // elm.classList.remove('grid--columns')
+  elm.classList.add("change");
+  elm.style.pointerEvents = "auto";
 }
 
-
 const animateSecondGrid = () => {
-    const grid = document.querySelector('[data-grid-second]');
-    const gridImages = grid.querySelectorAll('.grid--item');
-    const middleIndex = Math.floor(gridImages.length / 2);
-    grid.style.pointerEvents = 'none';
-    gsap.timeline({
+  const grid = document.querySelector("[data-grid-second]");
+  const gridImages = grid.querySelectorAll(".grid--item");
+  const middleIndex = Math.floor(gridImages.length / 2);
+  grid.style.pointerEvents = "none";
+  gsap
+    .timeline({
       defaults: {
-        ease: 'power3'
+        ease: "power3",
+        duration: 1,
       },
       onComplete: () => {
         requestOnComplete(grid);
-      }
+      },
     })
-    .from(gridImages, {
-      stagger: {
-        amount: 0.3,
-        from: 'center'
+    .from(
+      gridImages,
+      {
+        stagger: {
+          amount: 0.6,
+          from: "center",
+        },
+        y: window.innerHeight,
+        transformOrigin: "50% 0%",
+        rotation: (pos) => {
+          const distanceFromCenter = Math.abs(pos - middleIndex);
+          return pos < middleIndex
+            ? distanceFromCenter * 3
+            : distanceFromCenter * -3;
+        },
       },
-      y: window.innerHeight,
-      transformOrigin: '50% 0%',
-      rotation: pos => {
-        const distanceFromCenter = Math.abs(pos - middleIndex);
-        return pos < middleIndex ? distanceFromCenter * 3 : distanceFromCenter * -3;
-      },
-    });
-  };
+      "+=0.5"
+    );
+};
 
 const animateSixthGrid = async () => {
   const contentMainInfo = document.querySelector(".content--main");
   const grid = document.querySelector("[data-grid-sixth]");
   const gridItems = grid.querySelectorAll(".grid__item");
-  
-  gsap.set(grid,{autoAlpha:0});
+
+  gsap.set(grid, { autoAlpha: 0 });
   await delay(1000);
   contentMainInfo.classList.add("on");
   gsap
@@ -57,22 +62,22 @@ const animateSixthGrid = async () => {
       defaults: {
         ease: "none",
       },
-    })
-    .to(grid,{
-        autoAlpha:1
-    })
-    .from(
-        gridItems,
-      {
-        stagger: {
-          amount: 0.03,
-          from: "edges",
-          grid: [3, 3],
-        },
-        scale: 0.7,
-        autoAlpha: 0,
+      onComplete: () => {
+        requestOnComplete(grid);
       },
-    )
+    })
+    .to(grid, {
+      autoAlpha: 1,
+    })
+    .from(gridItems, {
+      stagger: {
+        amount: 0.03,
+        from: "edges",
+        grid: [3, 3],
+      },
+      scale: 0.7,
+      autoAlpha: 0,
+    })
     .from(
       grid,
       {
@@ -82,10 +87,6 @@ const animateSixthGrid = async () => {
       0
     );
 };
-
-
-
-
 
 function scroll() {
   const lenis = new Lenis();
@@ -107,7 +108,8 @@ async function pageTransition() {
 
   // 컨텐츠 요소들
   const contentElements = document.querySelector(".content--wrap");
-
+  const contentMain = document.querySelector(".content--main");
+  const grid = document.querySelector("[data-grid-second]");
   // DOM에서 오버레이 요소를 선택합니다.
   const overlayEl = document.querySelector(".overlay");
 
@@ -145,12 +147,16 @@ async function pageTransition() {
       }
       if (contentElements) {
         contentElements.classList.add("content--open");
+        contentMain.classList.add("on");
         gsap.set(contentElements, {
           position: "static",
           y: "0",
+          onComplete: () => requestOnComplete(grid),
         });
+
         // animateSixthGrid();
-        animateSecondGrid();
+        // animateSecondGrid();
+        
         // 스크롤 활성화
         scroll();
       }
@@ -284,6 +290,7 @@ function animeButtons() {
 
     let buttonVisible = true;
     bttn.addEventListener("click", () => {
+      bttn.style.pointerEvents = "none";
       if (!particles.isAnimating() && buttonVisible) {
         particles.disintegrate();
         buttonVisible = !buttonVisible;
