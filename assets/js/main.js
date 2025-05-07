@@ -1,5 +1,6 @@
 import { delay } from "./helper/helper.js";
 import { animeButtons } from "./components/enter.js";
+import Dialog from "./components/dialog.js";
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
@@ -76,7 +77,48 @@ async function heroAnimation(){
  
 }
 
+function dialogEvent(){
+  this.state = {
+    isOpen:false,
+    current:''
+  }
+
+  const dialog = new Dialog({
+    initialState:'',
+    onClick:async (name) => {
+      this.setState({
+        ...this.state,
+        current:name
+      })
+    }
+  });
+
+  this.setState = (newState) => {
+    this.state = newState;
+    dialog.setState(this.state.current)
+  }
+
+  const init = async () => {
+   
+  }
+  init();
+
+}
+
+
 function mainApp(){
+
+  
+  // const dialogOpenBtn = document.querySelectorAll('.grid--option');
+  // dialogOpenBtn.forEach((elm) => {
+  //   elm.addEventListener('click',() => {
+  //     const type = elm.getAttribute('data-chart-type');
+  //     new Dialog({isOpen:true, current:type});
+  //   })
+  // })
+
+
+
   heroAnimation();
   animeButtons();
 }

@@ -6,9 +6,9 @@
   //common
   $cardLineColor: #c2c2c2;
   $cardColor--active: #2d83f2;
-  $box-shadow: 4px 4px 4px 0px rgba(0, 133, 231, 0.5);
+  $box-shadow: rem(4) rem(4) rem(4) rem(0) rgba(0, 133, 231, 0.5);
   $borderWidth: 2px;
-  $radius: 0px;
+  $radius: rem(0);
 
   //step01
 
@@ -16,9 +16,9 @@
 
   /* -------------------------------------------------------------------------- */
 
-  min-height: 500px;
+  min-height: rem(500);
   .card--container {
-    margin-block: 40px 35px;
+    margin-block: rem(40) rem(35);
   }
   .card {
     border: $borderWidth solid $cardLineColor;
@@ -36,7 +36,7 @@
     &.selected {
       border: $borderWidth solid $cardColor--active;
       box-shadow: $box-shadow;
-      transform: translateY(-4px);
+      transform: translateY(rem(-4));
       img {
         filter: grayscale(0);
       }
@@ -47,30 +47,30 @@
     .card--container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      column-gap: 30px;
+      column-gap: rem(30);
     }
     .card {
       aspect-ratio: 2/1;
       @include flex-center-row;
-      gap: 50px;
+      gap: rem(50);
       .card--info {
         text-align: left;
         strong {
           color: #999;
-          font-size: 22px;
+          font-size: rem(22);
           transition: all 0.5s;
         }
         p {
           color: #666;
           text-align: left;
-          font-size: 16px;
+          font-size: rem(16);
           transition: all 0.5s;
         }
       }
 
       &.selected {
         // border-radius: 10px 50px;
-        border: 2px solid $cardColor--active;
+        border: rem(2) solid $cardColor--active;
         strong {
           color: $cardColor--active;
         }
@@ -84,18 +84,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: rem(20);
       img {
-        height: 64px;
+        height: rem(64);
       }
     }
     .card[data-gender] {
-      font-size: 24px;
+      font-size: rem(24);
     }
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     transition: all 0.5s;
-    column-gap: 60px;
+    column-gap: rem(60);
     .step--area {
       display: flex;
       flex-direction: column;
@@ -104,26 +104,26 @@
         flex: 1;
         display: flex;
         align-items: center;
-        min-height: 320px;
+        min-height: rem(320);
         position: relative;
         .none-data {
           position: absolute;
           width: 100%;
-          height: calc(100% - 100px);
+          height: calc(100% - rem(100));
           @include flexCenter();
           color: #666;
-          font-size: 20px;
+          font-size: rem(20);
           font-weight: 300;
           background-color: #f1f1f1;
-          border-radius: 50px;
-          
+          border-radius: rem(50);
+
         }
       }
       .card--container {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(var(--column), 1fr);
-        gap: 1rem;
+        gap: rem(10);
       }
     }
     .card--step--option {
@@ -136,20 +136,20 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(var(--column), 1fr);
-      gap: 1rem;
-      margin-block-start: 40px;
+      gap: rem(10);
+      margin-block-start: rem(40);
       .card {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         color: #999;
-        font-size: 24px;
+        font-size: rem(24);
         font-weight: 700;
-        padding-block-start: 23px;
+        padding-block-start: rem(23);
         position: relative;
         opacity: 0.5;
-        min-height: 182px;
+        min-height: rem(182);
         p {
           color: #343434;
         }
@@ -157,7 +157,7 @@
           object-fit: cover;
           transition: all 0.5s;
           width: 100%;
-          height: 155px;
+          height: rem(155);
           object-position: top;
         }
         &.selected {
@@ -173,44 +173,44 @@
     .result--container {
       min-height: 100vh;
       article {
-        margin-block-start: 65px;
+        margin-block-start: rem(65);
         h2 {
-          border-radius: 50px;
+          border-radius: rem(50);
           background: #f1f1f1;
           color: #4b4b4b;
-          font-size: 18px;
+          font-size: rem(18);
           font-weight: 700;
-          letter-spacing: -0.36px;
+          letter-spacing: rem(-0.36);
           text-align: center;
-          padding: 13px;
+          padding: rem(13);
         }
         .result--area {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           &--title {
             text-align: center;
-            margin-block: 27px 43px;
+            margin-block: rem(27) rem(43);
             h3 {
               color: #343434;
-              font-size: 28px;
+              font-size: rem(28);
               font-weight: 700;
-              background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom / 100% 25px;
-              padding-block: 5px 10px;
-              padding-inline: 10px;
+              background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom / 100% rem(25);
+              padding-block: rem(5) rem(10);
+              padding-inline: rem(10);
               display: inline-block;
             }
           }
           &--info {
-            margin-top: 18px;
-            column-gap: 33px;
+            margin-top: rem(18);
+            column-gap: rem(33);
             display: grid;
-            grid-template-columns: 186px 1fr;
-            padding-inline: 22px 52px;
+            grid-template-columns: rem(186) 1fr;
+            padding-inline: rem(22) rem(52);
             &--thumbnail {
-              height: 250px;
-              max-height: 250px;
-              border-radius: 800px;
-              border: 1px solid var(--borderColor);
+              height: rem(250);
+              max-height: rem(250);
+              border-radius: rem(800);
+              border: rem(1) solid var(--borderColor);
               background-color: var(--bgColor);
               @include flexCenter();
               img {
@@ -222,9 +222,9 @@
               display: grid;
               grid-template-columns: 2fr 1fr;
               grid-template-rows: repeat(var(--rows, 2), 1fr);
-              padding: 7px 12px 14px;
+              padding: rem(7) rem(12) rem(14);
               position: relative;
-              border-width: 2px 0 1px 0;
+              border-width: rem(2) rem(0) rem(1) rem(0);
               border-style: solid;
               border-color: #cacaca;
 
@@ -232,21 +232,21 @@
                 font-weight: 700;
                 display: flex;
                 align-items: flex-end;
-                border-top: 1px dotted #ccc;
-                min-height: 66px;
-                padding-bottom: 12px;
+                border-top: rem(1) dotted #ccc;
+                min-height: rem(66);
+                padding-bottom: rem(12);
                 &:nth-child(-n + 2) {
                   border-top: 0;
                 }
               }
               &--name {
                 color: #666;
-                font-size: 20px;
+                font-size: rem(20);
               }
               &--counter,
               &--rating {
                 color: var(--kidi-bigin-default);
-                font-size: 40px;
+                font-size: rem(40);
               }
             }
           }
@@ -254,12 +254,12 @@
       }
     }
     .result--last--container {
-      min-height: 350px;
-      margin-block-start: 27px;
-      border-radius: 10px 50px;
-      border: 5px solid #0069f6;
+      min-height: rem(350);
+      margin-block-start: rem(27);
+      border-radius: rem(10) rem(50);
+      border: rem(5) solid #0069f6;
       background: #2d83f3;
-      padding: 45px 478px 50px 31px;
+      padding: rem(45) rem(478) rem(50) rem(31);
       background-image: url('/assets/img/lifeStyle/ico_result_5.svg');
       background-repeat: no-repeat;
       background-size: contain;
@@ -269,33 +269,33 @@
       flex-direction: column;
       .user--target {
         display: flex;
-        gap: 18px;
+        gap: rem(18);
         span {
           @include flexCenter();
-          padding: 6px 18px;
-          border-radius: 80px;
+          padding: rem(6) rem(18);
+          border-radius: rem(80);
           background: #fff;
           color: #2d83f3;
-          font-size: 18px;
+          font-size: rem(18);
           font-weight: 700;
         }
         p {
           color: #fff;
           text-align: center;
-          font-size: 24px;
+          font-size: rem(24);
           font-weight: 700;
           display: flex;
           align-items: center;
         }
       }
       .result--last--info {
-        margin-block-start: 30px;
+        margin-block-start: rem(30);
         color: #fff;
         text-align: center;
-        font-size: 18px;
+        font-size: rem(18);
         font-weight: 400;
-        line-height: 35px; /* 159.091% */
-        letter-spacing: -0.66px;
+        line-height: rem(35); /* 159.091% */
+        letter-spacing: rem(-0.66);
         white-space: normal;
       }
     }

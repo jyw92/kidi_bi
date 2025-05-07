@@ -130,7 +130,7 @@
 .card-paging-button {
   border-radius: 28px;
   border: 1px solid #666;
-  padding: 7.2px 16px;
+  padding: rem(7.2) rem(16);
   @include flexCenter();
   gap: 8px;
   transition: all 0.5s;
@@ -199,6 +199,10 @@ $btn-hover-color: #fff;
 		text-shadow: 0 -4rem 0 $btn-color, 0 0 0 $btn-hover-color;
 	}
 }
+
+
+
+
 
 // ------------------------------------------
 // Link

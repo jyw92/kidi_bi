@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 .particles {
 	position: relative;
 }
@@ -35,6 +37,7 @@
 	padding: 1.5rem 3rem;
 	padding: var(--button-padding);
 	will-change: transform;
+	font-size: rem(16);
 }
 
 .particles-button:focus {

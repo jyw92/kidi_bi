@@ -89,14 +89,14 @@ html.is-transitioning {
   color: #fff;
   z-index: 1;
   width: 100%;
-  gap: 20px;
+  gap: 2rem;
 }
 .hero--action--text span {
-  font-size: 30px;
+  font-size: 3rem;
   white-space: pre;
 }
 .hero--action--text h2 {
-  font-size: 80px;
+  font-size: 8rem;
   white-space: pre;
 }
 
@@ -145,7 +145,7 @@ html.is-transitioning {
   --color-bg: #0e0d0e;
   --color-link: #ffffff;
   --color-link-hover: #ffffff;
-  --page-padding: 0.5rem;
+  --page-padding: 0rem;
   --grid-gap: var(--page-padding);
   --color-bg-content: #0e0d0e;
   --color-bg-frame: #7a7364;
@@ -154,15 +154,15 @@ html.is-transitioning {
   top: 0;
   left: 0;
   width: 100vw;
-  min-height: calc(100dvh - 90px);
-  height: calc(100vh - 90px);
+  min-height: calc(100dvh - 9rem);
+  height: calc(100vh - 9rem);
   overflow: hidden;
   display: grid;
   place-items: center;
   grid-template-areas: "main";
   grid-template-rows: 100%;
   grid-template-columns: 100%;
-  transform: translateY(90px);
+  transform: translateY(9rem);
   z-index: 1;
 }
 .content--main .content--main--info .content__title {
@@ -173,7 +173,7 @@ html.is-transitioning {
   color: #fff;
 }
 .content--main .content--main--info .content__title-main {
-  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-size: clamp(0.2rem, 7vw, 0.45rem);
   line-height: 1;
   margin: 0.5rem 0 0;
   font-weight: 500;
@@ -183,7 +183,7 @@ html.is-transitioning {
 }
 .content--main .content--main--info .content__title-main + p {
   margin: 0;
-  max-width: 100px;
+  max-width: 10rem;
 }
 .content--main .content--main--info .grid {
   grid-area: main;
@@ -195,7 +195,7 @@ html.is-transitioning {
   align-content: center;
   aspect-ratio: 2/1;
   padding: 2rem;
-  grid-template-columns: 333px 1fr 1fr;
+  grid-template-columns: 33.3rem 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   /* 명시적인 영역 이름 정의 */
   grid-template-areas: "search cht1 cht2" "shotcut cht3 .";
@@ -206,67 +206,67 @@ html.is-transitioning {
   transition: all 0.5s;
 }
 .content--main .content--main--info .grid .grid--item:not(:nth-child(4), :nth-child(5)) {
-  border-radius: 35px;
-  border: 1px solid;
-  border-radius: 35px;
+  border-radius: 3.5rem;
+  border: 0.1rem solid;
+  border-radius: 3.5rem;
 }
 .content--main .content--main--info .grid .grid--item:nth-child(1) {
   grid-area: search;
   border-color: #b3c8ff;
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(7.5px);
-  transform: translateX(-100px);
+  backdrop-filter: blur(0.75rem);
+  transform: translateX(-10rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(2) {
   grid-area: cht1;
   border-color: #193a98;
   background: rgba(41, 76, 175, 0.5);
-  backdrop-filter: blur(11px);
-  transform: translateX(-100px);
+  backdrop-filter: blur(1.1rem);
+  transform: translateX(-10rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(3) {
   grid-area: cht2;
   border-color: #193a98;
   background: rgba(41, 76, 175, 0.5);
-  backdrop-filter: blur(11px);
-  transform: translateX(-100px);
+  backdrop-filter: blur(1.1rem);
+  transform: translateX(-10rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(4) {
   grid-area: shotcut;
   border-color: none;
   background: none;
   backdrop-filter: none;
-  transform: translateX(100px);
+  transform: translateX(10rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(5) {
   grid-area: cht3;
   grid-column: 2/4;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 40rem;
   gap: 2rem;
   background: none;
   backdrop-filter: none;
   border: none;
-  transform: translateX(100px);
+  transform: translateX(10rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(5) > * {
-  border-radius: 35px;
+  border-radius: 3.5rem;
 }
 .content--main .content--main--info .grid .grid--item:nth-child(5) .chart--item {
-  border: 1px solid #193a98;
+  border: 0.1rem solid #193a98;
   background: rgba(41, 76, 175, 0.5);
-  backdrop-filter: blur(11px);
+  backdrop-filter: blur(1.1rem);
 }
 .content--main .content--main--info .grid .grid--item:nth-child(5) .infographic--item {
-  border: 1px solid #6c42a4;
+  border: 0.1rem solid #6c42a4;
   background: rgba(158, 118, 246, 0.75);
-  backdrop-filter: blur(11.7000017166px);
+  backdrop-filter: blur(1.1700001717rem);
 }
 .content--main .content--main--info .grid.change {
   opacity: 1;
 }
 .content--main .content--main--info .grid.change .grid--item {
-  transform: translateX(0);
+  transform: translateX(0rem);
 }
 .content--main .content--main--info .grid--spaced {
   gap: var(--grid-gap);
@@ -281,7 +281,7 @@ html.is-transitioning {
   aspect-ratio: 2/3;
 }
 .content--main .content--main--info .grid--zoomed {
-  gap: 2rem;
+  gap: 0.2rem;
   justify-content: center;
   align-content: center;
   aspect-ratio: 2/1;
@@ -291,20 +291,190 @@ html.is-transitioning {
   height: 100%;
 }
 
+.grid--item {
+  padding: 20px 15px 15px;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+}
+.grid--item:has(.quick--button) {
+  padding: 0;
+}
+.grid--item:has(.chart--item) {
+  padding: 0;
+}
+.grid--item:has(.chart--item) .inner--item {
+  padding: 20px 15px 15px;
+  flex-direction: column;
+  display: flex;
+  gap: 2rem;
+  height: 100%;
+}
+.grid--item .grid--title {
+  position: relative;
+  font-size: 2.6rem;
+  color: #fff;
+}
+.grid--item .grid--title button {
+  position: absolute;
+  right: 0;
+  background-image: url("/assets/img/ico/ico_option.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.grid--item .grid--info--area {
+  border-radius: 2rem;
+  border: 2px solid #193A98;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+  background-color: #fff;
+}
+.grid--item .grid--info--area img {
+  object-fit: contain;
+  object-position: center;
+  height: 100%;
+}
+.grid--item[data-grid-type=search] {
+  display: flex;
+  flex-direction: column;
+  gap: 3.4rem;
+  padding: 5.7rem 1.6rem;
+}
+.grid--item[data-grid-type=search] .grid--title {
+  font-size: 3.3rem;
+  line-height: normal;
+}
+.grid--item[data-grid-type=search] .all--search--wrap {
+  position: relative;
+}
+.grid--item[data-grid-type=search] .all--search--wrap input[type=search] {
+  background-color: #fff;
+  border-radius: 3rem;
+  width: 100%;
+  padding-inline: 2.4rem 6rem;
+  font-size: 1.8rem;
+}
+.grid--item[data-grid-type=search] .all--search--wrap input[type=search]::placeholder {
+  color: rgba(149, 149, 149, 0.6);
+  font-size: 1.8rem;
+}
+.grid--item[data-grid-type=search] .all--search--wrap button {
+  background-image: url("/assets/img/ico/ico_all_search.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.grid--item[data-grid-type=search] .recommend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.grid--item[data-grid-type=search] .recommend .recommend__title {
+  color: #fff;
+  font-size: 1.8rem;
+}
+.grid--item[data-grid-type=search] .recommend .recommend__list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  color: #D4D6FF;
+  font-size: 1.6rem;
+}
+
+.quick--wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 3.5rem;
+}
+.quick--wrapper .quick--button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 3.5rem;
+  border: 1px solid rgba(153, 180, 255, 0.4);
+  background-color: var(--kidi-bigin-default);
+  color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(99, 143, 186, 0.15);
+  backdrop-filter: blur(7.5px);
+  font-size: 2rem;
+  padding: 1.5rem 1.6rem;
+  position: relative;
+  z-index: 2;
+}
+.quick--wrapper .quick--button::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background-image: url("/assets/img/ico/ico_quick_active.svg");
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.quick--wrapper .quick--list {
+  background-color: #fff;
+  padding: 8rem 1.6rem 2.6rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  max-height: 100%;
+  border-radius: 3.5rem;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+.quick--wrapper .quick--list li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 1rem;
+  border-radius: 0.5rem;
+}
+.quick--wrapper .quick--list li a:hover {
+  background-color: var(--kidi-bigin-default);
+  color: #fff;
+}
+.quick--wrapper.on .quick--button {
+  background-color: #fff;
+  color: #333;
+}
+.quick--wrapper.on .quick--button::after {
+  background-image: url("/assets/img/ico/ico_quick.svg");
+}
+.quick--wrapper.on .quick--list {
+  top: -100%;
+}
+
 @keyframes appears {
   0% {
     opacity: 1;
     width: 0%;
-    height: 2px;
+    height: 0.2rem;
   }
   50% {
     width: 100%;
-    height: 2px;
+    height: 0.2rem;
     left: 0%;
   }
   75% {
     width: 100%;
-    height: 2px;
+    height: 0.2rem;
     top: 50%;
   }
   100% {
@@ -441,7 +611,7 @@ html.is-transitioning {
 .card-paging-button {
   border-radius: 28px;
   border: 1px solid #666;
-  padding: 7.2px 16px;
+  padding: 0.72rem 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -544,6 +714,7 @@ html.is-transitioning {
   padding: 1.5rem 3rem;
   padding: var(--button-padding);
   will-change: transform;
+  font-size: 1.6rem;
 }
 
 .particles-button:focus {
@@ -582,6 +753,27 @@ html.is-transitioning {
 .content--wrap.content--open {
   opacity: 1;
   pointer-events: auto;
+}
+
+#chartSettingDialog {
+  width: 80vw;
+  height: 80vh;
+  background-color: #fff;
+}
+#chartSettingDialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@layer global {
+  html {
+    font-size: 62.5%;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-text-size-adjust: 100%;
+  }
 }
 
 /*# sourceMappingURL=Main.css.map */

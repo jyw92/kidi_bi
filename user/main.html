@@ -796,21 +796,58 @@
                 </video>
                 <div class="content--main--info content--padded">
                   <div class="grid" data-grid-second>
-                    <div class="grid--item" style="">
-                      <h4>보험정보 빅데이터를 <strong>확실히 알아보자</strong></h4>
+                    <div class="grid--item" data-grid-type="search">
+                      <h3 class="grid--title">보험정보 빅데이터를 <strong>확실히 알아보자</strong></h3>
+                      <div class="all--search--wrap">
+                        <input type="search" placeholder="검색어를 입력해주세요">
+                        <button type="submit" aria-label="검색"></button>
+                      </div>
+                      <div class="recommend">
+                        <h4 class="recommend__title">추천 검색어</h4>
+                        <ul class="recommend__list">
+                          <li class="recommend__item"><a href="">#검색어1</a></li>
+                          <li class="recommend__item"><a href="">#검색어2</a></li>
+                          <li class="recommend__item"><a href="">#검색어3</a></li>
+                        </ul>
+                      </div>
                     </div>
-                    <div class="grid--item" style="">
-                     
+                    <div class="grid--item" data-grid-type="chart">
+                      <div class="chart--item inner--item">
+                        <h3 class="grid--title">월간 보험 통계
+                          <button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-1"></button>
+                        </h3>
+                        <div class="grid--info--area"></div>
+                      </div>
                     </div>
-                    <div class="grid--item" style="">
-                      
+                    <div class="grid--item" data-grid-type="chart">
+                      <div class="chart--item inner--item">
+                        <h3 class="grid--title">보험산업 자산, 부채, 자본<button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-2"></button></h3>
+                        <div class="grid--info--area"></div>
+                      </div>
                     </div>
-                    <div class="grid--item" style="">
-                      
-                    </div>
-                    <div class="grid--item" style="">
-                      <div class="chart--item"></div>
-                      <div class="infographic--item"></div>
+                    <div class="grid--item" data-grid-type="quick">
+                      <div class="quick--wrapper on">
+                        <button type="button" class="quick--button">Quick Menu</button>
+                        <ul class="quick--list">
+                          <li><a href="#/">차량기준가액(국산)</a></li>
+                          <li><a href="#/">차량기준가액(외산)</a></li>
+                          <li><a href="#/">실손24</a></li>
+                          <li><a href="#/">주요질환예측정보</a></li>
+                          <li><a href="#/">나의 시민 안전 보험</a></li>
+                        </ul>
+                      </div>
+                    </div>  
+                    <div class="grid--item" data-grid-type="chart">
+                      <div class="chart--item inner--item">
+                        <h3 class="grid--title">운용자산이익률<button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-3"></button></h3>
+                        <div class="grid--info--area"></div>
+                      </div>
+                      <div class="infographic--item inner--item">
+                        <h3 class="grid--title">이달의 신기술</h3>
+                        <a class="grid--info--area" href="#/">
+                          <img src="/assets/img/sample_img/0.png" alt="">
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -819,9 +856,13 @@
           </div>
         </section>
         <section style="height:100vh;width:100%;background-color: yellowgreen;">
-
         </section>
       </main>
+      <dialog id="chartSettingDialog">
+        <form method="dialog">
+          
+        </form>
+      </dialog>
       <footer id="footer"></footer>
     </div>
     <script src="../assets/plugin/gsap/scrollTrigger.js"></script>

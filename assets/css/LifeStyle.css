@@ -44,10 +44,10 @@ html.is-transitioning {
   /* ------------------------------- cardGlobal ------------------------------- */
   position: relative;
   /* -------------------------------------------------------------------------- */
-  min-height: 500px;
+  min-height: 50rem;
 }
 .barba-container .card--container {
-  margin-block: 40px 35px;
+  margin-block: 4rem 3.5rem;
 }
 .barba-container .card {
   border: 2px solid #c2c2c2;
@@ -55,7 +55,7 @@ html.is-transitioning {
   align-items: flex-start;
   justify-content: center;
   transition: all 0.5s;
-  border-radius: 0px;
+  border-radius: 0rem;
 }
 .barba-container .card:focus {
   outline: none !important;
@@ -65,8 +65,8 @@ html.is-transitioning {
 }
 .barba-container .card.selected {
   border: 2px solid #2d83f2;
-  box-shadow: 4px 4px 4px 0px rgba(0, 133, 231, 0.5);
-  transform: translateY(-4px);
+  box-shadow: 0.4rem 0.4rem 0.4rem 0rem rgba(0, 133, 231, 0.5);
+  transform: translateY(-0.4rem);
 }
 .barba-container .card.selected img {
   filter: grayscale(0);
@@ -74,7 +74,7 @@ html.is-transitioning {
 .barba-container[data-barba-namespace=step1] .card--container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 30px;
+  column-gap: 3rem;
 }
 .barba-container[data-barba-namespace=step1] .card {
   aspect-ratio: 2/1;
@@ -82,24 +82,24 @@ html.is-transitioning {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  gap: 50px;
+  gap: 5rem;
 }
 .barba-container[data-barba-namespace=step1] .card .card--info {
   text-align: left;
 }
 .barba-container[data-barba-namespace=step1] .card .card--info strong {
   color: #999;
-  font-size: 22px;
+  font-size: 2.2rem;
   transition: all 0.5s;
 }
 .barba-container[data-barba-namespace=step1] .card .card--info p {
   color: #666;
   text-align: left;
-  font-size: 16px;
+  font-size: 1.6rem;
   transition: all 0.5s;
 }
 .barba-container[data-barba-namespace=step1] .card.selected {
-  border: 2px solid #2d83f2;
+  border: 0.2rem solid #2d83f2;
 }
 .barba-container[data-barba-namespace=step1] .card.selected strong {
   color: #2d83f2;
@@ -108,7 +108,7 @@ html.is-transitioning {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   transition: all 0.5s;
-  column-gap: 60px;
+  column-gap: 6rem;
 }
 .barba-container[data-barba-namespace=step2] .card {
   color: #999;
@@ -116,13 +116,13 @@ html.is-transitioning {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
 }
 .barba-container[data-barba-namespace=step2] .card img {
-  height: 64px;
+  height: 6.4rem;
 }
 .barba-container[data-barba-namespace=step2] .card[data-gender] {
-  font-size: 24px;
+  font-size: 2.4rem;
 }
 .barba-container[data-barba-namespace=step2] .step--area {
   display: flex;
@@ -133,21 +133,21 @@ html.is-transitioning {
   flex: 1;
   display: flex;
   align-items: center;
-  min-height: 320px;
+  min-height: 32rem;
   position: relative;
 }
 .barba-container[data-barba-namespace=step2] .step--area .remaining--area .none-data {
   position: absolute;
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 10rem);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #666;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 300;
   background-color: #f1f1f1;
-  border-radius: 50px;
+  border-radius: 5rem;
 }
 .barba-container[data-barba-namespace=step2] .step--area .card--container {
   width: 100%;
@@ -163,7 +163,7 @@ html.is-transitioning {
   display: grid;
   grid-template-columns: repeat(var(--column), 1fr);
   gap: 1rem;
-  margin-block-start: 40px;
+  margin-block-start: 4rem;
 }
 .barba-container[data-barba-namespace=step3] .card--container .card {
   display: flex;
@@ -171,12 +171,12 @@ html.is-transitioning {
   justify-content: space-between;
   align-items: center;
   color: #999;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 700;
-  padding-block-start: 23px;
+  padding-block-start: 2.3rem;
   position: relative;
   opacity: 0.5;
-  min-height: 182px;
+  min-height: 18.2rem;
 }
 .barba-container[data-barba-namespace=step3] .card--container .card p {
   color: #343434;
@@ -185,7 +185,7 @@ html.is-transitioning {
   object-fit: cover;
   transition: all 0.5s;
   width: 100%;
-  height: 155px;
+  height: 15.5rem;
   object-position: top;
 }
 .barba-container[data-barba-namespace=step3] .card--container .card.selected {
@@ -198,17 +198,17 @@ html.is-transitioning {
   min-height: 100vh;
 }
 .barba-container[data-barba-namespace=step4] .result--container article {
-  margin-block-start: 65px;
+  margin-block-start: 6.5rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article h2 {
-  border-radius: 50px;
+  border-radius: 5rem;
   background: #f1f1f1;
   color: #4b4b4b;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: -0.36px;
+  letter-spacing: -0.036rem;
   text-align: center;
-  padding: 13px;
+  padding: 1.3rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area {
   display: grid;
@@ -216,29 +216,29 @@ html.is-transitioning {
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--title {
   text-align: center;
-  margin-block: 27px 43px;
+  margin-block: 2.7rem 4.3rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--title h3 {
   color: #343434;
-  font-size: 28px;
+  font-size: 2.8rem;
   font-weight: 700;
-  background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom/100% 25px;
-  padding-block: 5px 10px;
-  padding-inline: 10px;
+  background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom/100% 2.5rem;
+  padding-block: 0.5rem 1rem;
+  padding-inline: 1rem;
   display: inline-block;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info {
-  margin-top: 18px;
-  column-gap: 33px;
+  margin-top: 1.8rem;
+  column-gap: 3.3rem;
   display: grid;
-  grid-template-columns: 186px 1fr;
-  padding-inline: 22px 52px;
+  grid-template-columns: 18.6rem 1fr;
+  padding-inline: 2.2rem 5.2rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--thumbnail {
-  height: 250px;
-  max-height: 250px;
-  border-radius: 800px;
-  border: 1px solid var(--borderColor);
+  height: 25rem;
+  max-height: 25rem;
+  border-radius: 80rem;
+  border: 0.1rem solid var(--borderColor);
   background-color: var(--bgColor);
   display: flex;
   align-items: center;
@@ -252,9 +252,9 @@ html.is-transitioning {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(var(--rows, 2), 1fr);
-  padding: 7px 12px 14px;
+  padding: 0.7rem 1.2rem 1.4rem;
   position: relative;
-  border-width: 2px 0 1px 0;
+  border-width: 0.2rem 0rem 0.1rem 0rem;
   border-style: solid;
   border-color: #cacaca;
 }
@@ -262,28 +262,28 @@ html.is-transitioning {
   font-weight: 700;
   display: flex;
   align-items: flex-end;
-  border-top: 1px dotted #ccc;
-  min-height: 66px;
-  padding-bottom: 12px;
+  border-top: 0.1rem dotted #ccc;
+  min-height: 6.6rem;
+  padding-bottom: 1.2rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table > div:nth-child(-n+2) {
   border-top: 0;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--name {
   color: #666;
-  font-size: 20px;
+  font-size: 2rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--counter, .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--table--rating {
   color: var(--kidi-bigin-default);
-  font-size: 40px;
+  font-size: 4rem;
 }
 .barba-container[data-barba-namespace=step4] .result--last--container {
-  min-height: 350px;
-  margin-block-start: 27px;
-  border-radius: 10px 50px;
-  border: 5px solid #0069f6;
+  min-height: 35rem;
+  margin-block-start: 2.7rem;
+  border-radius: 1rem 5rem;
+  border: 0.5rem solid #0069f6;
   background: #2d83f3;
-  padding: 45px 478px 50px 31px;
+  padding: 4.5rem 47.8rem 5rem 3.1rem;
   background-image: url("/assets/img/lifeStyle/ico_result_5.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -294,35 +294,35 @@ html.is-transitioning {
 }
 .barba-container[data-barba-namespace=step4] .result--last--container .user--target {
   display: flex;
-  gap: 18px;
+  gap: 1.8rem;
 }
 .barba-container[data-barba-namespace=step4] .result--last--container .user--target span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 18px;
-  border-radius: 80px;
+  padding: 0.6rem 1.8rem;
+  border-radius: 8rem;
   background: #fff;
   color: #2d83f3;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 .barba-container[data-barba-namespace=step4] .result--last--container .user--target p {
   color: #fff;
   text-align: center;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 700;
   display: flex;
   align-items: center;
 }
 .barba-container[data-barba-namespace=step4] .result--last--container .result--last--info {
-  margin-block-start: 30px;
+  margin-block-start: 3rem;
   color: #fff;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 400;
-  line-height: 35px; /* 159.091% */
-  letter-spacing: -0.66px;
+  line-height: 3.5rem; /* 159.091% */
+  letter-spacing: -0.066rem;
   white-space: normal;
 }
 
@@ -333,10 +333,10 @@ html.is-transitioning {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 7.2px 16px;
+  padding: 0.72rem 1.6rem;
   border: 1px solid var(--kidi-bigin-default);
-  border-radius: 28px;
-  font-size: 20px;
+  border-radius: 2.8rem;
+  font-size: 2rem;
   color: var(--kidi-bigin-default);
   font-weight: 700;
 }
@@ -502,7 +502,7 @@ html.is-transitioning {
 .card-paging-button {
   border-radius: 28px;
   border: 1px solid #666;
-  padding: 7.2px 16px;
+  padding: 0.72rem 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -585,16 +585,16 @@ html.is-transitioning {
 }
 .skeleton .image,
 .skeleton .line {
-  background-image: linear-gradient(90deg, #e0e0e0 0px, rgb(236.75, 236.75, 236.75), #e0e0e0 60px);
-  background-size: calc(320px + 100px);
+  background-image: linear-gradient(90deg, #e0e0e0 0rem, rgb(236.75, 236.75, 236.75), #e0e0e0 6rem);
+  background-size: calc(32rem + 10rem);
   animation: refresh 2s infinite ease-out;
 }
 
 .skeleton.step01 {
   width: 100%;
-  padding: 20px;
+  padding: 2rem;
   justify-content: space-between;
-  gap: 20px !important;
+  gap: 2rem !important;
 }
 .skeleton.step01 .image {
   flex: 1;
@@ -604,59 +604,59 @@ html.is-transitioning {
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   height: 100%;
 }
 .skeleton.step01 .line--wrap .line {
   width: 100%;
-  height: 32px;
+  height: 3.2rem;
 }
 .skeleton.step01 .line--wrap .line.long {
   flex: 1;
   height: 100%;
 }
 .skeleton.step02 {
-  gap: 10px;
+  gap: 1rem;
   width: 100%;
   height: 100%;
   flex-direction: row;
   align-items: center;
-  padding: 20px 30px;
+  padding: 2rem 3rem;
 }
 .skeleton.step02 .image {
-  width: 100px;
+  width: 10rem;
   height: 100%;
 }
 .skeleton.step02 .line {
-  height: 32px;
+  height: 3.2rem;
   flex: 1;
 }
 .skeleton.step03 {
-  gap: 10px;
+  gap: 1rem;
   width: 100%;
   height: 100%;
-  max-height: 215px;
+  max-height: 21.5rem;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  gap: 10px;
+  padding: 1rem;
+  gap: 1rem;
 }
 .skeleton.step03 .image {
   width: 100%;
-  height: 155px;
+  height: 15.5rem;
 }
 .skeleton.step03 .line {
   width: 100%;
-  height: 32px;
+  height: 3.2rem;
   position: relative !important;
 }
 
 @keyframes refresh {
   0% {
-    background-position: -100px;
+    background-position: -10rem;
   }
   40%, 100% {
-    background-position: 320px;
+    background-position: 32rem;
   }
 }
 .barba-container[data-barba-namaspace=step4] {
@@ -664,27 +664,27 @@ html.is-transitioning {
 }
 
 .select--item {
-  padding: 20px;
+  padding: 2rem;
   color: #fff;
   display: inline-block;
   position: absolute;
   z-index: 100;
-  border-radius: 50px;
+  border-radius: 5rem;
   font-weight: 700;
-  font-size: 24px;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  font-size: 2.4rem;
+  box-shadow: 0rem 0rem 0rem 0rem rgba(0, 0, 0, 0);
 }
 .select--item::after {
   content: "";
   position: absolute;
-  bottom: 0px;
+  bottom: 0rem;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  height: 8px;
-  box-shadow: 0 40px 15px rgba(0, 0, 0, 0.2);
+  height: 0.8rem;
+  box-shadow: 0rem 4rem 1.5rem rgba(0, 0, 0, 0.2);
   background-color: transparent;
-  border-radius: 80px/4px;
+  border-radius: 8rem 0.4rem;
 }
 .select--item:nth-child(1) {
   top: 10%;
@@ -713,19 +713,19 @@ html.is-transitioning {
 }
 @keyframes moveUpDown {
   0%, 100% {
-    margin-top: 0;
+    margin-top: 0rem;
   }
   30% {
-    margin-top: -15px;
+    margin-top: -1.5rem;
   }
   70% {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 }
 
 .result--loaded--container {
   position: relative;
-  height: 500px;
+  height: 50rem;
 }
 
 .result--loading {
@@ -741,21 +741,21 @@ html.is-transitioning {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 400;
 }
 .result--loading--guide .guide--txt01 {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 .result--loading--guide .guide--txt02 {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 .result--loading--guide .guide--txt02 .dotted {
-  width: 21px;
+  width: 2.1rem;
   display: inline-block;
   font-weight: 700;
 }
@@ -764,8 +764,8 @@ html.is-transitioning {
 }
 
 .box {
-  height: 280px;
-  width: 280px;
+  height: 28rem;
+  width: 28rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -787,7 +787,7 @@ html.is-transitioning {
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 64px;
+  font-size: 6.4rem;
 }
 .box .water {
   position: absolute;
@@ -813,7 +813,7 @@ html.is-transitioning {
 .box .water_wave_front {
   left: 0;
   fill: #4d6de3;
-  margin-bottom: -1px;
+  margin-bottom: -0.1rem;
   animation: wave-front 0.7s infinite linear;
 }
 
@@ -821,18 +821,18 @@ html.is-transitioning {
   opacity: 0.8;
 }
 .percent > div {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 700;
 }
 
 #completionMessage {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   position: relative;
 }
 #completionMessage em {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 @keyframes wave-front {
@@ -869,8 +869,8 @@ html.is-transitioning {
 }
 
 .kidi--scroll-view p {
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
   color: #fff;
   animation: colorText 5s ease-out infinite, nudgeText 5s ease-out infinite;
 }
@@ -878,9 +878,9 @@ html.is-transitioning {
 .kidi--scroll-view .mouse {
   background: var(--color-primary-400, rgb(30, 38, 148)) linear-gradient(transparent 0%, transparent 50%, #ffffff 50%, #ffffff 100%);
   position: relative;
-  width: 28px;
-  height: 48px;
-  border-radius: 100px;
+  width: 2.8rem;
+  height: 4.8rem;
+  border-radius: 10rem;
   background-size: 100% 200%;
   animation: colorSlide 5s linear infinite, nudgeMouse 5s ease-out infinite;
 }
@@ -897,17 +897,17 @@ html.is-transitioning {
 }
 
 .kidi--scroll-view .mouse:before {
-  width: 24px;
-  height: 44px;
+  width: 2.4rem;
+  height: 4.4rem;
   background-color: var(--color-primary-400, rgb(30, 38, 148));
-  border-radius: 100px;
+  border-radius: 10rem;
 }
 
 .kidi--scroll-view .mouse:after {
   background-color: #fff;
-  width: 5px;
-  height: 10px;
-  border-radius: 100%;
+  width: 0.5rem;
+  height: 1rem;
+  border-radius: 10rem;
   animation: trackBallSlide 10s linear infinite;
 }
 
@@ -956,109 +956,109 @@ html.is-transitioning {
 @keyframes trackBallSlide {
   0% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
   6% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(0.5rem);
   }
   14% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(4rem);
   }
   15%, 19% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(-2rem);
   }
   28%, 29.99% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
   30% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
   36% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(0.5rem);
   }
   44% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(4rem);
   }
   45%, 49% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(-2rem);
   }
   58%, 59.99% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
   60% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
   66% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(0.5rem);
   }
   74% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(4rem);
   }
   75%, 79% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(-2rem);
   }
   88%, 100% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(-2rem);
   }
 }
 @keyframes nudgeMouse {
   0% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   20% {
-    transform: translateY(8px);
+    transform: translateY(0.8rem);
   }
   30% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   50% {
-    transform: translateY(8px);
+    transform: translateY(0.8rem);
   }
   60% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   80% {
-    transform: translateY(8px);
+    transform: translateY(0.8rem);
   }
   90% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
 }
 @keyframes nudgeText {
   0% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   20% {
-    transform: translateY(2px);
+    transform: translateY(0.2rem);
   }
   30% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   50% {
-    transform: translateY(2px);
+    transform: translateY(0.2rem);
   }
   60% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
   80% {
-    transform: translateY(2px);
+    transform: translateY(0.2rem);
   }
   90% {
-    transform: translateY(0);
+    transform: translateY(0rem);
   }
 }
 @keyframes colorText {
@@ -2982,8 +2982,8 @@ a .icon-flip-vertical:before {
 }
 
 .rating > label:before {
-  margin: 5px 5px 0 5px;
-  font-size: 20px;
+  margin: 0.5rem 0.5rem 0rem 0.5rem;
+  font-size: 2rem;
   font-family: FontAwesome;
   display: inline-block;
   content: "\f005";
@@ -3011,8 +3011,17 @@ a .icon-flip-vertical:before {
   color: #FFED85;
 }
 
+#chartSettingDialog {
+  width: 80vw;
+  height: 80vh;
+  background-color: #fff;
+}
+#chartSettingDialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 /* -------------------------------------------------------------------------- */
-/*                                     dev                                    */
+/* dev                                     */
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 #lifeStyle__Container {
@@ -3025,11 +3034,11 @@ a .icon-flip-vertical:before {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 11px;
+  gap: 1.1rem;
 }
 .card--step--wrapper p {
   color: #666;
-  font-size: 32px;
+  font-size: 3.2rem;
   font-weight: 700;
 }
 .card--step--wrapper p em {
@@ -3040,23 +3049,23 @@ a .icon-flip-vertical:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-top: 2px dashed #eee;
-  padding-top: 35px;
+  gap: 1rem;
+  border-top: 0.2rem dashed #eee;
+  padding-top: 3.5rem;
 }
 
 .current--wrap {
   position: fixed;
-  right: 37px;
+  right: 3.7rem;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 2.5rem;
 }
 .current--wrap li {
-  width: 9px;
-  height: 9px;
+  width: 0.9rem;
+  height: 0.9rem;
 }
 .current--wrap li.on {
   position: relative;
@@ -3067,12 +3076,23 @@ a .icon-flip-vertical:before {
 .current--wrap li.on::before {
   content: attr(data-current-name);
   position: absolute;
-  right: 21px;
-  font-size: 17px;
+  right: 2.1rem;
+  font-size: 1.7rem;
   color: #0069f6;
   font-weight: 700;
 }
 
+@layer global {
+  html {
+    font-size: 62.5%;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-text-size-adjust: 100%;
+  }
+}
 /* 기본 리셋 및 기본 스타일 */
 
 /*# sourceMappingURL=LifeStyle.css.map */

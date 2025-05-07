@@ -9,10 +9,10 @@ $badgeDefaultColor:var(--kidi-bigin-default);
 .step{
     &--badge{
         @include flexCenter(inline-flex);
-        padding:7.2px 16px;
+        padding:rem(7.2) rem(16);
         border: 1px solid $badgeDefaultColor;
-        border-radius: 28px;
-        font-size: 20px;
+        border-radius: rem(28);
+        font-size: rem(20);
         color: $badgeDefaultColor;
         font-weight: 700;
     }

@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 .kidi--scroll-inner {
   display: flex;
   align-items: center;
@@ -22,8 +24,8 @@
 }
 
 .kidi--scroll-view p {
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: rem(16);
+  font-size: rem(14);
   color: #fff;
   animation: colorText 5s ease-out infinite, nudgeText 5s ease-out infinite;
 }
@@ -32,9 +34,9 @@
   background: var(--color-primary-400, rgb(30, 38, 148))
     linear-gradient(transparent 0%, transparent 50%, #ffffff 50%, #ffffff 100%);
   position: relative;
-  width: 28px;
-  height: 48px;
-  border-radius: 100px;
+  width: rem(28);
+  height: rem(48);
+  border-radius: rem(100);
   background-size: 100% 200%;
   animation: colorSlide 5s linear infinite, nudgeMouse 5s ease-out infinite;
 }
@@ -51,17 +53,17 @@
 }
 
 .kidi--scroll-view .mouse:before {
-  width: 24px;
-  height: 44px;
+  width: rem(24);
+  height: rem(44);
   background-color: var(--color-primary-400, rgb(30, 38, 148));
-  border-radius: 100px;
+  border-radius: rem(100);
 }
 
 .kidi--scroll-view .mouse:after {
   background-color: #fff;
-  width: 5px;
-  height: 10px;
-  border-radius: 100%;
+  width: rem(5);
+  height: rem(10);
+  border-radius: rem(100);
   animation: trackBallSlide 10s linear infinite;
 }
 
@@ -123,143 +125,143 @@
 @keyframes trackBallSlide {
   0% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 
   6% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(rem(5));
   }
 
   14% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(rem(40));
   }
 
   15%,
   19% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(rem(-20));
   }
 
   28%,
   29.99% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 
   30% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 
   36% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(rem(5));
   }
 
   44% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(rem(40));
   }
 
   45%,
   49% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(rem(-20));
   }
 
   58%,
   59.99% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 
   60% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 
   66% {
     opacity: 1;
-    transform: scale(0.9) translateY(5px);
+    transform: scale(0.9) translateY(rem(5));
   }
 
   74% {
     opacity: 0;
-    transform: scale(0.4) translateY(40px);
+    transform: scale(0.4) translateY(rem(40));
   }
 
   75%,
   79% {
     opacity: 0;
-    transform: scale(0.4) translateY(-20px);
+    transform: scale(0.4) translateY(rem(-20));
   }
 
   88%,
   100% {
     opacity: 1;
-    transform: scale(1) translateY(-20px);
+    transform: scale(1) translateY(rem(-20));
   }
 }
 
 @keyframes nudgeMouse {
   0% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   20% {
-    transform: translateY(8px);
+    transform: translateY(rem(8));
   }
 
   30% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   50% {
-    transform: translateY(8px);
+    transform: translateY(rem(8));
   }
 
   60% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   80% {
-    transform: translateY(8px);
+    transform: translateY(rem(8));
   }
 
   90% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 }
 
 @keyframes nudgeText {
   0% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   20% {
-    transform: translateY(2px);
+    transform: translateY(rem(2));
   }
 
   30% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   50% {
-    transform: translateY(2px);
+    transform: translateY(rem(2));
   }
 
   60% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 
   80% {
-    transform: translateY(2px);
+    transform: translateY(rem(2));
   }
 
   90% {
-    transform: translateY(0);
+    transform: translateY(rem(0));
   }
 }
 @keyframes colorText {

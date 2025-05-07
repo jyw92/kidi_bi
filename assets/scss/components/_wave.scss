@@ -9,32 +9,32 @@ $waterBColor: #c7eeff;
   background-color: $bgColor;
 }
 .select--item {
-  padding: 20px;
+  padding: rem(20);
   color: #fff;
   display: inline-block;
   position: absolute;
   z-index: 100;
-  border-radius: 50px;
+  border-radius: rem(50);
   font-weight: 700;
-  font-size: 24px;
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  font-size: rem(24);
+  box-shadow: rem(0) rem(0) rem(0) rem(0) rgba(0, 0, 0, 0);
   &::after {
     content: "";
     position: absolute;
-    bottom: 0px;
+    bottom: rem(0);
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    height: 8px;
-    box-shadow: 0 40px 15px rgba(0, 0, 0, .2);
+    height: rem(8);
+    box-shadow: rem(0) rem(40) rem(15) rgba(0, 0, 0, .2);
     background-color: transparent;
-    border-radius: 80px / 4px;
+    border-radius: rem(80) rem(4);
   }
   &:nth-child(1) {
-    top:10%;
+    top: 10%;
     left: 20%;
     background-color: rgb(174, 59, 255);
-    
+
     animation: moveUpDown 2s infinite ease-in-out;
   }
   &:nth-child(2) {
@@ -61,20 +61,20 @@ $waterBColor: #c7eeff;
   @keyframes moveUpDown {
     0%,
     100% {
-      margin-top: 0;
+      margin-top: rem(0);
     }
     30% {
-      margin-top: -15px;
+      margin-top: rem(-15);
     }
     70% {
-      margin-top: 10px;
+      margin-top: rem(10);
     }
   }
 }
 
 .result--loaded--container {
   position: relative;
-  height: 500px;
+  height: rem(500);
 }
 .result--loading {
   width: 100vw;
@@ -85,20 +85,20 @@ $waterBColor: #c7eeff;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 20px;
+    font-size: rem(20);
     font-weight: 400;
     .guide--txt01 {
-      font-size: 16px;
+      font-size: rem(16);
     }
     .guide--txt02 {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 20px;
+      margin-top: rem(20);
       // animation: blink 2s infinite ease-in-out;
       .dotted {
-        width: 21px;
+        width: rem(21);
         display: inline-block;
         font-weight: 700;
         em {
@@ -106,20 +106,20 @@ $waterBColor: #c7eeff;
         }
       }
       // @keyframes blink {
-      //   0%,
-      //   100% {
-      //     opacity: 1;
-      //   }
-      //   50% {
-      //     opacity: 0;
-      //   }
+      //  0%,
+      //  100% {
+      //    opacity: 1;
+      //  }
+      //  50% {
+      //    opacity: 0;
+      //  }
       // }
     }
   }
 }
 .box {
-  height: 280px;
-  width: 280px;
+  height: rem(280);
+  width: rem(280);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -140,7 +140,7 @@ $waterBColor: #c7eeff;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 64px;
+    font-size: rem(64);
   }
   .water {
     position: absolute;
@@ -164,7 +164,7 @@ $waterBColor: #c7eeff;
       &_front {
         left: 0;
         fill: $waterFColor;
-        margin-bottom: -1px;
+        margin-bottom: rem(-1);
         animation: wave-front 0.7s infinite linear;
       }
     }
@@ -174,17 +174,17 @@ $waterBColor: #c7eeff;
 .percent {
   opacity: 0.8;
   &>div{
-    font-size: 24px;
+    font-size: rem(24);
     font-weight: 700;
   }
 }
 #completionMessage {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: rem(10);
   position: relative;
   em{
-    font-size: 16px;
+    font-size: rem(16);
   }
 }
 @keyframes wave-front {
