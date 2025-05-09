@@ -813,15 +813,29 @@
                     </div>
                     <div class="grid--item" data-grid-type="chart">
                       <div class="chart--item inner--item">
-                        <h3 class="grid--title">월간 보험 통계
-                          <button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-1"></button>
+                        <h3 class="grid--title">50대 주요 지표
+                          <button 
+                            type="button" 
+                            class="grid--option" 
+                            aria-label="차트설정" 
+                            data-chart-type="chart-1" 
+                            data-chart-name="50대 주요 보험지표">
+                          </button>
                         </h3>
                         <div class="grid--info--area"></div>
                       </div>
                     </div>
                     <div class="grid--item" data-grid-type="chart">
                       <div class="chart--item inner--item">
-                        <h3 class="grid--title">보험산업 자산, 부채, 자본<button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-2"></button></h3>
+                        <h3 class="grid--title">발간물 데이터
+                          <button 
+                            type="button" 
+                            class="grid--option" 
+                            aria-label="차트설정" 
+                            data-chart-type="chart-2" 
+                            data-chart-name="발간물 데이터">
+                          </button>
+                        </h3>
                         <div class="grid--info--area"></div>
                       </div>
                     </div>
@@ -839,7 +853,15 @@
                     </div>  
                     <div class="grid--item" data-grid-type="chart">
                       <div class="chart--item inner--item">
-                        <h3 class="grid--title">운용자산이익률<button type="button" class="grid--option" aria-label="차트설정" data-chart-type="chart-3"></button></h3>
+                        <h3 class="grid--title">월간보험통계
+                          <button 
+                            type="button" 
+                            class="grid--option" 
+                            aria-label="차트설정" 
+                            data-chart-type="chart-3" 
+                            data-chart-name="월간보험통계">
+                          </button>
+                        </h3>
                         <div class="grid--info--area"></div>
                       </div>
                       <div class="infographic--item inner--item">
@@ -859,12 +881,11 @@
         </section>
       </main>
       <dialog id="chartSettingDialog">
-        <form method="dialog">
-          
-        </form>
+        <div class="dialog--container"></div>
       </dialog>
       <footer id="footer"></footer>
     </div>
+    <script src="../assets/plugin/axios/axios.js"></script>
     <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
     <script src="../assets/plugin/gsap/gsap.min.js"></script>
     <script src="../assets/plugin/gsap/SplitType.js"></script>

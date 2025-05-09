@@ -39,6 +39,20 @@ body.fixed {
   width: -moz-calc(100% - 1.875rem);
   width: calc(100% - 1.875rem);
 }
+
+.inner_full{
+  width:calc(100vw - 200px);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 100% !important;
+  .Information_page {
+    width: 100%;
+  }
+}
+
 .inner_1120 {
   max-width: 1120px;
   min-height: 100vh;

@@ -57,108 +57,45 @@
       "image": "ico_m_color_6.svg"
     }
   ],
-  "step4": [
+  "step4":[
     {
-      "id": "1",
-      "name": "운동을 자주 해요",
-      "image": "bg_lf_1.svg"
+      "id":0,
+      "name":"금융",
+      "image":"bg_lf_1.svg",
+      "children":["은행&카드"]
     },
     {
-      "id": "2",
-      "name": "반려동물이 있어요",
-      "image": "bg_lf_2.svg"
+      "id":1,
+      "name":"레저&엔터",
+      "image":"bg_lf_1.svg",
+      "children":["웹툰"]
     },
     {
-      "id": "3",
-      "name": "여행을 좋아해요",
-      "image": "bg_lf_3.svg"
+      "id":2,
+      "name":"쇼핑",
+      "image":"bg_lf_1.svg",
+      "children":["해외직구", "패션&뷰티"]
     },
     {
-      "id": "4",
-      "name": "독서를 즐겨요",
-      "image": "bg_lf_4.svg"
+      "id":3,
+      "name":"생활",
+      "image":"bg_lf_1.svg",
+      "children":["카라이프", "퀴즈"]
     },
     {
-      "id": "5",
-      "name": "영화 관람을 즐겨요",
-      "image": "bg_lf_1.svg"
+      "id":4,
+      "name":"정보",
+      "image":"bg_lf_1.svg",
+      "children":["카라이프", "보험"]
     },
     {
-      "id": "6",
-      "name": "음악 감상을 좋아해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "7",
-      "name": "요리에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "8",
-      "name": "쇼핑을 자주 해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "9",
-      "name": "사회 활동에 참여해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "10",
-      "name": "자원봉사 활동",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "11",
-      "name": "패션에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "12",
-      "name": "자동차를 소유해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "13",
-      "name": "기술에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "14",
-      "name": "건강 관리를 중시해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "15",
-      "name": "가족과의 시간이 중요해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "16",
-      "name": "와인/커피 애호가",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "17",
-      "name": "예술 전시회를 방문해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "18",
-      "name": "비즈니스에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "19",
-      "name": "주말 레저 활동",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "20",
-      "name": "취미 생활에 열정적이에요",
-      "image": "bg_lf_1.svg"
+      "id":5,
+      "name":"커뮤뮤",
+      "image":"bg_lf_1.svg",
+      "children":["카라이프", "보험"]
     }
   ],
+  
   "result": {
     "lfstlNm": "유형결과명",
     "lfstlSeqno": "순번",
@@ -180,5 +117,36 @@
     "acdtInjrHsptzRtScor": "4",
     "acdtInjrSrgRtScor": "5",
     "rcmdInsuCtt": "대비 전반적인 모든 사고율이 낮게 나타남에도 관련 보험 가입을 매우 잘하고 있습니다. 혹시 가입하지 않은 것이 있는지만 확인해주세요. 또한, 당신이 속한 그룹은 노후 대비를 위한 연금보험 가입률이 높습니다.  미래를 대비하기 위한 연금보험 가입 추천드립니다."
-  }
+  },
+
+  
+  "chart":{
+    "chart-1":["구분", "공통", "생명/장기보험", "자동차보험", "생명보험", "실손보험", "일반손해보험", "연금보험"],
+    "chart-2":["구분", "광역시도별 교통사고","기업성보험 통계보고서","은퇴시장 리포트"],
+    "chart-3":["구분", "손해보험","자동차보험","생명보험(22년이전)", "생명보험(23년이후)", "장기보험(22년이전)", "장기보험(23년이후)"]
+  },
+  "50s_indicators":[
+    {"name": "평균 기대 수명", "unit": "세", "importance": "높음", "description": "보험 기간 설정 및 보장 범위 결정에 중요"},
+    {"name": "주요 질병 발병률 (암, 심혈관 질환, 뇌혈관 질환)", "unit": "%", "importance": "높음", "description": "해당 질병 보장 보험 필요성 판단"},
+    {"name": "만성 질환 유병률 (고혈압, 당뇨병 등)", "unit": "%", "importance": "높음", "description": "질병 이력 및 관련 보험 가입 가능성 확인"},
+    {"name": "의료비 지출 평균액", "unit": "원/년", "importance": "높음", "description": "실손보험 및 진단비 설정 참고"},
+    {"name": "가구 월 평균 소득", "unit": "원", "importance": "중간", "description": "보험료 납입 능력 고려"},
+    {"name": "가구 총 자산", "unit": "원", "importance": "중간", "description": "보험 외 경제적 대비 능력 고려"},
+    {"name": "부채 규모", "unit": "원", "importance": "중간", "description": "보험료 납입 부담 정도 판단"},
+    {"name": "자녀 유무 및 경제적 독립 여부", "unit": "명/여부", "importance": "중간", "description": "사망보험금 및 생활비 보장 필요성"},
+    {"name": "부모 부양 여부", "unit": "여부", "importance": "중간", "description": "간병 보험 등 필요성 고려"},
+    {"name": "퇴직 시점", "unit": "세", "importance": "높음", "description": "퇴직 후 소득 감소 대비"},
+    {"name": "퇴직 후 예상 생활비", "unit": "원/월", "importance": "높음", "description": "연금 보험 등 노후 대비 필요성"},
+    {"name": "개인 연금 가입 여부 및 규모", "unit": "여부/원", "importance": "중간", "description": "노후 대비 현황 파악"},
+    {"name": "국민연금 수령 예상액", "unit": "원/월", "importance": "중간", "description": "노후 소득 보장 수준 가늠"},
+    {"name": "건강검진 수검률 및 결과", "unit": "%/결과", "importance": "높음", "description": "건강 상태 인지 및 보험 가입 영향"},
+    {"name": "흡연 및 음주 여부", "unit": "여부", "importance": "중간", "description": "보험료 및 질병 위험도 영향"},
+    {"name": "운동 습관", "unit": "빈도/시간", "importance": "중간", "description": "건강 상태 및 질병 예방 노력"},
+    {"name": "가족력 (주요 질병)", "unit": "질병명", "importance": "높음", "description": "유전적 질병 위험 고려"},
+    {"name": "기존 보험 가입 내역", "unit": "보험 종류/보장 금액", "importance": "높음", "description": "중복 보장 방지 및 부족한 부분 파악"},
+    {"name": "보험료 납입 여력", "unit": "원/월", "importance": "높음", "description": "현실적인 보험료 수준 결정"},
+    {"name": "보험에 대한 인식 및 이해도", "unit": "수준", "importance": "중간", "description": "합리적인 보험 선택을 위한 기본 지식"}
+  ]
+
+
 }

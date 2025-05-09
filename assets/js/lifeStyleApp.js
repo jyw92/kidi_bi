@@ -105,22 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (barbaInitialized) {
     if (initialNamespace === 'step2' || initialNamespace === 'step3' || initialNamespace === 'step4') {
-      window.location.href = '../user/step1.html';
+      // window.location.href = '../user/step1.html';
     } else if (initialNamespace && allowedNamespaces.includes(initialNamespace)) {
       Step.setupPageEvents(initialNamespace); // 그 외 허용된 페이지는 이벤트 설정
     }
   }
 });
 
-//새로고침 또는 페이지를 떠날 때 컨펌 메시지 표시
-window.addEventListener('beforeunload', (event) => {
-  // Barba.js가 활성화되어 있지 않은 경우에만 컨펌 메시지 표시
-  if (barbaInitialized) {
-    event.preventDefault();
-    event.returnValue = '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Chrome
-    return '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Safari 및 기타
-  }
-});
+// 새로고침 또는 페이지를 떠날 때 컨펌 메시지 표시
+// window.addEventListener('beforeunload', (event) => {
+//   // Barba.js가 활성화되어 있지 않은 경우에만 컨펌 메시지 표시
+//   if (barbaInitialized) {
+//     event.preventDefault();
+//     event.returnValue = '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Chrome
+//     return '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Safari 및 기타
+//   }
+// });
 
 //강제로 상태값 추가할 수 있음 참고사항
 // window.addEventListener('beforeunload', () => {

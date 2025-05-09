@@ -11,6 +11,9 @@ const DOM = {
   header:document.getElementById('header')
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
+
 //구조분해할당
 const { heroActionTXT, body, startBtn, header } = DOM;
 
@@ -77,48 +80,27 @@ async function heroAnimation(){
  
 }
 
-function dialogEvent(){
-  this.state = {
-    isOpen:false,
-    current:''
-  }
+function dialogEventHandler(){
+  const dialog = new Dialog();
 
-  const dialog = new Dialog({
-    initialState:'',
-    onClick:async (name) => {
-      this.setState({
-        ...this.state,
-        current:name
-      })
-    }
-  });
+  const dialogOpenBtn = document.querySelectorAll('.grid--option');
+  dialogOpenBtn.forEach((elm) => {
+    elm.addEventListener('click',(e) => {
+      const target = e.target;
+      if(!target) return;
 
-  this.setState = (newState) => {
-    this.state = newState;
-    dialog.setState(this.state.current)
-  }
-
-  const init = async () => {
-   
-  }
-  init();
-
+      const chartType = target.dataset.chartType;
+      const chartName = target.dataset.chartName;
+      dialog.open({chartType, chartName });
+    })
+  })
 }
 
 
 function mainApp(){
-
   
-  // const dialogOpenBtn = document.querySelectorAll('.grid--option');
-  // dialogOpenBtn.forEach((elm) => {
-  //   elm.addEventListener('click',() => {
-  //     const type = elm.getAttribute('data-chart-type');
-  //     new Dialog({isOpen:true, current:type});
-  //   })
-  // })
-
-
-
+ 
+  dialogEventHandler();
   heroAnimation();
   animeButtons();
 }

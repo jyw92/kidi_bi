@@ -108,8 +108,14 @@
     grid-template-areas: "main";
     grid-template-rows: 100%;
     grid-template-columns: 100%;
-    transform: translateY(rem(90));
+    transform: scale(1) translateY(rem(90));
     z-index: 1;
+    transition: all .5s;
+    &.open{
+      transform: scale(0.95) translateY(rem(100));
+    }
+
+
     .content__title {
       grid-area: main;
       position: relative;
