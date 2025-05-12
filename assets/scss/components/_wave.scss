@@ -19,40 +19,40 @@ $waterBColor: #c7eeff;
   font-size: rem(24);
   box-shadow: rem(0) rem(0) rem(0) rem(0) rgba(0, 0, 0, 0);
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: rem(0);
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     height: rem(8);
-    box-shadow: rem(0) rem(40) rem(15) rgba(0, 0, 0, .2);
+    box-shadow: rem(0) rem(40) rem(15) rgba(0, 0, 0, 0.2);
     background-color: transparent;
     border-radius: rem(80) rem(4);
   }
   &:nth-child(1) {
-    top: 10%;
+    top: 25%;
     left: 20%;
     background-color: rgb(174, 59, 255);
 
     animation: moveUpDown 2s infinite ease-in-out;
   }
   &:nth-child(2) {
-    top: 5%;
+    top: 35%;
     right: 20%;
     background-color: rgb(0, 169, 111);
     animation: moveUpDown 1.5s infinite ease-in-out;
   }
 
   &:nth-child(3) {
-    top: 40%;
+    top: 45%;
     right: 30%;
     background-color: rgb(252, 240, 18);
     color: #020438;
     animation: moveUpDown 2.5s infinite ease-in-out;
   }
   &:nth-child(4) {
-    top: 40%;
+    top: 50%;
     left: 10%;
     background-color: rgb(68, 94, 243);
     animation: moveUpDown 3s infinite ease-in-out;
@@ -79,6 +79,7 @@ $waterBColor: #c7eeff;
 .result--loading {
   width: 100vw;
   height: 100%;
+  margin-top: 5vw;
   @include posCenter();
   background-color: #fff;
   &--guide {
@@ -173,7 +174,7 @@ $waterBColor: #c7eeff;
 //비활성화 일단 안보이게
 .percent {
   opacity: 0.8;
-  &>div{
+  & > div {
     font-size: rem(24);
     font-weight: 700;
   }
@@ -183,7 +184,7 @@ $waterBColor: #c7eeff;
   flex-direction: column;
   gap: rem(10);
   position: relative;
-  em{
+  em {
     font-size: rem(16);
   }
 }

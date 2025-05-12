@@ -40,6 +40,23 @@ html.is-transitioning {
   font-weight: 700;
 }
 
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected, .barba-container .card.selected {
+  --shadow: 0 0 0 3px var(--card-shadow);
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected .card__body-cover-checkbox, .barba-container .card.selected .card__body-cover-checkbox {
+  --check-bg: var(--background-checkbox);
+  --check-border: #fff;
+  --check-scale: 1;
+  --check-opacity: 1;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected .card__body-cover-checkbox--svg, .barba-container .card.selected .card__body-cover-checkbox--svg {
+  --stroke-color: #fff;
+  --stroke-dashoffset: 0;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected img, .barba-container .card.selected img {
+  filter: grayscale(0);
+}
+
 .barba-container {
   --background: #fff;
   --background-checkbox: #0082ff;
@@ -53,22 +70,24 @@ html.is-transitioning {
   --header-height: 47px;
   --blend-mode: overlay;
   --transition: 0.15s;
-  /* ------------------------------- cardGlobal ------------------------------- */
-  position: relative;
-  /* -------------------------------------------------------------------------- */
   min-height: 31.25rem;
 }
 .barba-container .card--container {
   margin-block: 2.5rem 2.1875rem;
 }
 .barba-container .card {
-  border: 2px solid #c2c2c2;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  transition: all 0.5s;
-  border-radius: 0rem;
+  border: 2px solid var(--check-border, #f1f1f1);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.2));
+  transition: transform var(--transition), box-shadow var(--transition);
+  transform: scale(var(--scale, 1)) translateZ(0);
   font-size: 1rem;
+}
+.barba-container .card:active {
+  --scale: 0.96;
 }
 .barba-container .card:focus {
   outline: none !important;
@@ -76,13 +95,35 @@ html.is-transitioning {
 .barba-container .card img {
   filter: grayscale(100%);
 }
-.barba-container .card.selected {
-  border: 2px solid #2d83f2;
-  box-shadow: 0.25rem 0.25rem 0.25rem 0rem rgba(0, 133, 231, 0.5);
-  transform: translateY(-0.25rem);
+.barba-container .card .card__body-cover-checkbox {
+  display: flex;
+  background: var(--check-bg, var(--background-checkbox));
+  border: 2px solid var(--check-border, #fff);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  opacity: var(--check-opacity, 0);
+  transition: transform var(--transition), opacity calc(var(--transition) * 1.2) linear, -webkit-transform var(--transition) ease;
+  transform: scale(var(--check-scale, 0));
 }
-.barba-container .card.selected img {
-  filter: grayscale(0);
+.barba-container .card .card__body-cover-checkbox--svg {
+  width: 13px;
+  height: 11px;
+  display: inline-block;
+  vertical-align: top;
+  fill: none;
+  margin: 7px 0 0 5px;
+  stroke: var(--stroke-color, #fff);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: var(--stroke-dashoffset, 16px);
+  transition: stroke-dashoffset 0.4s ease var(--transition);
 }
 .barba-container[data-barba-namespace=step1] .card--container {
   display: grid;
@@ -107,7 +148,6 @@ html.is-transitioning {
 }
 .barba-container[data-barba-namespace=step1] .card .card--info p {
   color: #666;
-  text-align: left;
   font-size: 1rem;
   transition: all 0.5s;
 }
@@ -120,7 +160,6 @@ html.is-transitioning {
 .barba-container[data-barba-namespace=step2] {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  transition: all 0.5s;
   column-gap: 3.75rem;
 }
 .barba-container[data-barba-namespace=step2] .card {
@@ -171,173 +210,262 @@ html.is-transitioning {
 .barba-container[data-barba-namespace=step2] .card--step--option {
   grid-column: 1/3;
 }
+.barba-container[data-barba-namespace=step3] .instruction {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-block: 30px;
+  text-align: center;
+  color: #495057;
+}
+.barba-container[data-barba-namespace=step3] .instruction strong {
+  color: var(--kidi-bigin-default);
+  font-weight: 700;
+  font-size: 18px;
+}
 .barba-container[data-barba-namespace=step3] .card--container {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(var(--column), 1fr);
   gap: 1.25rem;
   margin-block-start: 2.5rem;
 }
 .barba-container[data-barba-namespace=step3] .card--container .card {
-  border: 0;
-  user-select: none;
-  display: block;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card:nth-child(odd) .card__body-cover-image {
-  --x-y1: 100% 90%;
-  --x-y2: 67% 83%;
-  --x-y3: 33% 90%;
-  --x-y4: 0% 85%;
+.barba-container[data-barba-namespace=step3] .card--container .card.selected p {
+  color: var(--kidi-bigin-default);
 }
-.barba-container[data-barba-namespace=step3] .card--container .card:nth-child(even) .card__body-cover-image {
-  --x-y1: 100% 85%;
-  --x-y2: 73% 93%;
-  --x-y3: 25% 85%;
-  --x-y4: 0% 90%;
+.barba-container[data-barba-namespace=step3] .card--container .card p {
+  font-size: 20px;
+  font-weight: 700;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__input {
-  position: absolute;
-  display: block;
-  outline: none;
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  -webkit-appearance: none;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body {
-  --shadow: 0 0 0 3px var(--card-shadow);
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body .card__body-cover-checkbox {
-  --check-bg: var(--background-checkbox);
-  --check-border: #fff;
-  --check-scale: 1;
-  --check-opacity: 1;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body .card__body-cover-checkbox--svg {
-  --stroke-color: #fff;
-  --stroke-dashoffset: 0;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body .card__body-cover:after {
-  --opacity-bg: 0;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body .card__body-cover-image {
-  --filter-bg: grayscale(0);
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:checked ~ .card__body .card__body-header-subtitle {
-  opacity: 1;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:disabled ~ .card__body {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__input:disabled ~ .card__body:active {
-  --scale: 1;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__body {
+.barba-container[data-barba-namespace=step3] .card--container .categories {
   display: grid;
-  grid-auto-rows: calc(var(--card-height) - var(--header-height)) auto;
-  background: var(--background);
-  height: var(--card-height);
-  width: var(--card-width);
-  border-radius: var(--card-radius);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
   overflow: hidden;
-  position: relative;
-  cursor: pointer;
+  transition: all 0.3s ease;
   box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.2));
-  transition: transform var(--transition), box-shadow var(--transition);
-  transform: scale(var(--scale, 1)) translateZ(0);
+  min-height: 215px;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__body:active {
-  --scale: 0.96;
+.barba-container[data-barba-namespace=step3] .card--container .category-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__body-cover {
-  --c-border: var(--card-radius) var(--card-radius) 0 0;
-  --c-width: 100%;
-  --c-height: 100%;
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected .category-header {
+  background-color: #eef2ff;
+}
+.barba-container[data-barba-namespace=step3] .card--container .checkbox-wrapper {
+  margin-right: 10px;
   position: relative;
-  overflow: hidden;
+  width: 20px;
+  height: 20px;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__body-cover:after {
+.barba-container[data-barba-namespace=step3] .card--container .category-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.barba-container[data-barba-namespace=step3] .card--container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-checkbox:checked ~ .checkmark {
+  background-color: var(--kidi-bigin-default);
+  border-color: var(--kidi-bigin-default);
+}
+.barba-container[data-barba-namespace=step3] .card--container .checkmark:after {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  width: var(--c-width);
-  height: var(--c-height);
-  border-radius: var(--c-border);
-  background: linear-gradient(to bottom right, var(--background-image));
-  mix-blend-mode: var(--blend-mode);
-  opacity: var(--opacity-bg, 1);
-  transition: opacity var(--transition) linear;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__body-cover-image {
-  width: var(--c-width);
-  height: var(--c-height);
-  object-fit: cover;
-  border-radius: var(--c-border);
-  filter: var(--filter-bg, grayscale(1));
-  clip-path: polygon(0% 0%, 100% 0%, var(--x-y1, 100% 90%), var(--x-y2, 67% 83%), var(--x-y3, 33% 90%), var(--x-y4, 0% 85%));
+.barba-container[data-barba-namespace=step3] .card--container .category-checkbox:checked ~ .checkmark:after {
+  display: block;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card__body-cover-checkbox {
-  background: var(--check-bg, var(--background-checkbox));
-  border: 2px solid var(--check-border, #fff);
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  z-index: 1;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  opacity: var(--check-opacity, 0);
-  transition: transform var(--transition), opacity calc(var(--transition) * 1.2) linear, -webkit-transform var(--transition) ease;
-  transform: scale(var(--check-scale, 0));
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__body-cover-checkbox--svg {
-  width: 13px;
-  height: 11px;
-  display: inline-block;
-  vertical-align: top;
-  fill: none;
-  margin: 7px 0 0 5px;
-  stroke: var(--stroke-color, #fff);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: var(--stroke-dashoffset, 16px);
-  transition: stroke-dashoffset 0.4s ease var(--transition);
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__body-header {
-  height: var(--header-height);
-  background: var(--background);
-  padding: 0 10px 10px 10px;
-  text-align: center;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__body-header-title {
-  color: var(--text-headline);
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 1.25rem;
-}
-.barba-container[data-barba-namespace=step3] .card--container .card__body-header-subtitle {
-  color: var(--text-color);
+.barba-container[data-barba-namespace=step3] .card--container .category-name {
+  font-size: 16px;
   font-weight: 500;
-  font-size: 13px;
-  opacity: 0;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card .category--sub {
-  position: absolute;
-  margin-top: 20px;
+.barba-container[data-barba-namespace=step3] .card--container .category-card.error {
+  --shadow: 0 0 0 3px red;
+  box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.2));
+  background-color: rgba(255, 0, 0, 0.1);
+  animation: shake 0.3s ease;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.error .category-header {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.error .category-header .category-name {
+  color: red;
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.error .category-header .checkmark {
+  background-color: red;
+  border: 1px solid red;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected .category-name {
+  color: var(--kidi-bigin-default);
+}
+.barba-container[data-barba-namespace=step3] .card--container .category-card.selected .subcategory {
+  pointer-events: auto;
+  opacity: 1;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategories {
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 5px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
   pointer-events: none;
+  opacity: 0.4;
 }
-.barba-container[data-barba-namespace=step3] .card--container .card .category--sub button {
-  border: 1px solid #ccc;
-  border-radius: 2rem;
-  padding: 5px 10px;
+.barba-container[data-barba-namespace=step3] .card--container .subcategory:hover {
+  background-color: #f5f7fa;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory:last-child {
+  margin-bottom: 0;
+}
+.barba-container[data-barba-namespace=step3] .card--container .radio-wrapper {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.barba-container[data-barba-namespace=step3] .card--container .radio-mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio:checked ~ .radio-mark {
+  border-color: var(--kidi-bigin-default);
+}
+.barba-container[data-barba-namespace=step3] .card--container .radio-mark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kidi-bigin-default);
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio:checked ~ .radio-mark:after {
+  display: block;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio:disabled ~ .radio-mark {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio:disabled ~ .radio-mark:after {
+  background-color: #ccc;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-name {
+  font-size: 14px;
+  color: #555;
+}
+.barba-container[data-barba-namespace=step3] .card--container .subcategory-radio:disabled ~ .subcategory-name {
+  color: #999;
+}
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+.barba-container[data-barba-namespace=step3] .card--container .instruction {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #495057;
+}
+.barba-container[data-barba-namespace=step3] .card--container .selection-summary {
+  background-color: #eef2ff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: none;
+}
+.barba-container[data-barba-namespace=step3] .card--container .selection-summary.visible {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .barba-container[data-barba-namespace=step4] .result--container {
   min-height: 100vh;
@@ -368,15 +496,14 @@ html.is-transitioning {
   font-size: 1.75rem;
   font-weight: 700;
   background: linear-gradient(#e7f6ff, #e7f6ff) no-repeat center bottom/100% 1.5625rem;
-  padding-block: 0.3125rem 0.625rem;
-  padding-inline: 0.625rem;
+  padding: 0.3125rem 0.625rem 0.625rem;
   display: inline-block;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info {
   margin-top: 1.125rem;
-  column-gap: 2.0625rem;
   display: grid;
   grid-template-columns: 11.625rem 1fr;
+  column-gap: 2.0625rem;
   padding-inline: 1.375rem 3.25rem;
 }
 .barba-container[data-barba-namespace=step4] .result--container article .result--area--info--thumbnail {
@@ -398,8 +525,7 @@ html.is-transitioning {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(var(--rows, 2), 1fr);
   padding: 0.4375rem 0.75rem 0.875rem;
-  position: relative;
-  border-width: 0.125rem 0rem 0.0625rem 0rem;
+  border-width: 0.125rem 0rem 0.0625rem;
   border-style: solid;
   border-color: #cacaca;
 }
@@ -466,7 +592,7 @@ html.is-transitioning {
   text-align: center;
   font-size: 1.125rem;
   font-weight: 400;
-  line-height: 2.1875rem; /* 159.091% */
+  line-height: 2.1875rem;
   letter-spacing: -0.04125rem;
   white-space: normal;
 }
@@ -785,6 +911,7 @@ html.is-transitioning {
   justify-content: space-between;
   padding: 0.625rem;
   gap: 0.625rem;
+  flex-direction: column;
 }
 .skeleton.step03 .image {
   width: 100%;
@@ -832,26 +959,26 @@ html.is-transitioning {
   border-radius: 5rem 0.25rem;
 }
 .select--item:nth-child(1) {
-  top: 10%;
+  top: 25%;
   left: 20%;
   background-color: rgb(174, 59, 255);
   animation: moveUpDown 2s infinite ease-in-out;
 }
 .select--item:nth-child(2) {
-  top: 5%;
+  top: 35%;
   right: 20%;
   background-color: rgb(0, 169, 111);
   animation: moveUpDown 1.5s infinite ease-in-out;
 }
 .select--item:nth-child(3) {
-  top: 40%;
+  top: 45%;
   right: 30%;
   background-color: rgb(252, 240, 18);
   color: #020438;
   animation: moveUpDown 2.5s infinite ease-in-out;
 }
 .select--item:nth-child(4) {
-  top: 40%;
+  top: 50%;
   left: 10%;
   background-color: rgb(68, 94, 243);
   animation: moveUpDown 3s infinite ease-in-out;
@@ -876,6 +1003,7 @@ html.is-transitioning {
 .result--loading {
   width: 100vw;
   height: 100%;
+  margin-top: 5vw;
   position: absolute;
   top: 50%;
   left: 50%;

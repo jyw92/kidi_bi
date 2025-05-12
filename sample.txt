@@ -149,10 +149,21 @@ https://tympanus.net/Development/LineMenuStyles/
 https://tympanus.net/Development/SelectInspiration/index7.html
 https://tympanus.net/Development/DialogEffects/wilma.html
 
+이건 현신적인
+https://codepen.io/mickaellherminez/pen/dPypGXb
+
+
 grid
 https://tympanus.net/Development/MenuToGrid/
 
+알림림
+https://codepen.io/dannymoerkerke/pen/wBwYzRe
 
+버블
+https://codepen.io/glitchworker/pen/jENZGOV
+
+블러처리
+https://codepen.io/bernethe/pen/bNbGOqQ
 "step4": [
     {
       "id": "1",

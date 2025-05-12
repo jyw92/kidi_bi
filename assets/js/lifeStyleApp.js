@@ -3,12 +3,11 @@ import {Transiton, Step} from './modules/_index.js';
 const allowedNamespaces = ['step1', 'step2', 'step3', 'step4']; // 최상단에 선언
 let barbaInitialized = true;
 
-
-//라이프스타일을 제외한 메인, 서브페이지등등 페이지이동할때 안전하게 barba탈출 
+//라이프스타일을 제외한 메인, 서브페이지등등 페이지이동할때 안전하게 barba탈출
 //아래코드적용안할시, 다시 라이프스타일 step1로 이동하게됨.
 document.addEventListener('click', (event) => {
   const link = event.target.closest('a');
-  console.log(link)
+  console.log(link);
   if (link) {
     const namespace = link.getAttribute('data-barba-namespace');
     if (!namespace || !['step1', 'step2', 'step3', 'step4'].includes(namespace)) {
@@ -102,10 +101,10 @@ barba.hooks.beforeEnter((data) => {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded 이벤트 발생!');
   const initialNamespace = document.querySelector('[data-barba="container"]')?.getAttribute('data-barba-namespace');
-  
+
   if (barbaInitialized) {
     if (initialNamespace === 'step2' || initialNamespace === 'step3' || initialNamespace === 'step4') {
-      // window.location.href = '../user/step1.html';
+      window.location.href = '../user/step1.html';
     } else if (initialNamespace && allowedNamespaces.includes(initialNamespace)) {
       Step.setupPageEvents(initialNamespace); // 그 외 허용된 페이지는 이벤트 설정
     }
@@ -113,19 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 새로고침 또는 페이지를 떠날 때 컨펌 메시지 표시
-// window.addEventListener('beforeunload', (event) => {
-//   // Barba.js가 활성화되어 있지 않은 경우에만 컨펌 메시지 표시
-//   if (barbaInitialized) {
-//     event.preventDefault();
-//     event.returnValue = '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Chrome
-//     return '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Safari 및 기타
-//   }
-// });
+window.addEventListener('beforeunload', (event) => {
+  // Barba.js가 활성화되어 있지 않은 경우에만 컨펌 메시지 표시
+  if (barbaInitialized) {
+    event.preventDefault();
+    event.returnValue = '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Chrome
+    return '양식 제출 후에는 수정이 불가능합니다. 정말로 페이지를 나가시겠습니까?'; // Safari 및 기타
+  }
+});
 
 //강제로 상태값 추가할 수 있음 참고사항
-// window.addEventListener('beforeunload', () => {
-//   if (barbaInitialized) {
-//     const dataToSend = { test:"test" };
-//     navigator.sendBeacon('/api/log-unload', JSON.stringify(dataToSend));
-//   }
-// });
+window.addEventListener('beforeunload', () => {
+  if (barbaInitialized) {
+    const dataToSend = {test: 'test'};
+    navigator.sendBeacon('/api/log-unload', JSON.stringify(dataToSend));
+  }
+});

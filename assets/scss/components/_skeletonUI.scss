@@ -80,6 +80,7 @@ $line-2-width: 80%;
     justify-content: space-between;
     padding: rem(10);
     gap: rem(10);
+    flex-direction: column;
     .image {
       width: 100%;
       height: rem(155);
