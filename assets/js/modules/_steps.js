@@ -404,25 +404,33 @@ async function setupStep3Events() {
   let selectedLifeCard = null;
   nextButton.style.display = 'none';
   // 뒤로 가기로 돌아왔을 때 선택 상태 복원
+  // 뒤로 가기로 돌아왔을 때 선택 상태 복원
   if (state.lifeStyle) {
     cards.forEach((card) => {
       const checkbox = card.querySelector('.category-checkbox');
       const radioButtons = card.querySelectorAll('.subcategory-radio');
 
-      radioButtons.forEach((radio) => {
-        const match = restored.find((item) => item.id === radio.dataset.id);
-        if (match) {
-          checkbox.checked = true;
-          card.classList.add('selected');
-
+      if (checkbox.checked) {
+        // 체크박스가 선택되어 있다면 모든 라디오 버튼 활성화
+        radioButtons.forEach((radio) => {
           radio.disabled = false;
-          radio.checked = true;
-
-          // change 이벤트 수동 발생 (필요 시)
-          const event = new Event('change');
-          radio.dispatchEvent(event);
-        }
-      });
+          const match = restored.find((item) => item.id === radio.dataset.id);
+          if (match) {
+            radio.checked = true;
+            card.classList.add('selected');
+            // change 이벤트 수동 발생 (필요 시)
+            const event = new Event('change');
+            radio.dispatchEvent(event);
+          }
+        });
+      } else {
+        // 체크박스가 선택되어 있지 않다면 라디오 버튼 비활성화 (혹시 모를 상태를 대비)
+        radioButtons.forEach((radio) => {
+          radio.disabled = true;
+          radio.checked = false;
+        });
+        card.classList.remove('selected');
+      }
     });
   } else {
     // 초기 로딩 시 선택 상태 초기화
@@ -678,13 +686,37 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
             Transiton.pageEnter();
             resultLoadingContainer.style.display = 'none';
             resultContainer.style.display = 'block';
-            resultContainer.innerHTML = resultTemplate(lastData);
+            resultContainer.innerHTML = await resultTemplate(lastData);
+            const counters = document.querySelectorAll(".result--area--info--table--counter");
+           
+            
+
+
             await delay(800);
             lenis.scrollTo(subVisualHeight + headerHeight, {
               duration: 0, // 즉시 이동
               easing: (t) => t, // 선형 이동
             });
             lenis.scrollTo(subVisualHeight + headerHeight);
+            setTimeout(() => {
+              const counters = document.querySelectorAll(".result--area--info--table--counter");
+              counters.forEach((counter, index) => {
+                const targetCount = parseInt(counter.dataset.count, 10);
+                const sign = index <= 1 ? '+' : '-';
+                
+                gsap.to(counter, {
+                  innerText: targetCount,
+                  duration: 2,
+                  ease: "power2.out",
+                  onUpdate: function() {
+                    const currentValue = Math.round(this.targets()[0].innerText);
+                    this.targets()[0].innerText = `${sign}${Math.abs(currentValue)}%`;
+                  }
+                });
+              });
+            }, 500);
+
+
             // body.style.overflow = 'auto';
             footer.style.display = 'block';
             buttonShow.style.display = 'flex';

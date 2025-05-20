@@ -19,6 +19,14 @@ body.fixed {
   border-bottom: 1px solid transparent;
 }
 
+#chartOptionBtn{
+  position: absolute;
+  color: #fff;
+  right: 50px;
+  top:50%;
+  transform: translateY(-50%);
+}
+
 #header.main_header .header_top {
   background-color: transparent;
   border-color: transparent;

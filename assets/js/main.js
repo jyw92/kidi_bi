@@ -1,6 +1,7 @@
 import { delay } from "./helper/helper.js";
 import { animeButtons } from "./components/enter.js";
 import Dialog from "./components/dialog.js";
+import DialogContent from "./components/dialogContent.js";
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
@@ -19,7 +20,6 @@ const { heroActionTXT, body, startBtn, header } = DOM;
 
 async function startAnimation(elm){
   elm.classList.add("appears");
-  
 }
 async function sloganBeforeOverlay(elm){
   elm.classList.add('on');
@@ -80,31 +80,41 @@ async function heroAnimation(){
  
 }
 
-function dialogEventHandler(){
+function scroll() {
+  const lenis = new Lenis();
+  lenis.on("scroll", (e) => {
+    // console.log(e);
+    // lenis.stop();
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+}
+
+const startButton = document.querySelector('#startButton');
+// startButton.addEventListener('click', scroll);
+
+function dialogEventHandler() {
   const dialog = new Dialog();
-
-  const dialogOpenBtn = document.querySelectorAll('.grid--option');
-  dialogOpenBtn.forEach((elm) => {
-    elm.addEventListener('click',(e) => {
-      const target = e.target;
-      if(!target) return;
-
-      const chartType = target.dataset.chartType;
-      const chartName = target.dataset.chartName;
-      dialog.open({chartType, chartName });
-    })
-  })
+  const dialogOpenBtn = document.getElementById('chartOptionBtn');
+  dialogOpenBtn.addEventListener('click', (e) => {
+    dialog.open();
+    // Disable scroll when dialog is open
+    const lenis = new Lenis();
+    lenis.stop();
+  });
 }
 
 
 function mainApp(){
-  
- 
   dialogEventHandler();
   heroAnimation();
   animeButtons();
+  DialogContent();
 }
-
-
 
 mainApp();

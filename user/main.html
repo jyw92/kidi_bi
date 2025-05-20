@@ -728,6 +728,7 @@
                 aria-label="전체메뉴 열기"
               ></button>
             </div>
+            <button id="chartOptionBtn">차트설정버튼</button>
           </div>
         </div>
         <div
@@ -763,7 +764,7 @@
               poster="../assets/img/main/videoframe_0.png"
             >
               <source
-                src="../assets/img/video/gettyimages-512128386-640_adpp.mp4"
+                src="../assets/img/video/슬로건.mp4"
                 type="video/mp4"
               />
             </video>
@@ -790,87 +791,19 @@
                   poster="../assets/img/main/videoframe_0.png"
                 >
                   <source 
-                    src="../assets/img/video/gettyimages-1345217240-640_adpp.mp4"
+                    src="../assets/img/video/배경모션.mp4"
                     type="video/mp4"
                   />
                 </video>
                 <div class="content--main--info content--padded">
-                  <div class="grid" data-grid-second>
-                    <div class="grid--item" data-grid-type="search">
-                      <h3 class="grid--title">보험정보 빅데이터를 <strong>확실히 알아보자</strong></h3>
-                      <div class="all--search--wrap">
-                        <input type="search" placeholder="검색어를 입력해주세요">
-                        <button type="submit" aria-label="검색"></button>
-                      </div>
-                      <div class="recommend">
-                        <h4 class="recommend__title">추천 검색어</h4>
-                        <ul class="recommend__list">
-                          <li class="recommend__item"><a href="">#검색어1</a></li>
-                          <li class="recommend__item"><a href="">#검색어2</a></li>
-                          <li class="recommend__item"><a href="">#검색어3</a></li>
-                        </ul>
-                      </div>
-                    </div>
+                  <div class="grid" data-grid-second style="grid-template-columns: 1fr; grid-template-rows: 1fr;">
                     <div class="grid--item" data-grid-type="chart">
                       <div class="chart--item inner--item">
-                        <h3 class="grid--title">50대 주요 지표
-                          <button 
-                            type="button" 
-                            class="grid--option" 
-                            aria-label="차트설정" 
-                            data-chart-type="chart-1" 
-                            data-chart-name="50대 주요 보험지표">
-                          </button>
-                        </h3>
+                        <h3 class="grid--title">50대 주요 지표</h3>
                         <div class="grid--info--area"></div>
                       </div>
                     </div>
-                    <div class="grid--item" data-grid-type="chart">
-                      <div class="chart--item inner--item">
-                        <h3 class="grid--title">발간물 데이터
-                          <button 
-                            type="button" 
-                            class="grid--option" 
-                            aria-label="차트설정" 
-                            data-chart-type="chart-2" 
-                            data-chart-name="발간물 데이터">
-                          </button>
-                        </h3>
-                        <div class="grid--info--area"></div>
-                      </div>
-                    </div>
-                    <div class="grid--item" data-grid-type="quick">
-                      <div class="quick--wrapper on">
-                        <button type="button" class="quick--button">Quick Menu</button>
-                        <ul class="quick--list">
-                          <li><a href="#/">차량기준가액(국산)</a></li>
-                          <li><a href="#/">차량기준가액(외산)</a></li>
-                          <li><a href="#/">실손24</a></li>
-                          <li><a href="#/">주요질환예측정보</a></li>
-                          <li><a href="#/">나의 시민 안전 보험</a></li>
-                        </ul>
-                      </div>
-                    </div>  
-                    <div class="grid--item" data-grid-type="chart">
-                      <div class="chart--item inner--item">
-                        <h3 class="grid--title">월간보험통계
-                          <button 
-                            type="button" 
-                            class="grid--option" 
-                            aria-label="차트설정" 
-                            data-chart-type="chart-3" 
-                            data-chart-name="월간보험통계">
-                          </button>
-                        </h3>
-                        <div class="grid--info--area"></div>
-                      </div>
-                      <div class="infographic--item inner--item">
-                        <h3 class="grid--title">이달의 신기술</h3>
-                        <a class="grid--info--area" href="#/">
-                          <img src="/assets/img/sample_img/0.png" alt="">
-                        </a>
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -881,7 +814,251 @@
         </section>
       </main>
       <dialog id="chartSettingDialog">
-        <div class="dialog--container"></div>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+        <button class="help-toggle" id="helpToggle">❓</button>
+
+        <!-- Help modal -->
+        <div class="modal" id="helpModal">
+          <div class="modal__content help-modal__content">
+            <div class="help-header">
+              <div class="help-icon">📘</div>
+              <h2>유저 가이드</h2>
+            </div>
+            <p class="help-intro">인트로 설명</p>
+
+            <div class="help-content">
+              <section class="help-section">
+                <div class="help-section-header">
+                  <div class="help-section-icon">🎯</div>
+                  <h3>Getting Started</h3>
+                </div>
+                <div class="help-section-content">
+                  <p>설명입니다.</p>
+                  <ul>
+                    <li><strong>1</strong> - 설명</li>
+                    <li><strong>2</strong> - 설명 on</li>
+                    <li><strong>3</strong> - 설명</li>
+                    <li><strong>4</strong> - 설명</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section class="help-section">
+                <div class="help-section-header">
+                  <div class="help-section-icon">➕</div>
+                  <h3>Creating Charts</h3>
+                </div>
+                <div class="help-section-content">
+                  <p>To create a new chart:</p>
+                  <ol>
+                    <!-- <li>
+                      Click the <strong>"+ Add Chart"</strong> button in any column
+                    </li>
+                    <li>Fill in the task details (title is required)</li>
+                    <li>Customize your task with a deadline, color, and image</li>
+                    <li>Click <strong>"Add Task"</strong> to save</li> -->
+                  </ol>
+                </div>
+              </section>
+
+              <section class="help-section">
+                <div class="help-section-header">
+                  <div class="help-section-icon">🔄</div>
+                  <h3>Managing Chart</h3>
+                </div>
+                <div class="help-section-content">
+                  <p>타이틀 설명</p>
+                  <ul>
+                    <!-- <li>
+                      <strong>Move</strong> - Drag and drop tasks between columns to
+                      update their status
+                    </li>
+                    <li>
+                      <strong>Edit</strong> - Click the ✏️ icon to modify a task's
+                      details
+                    </li>
+                    <li>
+                      <strong>Delete</strong> - Click the 🗑️ icon to remove a task
+                      (confirmation required)
+                    </li> -->
+                  </ul>
+                </div>
+              </section>
+
+              <section class="help-section">
+                <div class="help-section-header">
+                  <div class="help-section-icon">💡</div>
+                  <h3>Pro Tips</h3>
+                </div>
+                <div class="help-section-content">
+                  <ul>
+                    <!-- <li>
+                      <strong>Local Storage</strong> - Your tasks are automatically
+                      saved in your browser
+                    </li>
+                    <li>
+                      <strong>Dark Mode</strong> - Toggle between light and dark
+                      themes with the 🌙/☀️ button
+                    </li>
+                    <li>
+                      <strong>Task Stats</strong> - View your progress with the
+                      counters at the top of the page
+                    </li>
+                    <li>
+                      <strong>Task Colors</strong> - Use colors to categorize or
+                      prioritize your tasks
+                    </li>
+                    <li>
+                      <strong>Images</strong> - Add images to tasks that need visual
+                      context
+                    </li> -->
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <div class="help-footer">
+              <button class="dialog--btn help-close-btn" onclick="closeHelpModal()">
+                Got it!
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="board">
+            <div class="column" id="type01">
+              <div class="task-list">
+                <div class="add-task">+ Add Chart</div>
+              </div>
+            </div>
+            <div class="column" id="type02">
+              <div class="task-list">
+                <div class="add-task">+ Add Chart</div>
+              </div>
+            </div>
+            <div class="column" id="type03">
+              <div class="task-list">
+                <div class="add-task">+ Add Chart</div>
+              </div>
+            </div>
+            <div class="column" id="type04">
+              <div class="task-list">
+                <div class="add-task">+ Add Chart</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for adding/editing a task -->
+        <div class="modal" id="taskModal">
+          <div class="modal__content">
+            <button class="modal__close" type="button">&times;</button>
+            <h2>새 차트</h2>
+            <form class="task-form" id="taskForm">
+              <input type="hidden" id="editTaskId" />
+              <input type="hidden" id="columnType" />
+              <input type="hidden" id="chartType"/>
+              <div class="form-group row" id="chartRequestOptions">
+                <button class="dialog--btn" type="button" data-chart-type="chart-1">50대주요지표</button>
+                <button class="dialog--btn" type="button" data-chart-type="chart-2">발간물 데이터</button>
+                <button class="dialog--btn" type="button" data-chart-type="chart-3">월간보험통계</button>
+              </div>
+              <div class="form-group row">
+                <div class="column--item">
+                  <label for="">구분</label>
+                  <select id="gubunType">
+                    <option value="">전체</option>
+                    <option value="">테스트</option>
+                  </select>
+                </div>
+                <div class="column--item">
+                  <label for="">검색</label>
+                  <div class="row--item">
+                    <input type="search">
+                    <button type="button" class="dialog--btn">검색</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="taskTitle">타이틀</label>
+                <input type="text" id="taskTitle" required />
+              </div>
+              <div class="form-group">
+                <label for="">리스트</label>
+                <div id="selectList">
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                  <button type="button" class="" data-list-type="list-1">리스트1</button>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="color-picker">
+                  <input type="color" id="taskColor" value="#3a86ff" />
+                  <span>배경색 설정</span>
+                </div>
+              </div>
+              <button type="submit" class="dialog--btn">Add Chart</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Confirmation modal -->
+        <div class="modal" id="confirmationModal">
+          <div class="modal__content">
+            <div class="confirmation-check">✅</div>
+            <h3>Success!</h3>
+            <p id="confirmationMessage"></p>
+          </div>
+        </div>
+
+        <!-- Delete confirmation modal -->
+        <div class="modal" id="deleteConfirmationModal">
+          <div class="modal__content">
+            <h3>Confirm Deletion</h3>
+            <p>설명</p>
+            <div
+              style="
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin-top: 1.5rem;
+              "
+            >
+              <button class="dialog--btn" id="cancelDeleteBtn">Cancel</button>
+              <button
+                class="dialog--btn"
+                style="background: var(--accent)"
+                id="confirmDeleteBtn"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <form method="dialog" style="display: flex;justify-content: center;gap:10px;">
+          <button id="settingBtn" class="dialog--btn">Setting</button>
+          <button id="cancelBtn" class="dialog--btn">Cancel</button>
+        </form>
       </dialog>
       <footer id="footer"></footer>
     </div>

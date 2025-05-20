@@ -61,112 +61,112 @@
     {
       "id": 0,
       "name": "금융",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 0,
           "name": "금융은행&카드",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     },
     {
       "id": 1,
       "name": "레저&엔터",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 1,
           "name": "레저&엔터웹툰",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     },
     {
       "id": 2,
       "name": "쇼핑",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 2,
           "name": "쇼핑직구1",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 3,
           "name": "쇼핑&뷰티2",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     },
     {
       "id": 3,
       "name": "생활",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 4,
           "name": "생활해외직구3",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 5,
           "name": "생활패션&뷰티4",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     },
     {
       "id": 4,
       "name": "정보",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 6,
           "name": "정보해외직구5",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 7,
           "name": "정보패션&뷰티6",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     },
     {
       "id": 5,
       "name": "커뮤",
-      "image": "bg_lf_1.svg",
+      "image": "bg_lf_0.svg",
       "children": [
         {
           "id": 7,
           "name": "커뮤해외직구",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 8,
           "name": "커뮤패션&뷰티",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 9,
           "name": "커뮤해외직구",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 10,
           "name": "커뮤패션&뷰티",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 11,
           "name": "커뮤해외직구",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         },
         {
           "id": 12,
           "name": "커뮤패션&뷰티",
-          "image": "bg_lf_1.svg"
+          "image": "bg_lf_0.svg"
         }
       ]
     }
@@ -176,13 +176,13 @@
     "lfstlNm": "유형결과명",
     "lfstlSeqno": "순번",
     "hatmtFrstTitlNm": "좌측1번항목명",
-    "hatmtFrstRt": "100%",
+    "hatmtFrstRt": "1000",
     "hatmtScndTitlNm": "좌측2번항목명",
-    "hatmtScndRt": "100%",
+    "hatmtScndRt": "1900",
     "latmtFrstTitlNm": "우측1번항목명",
-    "latmtFrstRt": "100%",
+    "latmtFrstRt": "1200",
     "latmtScndTitlNm": "우측2번항목명",
-    "latmtScndRt": "100%",
+    "latmtScndRt": "800%",
     "cntrWlinsuScor": "3",
     "cntrCninsuScor": "2",
     "cntrPsinsuScor": "1",

@@ -88,19 +88,7 @@ const animateSixthGrid = async () => {
     );
 };
 
-function scroll() {
-  const lenis = new Lenis();
-  lenis.on("scroll", (e) => {
-    console.log(e);
-  });
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-}
 
 async function pageTransition() {
   // 인트로
@@ -158,7 +146,7 @@ async function pageTransition() {
         // animateSecondGrid();
         
         // 스크롤 활성화
-        scroll();
+        // scroll();
       }
 
       // 이제 오버레이를 숨깁니다.

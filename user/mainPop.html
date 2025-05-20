@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager - Interactive Pickers</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    <button class="help-toggle" id="helpToggle">❓</button>
+
+    <!-- Help modal -->
+    <div class="modal" id="helpModal">
+      <div class="modal__content help-modal__content">
+        <button class="modal__close" onclick="closeHelpModal()">&times;</button>
+        <div class="help-header">
+          <div class="help-icon">📘</div>
+          <h2>유저 가이드</h2>
+        </div>
+        <p class="help-intro">인트로 설명</p>
+
+        <div class="help-content">
+          <section class="help-section">
+            <div class="help-section-header">
+              <div class="help-section-icon">🎯</div>
+              <h3>Getting Started</h3>
+            </div>
+            <div class="help-section-content">
+              <p>설명입니다.</p>
+              <ul>
+                <li><strong>1</strong> - 설명</li>
+                <li><strong>2</strong> - 설명 on</li>
+                <li><strong>3</strong> - 설명</li>
+                <li><strong>4</strong> - 설명</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="help-section">
+            <div class="help-section-header">
+              <div class="help-section-icon">➕</div>
+              <h3>Creating Charts</h3>
+            </div>
+            <div class="help-section-content">
+              <p>To create a new chart:</p>
+              <ol>
+                <!-- <li>
+                  Click the <strong>"+ Add Chart"</strong> button in any column
+                </li>
+                <li>Fill in the task details (title is required)</li>
+                <li>Customize your task with a deadline, color, and image</li>
+                <li>Click <strong>"Add Task"</strong> to save</li> -->
+              </ol>
+            </div>
+          </section>
+
+          <section class="help-section">
+            <div class="help-section-header">
+              <div class="help-section-icon">🔄</div>
+              <h3>Managing Chart</h3>
+            </div>
+            <div class="help-section-content">
+              <p>타이틀 설명</p>
+              <ul>
+                <!-- <li>
+                  <strong>Move</strong> - Drag and drop tasks between columns to
+                  update their status
+                </li>
+                <li>
+                  <strong>Edit</strong> - Click the ✏️ icon to modify a task's
+                  details
+                </li>
+                <li>
+                  <strong>Delete</strong> - Click the 🗑️ icon to remove a task
+                  (confirmation required)
+                </li> -->
+              </ul>
+            </div>
+          </section>
+
+          <section class="help-section">
+            <div class="help-section-header">
+              <div class="help-section-icon">💡</div>
+              <h3>Pro Tips</h3>
+            </div>
+            <div class="help-section-content">
+              <ul>
+                <!-- <li>
+                  <strong>Local Storage</strong> - Your tasks are automatically
+                  saved in your browser
+                </li>
+                <li>
+                  <strong>Dark Mode</strong> - Toggle between light and dark
+                  themes with the 🌙/☀️ button
+                </li>
+                <li>
+                  <strong>Task Stats</strong> - View your progress with the
+                  counters at the top of the page
+                </li>
+                <li>
+                  <strong>Task Colors</strong> - Use colors to categorize or
+                  prioritize your tasks
+                </li>
+                <li>
+                  <strong>Images</strong> - Add images to tasks that need visual
+                  context
+                </li> -->
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <div class="help-footer">
+          <button class="btn help-close-btn" onclick="closeHelpModal()">
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="board">
+        <div class="column" id="type01">
+          <div class="task-list">
+            <div class="add-task">+ Add Chart</div>
+          </div>
+        </div>
+        <div class="column" id="type02">
+          <div class="task-list">
+            <div class="add-task">+ Add Chart</div>
+          </div>
+        </div>
+        <div class="column" id="type03">
+          <div class="task-list">
+            <div class="add-task">+ Add Chart</div>
+          </div>
+        </div>
+        <div class="column" id="type04">
+          <div class="task-list">
+            <div class="add-task">+ Add Chart</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for adding/editing a task -->
+    <div class="modal" id="taskModal">
+      <div class="modal__content">
+        <button class="modal__close">&times;</button>
+        <h2>새 차트</h2>
+        <form class="task-form" id="taskForm">
+          <input type="hidden" id="editTaskId" />
+          <input type="hidden" id="columnType" />
+		  <div class="form-group row">
+            <button class="btn" type="button">50대주요지표</button>
+            <button class="btn" type="button">발간물 데이터</button>
+            <button class="btn" type="button">월간보험통계계</button>
+          </div>
+          <div class="form-group">
+            <label for="taskTitle">타이틀</label>
+            <input type="text" id="taskTitle" required />
+          </div>
+          <div class="form-group">
+            <label for="taskDescription">설명</label>
+            <textarea id="taskDescription" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>타이틀배경색 설정</label>
+            <div class="color-picker">
+              <input type="color" id="taskColor" value="#3a86ff" />
+              <span>타이틀배경색 설정</span>
+            </div>
+          </div>
+          <button type="submit" class="btn">Add Chart</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div class="modal" id="confirmationModal">
+      <div class="modal__content">
+        <div class="confirmation-check">✅</div>
+        <h3>Success!</h3>
+        <p id="confirmationMessage"></p>
+      </div>
+    </div>
+
+    <!-- Delete confirmation modal -->
+    <div class="modal" id="deleteConfirmationModal">
+      <div class="modal__content">
+        <h3>Confirm Deletion</h3>
+        <p>설명</p>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+          "
+        >
+          <button class="btn" id="cancelDeleteBtn">Cancel</button>
+          <button
+            class="btn"
+            style="background: var(--accent)"
+            id="confirmDeleteBtn"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      //삭제 함수를 위한 전역 변수
+      let currentTaskToDelete = null;
+
+      //확인 메시지 표시 함수
+      function showConfirmation(message) {
+        const modal = document.getElementById("confirmationModal");
+        const messageElement = document.getElementById("confirmationMessage");
+        if (message.includes("supprimée")) {
+          message = "차트 삭제 완료 🗑️";
+        } else if (message.includes("업데이트")) {
+          message = "차트 수정 완료 🎉";
+        } else if (message.includes("생성됨")) {
+          message = "차트 생성 완료 🎉";
+        }
+        messageElement.textContent = message;
+        modal.classList.add("show");
+        addController();
+        setTimeout(() => {
+          modal.classList.remove("show");
+        }, 500);
+      }
+
+      function addController() {
+        document.querySelectorAll(".task-list").forEach((taskList) => {
+          const addTaskButton = taskList.querySelector(".add-task");
+          if (addTaskButton.nextSibling) {
+            addTaskButton.style.display = "none";
+          } else {
+            addTaskButton.style.display = "flex";
+          }
+        });
+      }
+
+      //모달 닫기 함수
+      function closeModal() {
+        document.getElementById("taskModal").classList.remove("show");
+      }
+
+      function cancelDelete() {
+        currentTaskToDelete = null;
+        document
+          .getElementById("deleteConfirmationModal")
+          .classList.remove("show");
+      }
+
+      function deleteTask(taskId) {
+        currentTaskToDelete = taskId;
+        document
+          .getElementById("deleteConfirmationModal")
+          .classList.add("show");
+      }
+
+      function confirmDelete() {
+        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        const filteredTasks = tasks.filter((t) => t.id !== currentTaskToDelete);
+        localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+        const taskElement = document.querySelector(
+          `[data-task-id="${currentTaskToDelete}"]`
+        );
+        if (taskElement) {
+          taskElement.remove();
+        }
+        document
+          .getElementById("deleteConfirmationModal")
+          .classList.remove("show");
+
+        showConfirmation("Task successfully deleted! 🗑️");
+        currentTaskToDelete = null;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 삭제 버튼에 대한 이벤트 리스너 추가
+        document
+          .getElementById("confirmDeleteBtn")
+          .addEventListener("click", confirmDelete);
+        document
+          .getElementById("cancelDeleteBtn")
+          .addEventListener("click", cancelDelete);
+        // 테마 설정
+        const themeToggle = document.getElementById("themeToggle");
+        const prefersDarkScheme = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        );
+        // 테마 초기화
+        function initTheme() {
+          const savedTheme = localStorage.getItem("theme");
+          if (savedTheme) {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+            updateThemeIcon(savedTheme);
+          } else if (prefersDarkScheme.matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+            updateThemeIcon("dark");
+          }
+        }
+
+        function updateThemeIcon(theme) {
+          themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+        }
+        // 테마 변경 처리
+        themeToggle.addEventListener("click", () => {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          updateThemeIcon(newTheme);
+        });
+        // 로딩 시 테마 초기화
+        initTheme();
+        const modal = document.getElementById("taskModal");
+        const taskForm = document.getElementById("taskForm");
+        const columns = document.querySelectorAll(".column");
+        // 기본 작업이 없는 경우 기본 작업 초기화
+        let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        if (!tasks || tasks.length === 0) {
+          // tasks = [{
+          // 		id: "default1",
+          // 		column: "type01",
+          // 		title: "Visit all of Mickael Lherminez's pens",
+          // 		description: "Discover all of Mickael Lherminez's pens and leave a nice comment!",
+          // 		color: "#3a86ff",
+          // 	},
+          // ];
+          tasks = [];
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+        // 컬럼 드래그 앤 드롭 설정
+        columns.forEach((column) => {
+          column.addEventListener("dragover", (e) => {
+            addController();
+            e.preventDefault();
+            const draggingTask = document.querySelector(".dragging");
+            const taskList = column.querySelector(".task-list");
+            const afterElement = getDragAfterElement(taskList, e.clientY);
+            if (afterElement) {
+              taskList.insertBefore(draggingTask, afterElement);
+            } else {
+              taskList.appendChild(draggingTask);
+            }
+          });
+          column.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const taskId = e.dataTransfer.getData("text/plain");
+            const task = tasks.find((t) => t.id === taskId);
+            const prevColumnId = task.column; // 드래그 시작 컬럼 ID 저장
+            const currentColumnId = column.id; // 드롭된 컬럼 ID 저장
+            task.column = currentColumnId;
+            saveTasks();
+            const draggingTask = document.querySelector(
+              `[data-task-id="${taskId}"]`
+            );
+            draggingTask.classList.remove("dragging");
+            draggingTask.style.transform = "scale(1.02)";
+            setTimeout(() => {
+              draggingTask.style.transform = "scale(1)";
+            }, 200);
+
+            // 드롭된 컬럼에 이미 아이템이 있었다면 해당 아이템을 드래그 시작 컬럼으로 이동
+            const droppedColumnTaskList = column.querySelector(".task-list");
+            const droppedTasks =
+              droppedColumnTaskList.querySelectorAll(".task");
+
+            if (droppedTasks.length > 1) {
+              // 드롭된 아이템 외에 다른 아이템이 있다면
+              droppedTasks.forEach((droppedTaskElement) => {
+                const droppedTaskId = droppedTaskElement.dataset.taskId;
+                if (droppedTaskId !== taskId) {
+                  const otherTask = tasks.find((t) => t.id === droppedTaskId);
+                  otherTask.column = prevColumnId;
+                  saveTasks();
+
+                  const prevColumnTaskList = document
+                    .getElementById(prevColumnId)
+                    .querySelector(".task-list");
+                  prevColumnTaskList.appendChild(droppedTaskElement); // DOM 이동
+                }
+              });
+            }
+          });
+        });
+        // 드롭 위치 결정 함수
+        function getDragAfterElement(container, y) {
+          const draggableElements = [
+            ...container.querySelectorAll(".task:not(.dragging)"),
+          ];
+          return draggableElements.reduce(
+            (closest, child) => {
+              const box = child.getBoundingClientRect();
+              const offset = y - box.top - box.height / 2;
+              if (offset < 0 && offset > closest.offset) {
+                return {
+                  offset: offset,
+                  element: child,
+                };
+              } else {
+                return closest;
+              }
+            },
+            {
+              offset: Number.NEGATIVE_INFINITY,
+            }
+          ).element;
+        }
+        // 폼 제출
+        taskForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const taskId = this.dataset.editId;
+          if (taskId) {
+            // 업데이트 전에 기존 DOM 요소 가져오기
+            const existingTaskElement = document.querySelector(
+              `[data-task-id="${taskId}"]`
+            );
+            // 속성에 접근하기 전에 요소가 존재하는지 확인
+            let parentColumn = null;
+            if (existingTaskElement) {
+              parentColumn = existingTaskElement.closest(".column").id;
+            }
+            // 배열에서 작업 업데이트
+            const taskIndex = tasks.findIndex((t) => t.id === taskId);
+            if (taskIndex !== -1) {
+              tasks[taskIndex] = {
+                ...tasks[taskIndex],
+                title: document.getElementById("taskTitle").value,
+                description: document.getElementById("taskDescription").value,
+                color: document.getElementById("taskColor").value,
+                column: document.getElementById("columnType").value,
+              };
+              // 컬럼이 변경되고 요소가 존재하는 경우에만 이전 요소 삭제
+              if (
+                existingTaskElement &&
+                parentColumn !== tasks[taskIndex].column
+              ) {
+                existingTaskElement.remove();
+                updateColumnCount(parentColumn);
+              }
+              // 전체 작업을 다시 로드하지 않고 화면 업데이트
+              if (
+                existingTaskElement &&
+                parentColumn === tasks[taskIndex].column
+              ) {
+                renderTask(tasks[taskIndex], true); // 업데이트를 나타내기 위한 true
+              } else {
+                // 요소가 없거나 컬럼이 변경되었으면 다시 렌더링
+                renderTask(tasks[taskIndex]);
+              }
+            }
+            delete this.dataset.editId;
+          } else {
+            // 새로운 작업 생성
+            await createTask({
+              columnType: document.getElementById("columnType").value,
+              title: document.getElementById("taskTitle").value,
+              description: document.getElementById("taskDescription").value,
+              color: document.getElementById("taskColor").value,
+            });
+          }
+          saveTasks();
+          closeModal();
+          showConfirmation(
+            taskId
+              ? "Task successfully updated! 🎉"
+              : "Task successfully created! 🎉"
+          );
+        });
+        async function createTask(taskData) {
+          const newTask = {
+            id: Date.now().toString(),
+            ...taskData,
+            column: taskData.columnType,
+          };
+          tasks.push(newTask);
+          saveTasks();
+          renderTask(newTask);
+        }
+
+        function convertImageToBase64(file) {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+          });
+        }
+
+        function createTaskHTML(task) {
+          return `
+				<div class="task__header">
+				<h3 class="task__title">${task.title}</h3>
+				<div class="task__actions">
+					<button class="action-btn edit-btn">✏️</button>
+					<button class="action-btn delete-btn">🗑️</button>
+				</div>
+				</div>
+				<div class="task__content">
+				<p>${task.description}</p>
+				</div>
+			`;
+        }
+
+        function saveTasks() {
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        function renderTask(task, isUpdate = false) {
+          if (isUpdate) {
+            // 기존 요소를 찾아서 업데이트
+            const existingTask = document.querySelector(
+              `[data-task-id="${task.id}"]`
+            );
+            if (existingTask) {
+              existingTask.innerHTML = createTaskHTML(task);
+              existingTask.style.border = `2px solid ${task.color}`;
+              // 이벤트 리스너 다시 연결
+              existingTask
+                .querySelector(".edit-btn")
+                .addEventListener("click", () => openEditModal(task.id));
+              existingTask
+                .querySelector(".delete-btn")
+                .addEventListener("click", () => deleteTask(task.id));
+              return;
+            }
+          }
+          const column = document.getElementById(task.column);
+          console.log("task", task);
+          const taskList = column.querySelector(".task-list");
+          const taskElement = document.createElement("div");
+          taskElement.className = "task";
+          taskElement.draggable = true;
+          taskElement.dataset.taskId = task.id;
+          taskElement.style.border = `2px solid ${task.color}`;
+          taskElement.innerHTML = createTaskHTML(task);
+          taskElement.addEventListener("dragstart", handleDragStart);
+          taskElement.addEventListener("dragend", handleDragEnd);
+          // 작업을 목록의 맨 앞에 삽입하는 대신 '작업 추가' 버튼 뒤에 추가하세요.
+          const addTaskButton = taskList.querySelector(".add-task");
+          if (addTaskButton.nextSibling) {
+            taskList.insertBefore(taskElement, addTaskButton.nextSibling);
+          } else {
+            addTaskButton.style.display = "none";
+            taskList.appendChild(taskElement);
+          }
+          // "작업 저장" or "할 일 저장"
+          saveTasks();
+          taskElement
+            .querySelector(".edit-btn")
+            .addEventListener("click", () => openEditModal(task.id));
+          taskElement
+            .querySelector(".delete-btn")
+            .addEventListener("click", () => deleteTask(task.id));
+        }
+
+        function openEditModal(taskId) {
+          const task = tasks.find((t) => t.id === taskId);
+          if (!task) return;
+          const form = document.getElementById("taskForm");
+          document.getElementById("taskTitle").value = task.title;
+          document.getElementById("taskDescription").value = task.description;
+          document.getElementById("taskColor").value = task.color;
+          document.getElementById("columnType").value = task.column;
+          document.getElementById("editTaskId").value = taskId;
+          form.dataset.editId = taskId;
+          // 수정을 나타내도록 버튼 텍스트 변경
+          document.querySelector(
+            '#taskForm button[type="submit"]'
+          ).textContent = "Update Chart";
+          // 수정을 나타내도록 모달 제목 변경
+          document.querySelector("#taskModal h2").textContent = "Edit Chart";
+          document.getElementById("taskModal").classList.add("show");
+        }
+
+        function openModal(columnType) {
+          document.getElementById("columnType").value = columnType;
+          document.getElementById("taskForm").reset();
+          document.getElementById("editTaskId").value = "";
+          // 추가를 나타내도록 버튼 텍스트 초기화
+          document.querySelector(
+            '#taskForm button[type="submit"]'
+          ).textContent = "Add Chart";
+          // 추가를 나타내도록 모달 제목 초기화
+          document.querySelector("#taskModal h2").textContent = "새 차트";
+          document.getElementById("taskModal").classList.add("show");
+          //  제목 필드에 커서 놓기
+          setTimeout(() => {
+            document.getElementById("taskTitle").focus();
+          }, 100);
+        }
+
+        function loadTasks() {
+          // "기존 작업 목록을 비우면서 '작업 추가' 버튼을 유지하기"
+          document.querySelectorAll(".task-list").forEach((taskList) => {
+            // "'작업 추가' 버튼만 유지하기"
+            const addTaskButton = taskList.querySelector(".add-task");
+            taskList.innerHTML = "";
+            taskList.appendChild(addTaskButton);
+          });
+          // "로컬스토리지에서 작업 불러오기"
+          tasks.forEach((task) => {
+            renderTask(task);
+          });
+        }
+        initTheme();
+        loadTasks();
+        document.querySelectorAll(".add-task").forEach((button) => {
+          button.addEventListener("click", function () {
+            const columnType = this.closest(".column").id;
+
+            openModal(columnType);
+          });
+        });
+        document.querySelector(".modal__close").addEventListener("click", closeModal);
+
+        function handleDragStart(e) {
+          this.classList.add("dragging");
+          this.style.opacity = "0.5";
+          e.dataTransfer.setData("text/plain", this.dataset.taskId);
+        }
+
+        function handleDragEnd() {
+          this.classList.remove("dragging");
+          this.style.opacity = "1";
+          addController();
+        }
+        // DOMContentLoaded 내에서 deleteTask 함수 재정의
+        window.deleteTask = deleteTask;
+        // 도움말 모달 닫기 함수
+        function closeHelpModal() {
+          document.getElementById("helpModal").classList.remove("show");
+        }
+        // 도움말 버튼에 대한 이벤트 리스너 추가
+        document
+          .getElementById("helpToggle")
+          .addEventListener("click", function () {
+            document.getElementById("helpModal").classList.add("show");
+          });
+        // closeHelpModal 함수를 전역적으로 노출
+        window.closeHelpModal = closeHelpModal;
+      });
+    </script>
+  </body>
+</html>
