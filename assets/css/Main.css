@@ -507,7 +507,7 @@ html {
 }
 
 .theme-2 {
-  --color-item-bg: linear-gradient(120deg,#7f54e6,#3F51B5);
+  --color-item-bg: linear-gradient(120deg, #7f54e6, #3f51b5);
   --color-action: #f3f3f3;
   --color-button-bg: #f3f3f3;
   --color-button-text: #3c2e9e;
@@ -517,7 +517,7 @@ html {
 }
 
 .theme-3 {
-  --color-item-bg: linear-gradient(120deg,#152bc3,#5366d8);
+  --color-item-bg: linear-gradient(120deg, #152bc3, #5366d8);
   --color-action: #0e19a2;
   --color-button-bg: #0e19a2;
   --color-button-text: #fff;
@@ -527,7 +527,7 @@ html {
 }
 
 .theme-4 {
-  --color-item-bg: linear-gradient(120deg,#ecef3a,#ec6b9b);
+  --color-item-bg: linear-gradient(120deg, #ecef3a, #ec6b9b);
   --color-action: #e85577;
   --color-button-bg: #transparent;
   --color-button-text: #e85577;
@@ -537,7 +537,7 @@ html {
 }
 
 .theme-5 {
-  --color-item-bg: linear-gradient(120deg,#baedff,#07a2da);
+  --color-item-bg: linear-gradient(120deg, #baedff, #07a2da);
   --color-action: #003ff1;
   --color-button-bg: #003ff1;
   --color-button-text: #fff;
@@ -547,7 +547,7 @@ html {
 }
 
 .theme-6 {
-  --color-item-bg: linear-gradient(120deg,#9C27B0,#090772);
+  --color-item-bg: linear-gradient(120deg, #9c27b0, #090772);
   --color-action: #f7d337;
   --color-button-bg: #f7d337;
   --color-button-text: #000000;
@@ -683,6 +683,25 @@ html {
 }
 .link:hover {
   text-shadow: 0 -3rem 0 #748ffc, 0 0 0 #fff;
+}
+
+/* 선택 목록 버튼 스타일 */
+#selectList button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#selectList button:hover {
+  background-color: #e8e8e8;
+}
+#selectList button.selected {
+  background-color: #4a6cf7;
+  color: white;
+  border-color: #3a5bd9;
 }
 
 .particles {
@@ -1726,6 +1745,21 @@ input[type=color]:hover {
 
 [data-theme=dark] .help-section-header {
   background: rgba(0, 0, 0, 0.2);
+}
+
+/* 드래그 앤 드롭 관련 스타일 */
+.task.dragging {
+  opacity: 0.5;
+  border: 2px dashed #4a6cf7;
+}
+
+.column.drag-over {
+  background-color: rgba(74, 108, 247, 0.1);
+}
+
+/* 드롭 영역 스타일 */
+.tasks {
+  min-height: 50px; /* 빈 열에도 드롭할 수 있도록 최소 높이 설정 */
 }
 
 @layer global {

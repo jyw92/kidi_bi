@@ -986,3 +986,20 @@ input[type="color"]:hover {
 [data-theme="dark"] .help-section-header {
   background: rgba(0, 0, 0, 0.2);
 }
+
+
+
+/* 드래그 앤 드롭 관련 스타일 */
+.task.dragging {
+    opacity: 0.5;
+    border: 2px dashed #4a6cf7;
+}
+
+.column.drag-over {
+    background-color: rgba(74, 108, 247, 0.1);
+}
+
+/* 드롭 영역 스타일 */
+.tasks {
+    min-height: 50px; /* 빈 열에도 드롭할 수 있도록 최소 높이 설정 */
+}
