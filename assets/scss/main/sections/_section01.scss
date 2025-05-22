@@ -197,25 +197,25 @@
       .grid--item:nth-child(1) {
         // grid-area: cht1;
         background: rgba(41, 76, 175, 0.5);
-        backdrop-filter: blur(rem(11));
+        // backdrop-filter: blur(rem(11));
         transform: translateX(rem(-100));
       }
       .grid--item:nth-child(2) {
         // grid-area: cht2;
         background: rgba(41, 76, 175, 0.5);
-        backdrop-filter: blur(rem(11));
+        // backdrop-filter: blur(rem(11));
         transform: translateX(rem(-100));
       }
       .grid--item:nth-child(3) {
         // grid-area: cht3;
         background: rgba(41, 76, 175, 0.5);
-        backdrop-filter: blur(rem(11));
+        // backdrop-filter: blur(rem(11));
         transform: translateX(rem(100));
       }
       .grid--item:nth-child(4) {
         // grid-area: cht4;
         background: rgba(41, 76, 175, 0.5);
-        backdrop-filter: blur(rem(11));
+        // backdrop-filter: blur(rem(11));
         transform: translateX(rem(100));
       }
       // .grid--item:nth-child(4) {
@@ -317,7 +317,7 @@
     overflow: hidden;
     width: 100%;
     flex:1;
-    background-color: #fff;
+    // background-color: #fff;
     &{
       img{
         object-fit: contain;

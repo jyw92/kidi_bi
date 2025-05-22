@@ -84,6 +84,18 @@
       type="text/javascript"
       src="/assets/plugin/highchart/code/highcharts.js"
     ></script>
+    <!-- <script
+      type="text/javascript"
+      src="https://code.highcharts.com/themes/grid-light.js"
+    ></script> -->
+    <!-- <script
+      type="text/javascript"
+      src="https://code.highcharts.com/themes/grid.js"
+    ></script> -->
+    <!-- <script
+      type="text/javascript"
+      src="https://code.highcharts.com/themes/dark-unica.js"
+    ></script> -->
     <script
       type="text/javascript"
       src="/assets/plugin/highchart/code/modules/series-label.js"
@@ -814,6 +826,7 @@
         </section>
       </main>
       <dialog id="chartSettingDialog">
+
         <button class="theme-toggle" id="themeToggle">🌙</button>
         <button class="help-toggle" id="helpToggle">❓</button>
 
@@ -963,30 +976,15 @@
                 <button class="dialog--btn" type="button" data-chart-type="chart-2">발간물 데이터</button>
                 <button class="dialog--btn" type="button" data-chart-type="chart-3">월간보험통계</button>
               </div>
-              <div class="form-group row">
-                <div class="column--item">
-                  <label for="">구분</label>
-                  <select id="gubunType">
-                    <option value="">전체</option>
-                    <option value="">테스트</option>
-                  </select>
-                </div>
-                <div class="column--item">
-                  <label for="">검색</label>
-                  <div class="row--item">
-                    <input type="search">
-                    <button type="button" class="dialog--btn">검색</button>
-                  </div>
-                </div>
-              </div>
               <div class="form-group">
                 <label for="taskTitle">타이틀</label>
                 <input type="text" id="taskTitle" required />
               </div>
-              <div class="form-group">
-                <label for="">리스트</label>
-                <div id="selectList"></div>
+
+              <div class="form-group--wrapper">
+                
               </div>
+
               <div class="form-group row">
                 <div class="color-picker">
                   <input type="color" id="taskColor" value="#3a86ff" />
@@ -997,7 +995,6 @@
             </form>
           </div>
         </div>
-
         <!-- Confirmation modal -->
         <div class="modal" id="confirmationModal">
           <div class="modal__content">
@@ -1009,7 +1006,7 @@
 
         <!-- Delete confirmation modal -->
         <div class="modal" id="deleteConfirmationModal">
-          <div class="modal__content">
+          <div class="modal__content" style="width:auto;">
             <h3>Confirm Deletion</h3>
             <p>설명</p>
             <div
@@ -1032,9 +1029,10 @@
           </div>
         </div>
         <form method="dialog" style="display: flex;justify-content: center;gap:10px;">
-          <button id="settingBtn" class="dialog--btn">Setting</button>
-          <button id="cancelBtn" class="dialog--btn">Cancel</button>
+          <button id="settingBtn" class="dialog--btn" type="button">Setting</button>
+          <button id="cancelBtn" class="dialog--btn" type="button">Cancel</button>
         </form>
+
       </dialog>
       <footer id="footer"></footer>
     </div>

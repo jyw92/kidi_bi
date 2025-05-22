@@ -1,0 +1,683 @@
+import { fetchData } from "./fetchData.js";
+
+/* -------------------------------------------------------------------------- */
+/*  파일명 : ChartConfigManager.js
+/* -------------------------------------------------------------------------- */
+/*  팝업UI관리                                                                     
+/*  차트타입 선택                                                                     
+/*  옵션설정
+/*  데이터검색
+/*  로컬 스토리지 저장
+/*  차트 구성의 전반적인 관리                                     
+/* -------------------------------------------------------------------------- */
+
+const ChartConfigManager = () => {
+  const chartType = document.querySelector("#chartRequestOptions");
+  if (!chartType) {
+    console.warn("Chart request options element not found");
+    return null;
+  }
+
+  const DOM = {
+    chartTypeButton: chartType.querySelectorAll(".dialog--btn"),
+  };
+
+  const { chartTypeButton } = DOM;
+
+  // 초기 선택된 버튼 찾기
+  let initialButton = Array.from(chartTypeButton).find((btn) =>
+    btn.classList.contains("--active")
+  );
+  let chartTypeValue = initialButton ? initialButton.getAttribute("data-chart-type") : null;
+  let selectList;
+  let chartOptionsData = {}; // 차트 옵션 데이터 저장 객체
+
+  // 선택 버튼 클릭 핸들러 (내부 함수로 정의) - 단일 선택만 가능하도록
+  const handleSelectButtonClick = (e) => {
+    const button = e.currentTarget;
+    const selectListBox = document.getElementById("selectList");
+
+    // 이미 선택된 버튼인지 확인
+    const isAlreadySelected = button.classList.contains("selected");
+
+    // 모든 버튼에서 선택 클래스 제거
+    if (selectListBox) {
+      selectListBox.querySelectorAll("button").forEach((btn) => {
+        btn.classList.remove("selected");
+      });
+    }
+
+    // 클릭한 버튼이 이미 선택된 상태가 아니었을 때만 선택 클래스 추가
+    if (!isAlreadySelected) {
+      button.classList.add("selected");
+    }
+
+    // 현재 편집 중인 작업 ID 가져오기
+    const taskForm = document.getElementById("taskForm");
+    const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+    if (editingTaskId) {
+      // 로컬 스토리지에서 작업 데이터 가져오기
+      const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+      const taskIndex = tasks.findIndex((t) => t.id === editingTaskId);
+
+      if (taskIndex !== -1) {
+        // 선택된 버튼 정보 업데이트 (단일 선택)
+        const selectedButton = selectListBox
+          ? selectListBox.querySelector("button.selected")
+          : null;
+        if (selectedButton) {
+          // 버튼의 텍스트 및 ID 값 저장
+          tasks[taskIndex].selectedButton = selectedButton.textContent;
+          tasks[taskIndex].buttonId = selectedButton.getAttribute("data-id");
+          tasks[taskIndex].buttonTitle = selectedButton.textContent;
+
+          console.log("버튼 선택 저장:", {
+            text: selectedButton.textContent,
+            id: selectedButton.getAttribute("data-id"),
+          });
+        } else {
+          // 선택된 버튼이 없는 경우 null로 설정
+          tasks[taskIndex].selectedButton = null;
+          tasks[taskIndex].buttonId = null;
+          tasks[taskIndex].buttonTitle = null;
+        }
+
+        // 로컬 스토리지에 저장
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        // 디버깅: 저장 후 로컬 스토리지 확인
+        const updatedTasks = JSON.parse(localStorage.getItem("tasks"));
+        console.log("로컬 스토리지 업데이트 후:", updatedTasks[taskIndex]);
+      }
+    }
+  };
+
+  // 선택 목록 버튼 이벤트 리스너 설정 (내부 함수로 정의)
+  const setupSelectListButtonEvents = () => {
+    const selectListBox = document.getElementById("selectList");
+    if (!selectListBox) return;
+
+    // 기존 이벤트 리스너 제거 (중복 방지)
+    const buttons = selectListBox.querySelectorAll("button");
+    buttons.forEach((btn) => {
+      // 이벤트 리스너 제거 및 추가
+      btn.removeEventListener("click", handleSelectButtonClick);
+      btn.addEventListener("click", handleSelectButtonClick);
+    });
+
+    console.log("버튼 이벤트 리스너 설정 완료:", buttons.length);
+  };
+
+  // selectList 업데이트 함수 (중복 코드 제거를 위해 분리)
+  const updateSelectList = (listData) => {
+    const selectListBox = document.getElementById("selectList");
+    if (!selectListBox) {
+      console.warn("selectList 요소를 찾을 수 없습니다");
+      return;
+    }
+
+    // 데이터가 없는 경우 처리
+    if (!listData || listData.length === 0) {
+      selectListBox.innerHTML = "<p>검색 결과가 없습니다.</p>";
+      return;
+    }
+
+    // 버튼 HTML 생성
+    const selectListHTML = listData
+      .map(
+        (option) =>
+          `<button type="button" data-id="${option.id}">${option.name}</button>`
+      )
+      .join("");
+
+    // HTML 적용
+    selectListBox.innerHTML = selectListHTML;
+
+    // 버튼 이벤트 리스너 다시 설정
+    setupSelectListButtonEvents();
+
+    // 현재 편집 중인 작업의 선택된 버튼 복원 (필요한 경우)
+    restoreSelectedButton();
+
+    console.log("selectList 업데이트 완료");
+  };
+
+  // 선택된 버튼 복원 함수
+  const restoreSelectedButton = () => {
+    const taskForm = document.getElementById("taskForm");
+    const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+    if (!editingTaskId) return;
+
+    const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const taskIndex = tasks.findIndex((t) => t.id === editingTaskId);
+
+    if (taskIndex === -1) return;
+
+    const task = tasks[taskIndex];
+    if (!task.buttonId) return;
+
+    const selectListBox = document.getElementById("selectList");
+    if (!selectListBox) return;
+
+    const buttons = selectListBox.querySelectorAll("button");
+    buttons.forEach((btn) => {
+      btn.classList.remove("selected");
+      if (btn.getAttribute("data-id") === task.buttonId) {
+        btn.classList.add("selected");
+        console.log("버튼 선택 복원:", {
+          text: btn.textContent,
+          id: btn.getAttribute("data-id"),
+        });
+      }
+    });
+  };
+
+  // 구분 타입 변경 이벤트 설정 함수
+  const setupGubunTypeChangeEvent = () => {
+    const gubunType = document.getElementById("gubunType");
+    if (!gubunType) {
+      console.warn("gubunType 요소를 찾을 수 없습니다");
+      return;
+    }
+
+    // 이벤트 리스너 추가
+    gubunType.addEventListener("change", async function () {
+      try {
+        // 선택된 값 가져오기
+        const selectedValue = this.value;
+        console.log("gubunType 변경:", selectedValue);
+
+        // 현재 선택된 옵션 데이터 업데이트
+        if (chartOptionsData) {
+          chartOptionsData.selectedGubunType = selectedValue;
+
+          // 현재 편집 중인 작업 ID 가져오기
+          const taskForm = document.getElementById("taskForm");
+          const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+          if (editingTaskId) {
+            // 로컬 스토리지에서 작업 데이터 가져오기
+            const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+            const taskIndex = tasks.findIndex((t) => t.id === editingTaskId);
+
+            if (taskIndex !== -1) {
+              // 작업에 차트 옵션 데이터 업데이트
+              tasks[taskIndex].chartOptionsData = chartOptionsData;
+
+              // 로컬 스토리지에 저장
+              localStorage.setItem("tasks", JSON.stringify(tasks));
+              console.log("작업 데이터 업데이트됨:", tasks[taskIndex]);
+            }
+          }
+        }
+
+        // API 호출하여 데이터 가져오기 (선택된 값을 파라미터로 전달)
+        const listData = await fetchData(
+          `http://localhost:3000/list?gubunType=${selectedValue}`
+        );
+        console.log("리스트 데이터 로드:", listData);
+
+        // selectList 업데이트
+        updateSelectList(listData);
+      } catch (error) {
+        console.error("gubunType 변경 처리 중 오류:", error);
+      }
+    });
+
+    console.log("gubunType 변경 이벤트 설정 완료");
+  };
+
+  // 검색 기능 설정 함수
+  const setupSearchFunction = () => {
+    const searchInput = document.getElementById("listSearch");
+    if (!searchInput) {
+      console.warn("검색 입력 필드를 찾을 수 없습니다");
+      return;
+    }
+
+    // 검색 버튼 찾기 - 정확한 선택자 사용
+    const searchButton = document.querySelector(
+      ".column--item .row--item .dialog--btn"
+    );
+    if (!searchButton) {
+      console.warn("검색 버튼을 찾을 수 없습니다");
+      return;
+    }
+
+    // 검색 버튼 클릭 이벤트 리스너
+    searchButton.addEventListener("click", performSearch);
+    console.log("검색 버튼 이벤트 리스너 설정 완료");
+
+    // 엔터 키 이벤트 리스너
+    searchInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // 폼 제출 방지
+        performSearch();
+      }
+    });
+    console.log("검색 입력 필드 이벤트 리스너 설정 완료");
+  };
+
+  // 검색 실행 함수
+  const performSearch = async () => {
+    try {
+      const searchInput = document.getElementById("listSearch");
+      const searchTerm = searchInput ? searchInput.value.trim() : "";
+
+      console.log("검색 실행:", searchTerm);
+
+      // 검색어가 비어있는 경우 기본 목록 로드
+      if (!searchTerm) {
+        const listData = await fetchData("http://localhost:3000/list");
+        updateSelectList(listData);
+        return;
+      }
+
+      // 검색어가 있는 경우 검색 파라미터 추가하여 API 호출
+      const listData = await fetchData(
+        `http://localhost:3000/list?search=${encodeURIComponent(searchTerm)}`
+      );
+      console.log("검색 결과:", listData);
+
+      // 결과로 selectList 업데이트
+      updateSelectList(listData);
+    } catch (error) {
+      console.error("검색 처리 중 오류:", error);
+    }
+  };
+
+  // 템플릿 함수들
+  const template01 = () => {
+    return /* html */ `
+      <div class="form-group row">
+          <div class="column--item">
+          <label for="">구분</label>
+          <select id="gubunType">
+              <option value="">전체</option>
+              <option value="">테스트</option>
+          </select>
+          </div>
+          <div class="column--item">
+          <label for="">검색</label>
+          <div class="row--item">
+              <input type="search" id="listSearch">
+              <button type="button" class="dialog--btn">검색</button>
+          </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="">리스트</label>
+          <div id="selectList"></div>
+      </div>
+    `;
+  };
+
+  const template02 = () => {
+    return /* html */ `
+            <div class="form-group">
+                <div style="display:flex;justify-content:center;align-items:center;min-height:386px;">
+                    준비중입니다.
+                </div>
+            </div>
+        `;
+  };
+
+  // 템플릿 선택 함수
+  const getTemplateByChartType = (chartType) => {
+    if (chartType === "chart-1" || chartType === "chart-2") {
+      return template01();
+    } else if (chartType === "chart-3") {
+      return template02();
+    }
+    // 기본값으로 template01 반환
+    return template01();
+  };
+
+  // 차트 타입에 따른 UI 업데이트 함수
+  const updateUIByChartType = async (dataChartType, target) => {
+    // 템플릿 선택 및 적용
+    const templateContent = getTemplateByChartType(dataChartType);
+    const formGroupWrapper = document.querySelector(".form-group--wrapper");
+
+    if (formGroupWrapper) {
+      formGroupWrapper.innerHTML = templateContent;
+    } else {
+      console.warn("form-group--wrapper element not found");
+      return;
+    }
+
+    // 차트 타입 값 업데이트
+    chartTypeValue = dataChartType;
+
+    // 차트 타입 입력 필드 업데이트 (있는 경우)
+    const chartTypeInput = document.getElementById("chartType");
+    if (chartTypeInput) {
+      chartTypeInput.value = chartTypeValue;
+
+      // 변경 이벤트 발생시키기 (필요한 경우)
+      const event = new Event("change", { bubbles: true });
+      chartTypeInput.dispatchEvent(event);
+    }
+
+    // chart-1 또는 chart-2인 경우에만 template01 관련 로직 실행
+    if (dataChartType === "chart-1" || dataChartType === "chart-2") {
+      try {
+        const data = await fetchData(`http://localhost:3000/chart`);
+        const listData = await fetchData("http://localhost:3000/list");
+        const gubunType = document.getElementById("gubunType");
+        const taskTitle = document.getElementById("taskTitle");
+        const selectListBox = document.getElementById("selectList");
+
+        if (gubunType && selectListBox && taskTitle) {
+          gubunType.innerHTML = "";
+          selectListBox.innerHTML = "";
+          taskTitle.value = target.textContent;
+
+          selectList = data[dataChartType];
+          const optionsHTML = data[dataChartType]
+            .map(
+              (option, index) =>
+                `<option value="0${index}">${option.name}</option>`
+            )
+            .join("");
+          const selectListHTML = listData
+            .map(
+              (option) =>
+                `<button type="button" data-id="${option.id}">${option.name}</button>`
+            )
+            .join("");
+
+          gubunType.innerHTML = optionsHTML;
+          selectListBox.innerHTML = selectListHTML;
+
+          // 현재 선택된 옵션 데이터 저장
+          const selectedGubunType = gubunType.value;
+
+          // 차트 옵션 데이터 저장
+          chartOptionsData = {
+            chartType: dataChartType,
+            selectList: selectList,
+            selectedGubunType: selectedGubunType,
+            listData: listData,
+          };
+
+          // 새로운 버튼이 생성되었으므로 이벤트 리스너 다시 설정
+          setupSelectListButtonEvents();
+          setupGubunTypeChangeEvent();
+          setupSearchFunction(); // 검색 기능 설정 추가
+
+          // 현재 편집 중인 작업 ID 가져오기
+          const taskForm = document.getElementById("taskForm");
+          const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+          // 편집 모드인 경우에만 선택된 버튼 복원
+          if (editingTaskId) {
+            restoreSelectedButton();
+          }
+        }
+      } catch (error) {
+        console.error("데이터 로드 중 오류 발생:", error);
+      }
+    } else if (dataChartType === "chart-3") {
+      // chart-3인 경우 template02 관련 로직
+      const taskTitle = document.getElementById("taskTitle");
+      if (taskTitle) {
+        taskTitle.value = target.textContent;
+      }
+
+      // chart-3 전용 데이터 저장
+      chartOptionsData = {
+        chartType: dataChartType,
+      };
+    }
+
+    // 현재 편집 중인 작업 ID 가져오기
+    const taskForm = document.getElementById("taskForm");
+    const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+    if (editingTaskId) {
+      // 로컬 스토리지에서 작업 데이터 가져오기
+      const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+      const taskIndex = tasks.findIndex((t) => t.id === editingTaskId);
+
+      if (taskIndex !== -1) {
+        // 작업에 차트 옵션 데이터 추가
+        tasks[taskIndex].chartOptionsData = chartOptionsData;
+
+        // 로컬 스토리지에 저장
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+    }
+  };
+
+  // 이벤트 리스너 설정
+  chartTypeButton.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const target = e.currentTarget;
+      const dataChartType = target.getAttribute("data-chart-type");
+
+      // 모든 버튼에서 활성 클래스 제거
+      chartTypeButton.forEach((button) => button.classList.remove("--active"));
+
+      // 클릭된 버튼에 활성 클래스 추가
+      target.classList.add("--active");
+
+      // 차트 타입에 따른 UI 업데이트
+      await updateUIByChartType(dataChartType, target);
+    });
+  });
+  // 현재 선택된 차트 타입 반환 함수
+  const getSelectedChartType = () => chartTypeValue;
+
+  // 선택 목록 반환 함수
+  const getSelectList = () => selectList;
+
+  // 차트 옵션 데이터 반환 함수
+  const getChartOptionsData = () => chartOptionsData;
+
+  // 선택된 버튼 정보 반환 함수
+  const getSelectedButton = () => {
+    // chart-1 또는 chart-2인 경우에만 선택된 버튼 반환
+    if (chartTypeValue === "chart-1" || chartTypeValue === "chart-2") {
+      const selectListBox = document.getElementById("selectList");
+      if (!selectListBox) return null;
+
+      const selectedButton = selectListBox.querySelector("button.selected");
+      if (!selectedButton) return null;
+
+      // 현재 편집 중인 작업 ID 가져오기
+      const taskForm = document.getElementById("taskForm");
+      const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+      if (editingTaskId) {
+        // 로컬 스토리지에서 작업 데이터 가져오기
+        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        const taskIndex = tasks.findIndex((t) => t.id === editingTaskId);
+
+        if (taskIndex !== -1) {
+          // 버튼 정보 업데이트
+          tasks[taskIndex].buttonId = selectedButton.getAttribute("data-id");
+          tasks[taskIndex].buttonTitle = selectedButton.textContent;
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+      }
+
+      return {
+        text: selectedButton.textContent,
+        id: selectedButton.getAttribute("data-id"),
+        title: selectedButton.textContent,
+      };
+    }
+    return null;
+  };
+
+  // 차트 타입 설정 함수
+  const setChartType = (type) => {
+    if (!type) return;
+
+    const button = Array.from(chartTypeButton).find(
+      (btn) => btn.getAttribute("data-chart-type") === type
+    );
+
+    if (button) {
+      chartTypeButton.forEach((btn) => btn.classList.remove("--active"));
+      button.classList.add("--active");
+      chartTypeValue = type;
+
+      // 차트 타입 입력 필드 업데이트
+      const chartTypeInput = document.getElementById("chartType");
+      if (chartTypeInput) {
+        chartTypeInput.value = chartTypeValue;
+      }
+
+      // 템플릿 업데이트
+      updateUIByChartType(type, button);
+    }
+  };
+
+  // 차트 데이터 준비 함수
+  const prepareChartData = async () => {
+    // 선택된 버튼 정보 가져오기
+    const selectedButton = getSelectedButton();
+
+    if (!selectedButton) {
+      return null;
+    }
+
+    try {
+      // 차트 데이터 준비 로직
+      const chartData = await fetchData(
+        `http://localhost:3000/chartData/${selectedButton.id}`
+      );
+
+      return {
+        buttonId: selectedButton.id,
+        buttonTitle: selectedButton.title,
+        chartType: chartTypeValue,
+        data: chartData,
+      };
+    } catch (error) {
+      console.error("차트 데이터 준비 중 오류 발생:", error);
+      return null;
+    }
+  };
+
+  // 초기화 함수
+  const init = () => {
+    // 초기 선택된 버튼이 없으면 첫 번째 버튼 선택
+    if (!initialButton && chartTypeButton.length > 0) {
+      initialButton = chartTypeButton[0];
+      initialButton.classList.add("--active");
+      chartTypeValue = initialButton.getAttribute("data-chart-type");
+
+      // 차트 타입 입력 필드 초기화
+      const chartTypeInput = document.getElementById("chartType");
+      if (chartTypeInput) {
+        chartTypeInput.value = chartTypeValue;
+      }
+
+      // 초기 템플릿 설정
+      updateUIByChartType(chartTypeValue, initialButton);
+    } else if (initialButton) {
+      // 이미 선택된 버튼이 있는 경우 해당 템플릿 설정
+      chartTypeValue = initialButton.getAttribute("data-chart-type");
+      updateUIByChartType(chartTypeValue, initialButton);
+    }
+
+    // 현재 편집 중인 작업 ID 가져오기
+    const taskForm = document.getElementById("taskForm");
+    const editingTaskId = taskForm ? taskForm.dataset.editId : null;
+
+    if (editingTaskId) {
+      // 로컬 스토리지에서 작업 데이터 가져오기
+      const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+      const task = tasks.find((t) => t.id === editingTaskId);
+
+      if (task) {
+        // 저장된 차트 옵션 데이터 복원
+        if (task.chartOptionsData) {
+          chartOptionsData = task.chartOptionsData;
+          chartTypeValue = chartOptionsData.chartType;
+          selectList = chartOptionsData.selectList;
+
+          // 버튼 상태 복원
+          chartTypeButton.forEach((btn) => {
+            if (btn.getAttribute("data-chart-type") === chartTypeValue) {
+              btn.classList.add("--active");
+              // 해당 버튼에 맞는 템플릿 설정
+              updateUIByChartType(chartTypeValue, btn);
+            } else {
+              btn.classList.remove("--active");
+            }
+          });
+        }
+      }
+    }
+  };
+
+  // 초기화 실행
+  init();
+
+  // 메서드 반환
+  return {
+    getSelectedChartType,
+    setChartType,
+    getSelectList,
+    getChartOptionsData,
+    getSelectedButton,
+    prepareChartData,
+    resetSelectList: () => {
+      // selectList 버튼 초기화
+      const selectListBox = document.getElementById("selectList");
+      if (selectListBox) {
+        const buttons = selectListBox.querySelectorAll("button");
+        buttons.forEach((btn) => {
+          btn.classList.remove("selected");
+        });
+      }
+    },
+    // 차트 데이터 저장 메서드
+    saveChartData: (taskId, chartData) => {
+      if (!taskId || !chartData) return false;
+
+      try {
+        // 로컬 스토리지에서 작업 데이터 가져오기
+        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        const taskIndex = tasks.findIndex((t) => t.id === taskId);
+
+        if (taskIndex !== -1) {
+          // 차트 데이터 저장
+          tasks[taskIndex].chartData = chartData;
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          return true;
+        }
+        return false;
+      } catch (error) {
+        console.error("차트 데이터 저장 중 오류 발생:", error);
+        return false;
+      }
+    },
+    // 차트 데이터 로드 메서드
+    loadChartData: (taskId) => {
+      if (!taskId) return null;
+
+      try {
+        // 로컬 스토리지에서 작업 데이터 가져오기
+        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+        const task = tasks.find((t) => t.id === taskId);
+
+        if (task && task.chartData) {
+          return task.chartData;
+        }
+        return null;
+      } catch (error) {
+        console.error("차트 데이터 로드 중 오류 발생:", error);
+        return null;
+      }
+    },
+  };
+};
+
+export default ChartConfigManager;

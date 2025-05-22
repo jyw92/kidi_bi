@@ -1,7 +1,7 @@
 import { delay } from "./helper/helper.js";
 import { animeButtons } from "./components/enter.js";
 import Dialog from "./components/dialog.js";
-import DialogContent from "./components/dialogContent.js";
+import ChartTaskManager from "./components/ChartTaskManager.js";
 /* -------------------------------------------------------------------------- */
 /*                                   global                                   */
 /* -------------------------------------------------------------------------- */
@@ -80,32 +80,28 @@ async function heroAnimation(){
  
 }
 
-function scroll() {
-  const lenis = new Lenis();
-  lenis.on("scroll", (e) => {
-    // console.log(e);
-    // lenis.stop();
-  });
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-}
-
 const startButton = document.querySelector('#startButton');
-// startButton.addEventListener('click', scroll);
+startButton.addEventListener('click', () => {
+  body.style.overflow = 'none';
+  body.style.overflowY = 'auto';
+})
 
 function dialogEventHandler() {
   const dialog = new Dialog();
   const dialogOpenBtn = document.getElementById('chartOptionBtn');
+  const dialogElement = document.querySelector('dialog');
+  
+  // 다이얼로그 열기 버튼 클릭 이벤트
   dialogOpenBtn.addEventListener('click', (e) => {
     dialog.open();
-    // Disable scroll when dialog is open
-    const lenis = new Lenis();
-    lenis.stop();
+  });
+  
+  // 다이얼로그 닫힘 이벤트 감지
+  dialogElement.addEventListener('close', () => {
+    // 다이얼로그가 닫힐 때 스크롤 활성화
+    document.body.style.overflow = "none";
+    document.body.style.overflowY = "auto";
+    console.log('다이얼로그 닫힘: 스크롤 활성화됨');
   });
 }
 
@@ -114,7 +110,7 @@ function mainApp(){
   dialogEventHandler();
   heroAnimation();
   animeButtons();
-  DialogContent();
+  ChartTaskManager();
 }
 
 mainApp();

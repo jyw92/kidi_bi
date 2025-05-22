@@ -4,11 +4,10 @@ export default class Dialog {
     this.$dialog = document.querySelector('dialog');
   }
   async open() {
-    this.$dialog.classList.add('open');
+    document.body.style.overflow = 'hidden'
     this.$dialog.showModal();
   }
   close() {
-    this.$dialog.classList.remove('open');
     this.$dialog.close();
   }
 }

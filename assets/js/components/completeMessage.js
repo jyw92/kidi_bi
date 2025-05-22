@@ -4,11 +4,11 @@ export default function completeMessage() {
       <div class="guide--txt02">
           <em class="var fw700">결과를 확인해보세요.</em>
           <div class="kidi--scroll-view">
-          <div class="kidi--scroll-inner">
-            <div class="mouse"></div>
-            <p class="kidi--en">Scroll</p>
+            <div class="kidi--scroll-inner">
+              <div class="mouse"></div>
+              <p class="kidi--en">Scroll</p>
+            </div>
           </div>
-        </div>
       </div>
     `;
   }

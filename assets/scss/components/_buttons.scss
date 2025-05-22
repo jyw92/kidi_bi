@@ -214,7 +214,7 @@ $link-hover-color: #fff;
 
 /* 선택 목록 버튼 스타일 */
 #selectList button {
-  margin: 5px;
+  height:60px;
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -222,7 +222,7 @@ $link-hover-color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
   &:hover {
-    background-color: #e8e8e8;
+    background-color: #5f7efa;
   }
   &.selected {
     background-color: #4a6cf7;

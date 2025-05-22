@@ -24,10 +24,7 @@
 }
 dialog {
   padding: 0;
-  width: 100%;
-  height: 100%;
   border: 0;
-  overflow: hidden;
   font-size: rem(16);
   position: fixed;
   left:50%;
@@ -39,7 +36,12 @@ dialog {
   animation-play-state: paused;
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+  border-radius: 10px;
+  overflow: visible;
+  // min-height: 100vh;
+  form[method="dialog"]{
+    padding:20px 0
+  }
 }
 dialog[open] {
   animation-play-state: running;
@@ -194,6 +196,7 @@ dialog::backdrop {
   border-color: var(--border);
 }
 
+#selectList,
 [data-theme="dark"] .form-group select:focus,
 [data-theme="dark"] .form-group input:focus,
 [data-theme="dark"] .form-group textarea:focus {
@@ -339,7 +342,7 @@ dialog::backdrop {
   background: var(--column-bg);
   border-radius: var(--radius);
   padding: 1.5rem;
-  min-height: 400px;
+  // min-height: 400px;
   transition: background-color 0.2s;
 }
 
@@ -389,6 +392,9 @@ dialog::backdrop {
   user-select: none;
   position: relative;
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .task.dragging {
@@ -419,6 +425,14 @@ dialog::backdrop {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+}
+
+.task__body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .task__title {
@@ -485,9 +499,9 @@ dialog::backdrop {
   background: white;
   padding: 2rem;
   border-radius: var(--radius);
-  width: 90%;
   max-width: 700px;
   position: relative;
+  width:90%;
 }
 
 .modal__close {
@@ -557,12 +571,13 @@ dialog::backdrop {
   font-family: inherit;
 }
 #selectList{
-  max-height: 350px;
+  height: 250px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: 1rem;
+  gap: 5px;
   overflow-y: auto;
+  margin-top: 10px;
   button{
     background:#2a4065;
     color: white;
@@ -576,6 +591,11 @@ dialog::backdrop {
   }
 }
 
+.form-group--wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .picker-group {
   display: flex;

@@ -72,9 +72,17 @@ html.is-transitioning {
 /* Firefox (::-webkit-scrollbar과 동작 방식이 다름) */
 /* Firefox는 현재 스크롤바의 스타일링에 대한 :-webkit-scrollbar만큼 강력한 지원을 하지 않습니다.
    하지만 scrollbar-width와 scrollbar-color를 사용하여 기본적인 조절은 가능합니다. */
-html {
-  scrollbar-width: thin; /* 'auto' 또는 'thin' */
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* 썸 색상 트랙 색상 */
+/* CSS 파일에 추가 */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+body.can-scroll {
+  overflow: auto;
+  position: static;
 }
 
 .barba-container[data-barba-namespace=step3] .card--container .category-card.selected, .barba-container .card.selected {
@@ -1098,7 +1106,7 @@ html {
 
 /* 선택 목록 버튼 스타일 */
 #selectList button {
-  margin: 5px;
+  height: 60px;
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -1107,7 +1115,7 @@ html {
   transition: all 0.2s ease;
 }
 #selectList button:hover {
-  background-color: #e8e8e8;
+  background-color: #5f7efa;
 }
 #selectList button.selected {
   background-color: #4a6cf7;
@@ -3585,10 +3593,7 @@ a .icon-flip-vertical:before {
 
 dialog {
   padding: 0;
-  width: 100%;
-  height: 100%;
   border: 0;
-  overflow: hidden;
   font-size: 1rem;
   position: fixed;
   left: 50%;
@@ -3600,7 +3605,11 @@ dialog {
   animation-play-state: paused;
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+  border-radius: 10px;
+  overflow: visible;
+}
+dialog form[method=dialog] {
+  padding: 20px 0;
 }
 
 dialog[open] {
@@ -3754,6 +3763,7 @@ dialog::backdrop {
   border-color: var(--border);
 }
 
+#selectList,
 [data-theme=dark] .form-group select:focus,
 [data-theme=dark] .form-group input:focus,
 [data-theme=dark] .form-group textarea:focus {
@@ -3884,7 +3894,6 @@ dialog::backdrop {
   background: var(--column-bg);
   border-radius: var(--radius);
   padding: 1.5rem;
-  min-height: 400px;
   transition: background-color 0.2s;
 }
 
@@ -3934,6 +3943,9 @@ dialog::backdrop {
   user-select: none;
   position: relative;
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .task.dragging {
@@ -3964,6 +3976,14 @@ dialog::backdrop {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+}
+
+.task__body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .task__title {
@@ -4030,9 +4050,9 @@ dialog::backdrop {
   background: white;
   padding: 2rem;
   border-radius: var(--radius);
-  width: 90%;
   max-width: 700px;
   position: relative;
+  width: 90%;
 }
 
 .modal__close {
@@ -4104,12 +4124,13 @@ dialog::backdrop {
 }
 
 #selectList {
-  max-height: 350px;
+  height: 250px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: 1rem;
+  gap: 5px;
   overflow-y: auto;
+  margin-top: 10px;
 }
 #selectList button {
   background: #2a4065;
@@ -4121,6 +4142,12 @@ dialog::backdrop {
   transition: all 0.2s;
   font-size: 14px;
   padding: 10px;
+}
+
+.form-group--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .picker-group {

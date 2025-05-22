@@ -39,7 +39,17 @@ html.is-transitioning {
 /* Firefox (::-webkit-scrollbar과 동작 방식이 다름) */
 /* Firefox는 현재 스크롤바의 스타일링에 대한 :-webkit-scrollbar만큼 강력한 지원을 하지 않습니다.
    하지만 scrollbar-width와 scrollbar-color를 사용하여 기본적인 조절은 가능합니다. */
-html {
-  scrollbar-width: thin; /* 'auto' 또는 'thin' */
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* 썸 색상 트랙 색상 */
+
+
+/* CSS 파일에 추가 */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+body.can-scroll {
+  overflow: auto;
+  position: static;
 }

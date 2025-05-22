@@ -1,9 +1,28 @@
-import ChartOptionPopup from "./chartOptionPopup.js";
+import ChartConfigManager from "./ChartConfigManager.js";
+import { fetchData } from "./fetchData.js";
+import Dialog from "./dialog.js";
+import renderGrid from "./renderGrid/renderGrid.js";
+import setupThemeToggle from "./theme/theme.js";
+import showConfirmation from "./confirmation/confirmation.js";
+import addController from "./addController/addController.js";
 
-export default function DialogContent() {
+/* -------------------------------------------------------------------------- */
+/* 파일명 : ChartTaskManage.js
+/* -------------------------------------------------------------------------- */
+/* 작업(차트) 생성, 수정, 삭제 관리
+/* 모달 다이얼로그 열기/닫기 처리
+/* 로컬 스토리지에 작업 데이터 저장
+/* 그리드 렌더링 및 차트 렌더링 처리
+/* 드래그 앤 드롭 기능 관리
+/* 이벤트 리스너 설정                                                         
+/* -------------------------------------------------------------------------- */
+
+const dialog = new Dialog();
+
+export default function ChartTaskManager() {
   // 전역 변수 선언
   let currentTaskToDelete = null;
-  let chartOptionPopupInstance = null;
+  let chartConfigManagerInstance = null;
   let tasks = [];
 
   // 페이지 로드 시 초기화 함수
@@ -22,8 +41,8 @@ export default function DialogContent() {
     return !!modal;
   };
 
-  // 초기화 함수 수정
-  function init() {
+  // 초기화 함수 - async 키워드 추가
+  async function init() {
     console.log("DOM 로드 완료, 초기화 실행");
 
     // 로컬 스토리지에서 작업 불러오기
@@ -37,7 +56,9 @@ export default function DialogContent() {
           column: "type01",
           title: "테스트 차트1",
           color: "#3a86ff",
-          chartType: "", // 기본 차트 타입 추가
+          chartType: "chart-1", // 기본 차트 타입 추가
+          buttonTitle: "첫페이지",
+          buttonId: "0000",
         },
       ];
       localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -59,7 +80,7 @@ export default function DialogContent() {
 
     // 작업 로드 및 그리드 렌더링
     loadTasks();
-    renderGrid();
+    renderGrid(tasks);
 
     // 모달 닫기 버튼 설정
     setupModalCloseButtons();
@@ -67,9 +88,87 @@ export default function DialogContent() {
     // 테마 토글 설정
     setupThemeToggle();
 
-    // ChartOptionPopup 초기화
-    chartOptionPopupInstance = ChartOptionPopup();
-   
+    // ChartConfigManager 초기화
+    chartConfigManagerInstance = ChartConfigManager();
+
+    // 차트 렌더링 - 페이지 로드 시 실행
+    try {
+      console.log("페이지 로드 시 차트 렌더링 시작");
+
+      // Highcharts 라이브러리 로드 확인
+      if (typeof Highcharts === "undefined") {
+        console.error("Highcharts 라이브러리가 로드되지 않았습니다.");
+        return;
+      }
+
+      // 로딩 표시
+      showConfirmation("차트 데이터 로딩 중... ⌛");
+
+      // 차트 인스턴스 객체 초기화 확인
+      if (!window.chartInstances) {
+        window.chartInstances = {};
+      }
+
+      // 기존 차트 인스턴스 정리
+      Object.keys(window.chartInstances).forEach((id) => {
+        try {
+          if (
+            window.chartInstances[id] &&
+            typeof window.chartInstances[id].destroy === "function"
+          ) {
+            window.chartInstances[id].destroy();
+          }
+        } catch (e) {
+          console.error("차트 인스턴스 제거 오류:", e);
+        }
+      });
+      window.chartInstances = {}; // 객체 재초기화
+
+      // 모든 차트 컨테이너 요소 가져오기
+      const chartContainers = document.querySelectorAll(".grid--info--area");
+
+      // 각 task에 대해 개별적으로 서버 요청
+      for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+
+        // task의 ID나 다른 식별자를 사용하여 서버에 요청
+        // 예: buttonId가 있으면 해당 ID를 사용, 없으면 task ID 사용
+        const requestId = task.buttonId || task.id;
+
+        console.log(`Task ${i + 1}/${tasks.length} 데이터 요청: ${requestId}`);
+
+        try {
+          // 각 task에 대한 개별 요청
+          const chartData = await fetchData(
+            `http://localhost:3000/hichartData?id=${requestId}`
+          );
+
+          console.log(`Task ${i + 1} 차트 데이터 수신:`, chartData);
+
+          // 해당 task에 맞는 컨테이너 찾기
+          if (chartContainers[i]) {
+            const container = chartContainers[i];
+            const containerId = container.getAttribute("id");
+
+            if (!containerId) {
+              console.warn(`컨테이너 ${i}에 ID가 없습니다`);
+              continue;
+            }
+
+            // 차트 렌더링
+            createHighChart(chartData, containerId);
+            console.log(`Task ${i + 1} 차트 렌더링 완료: ${containerId}`);
+          }
+        } catch (error) {
+          console.error(`Task ${i + 1} 데이터 요청 오류:`, error);
+        }
+      }
+
+      showConfirmation("차트가 성공적으로 렌더링되었습니다! 📊");
+    } catch (error) {
+      console.error("차트 데이터 가져오기 오류:", error);
+      showConfirmation("차트 데이터 로딩 오류! ⚠️");
+    }
   }
 
   // 이벤트 리스너 설정 함수
@@ -151,23 +250,112 @@ export default function DialogContent() {
     // 설정 저장 버튼
     const settingBtn = document.getElementById("settingBtn");
     if (settingBtn) {
-      settingBtn.addEventListener("click", function () {
+      settingBtn.addEventListener("click", async function (e) {
+        // 기본 동작 방지 (페이지 새로고침 방지)
+        e.preventDefault();
+        e.stopPropagation();
+
+        // 로컬 스토리지에 저장 및 알림 표시
         saveTasksToLocalStorage();
-        showConfirmation("Settings saved! ⚙️");
+        showConfirmation("설정이 저장되었습니다! ⚙️");
         console.log("Settings saved to localStorage");
         console.log("tasks", tasks);
-        renderGrid();
+
+        // 그리드 렌더링
+        renderGrid(tasks);
+
+        try {
+          // 로딩 표시
+          showConfirmation("차트 데이터 로딩 중... ⌛");
+
+          // 차트 인스턴스 객체 초기화 확인
+          if (!window.chartInstances) {
+            window.chartInstances = {};
+          }
+
+          // 기존 차트 인스턴스 정리
+          Object.keys(window.chartInstances).forEach((id) => {
+            try {
+              if (
+                window.chartInstances[id] &&
+                typeof window.chartInstances[id].destroy === "function"
+              ) {
+                window.chartInstances[id].destroy();
+              }
+            } catch (e) {
+              console.error("차트 인스턴스 제거 오류:", e);
+            }
+          });
+          window.chartInstances = {}; // 객체 재초기화
+
+          // 모든 차트 컨테이너 요소 가져오기
+          const chartContainers =
+            document.querySelectorAll(".grid--info--area");
+
+          // 각 task에 대해 개별적으로 서버 요청
+          for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+
+            // task의 ID나 다른 식별자를 사용하여 서버에 요청
+            // 예: buttonId가 있으면 해당 ID를 사용, 없으면 task ID 사용
+            const requestId = task.buttonId || task.id;
+
+            console.log(
+              `Task ${i + 1}/${tasks.length} 데이터 요청: ${requestId}`
+            );
+
+            try {
+              // 각 task에 대한 개별 요청
+              const chartData = await fetchData(
+                `http://localhost:3000/hichartData?id=${requestId}`
+              );
+
+              console.log(`Task ${i + 1} 차트 데이터 수신:`, chartData);
+
+              // 해당 task에 맞는 컨테이너 찾기
+              if (chartContainers[i]) {
+                const container = chartContainers[i];
+                const containerId = container.getAttribute("id");
+
+                if (!containerId) {
+                  console.warn(`컨테이너 ${i}에 ID가 없습니다`);
+                  continue;
+                }
+
+                // 차트 렌더링
+                createHighChart(chartData, containerId);
+                console.log(`Task ${i + 1} 차트 렌더링 완료: ${containerId}`);
+              }
+            } catch (error) {
+              console.error(`Task ${i + 1} 데이터 요청 오류:`, error);
+            }
+          }
+
+          showConfirmation("차트가 성공적으로 렌더링되었습니다! 📊");
+          setTimeout(() => {
+            dialog.close();
+          }, 500);
+        } catch (error) {
+          console.error("차트 데이터 가져오기 오류:", error);
+          showConfirmation("차트 데이터 로딩 오류! ⚠️");
+        }
       });
+
+      // 폼 제출 방지를 위한 추가 조치
+      const parentForm = settingBtn.closest("form");
+      if (parentForm) {
+        parentForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          return false;
+        });
+      }
     }
 
     // 취소 버튼
     const cancelBtn = document.getElementById("cancelBtn");
     if (cancelBtn) {
       cancelBtn.addEventListener("click", function () {
-        tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-        loadTasks();
-        showConfirmation("Changes discarded! 🔄");
-        renderGrid();
+        dialog.close();
       });
     }
   }
@@ -304,41 +492,22 @@ export default function DialogContent() {
     observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  // 테마 토글 설정
-  function setupThemeToggle() {
-    const themeToggle = document.getElementById("themeToggle");
-    if (themeToggle) {
-      const prefersDarkScheme = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-
-      const initTheme = () => {
-        const savedTheme = localStorage.getItem("theme");
-        const theme = savedTheme || (prefersDarkScheme.matches ? "dark" : "");
-        document.documentElement.setAttribute("data-theme", theme);
-        updateThemeIcon(theme);
-      };
-
-      const updateThemeIcon = (theme) => {
-        themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
-      };
-
-      themeToggle.addEventListener("click", () => {
-        const currentTheme =
-          document.documentElement.getAttribute("data-theme");
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-        updateThemeIcon(newTheme);
-      });
-
-      initTheme();
-    }
-  }
-
-  // 작업 폼 제출 처리 함수 수정
+  // 작업 폼 제출 처리 함수
   function handleTaskFormSubmit(e) {
     e.preventDefault();
+
+    // #selectList 버튼 유효성 검사
+    const selectList = document.getElementById("selectList");
+    if (selectList) {
+      const hasSelectedButton =
+        selectList.querySelector("button.selected") !== null;
+      if (!hasSelectedButton) {
+        console.warn("선택된 버튼이 없습니다. 버튼을 선택해주세요.");
+        showConfirmation("버튼을 선택해주세요! ⚠️");
+        return; // 선택된 버튼이 없으면 함수 종료
+      }
+    }
+
     const form = e.target;
     const taskId = form.dataset.editId;
     const title = document.getElementById("taskTitle").value;
@@ -346,12 +515,25 @@ export default function DialogContent() {
     const color = document.getElementById("taskColor").value;
     const column = document.getElementById("columnType").value;
 
-    // 차트 타입 가져오기 (입력 필드 또는 ChartOptionPopup에서)
+    // 차트 타입 가져오기 (입력 필드 또는 ChartConfigManager에서)
     let chartType = document.getElementById("chartType").value;
 
-    // 입력 필드에 값이 없으면 ChartOptionPopup에서 가져오기
-    if (!chartType && chartOptionPopupInstance) {
-      chartType = chartOptionPopupInstance.getSelectedChartType();
+    // 입력 필드에 값이 없으면 ChartConfigManager에서 가져오기
+    if (!chartType && chartConfigManagerInstance) {
+      chartType = chartConfigManagerInstance.getSelectedChartType();
+    }
+
+    // 선택된 버튼 정보 가져오기
+    let buttonId = null;
+    let buttonTitle = null;
+
+    if (chartConfigManagerInstance) {
+      const selectedButton = chartConfigManagerInstance.getSelectedButton();
+      if (selectedButton) {
+        buttonId = selectedButton.id;
+        buttonTitle = selectedButton.title;
+        console.log("선택된 버튼 정보:", { buttonId, buttonTitle });
+      }
     }
 
     if (taskId) {
@@ -368,6 +550,8 @@ export default function DialogContent() {
           color,
           column,
           chartType,
+          buttonId,
+          buttonTitle,
         };
         if (
           parentColumn !== column &&
@@ -387,10 +571,15 @@ export default function DialogContent() {
         color,
         column,
         chartType,
+        buttonId,
+        buttonTitle,
       };
       tasks.push(newTask);
       renderTask(newTask);
     }
+
+    // 로컬 스토리지에 작업 저장
+    saveTasksToLocalStorage();
 
     closeModal();
     showConfirmation(
@@ -474,16 +663,19 @@ export default function DialogContent() {
   function createTaskHTML(task) {
     return `
     <div class="task__header">
-      <h3 class="task__title">${task.title}</h3>
       <div class="task__actions">
         <button class="action-btn edit-btn">✏️</button>
         <button class="action-btn delete-btn">🗑️</button>
       </div>
     </div>
+    <div class="task__body">
+      <h3 class="task__title">${task.title}</h3>
+      <span>${task.buttonTitle}</span>
+    </div>
   `;
   }
 
-  // 작업 수정 모달 열기 함수 수정
+  // 작업 수정 모달 열기 함수
   function openEditModal(taskId) {
     const task = tasks.find((t) => t.id === taskId);
     if (!task) return;
@@ -505,9 +697,63 @@ export default function DialogContent() {
       chartTypeInput.value = task.chartType || "";
     }
 
-    // ChartOptionPopup에 차트 타입 설정
-    if (chartOptionPopupInstance) {
-      chartOptionPopupInstance.setChartType(task.chartType);
+    // ChartConfigManager에 차트 타입 설정
+    if (chartConfigManagerInstance) {
+      chartConfigManagerInstance.setChartType(task.chartType);
+
+      // 버튼 선택 상태 복원 (필요한 경우)
+      if (task.buttonId && task.buttonTitle) {
+        // 첫 번째 시도: 즉시 버튼 선택 시도
+        trySelectButton();
+
+        // 두 번째 시도: 짧은 지연 후 다시 시도
+        setTimeout(trySelectButton, 300);
+
+        // 세 번째 시도: 더 긴 지연 후 다시 시도
+        setTimeout(trySelectButton, 800);
+      }
+
+      // 버튼 선택 함수
+      function trySelectButton() {
+        console.log("버튼 선택 시도:", task.buttonId);
+        const selectListBox = document.getElementById("selectList");
+        if (!selectListBox) {
+          console.warn("selectList 요소를 찾을 수 없습니다");
+          return;
+        }
+
+        // 모든 버튼에서 selected 클래스 제거
+        selectListBox.querySelectorAll("button").forEach((btn) => {
+          btn.classList.remove("selected");
+        });
+
+        // 해당 ID를 가진 버튼 찾기
+        const targetButton = selectListBox.querySelector(
+          `button[data-id="${task.buttonId}"]`
+        );
+        if (targetButton) {
+          console.log("버튼 찾음, selected 클래스 추가:", task.buttonId);
+          targetButton.classList.add("selected");
+
+          // // 버튼 클릭 이벤트도 발생시켜 내부 상태 업데이트
+          // try {
+          //   targetButton.click();
+          // } catch (e) {
+          //   console.warn("버튼 클릭 이벤트 발생 중 오류:", e);
+          // }
+
+          // ChartConfigManager 내부 상태 업데이트 (필요한 경우)
+          if (
+            chartConfigManagerInstance &&
+            typeof chartConfigManagerInstance.updateSelectedButton ===
+              "function"
+          ) {
+            chartConfigManagerInstance.updateSelectedButton(task.buttonId);
+          }
+        } else {
+          console.warn(`ID가 ${task.buttonId}인 버튼을 찾을 수 없습니다`);
+        }
+      }
     }
 
     document.querySelector('#taskForm button[type="submit"]').textContent =
@@ -535,8 +781,8 @@ export default function DialogContent() {
       chartTypeInput.value = "";
     }
 
-    // ChartOptionPopup 초기화 (첫 번째 버튼 선택)
-    if (chartOptionPopupInstance) {
+    // ChartConfigManager 초기화 (첫 번째 버튼 선택)
+    if (chartConfigManagerInstance) {
       const buttons = document.querySelectorAll(
         "#chartRequestOptions .dialog--btn"
       );
@@ -547,6 +793,19 @@ export default function DialogContent() {
         const defaultChartType = buttons[0].getAttribute("data-chart-type");
         if (chartTypeInput && defaultChartType) {
           chartTypeInput.value = defaultChartType;
+
+          // 첫 번째 버튼에 해당하는 차트 타입으로 설정
+          chartConfigManagerInstance.setChartType(defaultChartType);
+
+          // 약간의 지연 후 selectList 버튼 초기화
+          setTimeout(() => {
+            // ChartConfigManager의 resetSelectList 메서드 호출
+            if (
+              typeof chartConfigManagerInstance.resetSelectList === "function"
+            ) {
+              chartConfigManagerInstance.resetSelectList();
+            }
+          }, 300); // 템플릿이 로드된 후 실행하기 위한 지연
         }
       }
     }
@@ -611,33 +870,6 @@ export default function DialogContent() {
     document.getElementById("deleteConfirmationModal").classList.remove("show");
     showConfirmation("Task successfully deleted! 🗑️");
     currentTaskToDelete = null;
-    alert("삭제완료");
-  }
-
-  // 확인 메시지 표시
-  function showConfirmation(message) {
-    const modal = document.getElementById("confirmationModal");
-    const messageElement = document.getElementById("confirmationMessage");
-
-    let displayMessage = message;
-    if (message.includes("supprimée")) displayMessage = "차트 삭제 완료 🗑️";
-    else if (message.includes("업데이트")) displayMessage = "차트 수정 완료 🎉";
-    else if (message.includes("생성됨")) displayMessage = "차트 생성 완료 🎉";
-
-    messageElement.textContent = displayMessage;
-    modal.classList.add("show");
-    addController();
-    setTimeout(() => modal.classList.remove("show"), 500);
-  }
-
-  // 컨트롤러 추가
-  function addController() {
-    document.querySelectorAll(".task-list").forEach((taskList) => {
-      const addTaskButton = taskList.querySelector(".add-task");
-      const hasTask = taskList.querySelector(".task") !== null;
-      if (addTaskButton)
-        addTaskButton.style.display = hasTask ? "none" : "flex";
-    });
   }
 
   // 로컬 스토리지에 작업 저장
@@ -646,293 +878,85 @@ export default function DialogContent() {
     console.log("로컬 스토리지에 작업 저장됨");
   }
 
-  // 그리드 렌더링 함수 개선
-  function renderGrid() {
-    const uniqueColumns = [...new Set(tasks.map((task) => task.column))];
-    const grid = document.querySelector(".grid");
-
-    if (!grid) return;
-
-    grid.style.gridTemplateRows = `auto`;
-    grid.style.gridTemplateColumns = `auto`;
-    grid.innerHTML = "";
-
-    // 1개 컬럼일 때
-    if (uniqueColumns.length === 1) {
-      renderSingleColumnGrid(grid, uniqueColumns);
-    }
-    // 2개 컬럼일 때
-    else if (uniqueColumns.length === 2) {
-      renderTwoColumnGrid(grid, uniqueColumns);
-    }
-    // 3개 컬럼일 때
-    else if (uniqueColumns.length === 3) {
-      renderThreeColumnGrid(grid, uniqueColumns);
-    }
-    // 4개 이상 컬럼일 때
-    else if (uniqueColumns.length >= 4) {
-      renderFourColumnGrid(grid, uniqueColumns);
-    }
-  }
-
-  // 1개 컬럼 그리드 렌더링 - 간소화
-  function renderSingleColumnGrid(grid, uniqueColumns) {
-    grid.style.gridTemplateColumns = `repeat(1, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(1, 1fr)`;
-
-    grid.innerHTML = createGridItemHTML(uniqueColumns[0], tasks);
-  }
-
-  // 2개 컬럼 그리드 렌더링 - 간소화
-  function renderTwoColumnGrid(grid, uniqueColumns) {
-    const column1 = uniqueColumns[0];
-    const column2 = uniqueColumns[1];
-
-    // 수평 레이아웃 조합 확인
-    const isHorizontal =
-      (column1 === "type01" && column2 === "type02") ||
-      (column1 === "type02" && column2 === "type01");
-
-    if (isHorizontal) {
-      // 수평 레이아웃 (2x1)
-      grid.style.gridTemplateColumns = `repeat(2, 1fr)`;
-      grid.style.gridTemplateRows = `repeat(1, 1fr)`;
-
-      grid.innerHTML =
-        createGridItemHTML("type01", tasks) +
-        createGridItemHTML("type02", tasks);
-    } else {
-      // 수직 레이아웃 (1x2)
-      grid.style.gridTemplateColumns = `repeat(1, 1fr)`;
-      grid.style.gridTemplateRows = `repeat(2, 1fr)`;
-
-      // 컬럼 타입 조합에 따른 타이틀 결정
-      const columnPairs = [
-        { pair: ["type01", "type03"], titles: ["type01", "type03"] },
-        { pair: ["type02", "type03"], titles: ["type02", "type03"] },
-        { pair: ["type01", "type04"], titles: ["type01", "type04"] },
-        { pair: ["type02", "type04"], titles: ["type02", "type04"] },
-      ];
-
-      let typeA = column1;
-      let typeB = column2;
-
-      // 조합 찾기
-      columnPairs.forEach((item) => {
-        if (
-          (column1 === item.pair[0] && column2 === item.pair[1]) ||
-          (column1 === item.pair[1] && column2 === item.pair[0])
-        ) {
-          typeA = item.titles[0];
-          typeB = item.titles[1];
-        }
-      });
-
-      grid.innerHTML =
-        createGridItemHTML(typeA, tasks) + createGridItemHTML(typeB, tasks);
-    }
-  }
-
-  // 3개 컬럼 그리드 렌더링 - 간소화
-  function renderThreeColumnGrid(grid, uniqueColumns) {
-    grid.style.gridTemplateColumns = `repeat(2, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(2, 1fr)`;
-
-    // 레이아웃 설정 배열
-    const layoutConfigs = [
-      {
-        columns: ["type01", "type02", "type04"],
-        layout: [
-          { type: "type01", fullWidth: false },
-          { type: "type02", fullWidth: false },
-          { type: "type04", fullWidth: true },
-        ],
-      },
-      {
-        columns: ["type01", "type02", "type03"],
-        layout: [
-          { type: "type01", fullWidth: false },
-          { type: "type02", fullWidth: false },
-          { type: "type03", fullWidth: true },
-        ],
-      },
-      {
-        columns: ["type01", "type03", "type04"],
-        layout: [
-          { type: "type01", fullWidth: true },
-          { type: "type03", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-      {
-        columns: ["type02", "type03", "type04"],
-        layout: [
-          { type: "type02", fullWidth: true },
-          { type: "type03", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-    ];
-
-    // 현재 컬럼 조합에 맞는 레이아웃 찾기
-    let matchedLayout = null;
-
-    layoutConfigs.forEach((config) => {
-      if (hasColumnCombination(uniqueColumns, config.columns)) {
-        matchedLayout = config.layout;
+  // createHighChart 함수 수정
+  function createHighChart(data, containerId) {
+    try {
+      // 컨테이너 요소 가져오기
+      const container = document.getElementById(containerId);
+      if (!container) {
+        console.error(`차트 컨테이너를 찾을 수 없습니다: ${containerId}`);
+        return;
       }
-    });
 
-    // 일치하는 레이아웃이 있으면 사용, 없으면 기본 레이아웃 사용
-    if (matchedLayout) {
-      let gridHTML = "";
+      // Highcharts가 정의되어 있는지 확인
+      if (typeof Highcharts === "undefined") {
+        console.error("Highcharts가 정의되어 있지 않습니다");
+        return;
+      }
 
-      matchedLayout.forEach((item) => {
-        gridHTML += createGridItemHTML(item.type, tasks, item.fullWidth);
-      });
+      // 차트 인스턴스 객체 초기화 확인
+      if (!window.chartInstances) {
+        window.chartInstances = {};
+      }
 
-      grid.innerHTML = gridHTML;
-    } else {
-      // 기본 레이아웃 (첫 번째 항목이 전체 너비)
-      grid.innerHTML =
-        createGridItemHTML(uniqueColumns[0], tasks, true) +
-        createGridItemHTML(uniqueColumns[1], tasks) +
-        createGridItemHTML(uniqueColumns[2], tasks);
-    }
-  }
-
-  // 4개 컬럼 그리드 렌더링 - 레이아웃 설정 추가
-  function renderFourColumnGrid(grid, uniqueColumns) {
-    grid.style.gridTemplateColumns = `repeat(2, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(2, 1fr)`;
-
-    // 레이아웃 설정 배열
-    const layoutConfigs = [
-      // 4개 모두 있는 경우의 다양한 레이아웃
-      {
-        columns: ["type01", "type02", "type03", "type04"],
-        layout: [
-          { type: "type01", fullWidth: false },
-          { type: "type02", fullWidth: false },
-          { type: "type03", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-      {
-        columns: ["type01", "type02", "type03", "type04"],
-        layout: [
-          { type: "type01", fullWidth: true },
-          { type: "type02", fullWidth: false },
-          { type: "type03", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-      {
-        columns: ["type01", "type02", "type03", "type04"],
-        layout: [
-          { type: "type02", fullWidth: true },
-          { type: "type01", fullWidth: false },
-          { type: "type03", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-      {
-        columns: ["type01", "type02", "type03", "type04"],
-        layout: [
-          { type: "type03", fullWidth: true },
-          { type: "type01", fullWidth: false },
-          { type: "type02", fullWidth: false },
-          { type: "type04", fullWidth: false },
-        ],
-      },
-      {
-        columns: ["type01", "type02", "type03", "type04"],
-        layout: [
-          { type: "type04", fullWidth: true },
-          { type: "type01", fullWidth: false },
-          { type: "type02", fullWidth: false },
-          { type: "type03", fullWidth: false },
-        ],
-      },
-    ];
-
-    // 현재 컬럼 조합에 맞는 레이아웃 찾기
-    let matchedLayout = null;
-
-    // 우선 정확한 컬럼 조합 찾기
-    layoutConfigs.forEach((config) => {
-      // 정확한 컬럼 조합 및 우선순위 확인
-      if (hasColumnCombination(uniqueColumns, config.columns)) {
-        // 우선순위가 있는 경우 확인
-        if (config.priority) {
-          const priorityMatch = config.priority.every((type) =>
-            uniqueColumns.includes(type)
-          );
-
-          if (priorityMatch) {
-            matchedLayout = config.layout;
-          }
-        }
-        // 우선순위가 없거나 첫 번째 일치하는 레이아웃 사용
-        else if (!matchedLayout) {
-          matchedLayout = config.layout;
+      // 기존 차트 인스턴스가 있으면 제거
+      if (window.chartInstances[containerId]) {
+        try {
+          window.chartInstances[containerId].destroy();
+        } catch (e) {
+          console.warn(`기존 차트 제거 오류 (${containerId}):`, e);
         }
       }
-    });
 
-    // 일치하는 레이아웃이 있으면 사용, 없으면 기본 레이아웃 사용
-    if (matchedLayout) {
-      let gridHTML = "";
+      // 데이터 유효성 검사
+      if (!data) {
+        console.error(`유효하지 않은 차트 데이터: ${containerId}`);
+        return;
+      }
 
-      matchedLayout.forEach((item) => {
-        gridHTML += createGridItemHTML(item.type, tasks, item.fullWidth);
+      // 차트 생성
+      const chart = Highcharts.chart(containerId, {
+        chart: {
+          type: data.type || "column",
+        },
+        title: {
+          text: data.title || "Chart",
+        },
+        subtitle: {
+          text: data.subtitle || "",
+        },
+        xAxis: {
+          categories: data.categories || [],
+          crosshair: true,
+          accessibility: {
+            description: "Categories",
+          },
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: data.yAxisTitle || "",
+          },
+        },
+        tooltip: {
+          valueSuffix: data.valueSuffix || "",
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0,
+          },
+        },
+        series: data.list,
       });
 
-      grid.innerHTML = gridHTML;
-    } else {
-      // 기본 레이아웃 - 모든 항목을 2x2 그리드로 배치
-      let gridHTML = "";
+      // 차트 인스턴스 저장
+      window.chartInstances[containerId] = chart;
 
-      // 최대 4개까지만 표시
-      uniqueColumns.slice(0, 4).forEach((columnType) => {
-        gridHTML += createGridItemHTML(columnType, tasks);
-      });
-
-      grid.innerHTML = gridHTML;
+      return chart;
+    } catch (error) {
+      console.error(`차트 생성 중 오류 (${containerId}):`, error);
+      return null;
     }
-  }
-
-  // 컬럼 조합 확인 헬퍼 함수
-  function hasColumnCombination(uniqueColumns, targetColumns) {
-    return targetColumns.every((col) => uniqueColumns.includes(col));
-  }
-
-  // 작업 제목 가져오기
-  function getTaskTitle(columnType, tasks) {
-    const task = tasks.find((task) => task.column === columnType);
-    return task ? task.title : "Unknown Title";
-  }
-  // 작업 색상 가져오기 함수
-  function getTaskColor(columnType, tasks) {
-    const task = tasks.find((task) => task.column === columnType);
-    return task ? task.color : "#ffffff"; // 기본 색상은 흰색
-  }
-
-  // 그리드 아이템 HTML 생성 함수
-  function createGridItemHTML(columnType, tasks, isFullWidth = false) {
-    const title = getTaskTitle(columnType, tasks);
-    const color = getTaskColor(columnType, tasks);
-    const spanStyle = isFullWidth ? "grid-column: 1 / -1;" : "";
-
-    return `
-    <div class="grid--item" data-grid-type="chart" style="${spanStyle} background-color: ${color}8a;">
-      <div class="chart--item inner--item">
-        <h3 class="grid--title">${title}</h3>
-        <div class="grid--info--area">
-          하이차트 들어오는부분
-        </div>
-      </div>
-    </div>
-  `;
   }
 }

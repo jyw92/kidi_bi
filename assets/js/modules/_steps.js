@@ -643,7 +643,18 @@ async function setupResultEvents() {
     ...data,
   };
   resultLoadingGuide.innerHTML = completeMessage();
-  setupScrollAnimation(contentInner1120, box, resultLoadingContainer, resultContainer, lastData, buttonOptionWrap);
+
+  
+  
+  const autoResult = setupAutomaticAnimation(contentInner1120, box, resultLoadingContainer, resultContainer, lastData, buttonOptionWrap)
+
+  if(autoResult){
+    //스크롤 아이콘제거
+    document.querySelector('.kidi--scroll-view').style.display = 'none';
+  }else{
+    document.querySelector('.kidi--scroll-view').style.display = 'block';
+  }
+
 
   prevButton.addEventListener('click', () => {
     barba.go('step3.html');
@@ -734,6 +745,56 @@ function setupScrollAnimation(contentInner, box, resultLoadingContainer, resultC
       duration: 2,
       ease: 'none', // 부드러운 효과로 자연스러운 표현
     });
+}
+
+function setupAutomaticAnimation(contentInner, box, resultLoadingContainer, resultContainer, lastData, buttonShow) {
+  const subVisualHeight = document.querySelector('.sub_visual').clientHeight;
+  const headerHeight = document.querySelector('#header').clientHeight;
+  const footer = document.querySelector('footer'); 
+  
+
+  const timeline = gsap.timeline({
+    onComplete: async () => {
+     
+      Transiton.pageLeave();
+      
+      setTimeout(async () => {
+        Transiton.pageEnter();
+        resultLoadingContainer.style.display = 'none';
+        resultContainer.style.display = 'block';
+        resultContainer.innerHTML = await resultTemplate(lastData);
+        await delay(800);
+        lenis.scrollTo(subVisualHeight + headerHeight, {
+          duration: 0,
+          easing: (t) => t,
+        });
+        footer.style.display = 'block';
+        buttonShow.style.display = 'flex';
+        setTimeout(() => {
+          const counters = document.querySelectorAll(".result--area--info--table--counter");
+          counters.forEach((counter, index) => {
+            const targetCount = parseInt(counter.dataset.count, 10);
+            const sign = index <= 1 ? '+' : '-';
+            gsap.to(counter, {
+              innerText: targetCount,
+              duration: 2,
+              ease: "power2.out",
+              onUpdate: function() {
+                const currentValue = Math.round(this.targets()[0].innerText);
+                this.targets()[0].innerText = `${sign}${Math.abs(currentValue)}%`;
+              }
+            });
+          });
+        }, 500);
+      }, 800);
+    }
+  });
+  timeline.to(box, {
+    yPercent: 200,
+    duration: 0.5,
+    ease: "power2.out",
+  },'+=0.5');
+  return true;
 }
 
 function setupPageEvents(namespace) {
