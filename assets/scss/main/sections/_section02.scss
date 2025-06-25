@@ -1,0 +1,147 @@
+@use '../../abstracts/' as *;
+
+#section02.insurance_news_sect.section{
+    padding-block-start: rem(20);
+}
+.insurance_news_tab{
+    margin-block-end: rem(36);
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    button{
+        font-size: rem(18);
+        border: 1px solid #c9cfd6;
+        line-height: rem(36);
+        padding-inline: rem(36);
+        border-radius: rem(5);
+        white-space: nowrap;
+        &.active{
+            color: #fff;
+            background: #215285;
+            border-color: #215285;
+        }
+    }
+
+    @include mq('md'){
+        width:100%;
+        overflow-x: auto;
+    }
+}
+.insurance_news_cont{
+    position: relative;
+    .card_list{
+        padding-block: rem(10);
+        .swiper-slide{
+            .card{
+                display: flex;
+                flex-direction: column;
+                border-radius: rem(35);
+                border: 1px solid #E5E5E5;
+                background: #FFF;
+                height: rem(428);
+                padding: rem(25);
+                justify-content: space-between;
+                text-align: left;
+                box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.1);
+                .text_box{
+                    display: flex;
+                    gap: rem(28);
+                    align-items: flex-start;
+                    flex-direction: column;
+                    .subject.lg{
+                        height: 80px;
+                        flex-shrink: 0;
+                        align-self: stretch;
+                        font-size: rem(30);
+                        font-weight: 700;
+                        line-height: 1.3;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        max-height: 2.6em;
+                    
+                    }
+                    .desc{
+                        font-size: rem(18);
+                        font-weight: 400;
+                        line-height: 25px;
+                    }
+                }
+                &:hover, &:focus{
+                    border-radius: 35px;
+                    background:linear-gradient(133deg, #0069F6 7.97%, #27BFFF 79.39%);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.insurance_news_slider_btns .swiper-slide-btn.active, 
+.insurance_news_cont .insurance_news_slider.active{
+    display: flex;
+}
+
+.insurance_news_slider_btns .swiper-slide-btn, 
+.insurance_news_cont .insurance_news_slider{
+    display: none;
+}
+
+.goto-control{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1000;
+    background: var(--bs-point);
+    text-align: center;
+    color: #fff !important;
+    opacity: 0;
+    box-sizing: border-box;
+    &:focus {
+        z-index: 9999;
+        opacity: 1;
+        height: auto;
+        padding: 10px;
+    }
+}
+
+
+.insurance_news_slider_btns{
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 100px;
+    .swiper-slide-btn{
+        .swiper-button-prev,
+        .swiper-button-next{
+            margin: 0 !important;
+            position: static;
+            color: #333;
+        }
+        .swiper-button-prev,
+        .swiper-button-next{
+            margin:0 !important;
+            position: static;
+            color: #333;
+            &::after{
+                background-repeat: no-repeat;
+                background-position: center;
+                width:100%;
+            }
+        }
+        .swiper-button-prev::after{
+            background-image: url('/assets/img/main/ico_swiper_prev.png');
+        }
+        .swiper-button-next::after{
+            background-image: url('/assets/img/main/ico_swiper_next.png');
+        }
+    }
+}

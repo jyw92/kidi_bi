@@ -31,8 +31,19 @@ function getTaskTitle(columnType, tasks) {
     return task ? task.id : `unknown-${Date.now()}`;
   }
   
+  function getComment(columnType, tasks) {
+    if (!tasks || !Array.isArray(tasks)) {
+      console.error('유효하지 않은 tasks 배열:', tasks);
+      return "No comment available";
+    }
+    
+    const task = tasks.find((task) => task.column === columnType);
+    return task ? task.comment : "No comment available";
+  }
+
   export {
     getTaskColor,
     getTaskTitle,
-    getTaskId
+    getTaskId,
+    getComment
   };

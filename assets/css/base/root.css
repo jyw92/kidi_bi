@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 @layer base {
+
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
   :root {
     --bs-point: #215dbf;
     --bs-deep-point: #2d6ba8;
@@ -49,7 +57,7 @@
         rgba(255, 150, 0, 1) 0%,
         rgba(248, 54, 0, 1) 100%);
     --bs-bg-filter-gradien: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff9600, endColorstr=#f83600, GradientType=1);
-    --bs-font-sans-serif: "SUIT";
+    --bs-font-sans-serif: "Pretendard Variable", Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     --bs-font-lato: "Lato";
     --bs-font-gmarket: "Gmarket Sans";
     --bs-body-font-family: var(--bs-font-sans-serif);

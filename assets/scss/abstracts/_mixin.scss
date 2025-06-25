@@ -30,8 +30,8 @@
 }
 
 
-@mixin flexCenter($db:flex) {
-    display: $db;
+@mixin flexCenter($dp:flex) {
+    display: $dp;
     align-items: center;
     justify-content: center;
 }

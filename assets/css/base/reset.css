@@ -34,7 +34,7 @@ html.overflow {
 body {
   word-break: keep-all;
   margin: 0;
-  font-family: var(--bs-body-font-family), sans-serif;
+  font-family: var(--bs-body-font-family);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
@@ -280,7 +280,7 @@ select {
   color: #252525;
   -moz-appearance: none;
   appearance: none;
-  background: #fff url(../../img/ico/select_ico.png) right 12px center no-repeat;
+  background: #fff url(../../img/ico/ico_select.svg) right 5px center no-repeat;
 }
 input:focus,
 select:focus {

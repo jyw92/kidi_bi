@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        background-color: #030129;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .loading {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .ball {
+        width: 40px;
+        height: 20px;
+        position: absolute;
+        background-color: white;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        z-index: 2;
+      }
+
+      .ball::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 20px;
+        border-radius: 50%;
+        filter: blur(12px);
+        opacity: 0.7;
+        z-index: -1;
+      }
+
+      .ball:nth-child(1) {
+        background-color: #11e793;
+        top: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s ease-in-out infinite;
+      }
+
+      .ball:nth-child(2) {
+        background-color: #d035f7;
+        top: 50%;
+        left: 60px;
+        transform: translateY(-50%);
+      }
+
+      .ball:nth-child(3) {
+        background-color: #ff459f;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .ball:nth-child(4) {
+        background-color: #0ba5ff;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+      }
+
+      .loading-text {
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 180px;
+        height: 180px;
+        transform: translate(50%, 50%);
+        animation: rotateText 8s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      @keyframes rotateText {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          top: 30px;
+        }
+        25% {
+          top: 40px;
+        }
+        50% {
+          top: 25px;
+        }
+        75% {
+          top: 35px;
+        }
+        100% {
+          top: 30px;
+        }
+      }
+
+      .loading-text::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 2px;
+        background-color: #000;
+        opacity: 0.5;
+        animation: glow 2s ease-in-out infinite;
+      }
+
+      .loading-text::before:nth-child(1) {
+        background-color: #11e793;
+      }
+
+      .loading-text::before:nth-child(2) {
+        background-color: #d035f7;
+      }
+
+      .loading-text::before:nth-child(3) {
+        background-color: #ff459f;
+      }
+
+      .loading-text::before:nth-child(4) {
+        background-color: #0ba5ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <svg viewBox="0 0 180 180" class="loading-text" width="180" height="180">
+        <defs>
+          <path
+            id="circlePath"
+            d="M90,90 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"
+          />
+        </defs>
+        <text
+          fill="white"
+          font-size="15"
+          font-family="cursive"
+          letter-spacing="2"
+        >
+          <textPath href="#circlePath" startOffset="0%">
+            LOADING ••••••••••••••••LOADING ••••••••••••••••••••
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  </body>
+</html>

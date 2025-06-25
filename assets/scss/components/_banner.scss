@@ -1,0 +1,157 @@
+@use '../abstracts/' as *;
+
+.banner-area {
+    // 논리적 속성 사용
+    --banner-block-start: #{rem(0)};
+    // --banner-inline-start: #{rem(100)};
+    position: absolute;
+    inset-block-start: var(--banner-block-start);
+    // inset-inline-start: var(--banner-inline-start);
+    left: calc(((100% - 1348px) / 2) - 180px);
+    z-index: 1;
+    inline-size: rem(163);
+    min-block-size: rem(440);
+    block-size: 70%;
+    // block-size: calc(((100vh - var(--banner-block-start)) / 2) - rem(18));
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    box-shadow: 0px 4px 23.4px 0px rgba(0, 0, 0, 0.15);
+    .banner--item {
+        position: relative;
+        padding-block-start: rem(57);
+        isolation: isolate;
+        overflow: hidden;
+        flex:1;
+        border-radius: rem(5);
+        border: 1px solid #193a98;
+        // 모던 그라디언트 문법
+        background: linear-gradient(to bottom, #20ced8 0%, #294caf 57.39%);
+        // 모던 박스 섀도우
+        // box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.1);
+        
+
+        // 컨테이너 쿼리 지원 (미래 대비)
+        container-type: inline-size;
+
+        // 접근성 개선
+        &:focus-visible {
+        outline: 2px solid #20ced8;
+        outline-offset: 2px;
+        }
+        
+        &::after{
+            content:"";
+            position: absolute;
+            left:0;
+            bottom:0;
+            inline-size: 100%;
+            block-size: rem(250);
+            background-image: url('/assets/img/main/bg_banner.png');
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        // 다크 모드 지원
+        @media (prefers-color-scheme: dark) {
+            border-color: #4a6cf7;
+            // box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.2);
+                
+        }
+
+        // 모션 감소 설정 존중
+        @media (prefers-reduced-motion: no-preference) {
+            // transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                
+
+            &:hover {
+                transform: translateY(rem(-2));
+            }
+        }
+        & > *{
+            text-shadow: 1px 1px 0 #333;
+        }
+        p{
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        strong{
+            display: block;
+            margin-top: 5px;
+            color: #FFF;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+        }
+    }
+}
+
+.shortcut--area{
+    position: fixed;
+    right:calc(((100% - 1348px) / 2) - 180px);
+    bottom:calc(20vh + rem(20));
+    z-index: 1;
+    .shortcut--item{
+        flex:1;
+        background-color: #fff;
+        border-radius: rem(5);
+        // 모던 박스 섀도우
+        box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.1);
+        
+        // 다크 모드 지원
+        @media (prefers-color-scheme: dark) {
+            border-color: #4a6cf7;
+            box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.2);
+                
+        }
+        &--header{
+            border-radius:rem(5) rem(5) 0 0;
+            background: linear-gradient(180deg, #2973D6 0%, #544FC5 100%);
+            display: flex;
+            inline-size: 100%;
+            block-size: rem(82);
+            padding: 6px 15px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            color: #fff;
+            &::before{
+                content:"";
+                block-size: rem(15);
+                inline-size: rem(15);
+                background-image: url('/assets/img/main/ico_star.svg');
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+        }
+        &--body{
+            display: flex;
+            flex-direction: column;
+            li{
+                a{
+                    display: block;
+                    padding-block:rem(12);
+                    font-size: rem(14);
+                    color: #464646;
+                    font-weight: 600;
+                   
+                    span{
+                        display: block;
+                        margin-top: 5px;
+                        color: #7F7F7F;
+                        font-weight: 400;
+                    }
+                    &:hover{
+                        background-color: #544FC5;
+                        color: #fff;
+                        span{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

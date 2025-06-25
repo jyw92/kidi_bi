@@ -17,9 +17,17 @@
 	background: var(--color-bg-overlay, #090772);
 }
 
+// .content--wrap{
+//     position: fixed;
+//     top:-100%;
+// }
+
 .content--wrap{
-    position: fixed;
-    top:-100%;
+    translate: none;
+    rotate: none;
+    scale: none;
+    transform: translate(0px, 0px);
+    position: static;
 }
 
 .intro--closed {

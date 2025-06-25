@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="보험정보 빅데이터 플랫폼(BIGIN)" />
+    <meta
+      property="og:description"
+      content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta name="Title" content="보험정보 빅데이터 플랫폼(BIGIN)" />
+    <meta
+      name="Keywords"
+      content="보험정보 빅데이터 플랫폼, bigin 보험정보 빅데이터 플랫폼, bigin, 보험, 보험정보, 빅데이터, 플랫폼, 보험데이터, 보험통계, 보험자료, 차량기준가액, 차량가액, 보험개발원 차량기준가액, 보험개발원 차량가액, 보험개발원, 모델등급, 차량모델등급"
+    />
+    <meta
+      name="Description"
+      content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
+    />
+    <meta
+      name="naver-site-verification"
+      content="a11274d57827bab6314487d2c003bd1dbae2edc9"
+    />
+    <title>[MY보험, 실손24(실손보험 청구 전산화 시스템)]</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://bigin.kidi.or.kr:9443/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/base/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/base/custom.css" />
+    <link rel="stylesheet" href="/assets/css/form-control.css" />
+
+    <!-- vendors -->
+    <link rel="stylesheet" href="/assets/plugin/pqgrid/pqgrid.min.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css"
+    />
+    <link rel="stylesheet" href="/assets/css/lib/swiper.min.css" />
+    <link rel="stylesheet" href="/assets/css/common.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/mo_common.css" />
+    <link rel="stylesheet" href="/assets/css/mo_sub.css" />
+    <link rel="stylesheet" href="/assets/css/LifeStyle.css" />
+    <script
+      type="text/javascript"
+      src="/assets/plugin/lenis/lenis.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/js/lib/jquery-3.5.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/js/lib/jquery-ui.min.js"
+    ></script>
+    <script type="text/javascript" src="/assets/js/lib/swiper.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/pqgrid.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/localize/pq-localize-en.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/ckeditor/ckeditor.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/highcharts.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/series-label.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/data.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/exporting.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/export-data.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/accessibility.js"
+    ></script>
+    <script type="text/javascript" src="/assets/js/includeHTML.js"></script>
+    <!-- <script type="text/javascript" src="/assets/js/menu.js"></script> -->
+    <!-- <script type="text/javascript" src="/assets/js/improveAccessibility.js"></script>' -->
+
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+    <script type="text/javascript" src="/assets/js/common.js"></script>
+    <script>
+      var notiMap = "";
+      var notibool = "";
+      $(function () {
+        //  기본 include
+        notiMap = getCookieVal("notiMap");
+        //console.log("-------------------------------");
+        // console.log("notiMap::"+notiMap);
+        if (notiMap != "hide") {
+          $("#noti").show();
+        }
+
+        var no_look = document.getElementById("no_look");
+        var link = document.getElementById("link");
+
+        if (no_look != null) {
+          no_look.addEventListener("change", function () {
+            if (no_look.checked) {
+              notibool = true;
+            } else {
+              notibool = false;
+            }
+          });
+        }
+      });
+
+      function getCookieVal(name) {
+        return (
+          document.cookie
+            .match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")
+            ?.pop() || ""
+        );
+      }
+
+      function closeTopAlertBox(notibool) {
+        if (notibool == true) {
+          link.addEventListener("click", HandleClosePopupToday("#noti"));
+        } else if (notibool == false) {
+          $(".top_alert_box").css("display", "none");
+        }
+      }
+    </script>
+    <style>
+      .fade-enter,
+      .fade-leave {
+        transition: opacity 0.5s ease;
+      }
+      .fade-enter {
+        opacity: 1;
+      }
+      .fade-leave {
+        opacity: 0;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .left-section,
+      .right-section {
+        width: 50%;
+        /* padding: 10px; */
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .highlight {
+        background-color: yellow;
+      }
+
+      @media (min-width: 769px) {
+        .container {
+          display: flex;
+        }
+        .api_btn {
+          max-width: inherit;
+          line-height: 2.5rem;
+          border-radius: 0.1429rem;
+          width: 135px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .container {
+          display: flex;
+          /* 추가적인 데스크탑 스타일 */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <header id="header">
+        <!-- header -->
+        <div class="header_top">
+          <div class="flex-b-c" style="max-width: 1600px; margin: 0 auto">
+            <!-- ----------------------------------------------------------------------- -->
+            <h1 class="logo">
+              <a href="../overwrite/index.html" class="flex--c">
+                <img
+                  src="../assets/img/common/logo.png"
+                  alt="BIGIN 보험정보 빅데이터 플랫폼 로고"
+                />
+                <!--<picture>
+                  <source media="(max-width: 768px)" srcset="../assets/img/common/logo.png"/>
+                  <img src="../assets/img/common/logo.png" alt="보험개발원 보험정보 빅데이터 플랫폼 로고">
+                </picture>-->
+                <span>보험정보 빅데이터 플랫폼</span>
+              </a>
+            </h1>
+            <!-- ----------------------------------------------------------------------- -->
+            <nav id="gnb" class="gnb_list">
+              <ul class="menu-01">
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">보험통계</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>보험통계</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li>
+                          <a href="/user/nd00002.action">50대 주요 보험지표</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00115.action">발간물 데이터</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00226.action" class="dep3_ttl"
+                            >보험통계 조회서비스</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00226.action">월간보험통계</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00223.action"
+                                >자동차보험 마일리지 현황</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00224.action"
+                                >생명보험 종류별 계약건수</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00235.do">기타 통계(INcos)</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00212.action" class="dep3_ttl"
+                            >외부기관 연계 데이터</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00212.action">자동차보험</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00213.action">일반손해보험</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00218.action">생명장기보험</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="/user/nd00117.do">대외제공용 통계</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">알쓸보험</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>알쓸보험</strong>
+                        <div>알아두면 쓸모있는 보험정보</div>
+                      </div>
+                      <ul class="dep2">
+                        <li><a href="/user/nd00006.action">알쓸보험상식</a></li>
+                        <li>
+                          <a href="/user/nd00007.action">보험용어 사전</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00020.do" class="dep3_ttl"
+                            >공시기준이율</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00020.do">과거공시기준이율</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00010.do"
+                                >공시기준이율 산출기준</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00011.do"
+                                >공시기준이율 DOWNLOAD</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00044.action" class="dep3_ttl"
+                            >자동차보험정보</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00044.action">차량기준가액</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00074.action">차량모델등급</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00054.do">경미손상 수리기준</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00071.do"
+                                >자동차보험금 원가지수</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00077.do" class="dep3_ttl"
+                            >국내외 보험 관련기관</a
+                          >
+                          <ul class="dep3">
+                            <li><a href="/user/nd00077.do">보험기관</a></li>
+                            <li><a href="/user/nd00078.do">유관기관</a></li>
+                            <li><a href="/user/nd00079.do">해외보험기관</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">MY보험</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>MY보험</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li>
+                          <a href="/user/nd00237.do"
+                            >실손24(실손보험 청구 전산화 시스템)</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00114.action">나의 시민안전보험</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00013.action">주요 질환 예측 정보</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00014.do"
+                            >자동차보험 과납보험료 및 휴면보험금 조회시스템</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00015.do">내 차 보험 찾기(Mycar)</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00064.do"
+                            >자동차보험 할인할증요인 조회</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00065.do">자동차보험정보 고객센터</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00066.do"
+                            >대리운전자보험 조회시스템</a
+                          >
+                        </li>
+                        <li>
+                          <a href="./step1.html"
+                            >자동차사고이력정보(CarHistory)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">보험소식</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>보험소식</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li><a href="/user/nd00017.do">보도자료</a></li>
+                        <li><a href="/user/nd00084.do">New-Tech 트렌드</a></li>
+                        <li>
+                          <a href="/user/nd00068.do">Monthly KIDI Brief</a>
+                        </li>
+                        <li><a href="/user/nd00083.do">국내보험동향</a></li>
+                        <li>
+                          <a href="/user/nd00003.do" class="dep3_ttl"
+                            >KIDI 정기간행물</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00003.do"
+                                >KIDI 은퇴시장 리포트</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00051.do"
+                                >자동차보험 광역시도별 교통사고</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00018.do"
+                                >기업성보험 통계분석보고서</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="/user/nd00069.do">서비스 안내</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <!-- ----------------------------------------------------------------------- -->
+            <div class="flex--c h_btn_area">
+              <!-- <button id="chartOptionBtn">차트설정</button> -->
+              <div class="search_btn_form_set">
+                <button
+                  type="button"
+                  class="header_btn head_search_btn"
+                  title="검색창 열기"
+                  aria-label="검색창 열기"
+                ></button>
+                <div id="h_search" class="h_search" aria-labelledby="검색창">
+                  <div class="inner">
+                    <div class="h_search_box">
+                      <!-- 일단 검색버튼 클릭 시 링크이동 될 수있도록 form태그로 연결시켜놨습니다 -->
+                      <form action="/main/srchMain072801.do">
+                        <div class="form-item search_form">
+                          <label for="in_text" class="hidden"
+                            >검색어 입력</label
+                          >
+                          <input
+                            type="text"
+                            class="bs-input"
+                            id="in_text_searchKwrd"
+                            name="searchKwrd"
+                            placeholder="검색어를 입력해주세요"
+                            title="검색어 입력"
+                          />
+                          <button type="submit" class="form_search">
+                            검색 실행 버튼
+                          </button>
+                        </div>
+                      </form>
+
+                      <div class="keyword_list flex">
+                        <em>추천검색어</em>
+                        <div>
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=자동차보험"
+                            >#자동차보험</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=휴면보험금"
+                            >#휴면보험금</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=은퇴시장 리포트"
+                            >#은퇴시장 리포트</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=카히스토리"
+                            >#카히스토리</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=차량기준가액"
+                            >#차량기준가액</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header--option">
+                <button
+                  type="button"
+                  class="header_btn ham_btn"
+                  title="전체메뉴 열기"
+                  aria-label="전체메뉴 열기"
+                ></button>
+                <button
+                  type="button"
+                  class="ham_close"
+                  title="전체메뉴 닫기"
+                  aria-label="전체메뉴 닫기"
+                ></button>
+              </div>
+            </div>
+            <!-- ----------------------------------------------------------------------- -->
+          </div>
+        </div>
+        <div
+          id="all_menu_wrap"
+          class="all_menu_wrap"
+          aria-labelledby="전체 메뉴"
+        >
+          <div class="inner">
+            <div>
+              <!-- 전체메뉴 스크립트로 불러옴 -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="bg"></div>
+      <!-- container -->
+
+      <main id="container">
+        <!-- sub_visual -->
+        <section class="sub_visual">
+          <div class="inner">
+            <h2 class="sub_visual_ttl">라이프스타일 기반 AI추천보험</h2>
+            <!-- 2024.02.05 : menu_ttl 메뉴설명 있던 자리 기존에 text_conts 데이터를 불러왔으나 value값 삭제 처리함 -->
+            <em class="menu_ttl"></em>
+
+            <nav aria-label="현위치 안내" class="breadcrumb">
+              <ol>
+                <li><span class="home"></span></li>
+                <li><span> MY보험</span></li>
+                <li aria-current="page">
+                  <span>라이프스타일 기반 AI추천보험</span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </section>
+        <div class="inner_1120 content">
+          <div class="input-wrap">
+            <div class="input-row">
+              <div
+                class="radiobox_wrap_type2 flex w-auto-list"
+                role="radiogroup"
+                style="width: 1300px"
+              >
+                <div class="bs-radio">
+                  <input
+                    type="radio"
+                    name="viewType"
+                    id="singleRadio"
+                    value="single"
+                    onclick="toggleSections()"
+                    checked=""
+                  />
+                  <label for="singleRadio">단일조회</label>
+                </div>
+                <div class="bs-radio">
+                  <input
+                    type="radio"
+                    name="viewType"
+                    id="compareRadio"
+                    value="compare"
+                    onclick="toggleSections()"
+                  />
+                  <label for="compareRadio">비교조회</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="text_box">
+              <br />
+              <p class="text flex">
+                <i>&nbsp;&nbsp;※</i> 시민안전보험 정보는 행정안전부가 제공하는
+                OpenAPI 서비스를 통해 제공되고 있습니다.
+              </p>
+              <p class="text flex">
+                <i>&nbsp;&nbsp;※</i> 아래 지역단위의 경우 광역자치단체와
+                기초자치단체의 시민안전보험이 별도로 존재하는 경우가 있으니 함께
+                확인하십시오.
+              </p>
+              <p class="text flex">
+                <i>&nbsp;&nbsp;&nbsp; *</i> 서울특별시, 부산광역시, 인천광역시,
+                광주광역시, 대전광역시, 충청북도
+              </p>
+            </div>
+            <section
+              class="left-section"
+              id="leftSection"
+              style="display: block; width: 100%"
+            >
+              <!-- <section class="left-section" id="leftSection">  -->
+              <br />
+              <div class="my_insr_search">
+                <form
+                  action="/user/getSafeInsrNcInfoList"
+                  method="post"
+                  id="form_carGradeListSearch"
+                >
+                  <div class="flex--c form_wrap">
+                    <input type="hidden" name="pageNo" value="1" />
+                    <div class="form-item select-col">
+                      <label for="upOrgCd" class="hidden">시도 선택 </label>
+                      <select
+                        name="upOrgCd"
+                        id="upOrgCd"
+                        class="bs-select"
+                        onchange="show_Orgcode_Grp('upOrgCd', this.value)"
+                      >
+                        <option value="">시도</option>
+
+                        <option value="6110000">서울특별시</option>
+
+                        <option value="6260000">부산광역시</option>
+
+                        <option value="6270000">대구광역시</option>
+
+                        <option value="6280000">인천광역시</option>
+
+                        <option value="6290000">광주광역시</option>
+
+                        <option value="6300000">대전광역시</option>
+
+                        <option value="6310000">울산광역시</option>
+
+                        <option value="6410000">경기도</option>
+
+                        <option value="6530000">강원특별자치도</option>
+
+                        <option value="6430000">충청북도</option>
+
+                        <option value="6440000">충청남도</option>
+
+                        <option value="6540000">전북특별자치도</option>
+
+                        <option value="6460000">전라남도</option>
+
+                        <option value="6470000">경상북도</option>
+
+                        <option value="6480000">경상남도</option>
+
+                        <option value="6500000">제주특별자치도</option>
+                      </select>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-item select-col">
+                      <label for="orgCd" class="hidden">시군구 선택</label>
+                      <select name="orgCd" id="orgCd" class="bs-select">
+                        <option value="">시군구</option>
+                        <!--  <option value="3110000">3110000</option>  -->
+                      </select>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button
+                      type="button"
+                      class="api_btn btn-point"
+                      style="font-size: 20px"
+                      id="singleButton"
+                      onclick="safeInsrSearchView(1)"
+                    >
+                      조회
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div
+                class="car_search_view"
+                style="display: block; padding-top: 30px"
+              >
+                <div class="table_wrap gray_table">
+                  <div class="mo_scroll">
+                    <div
+                      class="view_count_box flex--c"
+                      id="grntItemNmCnt"
+                      style="font-size: 17px"
+                    ></div>
+                    <table>
+                      <caption style="font-size: 0">
+                        시군구 별 시민안전보험정보 표 - 보장항목, 보장내용,
+                        보장금액
+                      </caption>
+                      <thead id="why" style="display: none">
+                        <tr>
+                          <!-- <div id ="grntItemNmCnt" style="text-align: right; font-size:17px;"></div>  -->
+
+                          <th scope="col">보장항목</th>
+                          <th scope="col">보장내용</th>
+                          <th scope="col">보장금액</th>
+                        </tr>
+                      </thead>
+                      <tbody id="noDataArea" style="display: none">
+                        <!-- 데이터 없을때 노출해 주세요 -->
+                        <tr class="no-data">
+                          <td colspan="5">
+                            <strong>검색결과가 없습니다.</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <tbody id="safeInsurListAjax"></tbody>
+                    </table>
+                  </div>
+                  <p class="table_info_txt">
+                    <i></i> 해당영역은 좌,우 스크롤이 가능합니다.
+                  </p>
+                </div>
+              </div>
+              <!-- </section>  -->
+            </section>
+            <section class="right-section" id="rightSection">
+              <!--  <section class="right-section" id="rightSection"> -->
+              <br />
+
+              <div class="my_insr_search">
+                <form
+                  action="/user/getSafeInsrNcInfoList"
+                  method="post"
+                  id="form_carGradeListSearch"
+                >
+                  <div class="flex--c form_wrap">
+                    <input type="hidden" name="pageNo" value="1" />
+                    <div class="form-item select-col">
+                      <label for="upOrgCd2" class="hidden">시도 선택</label>
+                      <select
+                        name="upOrgCd2"
+                        id="upOrgCd2"
+                        class="bs-select"
+                        onchange="show_Orgcode_Grp2('upOrgCd2', this.value)"
+                      >
+                        <option value="">시도</option>
+
+                        <option value="6110000">서울특별시</option>
+
+                        <option value="6260000">부산광역시</option>
+
+                        <option value="6270000">대구광역시</option>
+
+                        <option value="6280000">인천광역시</option>
+
+                        <option value="6290000">광주광역시</option>
+
+                        <option value="6300000">대전광역시</option>
+
+                        <option value="6310000">울산광역시</option>
+
+                        <option value="6410000">경기도</option>
+
+                        <option value="6530000">강원특별자치도</option>
+
+                        <option value="6430000">충청북도</option>
+
+                        <option value="6440000">충청남도</option>
+
+                        <option value="6540000">전북특별자치도</option>
+
+                        <option value="6460000">전라남도</option>
+
+                        <option value="6470000">경상북도</option>
+
+                        <option value="6480000">경상남도</option>
+
+                        <option value="6500000">제주특별자치도</option>
+                      </select>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-item select-col">
+                      <label for="orgCd2" class="hidden">시군구 선택</label>
+                      <select name="orgCd2" id="orgCd2" class="bs-select">
+                        <option value="">시군구</option>
+                        <!-- <option value="3110000">3110000</option>  -->
+                      </select>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button
+                      type="button"
+                      class="api_btn btn-point"
+                      style="font-size: 20px"
+                      id="compareButton"
+                      onclick="safeInsrSearchView2(1)"
+                    >
+                      조회
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div
+                class="car_search_view2"
+                style="display: block; padding-top: 30px"
+              >
+                <div class="table_wrap gray_table">
+                  <div class="mo_scroll">
+                    <div
+                      class="view_count_box flex--c"
+                      id="grntItemNmCnt2"
+                      style="font-size: 17px"
+                    ></div>
+                    <table>
+                      <caption style="font-size: 0">
+                        시군구 별 시민안전보험정보 표 - 보장항목, 보장내용,
+                        보장금액
+                      </caption>
+                      <thead id="why2" style="display: none">
+                        <tr>
+                          <!-- <div id ="grntItemNmCnt2" style="text-align: right; font-size:17px;"></div> -->
+
+                          <th scope="col">보장항목</th>
+                          <th scope="col">보장내용</th>
+                          <th scope="col">보장금액</th>
+                        </tr>
+                      </thead>
+                      <tbody id="noDataArea2">
+                        <!-- 데이터 없을때 노출해 주세요 -->
+                        <tr class="no-data">
+                          <td colspan="5">
+                            <strong>검색결과가 없습니다.</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <tbody id="safeInsurListAjax2"></tbody>
+                    </table>
+                  </div>
+                  <p class="table_info_txt">
+                    <i></i> 해당영역은 좌,우 스크롤이 가능합니다.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <script type="text/javascript">
+            function toggleSections() {
+              var singleRadio = document.getElementById("singleRadio");
+              var compareRadio = document.getElementById("compareRadio");
+              var leftSection = document.getElementById("leftSection");
+              var rightSection = document.getElementById("rightSection");
+
+              if (singleRadio.checked) {
+                leftSection.style.width = "100%";
+                // leftSection.style.display = "block";
+                rightSection.style.display = "none";
+
+                singleButton.style.display = "block";
+                compareButton.style.display = "none";
+
+                $("#noDataArea").hide();
+                // $("#why").hide();
+              } else if (compareRadio.checked) {
+                leftSection.style.width = "50%";
+                rightSection.style.width = "50%";
+                //leftSection.style.display = "block";
+                rightSection.style.display = "block";
+
+                singleButton.style.display = "none";
+                compareButton.style.display = "block";
+
+                $("#noDataArea2").hide();
+                // $("#why2").hide();
+              }
+            }
+
+            $(document).ready(function () {
+              var leftSection = document.getElementById("leftSection");
+              leftSection.style.display = "block"; // 초기에 왼쪽 섹션을 보이게 설정
+              leftSection.style.width = "100%";
+
+              $("#noDataArea").hide();
+              $("#why").hide();
+              $("#why2").hide();
+            });
+
+            //조회 //모바일조회시 찌그러지는거 50% 다시 보자
+            function safeInsrSearchView(srchPageNo) {
+              var select1 = document.getElementById("upOrgCd");
+              var select2 = document.getElementById("orgCd");
+
+              // 각 select 요소의 선택된 옵션을 가져옵니다.
+              var selectedOption1 = select1.value;
+              var selectedOption2 = select2.value;
+
+              // 각 select 요소에서 옵션이 선택되지 않은 경우 경고를 표시하고 폼 제출을 막습니다.
+
+              if (selectedOption1 === "" && selectedOption2 === "") {
+                alert("시도, 시군구를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              if (selectedOption1 === "") {
+                alert("시도를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              if (selectedOption2 === "") {
+                alert("시군구를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              currentPageNo = srchPageNo;
+              var params = {
+                upOrgCd: $("#upOrgCd option:selected").val(),
+                orgCd: $("#orgCd option:selected").val(),
+              };
+              $("#pageNavigation").empty();
+              $("#safeInsurListAjax").empty();
+              cfnCallAjax(
+                "/user/getSafeInsrNcInfoList",
+                "POST",
+                "true",
+                params,
+                function (data) {
+                  $("#noDataArea").hide();
+
+                  //console.log("data ::: ", data);
+                  //lastPageNo = data.rtnData.lastPageNo;
+
+                  $("#safeInsurListAjax").empty();
+                  //navList = data.rtnData.navList;
+
+                  console.log(
+                    "data.rtnData.filteredArray ::: ",
+                    data.rtnData.filteredArray
+                  );
+                  //console.log("navList ::: ",navList);
+
+                  if (data.rtnData.grntItmNmCount == 0) {
+                    console.log(
+                      "data.rtnData.grntItmNmCount ::",
+                      data.rtnData.grntItmNmCount
+                    );
+
+                    var noDataArea = document.getElementById("noDataArea");
+                    $(".car_search_view").css("display", "block");
+                    $("#noDataArea").show();
+                  }
+
+                  if (data.rtnData != undefined) {
+                    $(".car_search_view").slideDown();
+
+                    //$('#grntItemNmCnt').html(data.rtnData.grntItmNmCount+"건");
+                    $("#grntItemNmCnt").html(
+                      '<em class="sm_ttl">' +
+                        data.rtnData.grntItmNmCount +
+                        "</em>건"
+                    );
+
+                    /*            <div class="view_count_box flex--c">
+                      <em class="sm_ttl">일일 조회수 <span class="text-point"></span>/</em>
+                      <em class="sm_ttl">월간 조회수 <span class="text-point"></span>/</em>
+                      <em class="sm_ttl">연간 조회수 <span class="text-point"></span>/</em>
+                    </div> */
+                    $("#why").show();
+                    $.each(data.rtnData.filteredArray, function (index, item) {
+                      var inHtml = "<tr>";
+                      $.each(item.lcgvrGrnt, function (idx, grntItem) {
+                        let formattedAmt = Number(
+                          grntItem.grntAmt
+                        ).toLocaleString();
+                        inHtml +=
+                          '<td style="text-align: left;">' +
+                          grntItem.grntItmNm +
+                          "</td>";
+                        inHtml +=
+                          '<td style="text-align: left;">' +
+                          grntItem.grntCnts +
+                          "</td> ";
+                        inHtml +=
+                          '<td style="text-align: right;">' +
+                          formattedAmt +
+                          "만원</td> ";
+                        inHtml += "</tr>";
+                      });
+
+                      $("#safeInsurListAjax").append(inHtml);
+                    });
+
+                    // 페이징처리 불필요
+                    //	var inHtml ="<ul>";
+                    //	inHtml += '<li class="first pager_btn">' ;
+                    //	inHtml += '<a href="javascript:movePage(1)" aria-label="First page">처음 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '<li class="prev pager_btn">' ;
+                    //	inHtml += '<a href="javascript:movePre()" aria-label="Previous page">이전 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+
+                    //	console.log("curPageNo ::: " + currentPageNo);
+                    //	$.each(data.rtnData.navList, function(idx, item) {
+                    //		if(item == currentPageNo){
+                    //	        inHtml += '<li class="num  on">';
+                    //		}else{
+                    //			inHtml += '<li class="num">';
+                    //		}
+                    //		inHtml += '<a href="javascript:movePage('+ item +')">'+ item +'</a></li>';
+                    //	});
+                    //	inHtml += '<li class="next pager_btn">' ;
+                    //	inHtml += '<a href="javascript:moveNext()" aria-label="Next page">다음 페이지로</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '<li class="last  pager_btn">' ;
+                    //	inHtml += '<a href="javascript:moveLast()" aria-label="Last page">마지막 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '</ul>' ;
+                    //	$('#pageNavigation').empty();
+                    //    $('#pageNavigation').append(inHtml);
+                  } else {
+                    $(".car_search_view").slideUp();
+                    $(".car_search_view").css("display", "none");
+                  }
+                }
+              );
+            }
+
+            //오른쪽에 검색결과가 없습니다 랑 보증항목 금액 header 미리 보이는거 다듬기 2024.07.23
+            //simple json 라이브러리 추가해줬고, jdk1.6에서도 돌아가는지 확인해야하고, css도 다듬어야하고(왼쪽 오른쪽 높이 상이 section height 120 이 제일나았던거같기도..)
+            //운영계에서 ins24 통신 잘 되는지도 확인해야함 2024.07.23. yml 파일은 수정완료
+            //데이터 나오는 결과가 0건인 경우 맞는지 확인, 운영계에서 디도스 공격 당할일 없는지도 확인
+            //단일조회 클릭하면 오른쪽 th header가 없어짐
+
+            //조회
+            function safeInsrSearchView2(srchPageNo) {
+              var select1 = document.getElementById("upOrgCd");
+              var select2 = document.getElementById("orgCd");
+
+              var select3 = document.getElementById("upOrgCd2");
+              var select4 = document.getElementById("orgCd2");
+
+              // 각 select 요소의 선택된 옵션을 가져옵니다.
+              var selectedOption1 = select1.value;
+              var selectedOption2 = select2.value;
+
+              var selectedOption3 = select3.value;
+              var selectedOption4 = select4.value;
+
+              if (
+                (selectedOption1 === "" && selectedOption2 === "") ||
+                (selectedOption3 === "" && selectedOption4 === "")
+              ) {
+                alert("시도, 시군구를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              // 각 select 요소에서 옵션이 선택되지 않은 경우 경고를 표시하고 폼 제출을 막습니다.
+              if (selectedOption1 === "" || selectedOption3 === "") {
+                alert("시도를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              if (selectedOption2 === "" || selectedOption4 === "") {
+                alert("시군구를 선택해 주세요.");
+                return false; // 폼 제출을 막기 위해 false 반환
+              }
+
+              currentPageNo = srchPageNo;
+              var params = {
+                upOrgCd: $("#upOrgCd option:selected").val(),
+                orgCd: $("#orgCd option:selected").val(),
+                upOrgCd2: $("#upOrgCd2 option:selected").val(),
+                orgCd2: $("#orgCd2 option:selected").val(),
+              };
+              $("#pageNavigation2").empty();
+              $("#safeInsurListAjax").empty();
+              $("#safeInsurListAjax2").empty();
+
+              cfnCallAjax(
+                "/user/getSafeInsrNcInfoList2",
+                "POST",
+                "true",
+                params,
+                function (data) {
+                  $("#noDataArea").hide();
+                  $("#noDataArea2").hide();
+
+                  //console.log("data ::: ", data);
+                  //lastPageNo = data.rtnData.lastPageNo;
+
+                  $("#safeInsurListAjax").empty();
+                  $("#safeInsurListAjax2").empty();
+                  //navList = data.rtnData.navList;
+
+                  //console.log("data.rtnData.filteredArray ::: ", data.rtnData.filteredArray);
+                  //console.log("navList ::: ",navList);
+
+                  if (data.rtnData.grntItmNmCount == 0) {
+                    console.log(
+                      "data.rtnData.grntItmNmCount ::",
+                      data.rtnData.grntItmNmCount
+                    );
+
+                    var noDataArea = document.getElementById("noDataArea");
+                    $(".car_search_view").css("display", "block");
+                    $("#noDataArea").show();
+                  }
+
+                  if (data.rtnData.grntItmNmCount2 == 0) {
+                    console.log(
+                      "data.rtnData.grntItmNmCount2 ::",
+                      data.rtnData.grntItmNmCount2
+                    );
+
+                    var noDataArea2 = document.getElementById("noDataArea2");
+                    $(".car_search_view2").css("display", "block");
+                    $("#noDataArea2").show();
+                  }
+
+                  if (data.rtnData != undefined) {
+                    $(".car_search_view").slideDown();
+                    $(".car_search_view2").slideDown();
+
+                    //$('#grntItemNmCnt').html(data.rtnData.grntItmNmCount+"건");
+                    $("#grntItemNmCnt").html(
+                      '<em class="sm_ttl">' +
+                        data.rtnData.grntItmNmCount +
+                        "</em>건"
+                    );
+                    $("#why").show();
+                    $.each(data.rtnData.filteredArray, function (index, item) {
+                      var inHtml = "<tr>";
+                      $.each(item.lcgvrGrnt, function (idx, grntItem) {
+                        let formattedAmt = Number(
+                          grntItem.grntAmt
+                        ).toLocaleString();
+                        inHtml +=
+                          '<td class="itemName" style="text-align: left;">' +
+                          grntItem.grntItmNm +
+                          "</td>";
+                        inHtml +=
+                          '<td style="text-align: left;">' +
+                          grntItem.grntCnts +
+                          "</td> ";
+                        inHtml +=
+                          '<td style="text-align: right;">' +
+                          formattedAmt +
+                          "만원</td> ";
+                        inHtml += "</tr>";
+                      });
+
+                      $("#safeInsurListAjax").append(inHtml);
+                    });
+
+                    //$('#grntItemNmCnt2').html(data.rtnData.grntItmNmCount2+"건");
+                    $("#grntItemNmCnt2").html(
+                      '<em class="sm_ttl">' +
+                        data.rtnData.grntItmNmCount2 +
+                        "</em>건"
+                    );
+                    $("#why2").show();
+                    $.each(
+                      data.rtnData.filteredArray2,
+                      function (index2, item2) {
+                        var inHtml = "<tr>";
+                        $.each(item2.lcgvrGrnt, function (idx2, grntItem2) {
+                          let formattedAmt2 = Number(
+                            grntItem2.grntAmt
+                          ).toLocaleString();
+                          inHtml +=
+                            '<td class="itemName" style="text-align: left;">' +
+                            grntItem2.grntItmNm +
+                            "</td>";
+                          inHtml +=
+                            '<td style="text-align: left;">' +
+                            grntItem2.grntCnts +
+                            "</td>";
+                          inHtml +=
+                            '<td style="text-align: right;">' +
+                            formattedAmt2 +
+                            "만원</td> ";
+                          inHtml += "</tr>";
+                        });
+
+                        $("#safeInsurListAjax2").append(inHtml);
+                      }
+                    );
+
+                    // 데이터가 모두 추가된 후에 CSS를 적용하여 노란색 스타일 추가
+                    //applyHighlight('#safeInsurListAjax', '#safeInsurListAjax2');
+
+                    // 페이징처리 불필요
+                    //	var inHtml ="<ul>";
+                    //	inHtml += '<li class="first pager_btn">' ;
+                    //	inHtml += '<a href="javascript:movePage(1)" aria-label="First page">처음 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '<li class="prev pager_btn">' ;
+                    //	inHtml += '<a href="javascript:movePre()" aria-label="Previous page">이전 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+
+                    //	console.log("curPageNo ::: " + currentPageNo);
+                    //	$.each(data.rtnData.navList, function(idx, item) {
+                    //		if(item == currentPageNo){
+                    //	        inHtml += '<li class="num  on">';
+                    //		}else{
+                    //			inHtml += '<li class="num">';
+                    //		}
+                    //		inHtml += '<a href="javascript:movePage('+ item +')">'+ item +'</a></li>';
+                    //	});
+                    //	inHtml += '<li class="next pager_btn">' ;
+                    //	inHtml += '<a href="javascript:moveNext()" aria-label="Next page">다음 페이지로</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '<li class="last  pager_btn">' ;
+                    //	inHtml += '<a href="javascript:moveLast()" aria-label="Last page">마지막 페이지로 이동</a>' ;
+                    //	inHtml += '</li>' ;
+                    //	inHtml += '</ul>' ;
+                    //	$('#pageNavigation').empty();
+                    //    $('#pageNavigation').append(inHtml);
+                  } else {
+                    $(".car_search_view").slideUp();
+                    $(".car_search_view").css("display", "none");
+
+                    $(".car_search_view2").slideUp();
+                    $(".car_search_view2").css("display", "none");
+                  }
+                }
+              );
+            }
+
+            //노란색 스타일을 적용하는 함수
+            function applyHighlight(table1Selector, table2Selector) {
+              // table1의 각 행을 순회하면서 table2와 비교
+              $(table1Selector + " tr").each(function () {
+                var firstColumnValue = $(this).find("td.itemName").text(); // 현재 행의 첫 번째 열의 텍스트 값 가져오기
+                var foundMatch = false;
+
+                $(table2Selector + " tr").each(function () {
+                  // var secondColumnValue = $(this).find('td').eq(0).text(); // table2의 첫 번째 열의 텍스트 값 가져오기
+                  var secondColumnValue = $(this).find("td.itemName").text();
+                  if (firstColumnValue === secondColumnValue) {
+                    foundMatch = true;
+                    return false; // 일치하는 항목을 찾으면 더 이상 반복하지 않음
+                  }
+                });
+
+                if (foundMatch) {
+                  $(this).find("td.itemName").addClass("highlight"); // 일치하는 경우에만 highlight 클래스 추가
+                }
+
+                /*  if (foundMatch) {
+                      $(this).addClass('highlight'); // 일치하는 경우에만 highlight 클래스 추가
+                  } */
+              });
+
+              // table2의 각 행을 순회하면서 table1과 비교
+              $(table2Selector + " tr").each(function () {
+                var firstColumnValue = $(this).find("td").eq(0).text(); // 현재 행의 첫 번째 열의 텍스트 값 가져오기
+                var foundMatch = false;
+
+                $(table1Selector + " tr").each(function () {
+                  var secondColumnValue = $(this).find("td").eq(0).text(); // table1의 첫 번째 열의 텍스트 값 가져오기
+                  if (firstColumnValue === secondColumnValue) {
+                    foundMatch = true;
+                    return false; // 일치하는 항목을 찾으면 더 이상 반복하지 않음
+                  }
+                });
+
+                /*  if (foundMatch) {
+                      $(this).addClass('highlight'); // 일치하는 경우에만 highlight 클래스 추가
+                  } */
+                if (foundMatch) {
+                  $(this).find("td.itemName").addClass("highlight"); // 일치하는 경우에만 highlight 클래스 추가
+                }
+              });
+            }
+
+            // 시군구 조회
+            var show_Orgcode_Grp = function (type, type_value) {
+              let upOrgCd = "";
+
+              if (type == "upOrgCd") {
+                upOrgCd = type_value;
+              }
+
+              var params = {
+                upOrgCd: upOrgCd,
+              };
+              cfnCallAjax(
+                "/user/getOrgCodeList",
+                "POST",
+                "true",
+                params,
+                function (data) {
+                  //var _orgNm = document.getElementById("orgNm");
+                  //_orgNm.value = "";
+                  $("#orgCd").empty();
+
+                  let inhtml = '<option value="">- - -</option>';
+                  $.each(data, function (idx, item) {
+                    inhtml +=
+                      "<option value='" +
+                      item.orgCd +
+                      "'>" +
+                      item.orgNm +
+                      " </option>";
+                  });
+                  $("#orgCd").append(inhtml);
+                }
+              );
+            };
+
+            //시군구 조회
+            var show_Orgcode_Grp2 = function (type, type_value) {
+              let upOrgCd2 = "";
+
+              if (type == "upOrgCd2") {
+                upOrgCd2 = type_value;
+              }
+
+              var params = {
+                upOrgCd: upOrgCd2,
+              };
+              cfnCallAjax(
+                "/user/getOrgCodeList",
+                "POST",
+                "true",
+                params,
+                function (data) {
+                  //var _orgNm = document.getElementById("orgNm");
+                  //_orgNm.value = "";
+                  $("#orgCd2").empty();
+
+                  let inhtml2 = '<option value="">- - -</option>';
+                  $.each(data, function (idx, item) {
+                    inhtml2 +=
+                      "<option value='" +
+                      item.orgCd +
+                      "'>" +
+                      item.orgNm +
+                      " </option>";
+                  });
+                  $("#orgCd2").append(inhtml2);
+                }
+              );
+            };
+
+            //// 탭이 더 길어지면 스크롤 달고 센터 정렬
+            // var $scrItem = $('.horizonScroll__item');
+            //     $scrItem.click(function(){
+            //     var target = $(this);
+            //     scrollCenter(target);
+            // })
+
+            // $(window).on('load resize', function () {
+            //   resizeScrollCenter();
+            // })
+            // resizeScrollCenter();
+
+            const tabs = document.querySelectorAll(".tab_list li");
+            const tabContents = document.querySelectorAll(".tab_cont");
+            const nowBreadcrum = document.querySelector(
+              '.breadcrumb li[aria-current="page"] span'
+            );
+
+            tabs.forEach((tab) => {
+              tab.addEventListener("click", () => {
+                tabs.forEach((t) => {
+                  t.classList.remove("on");
+                  t.setAttribute("aria-selected", "false");
+                });
+                tab.classList.add("on");
+                tab.setAttribute("aria-selected", "true");
+
+                tabContents.forEach((content) => {
+                  content.classList.remove("active");
+                });
+
+                const tabId = tab.getAttribute("id").replace("tab", "");
+                const targetTab = document.getElementById("tabpanel" + tabId);
+                targetTab.classList.add("active");
+
+                const activeTabText = tab.innerText;
+                nowBreadcrum.innerText = activeTabText;
+
+                // console.log("현위치: " + activeTabText);
+              });
+            });
+
+            var currentPageNo = 1;
+            var lastPageNo = 1;
+
+            var movePage = function (pageNo) {
+              // 	let form = $(document).find("form").get(0);
+              const form = $("#form_carGradeListSearch").get(0);
+
+              form.pageNo.value = pageNo;
+              safeInsrSearchView(pageNo);
+              // 	form.submit();
+            };
+
+            var movePre = function () {
+              let prePage = Number(currentPageNo) - 1;
+
+              if (0 >= prePage) {
+                prePage = 1;
+              }
+              movePage(prePage);
+            };
+
+            var moveNext = function () {
+              let nextPage = Number(currentPageNo) + 1;
+              console.log("nextPage :: ", nextPage);
+              console.log("lastPageNo :: ", lastPageNo);
+
+              if (lastPageNo <= nextPage) {
+                nextPage = lastPageNo;
+              }
+              movePage(nextPage);
+            };
+
+            var moveLast = function () {
+              movePage(lastPageNo);
+            };
+          </script>
+        </div>
+      </main>
+
+      <footer id="footer"></footer>
+    </div>
+
+    <script src="../assets/plugin/axios/axios.js"></script>
+    <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
+    <script src="../assets/plugin/gsap/gsap.min.js"></script>
+    <script src="../assets/plugin/gsap/SplitType.js"></script>
+    <script src="../assets/plugin/anime/anime.min.js"></script>
+    <script src="../assets/plugin/particles/particles.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/intro.js" defer></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="../assets/js/dashBoard.js" type="module"></script>
+    <!-- <script src="../assets/js/main.js"></script> -->
+  </body>
+</html>

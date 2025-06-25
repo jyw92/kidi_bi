@@ -1,0 +1,69 @@
+<div class="flex--c h_btn_area">
+    <div class="search_btn_form_set">
+      <button
+        type="button"
+        class="header_btn head_search_btn"
+        title="검색창 열기"
+        aria-label="검색창 열기"
+      ></button>
+
+      <div id="h_search" class="h_search" aria-labelledby="검색창">
+        <div class="inner">
+          <div class="h_search_box">
+            <!-- 일단 검색버튼 클릭 시 링크이동 될 수있도록 form태그로 연결시켜놨습니다 -->
+            <form action="/main/srchMain072801.do">
+              <div class="form-item search_form">
+                <label for="in_text" class="hidden"
+                  >검색어 입력</label
+                >
+                <input
+                  type="text"
+                  class="bs-input"
+                  id="in_text_searchKwrd"
+                  name="searchKwrd"
+                  placeholder="검색어를 입력해주세요"
+                  title="검색어 입력"
+                />
+                <button type="submit" class="form_search">
+                  검색 실행 버튼
+                </button>
+              </div>
+            </form>
+
+            <div class="keyword_list flex">
+              <em>추천검색어</em>
+              <div>
+                <a
+                  href="/main/srchMain072801.do?searchKwrd=자동차보험"
+                  >#자동차보험</a
+                >
+                <a
+                  href="/main/srchMain072801.do?searchKwrd=휴면보험금"
+                  >#휴면보험금</a
+                >
+                <a
+                  href="/main/srchMain072801.do?searchKwrd=은퇴시장 리포트"
+                  >#은퇴시장 리포트</a
+                >
+                <a
+                  href="/main/srchMain072801.do?searchKwrd=카히스토리"
+                  >#카히스토리</a
+                >
+                <a
+                  href="/main/srchMain072801.do?searchKwrd=차량기준가액"
+                  >#차량기준가액</a
+                >
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="search_close"
+            title="검색창 닫기"
+            aria-label="검색창 닫기"
+          ></button>
+        </div>
+      </div>
+    </div>
+    
+  </div>

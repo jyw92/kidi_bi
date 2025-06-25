@@ -5,15 +5,16 @@
   --modal-height: 100vh;
   --modal-padding: 16px;
   --primary: #3a86ff;
-  --secondary: #8338ec;
+  --secondary: #215285;
   --accent: #ff006e;
   --bg: #f8fafc;
   --card: #ffffff;
   --text: #1e293b;
-  --border: #e2e8f0;
-  --column-bg: #f1f5f9;
+  --border: #193a98;
+  --column-bg: #edf3ff;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --radius: 8px;
+  --radius: 4px;
+  --bs-input-height:40px;
   --header-pattern: repeating-linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.05) 0px,
@@ -49,6 +50,89 @@ dialog[open] {
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
   // backdrop-filter: blur(1px);
+}
+#shortcutCharts{
+  width:100%;
+  gap: rem(16);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  &::before{
+    content:attr(data-shortcut-title);
+    grid-column: 1/5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+
+.dialog--header{
+  position: relative;
+  inline-size: 100%;
+  padding:rem(22) rem(32);
+  // border: 1px solid red;
+  @include flex-center-x;
+  justify-content: space-between;
+  background-color:#fff;
+  &--options{
+    @include flex-center-x;
+    gap: 10px;
+  }
+}
+
+
+
+.theme-toggle {
+  // position: fixed;
+  // top: 1rem;
+  // right: 1rem;
+  // z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* Help button styles */
+.help-toggle {
+  // position: fixed;
+  // top: 1rem;
+  // right: 4rem;
+  // z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.help-toggle:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .dialog--title {
@@ -130,7 +214,7 @@ dialog::backdrop {
   --column-bg: #1e293b;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
   --primary: #60a5fa;
-  --secondary: #818cf8;
+  --secondary:  #047857;
   --accent: #f472b6;
   --text-light: #94a3b8;
   --header-pattern: repeating-linear-gradient(
@@ -187,7 +271,7 @@ dialog::backdrop {
   border: 1px solid var(--border);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-#selectList,
+[data-theme="dark"] #selectList,
 [data-theme="dark"] .form-group select,
 [data-theme="dark"] .form-group input,
 [data-theme="dark"] .form-group textarea {
@@ -196,7 +280,7 @@ dialog::backdrop {
   border-color: var(--border);
 }
 
-#selectList,
+[data-theme="dark"] #selectList,
 [data-theme="dark"] .form-group select:focus,
 [data-theme="dark"] .form-group input:focus,
 [data-theme="dark"] .form-group textarea:focus {
@@ -205,6 +289,10 @@ dialog::backdrop {
   box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
 }
 
+
+[data-theme="dark"] .form-group select{
+  background-image: url('/assets/img/ico/ico__arrow__down-white.svg') !important;
+}
 [data-theme="dark"] .task__date {
   color: var(--text-light);
 }
@@ -324,7 +412,7 @@ dialog::backdrop {
 .container {
   /* max-width: 1600px;
 			margin: 2rem auto; */
-  padding: 2rem;
+  padding: rem(20) rem(32) 0;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -334,7 +422,7 @@ dialog::backdrop {
 .board {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -499,9 +587,14 @@ dialog::backdrop {
   background: white;
   padding: 2rem;
   border-radius: var(--radius);
-  max-width: 700px;
+  // max-width: 700px;
   position: relative;
   width:90%;
+}
+#taskModal .modal__content{
+  width:100%;
+  height: 98vh;
+  background-color: #fff;
 }
 
 .modal__close {
@@ -519,15 +612,13 @@ dialog::backdrop {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-.form-group:nth-of-type(1) {
-  margin-top: 20px;
 }
 .form-group.row {
   flex-direction: row;
@@ -546,6 +637,23 @@ dialog::backdrop {
     flex-direction: row;
     gap: 10px;
     flex:1;
+    &.search--area{
+      position: relative;
+      #listSearch{
+        width:100%;
+        padding-right: 40px;
+      }
+      #dialog--search{
+        position: absolute;
+        background-image: url(../img/common/ico_search.svg);
+        width:20px;
+        height:20px;
+        right:10px;
+        top:50%;
+        transform: translateY(-50%);
+        text-indent: -9999em;
+      }
+    }
   }
 
 }
@@ -555,7 +663,8 @@ dialog::backdrop {
 }
 
 .form-group select{
-  background-image: url('/assets/img/ico/ico__arrow__down-white.svg') !important;
+  // background-color: rgba(15, 23, 42, 0.6) !important;
+  background-image: url('/assets/img/ico/ico__arrow__down.svg') !important;
   background-repeat: no-repeat !important;
   background-position-y: 50% !important;
   background-position-x: calc(100% - 10px) !important;
@@ -563,31 +672,62 @@ dialog::backdrop {
 
 .form-group select,
 .form-group input,
-.form-group textarea,
-#selectList {
+.form-group textarea{
   padding: 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid #f5f5f5;
   border-radius: var(--radius);
   font-family: inherit;
+  background-color: #f5f5f5
+}
+
+
+#selectListLabel{
+  &.error::after{
+    content:"리스트을 선택하여 주세요!";
+    color: #ff006e;
+    font-size: 12px;
+    margin-left: 10px;
+  }
 }
 #selectList{
-  height: 250px;
+  height: 400px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  // grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: repeat(6, 1fr);
   gap: 5px;
   overflow-y: auto;
   margin-top: 10px;
-  button{
-    background:#2a4065;
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s;
-    font-size: 14px;
-    padding: 10px;
+  background-color: #e5e5e5;
+  padding: 5px;
+  border: 1px solid #ddd;
+  
+  &.error{
+    border:3px dashed#ff006e;
+  }
+
+
+  /* 선택 목록 버튼 스타일 */
+  button {
+    padding: 8px 12px;
+    // border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    text-align: left;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    &:hover {
+      background-color: #f8f8f8;
+    }
+    &.selected {
+      position: sticky;
+      top: 0px;
+      bottom: 0px;
+      background-color: #215285;
+      color: #fff;
+      font-weight: 700;
+      border-color: #215285;
+      box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.2);
+    }
   }
 }
 
@@ -612,8 +752,8 @@ dialog::backdrop {
 input[type="color"] {
   -webkit-appearance: none;
   appearance: none;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   padding: 0;
   border: none;
   border-radius: 50%;
@@ -647,20 +787,28 @@ input[type="color"]:hover {
   font-size: 0.9rem;
 }
 
-.dialog--btn {
+.dialog--btn{
   padding: 0.75rem 1.5rem;
-  background: var(--primary);
-  color: white;
-  border: none;
+  background:#fff;
+  color: #555;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
+  &:not(.primary, .--active):hover{
+    background-color: #ddd;
+  }
+  &.primary{
+    background-color: #215285;
+    color:#fff;
+    border: 1px solid #215285;
+  }
 }
 
-.dialog--btn:hover,
 .dialog--btn.--active{
   background: var(--secondary);
+  color: #fff;
 }
 
 .task__image {
@@ -677,29 +825,7 @@ input[type="color"]:hover {
   }
 }
 
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
 
-.theme-toggle:hover {
-  transform: scale(1.1);
-}
 
 /* Footer styles */
 .footer {
@@ -860,31 +986,7 @@ input[type="color"]:hover {
   color: var(--text);
 }
 
-/* Help button styles */
-.help-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 4rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
 
-.help-toggle:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
-}
 
 /* Help modal styles */
 .help-modal__content {

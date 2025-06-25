@@ -1,0 +1,181 @@
+@use '../../abstracts/' as *;
+
+/* SB Aggro Light */
+@font-face {
+    font-family: 'SBAggroL';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* SB Aggro Medium */
+@font-face {
+    font-family: 'SBAggroM';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* SB Aggro Bold */
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.useful-swiper{
+    width:100%;
+
+    .useful-card{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+        height:100%;
+    }
+
+    //임시
+    .swiper-wrapper{
+        // display: grid;
+        // grid-template-columns: repeat(4, 1fr);
+        // gap: rem(20);
+        .swiper-slide{
+            border-radius: rem(35);
+            border: 1px solid #E5E5E5;
+            background: #FFF;
+            overflow: hidden;
+            height:rem(300);
+            .card-image{
+                width:100%;
+                height:rem(200);
+                overflow: hidden;
+                img{
+                    height:100%;
+                    transform: scale(100%);
+                    transition: all .5s;
+                }
+            }
+            .card-category{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding:20px;
+                gap: rem(16);
+                .category-badge{
+                    display: flex;
+                    padding: 3.2px 8.8px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+                    border-radius: 40px;
+                    background: #9ACBD8;
+                }
+                .stat-label{
+                    color: #333;
+                    font-size: 20px;
+                    font-weight: 600;
+                    letter-spacing: -0.4px;
+                    text-align: left;
+                    height:40px;
+                }
+            }
+            &:hover{
+                .card-image{
+                    img{
+                        transform: scale(110%);
+                    }
+                }
+            }
+        }
+    }
+
+    
+
+
+}
+
+.supplementary_information_box{
+    position: relative;
+
+    .swiper-button-option{
+        display: flex;
+        position: absolute;
+        right:0;
+        top:0;
+    }
+    .swiper-button-prev,
+    .swiper-button-next{
+        margin:0 !important;
+        position: static;
+        color: #333;
+        &::after{
+            background-repeat: no-repeat;
+            background-position: center;
+            width:100%;
+        }
+    }
+    .swiper-button-prev::after{
+        background-image: url('/assets/img/main/ico_swiper_prev.png');
+    }
+    .swiper-button-next::after{
+        background-image: url('/assets/img/main/ico_swiper_next.png');
+    }
+    .supplementary_information_slider{
+        padding:10px 0;
+        
+        .supplementary_card{
+            border-radius: 85px;
+            background: #F7EDEE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-self: stretch;
+            height:80px;
+    
+            /* 알아두면 쓸모 있는 자동차 보험 정보  */
+            .ico{
+                width: 3.75rem;
+                height: 3.75rem;
+                border-radius: 50%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin-right: 1.25rem;
+                background-color: #fff;
+            }
+            .ico.ico01 {
+                background-image: url("/assets/img/main/information_icon01.png");
+            }
+            .ico.ico02 {
+                background-image: url("/assets/img/main/information_icon02.png");
+            }
+            .ico.ico03 {
+                background-image: url("/assets/img/main/information_icon03.png");
+            }
+            .ico.ico04 {
+                background-image: url("/assets/img/main/information_icon04.png");
+            }
+            .ico.ico05 {
+                background-image: url("/assets/img/main/information_icon05.png");
+            }
+            .text_box{
+                p{
+                    color: #585858;
+                    font-family: "SBAggroL";
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+
+
+

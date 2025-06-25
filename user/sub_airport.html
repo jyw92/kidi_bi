@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="보험정보 빅데이터 플랫폼(BIGIN)" />
+    <meta
+      property="og:description"
+      content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta name="Title" content="보험정보 빅데이터 플랫폼(BIGIN)" />
+    <meta
+      name="Keywords"
+      content="보험정보 빅데이터 플랫폼, bigin 보험정보 빅데이터 플랫폼, bigin, 보험, 보험정보, 빅데이터, 플랫폼, 보험데이터, 보험통계, 보험자료, 차량기준가액, 차량가액, 보험개발원 차량기준가액, 보험개발원 차량가액, 보험개발원, 모델등급, 차량모델등급"
+    />
+    <meta
+      name="Description"
+      content="보험에 관련된 다양한 정보를 한 눈에 제공하는 보험개발원의 빅데이터 정보 플랫폼."
+    />
+    <meta
+      name="naver-site-verification"
+      content="a11274d57827bab6314487d2c003bd1dbae2edc9"
+    />
+    <title>[MY보험, 실손24(실손보험 청구 전산화 시스템)]</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://bigin.kidi.or.kr:9443/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/base/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base/root.css" />
+    <link rel="stylesheet" href="/assets/css/base/custom.css" />
+    <link rel="stylesheet" href="/assets/css/form-control.css" />
+
+    <!-- vendors -->
+    <link rel="stylesheet" href="/assets/plugin/pqgrid/pqgrid.min.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css"
+    />
+    <link rel="stylesheet" href="/assets/css/lib/swiper.min.css" />
+    <link rel="stylesheet" href="/assets/css/common.css" />
+    <link rel="stylesheet" href="/assets/css/sub.css" />
+
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/mo_common.css" />
+    <link rel="stylesheet" href="/assets/css/mo_sub.css" />
+    <link rel="stylesheet" href="/assets/css/LifeStyle.css" />
+    <script
+      type="text/javascript"
+      src="/assets/plugin/lenis/lenis.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/js/lib/jquery-3.5.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/js/lib/jquery-ui.min.js"
+    ></script>
+    <script type="text/javascript" src="/assets/js/lib/swiper.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/jsZip-2.5.0/jszip.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/pqgrid.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/pqgrid/localize/pq-localize-en.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/ckeditor/ckeditor.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/highcharts.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/series-label.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/data.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/exporting.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/export-data.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/plugin/highchart/code/modules/accessibility.js"
+    ></script>
+    <script type="text/javascript" src="/assets/js/includeHTML.js"></script>
+    <!-- <script type="text/javascript" src="/assets/js/menu.js"></script> -->
+    <!-- <script type="text/javascript" src="/assets/js/improveAccessibility.js"></script>' -->
+
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+    <script type="text/javascript" src="/assets/js/script.js"></script>
+    <script type="text/javascript" src="/assets/js/common.js"></script>
+    <script>
+      var notiMap = "";
+      var notibool = "";
+      $(function () {
+        //  기본 include
+        notiMap = getCookieVal("notiMap");
+        //console.log("-------------------------------");
+        // console.log("notiMap::"+notiMap);
+        if (notiMap != "hide") {
+          $("#noti").show();
+        }
+
+        var no_look = document.getElementById("no_look");
+        var link = document.getElementById("link");
+
+        if (no_look != null) {
+          no_look.addEventListener("change", function () {
+            if (no_look.checked) {
+              notibool = true;
+            } else {
+              notibool = false;
+            }
+          });
+        }
+      });
+
+      function getCookieVal(name) {
+        return (
+          document.cookie
+            .match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")
+            ?.pop() || ""
+        );
+      }
+
+      function closeTopAlertBox(notibool) {
+        if (notibool == true) {
+          link.addEventListener("click", HandleClosePopupToday("#noti"));
+        } else if (notibool == false) {
+          $(".top_alert_box").css("display", "none");
+        }
+      }
+    </script>
+    <style>
+      .fade-enter,
+      .fade-leave {
+        transition: opacity 0.5s ease;
+      }
+      .fade-enter {
+        opacity: 1;
+      }
+      .fade-leave {
+        opacity: 0;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .left-section,
+      .right-section {
+        width: 50%;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .highlight {
+        background-color: yellow;
+      }
+
+      .table_wrap table{
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .table_wrap table{
+        & th{
+          color: #333;
+          text-align: center;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          letter-spacing: -0.54px;
+          border: 0 !important;
+          background-color: #F7F7F7 !important;
+          &.border-b {
+            border-bottom: 1px solid #e0e0e0 !important;
+          }
+        }
+        & td{
+          border: 0 !important;
+          color: #333;
+          font-family: SUIT;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: -0.54px;
+          & .airport--name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .icon{
+              width: 50px;
+              height: 50px;
+              background-color: #fff;
+              border-radius: 10px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              img{
+                display: block;
+                width:100%;
+                height:100%;
+                object-fit: contain;
+              }
+            }
+          }
+        }
+      }
+
+      .time{
+        text-align: center;
+        font-family: SUIT;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: normal;
+        letter-spacing: -0.72px;
+        &.small{
+          font-size: 16px;
+          font-weight: 400;
+          color: #999;
+        }
+      }
+
+      .error--badge, .default--badge{
+        display: flex;
+        width: 105px;
+        padding: 5px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        color: #fff;
+        margin: 0 auto;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .error--badge{
+        background: #C32222;
+      }
+
+      .default--badge{
+        background: #6A6A6A;
+      }
+
+      .sub--name{
+        color: #999;
+        font-family: SUIT;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: normal;
+        letter-spacing: -0.45px;
+      }
+
+      .color--red{
+        color: #B11313;
+      }
+      .text_box{
+        padding: 1.5rem !important;
+        gap: 5px !important;
+        &.dotted--type{
+          & > .text{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            &::before{
+              content:"";
+              width:6.5px;
+              height:6.6px;
+              border-radius: 50%;
+              background-color: #D9D9D9;
+            }
+          }
+        }
+      }
+     
+
+      @media (min-width: 769px) {
+        .container {
+          display: flex;
+        }
+        .api_btn {
+          max-width: inherit;
+          line-height: 2.5rem;
+          border-radius: 0.1429rem;
+          width: 135px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .container {
+          display: flex;
+          /* 추가적인 데스크탑 스타일 */
+        }
+      }
+
+      
+
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <header id="header">
+        <!-- header -->
+        <div class="header_top">
+          <div class="flex-b-c" style="max-width: 1600px; margin: 0 auto">
+            <!-- ----------------------------------------------------------------------- -->
+            <h1 class="logo">
+              <a href="../overwrite/index.html" class="flex--c">
+                <img
+                  src="../assets/img/common/logo.png"
+                  alt="BIGIN 보험정보 빅데이터 플랫폼 로고"
+                />
+                <!--<picture>
+                  <source media="(max-width: 768px)" srcset="../assets/img/common/logo.png"/>
+                  <img src="../assets/img/common/logo.png" alt="보험개발원 보험정보 빅데이터 플랫폼 로고">
+                </picture>-->
+                <span>보험정보 빅데이터 플랫폼</span>
+              </a>
+            </h1>
+            <!-- ----------------------------------------------------------------------- -->
+            <nav id="gnb" class="gnb_list">
+              <ul class="menu-01">
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">보험통계</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>보험통계</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li>
+                          <a href="/user/nd00002.action">50대 주요 보험지표</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00115.action">발간물 데이터</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00226.action" class="dep3_ttl"
+                            >보험통계 조회서비스</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00226.action">월간보험통계</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00223.action"
+                                >자동차보험 마일리지 현황</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00224.action"
+                                >생명보험 종류별 계약건수</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00235.do">기타 통계(INcos)</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00212.action" class="dep3_ttl"
+                            >외부기관 연계 데이터</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00212.action">자동차보험</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00213.action">일반손해보험</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00218.action">생명장기보험</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="/user/nd00117.do">대외제공용 통계</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">알쓸보험</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>알쓸보험</strong>
+                        <div>알아두면 쓸모있는 보험정보</div>
+                      </div>
+                      <ul class="dep2">
+                        <li><a href="/user/nd00006.action">알쓸보험상식</a></li>
+                        <li>
+                          <a href="/user/nd00007.action">보험용어 사전</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00020.do" class="dep3_ttl"
+                            >공시기준이율</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00020.do">과거공시기준이율</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00010.do"
+                                >공시기준이율 산출기준</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00011.do"
+                                >공시기준이율 DOWNLOAD</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00044.action" class="dep3_ttl"
+                            >자동차보험정보</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00044.action">차량기준가액</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00074.action">차량모델등급</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00054.do">경미손상 수리기준</a>
+                            </li>
+                            <li>
+                              <a href="/user/nd00071.do"
+                                >자동차보험금 원가지수</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="/user/nd00077.do" class="dep3_ttl"
+                            >국내외 보험 관련기관</a
+                          >
+                          <ul class="dep3">
+                            <li><a href="/user/nd00077.do">보험기관</a></li>
+                            <li><a href="/user/nd00078.do">유관기관</a></li>
+                            <li><a href="/user/nd00079.do">해외보험기관</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">MY보험</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>MY보험</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li>
+                          <a href="/user/nd00237.do"
+                            >실손24(실손보험 청구 전산화 시스템)</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00114.action">나의 시민안전보험</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00013.action">주요 질환 예측 정보</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00014.do"
+                            >자동차보험 과납보험료 및 휴면보험금 조회시스템</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00015.do">내 차 보험 찾기(Mycar)</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00064.do"
+                            >자동차보험 할인할증요인 조회</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/user/nd00065.do">자동차보험정보 고객센터</a>
+                        </li>
+                        <li>
+                          <a href="/user/nd00066.do"
+                            >대리운전자보험 조회시스템</a
+                          >
+                        </li>
+                        <li>
+                          <a href="./step1.html"
+                            >자동차사고이력정보(CarHistory)</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="has_depth3">
+                  <a href="#!" class="dep1">보험소식</a>
+                  <div class="gnb_hover">
+                    <div class="inner flex">
+                      <div class="gnb_ttl">
+                        <strong>보험소식</strong>
+                      </div>
+                      <ul class="dep2">
+                        <li><a href="/user/nd00017.do">보도자료</a></li>
+                        <li><a href="/user/nd00084.do">New-Tech 트렌드</a></li>
+                        <li>
+                          <a href="/user/nd00068.do">Monthly KIDI Brief</a>
+                        </li>
+                        <li><a href="/user/nd00083.do">국내보험동향</a></li>
+                        <li>
+                          <a href="/user/nd00003.do" class="dep3_ttl"
+                            >KIDI 정기간행물</a
+                          >
+                          <ul class="dep3">
+                            <li>
+                              <a href="/user/nd00003.do"
+                                >KIDI 은퇴시장 리포트</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00051.do"
+                                >자동차보험 광역시도별 교통사고</a
+                              >
+                            </li>
+                            <li>
+                              <a href="/user/nd00018.do"
+                                >기업성보험 통계분석보고서</a
+                              >
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="/user/nd00069.do">서비스 안내</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <!-- ----------------------------------------------------------------------- -->
+            <div class="flex--c h_btn_area">
+              <!-- <button id="chartOptionBtn">차트설정</button> -->
+              <div class="search_btn_form_set">
+                <button
+                  type="button"
+                  class="header_btn head_search_btn"
+                  title="검색창 열기"
+                  aria-label="검색창 열기"
+                ></button>
+                <div id="h_search" class="h_search" aria-labelledby="검색창">
+                  <div class="inner">
+                    <div class="h_search_box">
+                      <!-- 일단 검색버튼 클릭 시 링크이동 될 수있도록 form태그로 연결시켜놨습니다 -->
+                      <form action="/main/srchMain072801.do">
+                        <div class="form-item search_form">
+                          <label for="in_text" class="hidden"
+                            >검색어 입력</label
+                          >
+                          <input
+                            type="text"
+                            class="bs-input"
+                            id="in_text_searchKwrd"
+                            name="searchKwrd"
+                            placeholder="검색어를 입력해주세요"
+                            title="검색어 입력"
+                          />
+                          <button type="submit" class="form_search">
+                            검색 실행 버튼
+                          </button>
+                        </div>
+                      </form>
+
+                      <div class="keyword_list flex">
+                        <em>추천검색어</em>
+                        <div>
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=자동차보험"
+                            >#자동차보험</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=휴면보험금"
+                            >#휴면보험금</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=은퇴시장 리포트"
+                            >#은퇴시장 리포트</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=카히스토리"
+                            >#카히스토리</a
+                          >
+                          <a
+                            href="/main/srchMain072801.do?searchKwrd=차량기준가액"
+                            >#차량기준가액</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="header--option">
+                <button
+                  type="button"
+                  class="header_btn ham_btn"
+                  title="전체메뉴 열기"
+                  aria-label="전체메뉴 열기"
+                ></button>
+                <button
+                  type="button"
+                  class="ham_close"
+                  title="전체메뉴 닫기"
+                  aria-label="전체메뉴 닫기"
+                ></button>
+              </div>
+            </div>
+            <!-- ----------------------------------------------------------------------- -->
+          </div>
+        </div>
+        <div
+          id="all_menu_wrap"
+          class="all_menu_wrap"
+          aria-labelledby="전체 메뉴"
+        >
+          <div class="inner">
+            <div>
+              <!-- 전체메뉴 스크립트로 불러옴 -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="bg"></div>
+      <!-- container -->
+
+      <main id="container">
+        <!-- sub_visual -->
+        <section class="sub_visual">
+          <div class="inner">
+            <h2 class="sub_visual_ttl">라이프스타일 기반 AI추천보험</h2>
+            <!-- 2024.02.05 : menu_ttl 메뉴설명 있던 자리 기존에 text_conts 데이터를 불러왔으나 value값 삭제 처리함 -->
+            <em class="menu_ttl"></em>
+
+            <nav aria-label="현위치 안내" class="breadcrumb">
+              <ol>
+                <li><span class="home"></span></li>
+                <li><span> MY보험</span></li>
+                <li aria-current="page">
+                  <span>라이프스타일 기반 AI추천보험</span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </section>
+        <div class="inner_1120 content">
+          <div class="container">
+            <div class="my_insr_search">
+              <form action="" method="post" id="">
+                <div class="flex--c form_wrap">
+                  <div class="form-item select-col">
+                    <label for="" class="hidden">날짜</label>
+                    <input type="date" class="bs-select" />
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="form-item select-col">
+                    <label for="" class="hidden">항공편명</label>
+                    <input
+                      type="text"
+                      class="bs-input"
+                      placeholder="항공편명"
+                    />
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button
+                    type="button"
+                    class="api_btn btn-point"
+                    style="font-size: 20px"
+                    id=""
+                    onclick=""
+                  >
+                    조회
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="text_box dotted--type">
+              <p class="text flex">
+                해당 정보는 공공데이터포털의 OpenAPI 서비스를 화용하여 제공 중에
+                있습니다.
+              </p>
+              <p class="text flex">
+                (한국공항공사의 실시간 항공운항 현황정보 상세조회 서비스 및
+                인천국제공항공사의 여객기 운항현황 상세조회 서비스)
+              </p>
+              <p class="text flex">
+                국내공항에서 출발하는 국제선 여객기 기준이며, 시차
+                “2시간(120분)”을 기준으로 지연여부를 나타내고 있습니다.
+              </p>
+              <p class="text flex">
+                한공편 지연여부의 기준은 보험사의 상품 내용 기준에 따라 상이할
+                수 있으니 참고용으로만 활용하여 주시기 바랍니다.
+              </p>
+            </div>
+            <div class="car_search_view" style="display: block; padding-top: 30px;width:100%;">
+              <div class="table_wrap gray_table horizonScroll">
+                <div class="mo_scroll">
+                  <table>
+                    <caption style="font-size: 0px"></caption>
+                    <colgroup>
+                      <col style="width:334px;">
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                      <col>
+                    </colgroup>
+                    <thead id="why">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                          항공사 <span class="sub--name">(편명)</span>
+                        </th>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                          목적지
+                        </th>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                         예정출발시각
+                        </th>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                          실제출발시각
+                        </th>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                          시차
+                        </th>
+                        <th
+                          scope="col"
+                          class="border-b"
+                          style=""
+                        >
+                          항공편 지연 여부
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="noDataArea" style="display: none">
+                      <!-- 데이터 없을때 노출해 주세요 -->
+                      <tr class="no-data">
+                        <td colspan="8">
+                          <strong>검색결과가 없습니다.</strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody id="">
+                        <tr>
+                          <td>
+                            <div class="airport--name">
+                              <div class="icon"><img src="../assets/img/airport/airbusan.png" alt=""></div>
+                              <div class="name">에어부산<br><span class="sub--name">KE1844</span></div>
+                            </div>
+                          </td>
+                          <td>미국 LA</td>
+                          <td><span class="time">7:50</span></td>
+                          <td><span class="time color--red">10:03</span></td>
+                          <td><span class="time small">+ 133분</span></td>
+                          <td><span class="error--badge">지연</span></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="airport--name">
+                              <div class="icon"><img src="../assets/img/airport/airinternationalchina.png" alt=""></div>
+                              <div class="name">에어부산<br><span class="sub--name">KE1844</span></div>
+                            </div>
+                          </td>
+                          <td>미국 LA</td>
+                          <td><span class="time">7:50</span></td>
+                          <td><span class="time color--red">10:03</span></td>
+                          <td><span class="time small">+ 133분</span></td>
+                          <td><span class="default--badge">미지연</span></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="airport--name">
+                              <div class="icon"><img src="../assets/img/airport/koreanair.png" alt=""></div>
+                              <div class="name">에어부산<br><span class="sub--name">KE1844</span></div>
+                            </div>
+                          </td>
+                          <td>미국 LA</td>
+                          <td><span class="time">7:50</span></td>
+                          <td><span class="time color--red">10:03</span></td>
+                          <td><span class="time small">+ 133분</span></td>
+                          <td><span class="default--badge">미지연</span></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="table_info_txt">
+                  <i></i> 해당영역은 좌,우 스크롤이 가능합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer id="footer"></footer>
+    </div>
+
+    <script src="../assets/plugin/axios/axios.js"></script>
+    <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
+    <script src="../assets/plugin/gsap/gsap.min.js"></script>
+    <script src="../assets/plugin/gsap/SplitType.js"></script>
+    <script src="../assets/plugin/anime/anime.min.js"></script>
+    <script src="../assets/plugin/particles/particles.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/intro.js" defer></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="../assets/js/dashBoard.js" type="module"></script>
+    <!-- <script src="../assets/js/main.js"></script> -->
+  </body>
+</html>

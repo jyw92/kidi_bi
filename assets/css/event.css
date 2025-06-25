@@ -1,0 +1,601 @@
+@font-face {
+    font-family: 'SEBANG Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SEBANG Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: bold; /* Bold 체는 font-weight를 bold로 설정 */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SB Aggro'; /* Light */
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.event--wrap{
+    width:100%;
+    background-color: #ACEAFF;
+    position: relative;
+    border-radius: 20px;
+    width:100%;
+    min-height:650px;
+    padding:30px;
+    display: flex;
+    flex-direction: column;
+    .fc--default{
+        color: #333;
+    }
+    
+    .fc--white{
+        color: #FFF;
+    }
+    
+    .fc--blue{
+        color: #0052DC;
+    }
+    
+    .fw--400{
+        font-weight: 400;
+    }
+
+    .fw--500{
+        font-weight: 500;
+    }
+
+    .fw--600{
+        font-weight: 600;
+    }
+
+    .fw--700{
+        font-weight: 700;
+    }
+
+    .fw--800{
+        font-weight: 800;
+    }
+
+    .fs--24{
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 24px;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.96px;
+    }
+    
+    .fs--18{
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 18px;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.72px;
+    }
+    
+    .fs--16{
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 16px;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.7px;
+    }
+
+    .group--title{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .box--column--title{
+        display: inline-flex;
+        padding: 6px 31px;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 25px;
+        border: 2px solid #0051E1;
+        background: #FFE880;
+        box-shadow: 0px 2px 0px 0px #0052DC;
+        color: #0052DC;
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 18px;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.72px;
+        font-weight: 800;
+        position: absolute;
+        top:20px;
+        left: -20px;;
+        z-index: 1;
+    }
+
+    .box--column--content{
+        color: #333;
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.96px;
+        padding:90px 30px;
+
+    }
+
+    .event--title--wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .event--title01{
+            color: #FFE880;
+            text-align: center;
+            -webkit-text-stroke-width: 2.34px;
+            -webkit-text-stroke-color: #0052DC;
+            text-shadow: 0px 6px 0px #0052DC;
+            font-family: "SEBANG Gothic";
+            font-size: 70px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: -1.373px;
+        }
+
+        .sub--title{
+            color: #0052DC;
+            text-align: center;
+            font-family: "SB Aggro";
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: -0.28px;
+        }
+
+        .event--title02{
+            color: #FFF;
+            text-align: center;
+            -webkit-text-stroke-width: 2.34px;
+            -webkit-text-stroke-color: #0052DC;
+            text-shadow: 0px 6px 0px #0052DC;
+            font-family: "SEBANG Gothic";
+            font-size: 100px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: -2px;
+            transform: translateY(-30px);
+        }
+
+    }
+
+
+
+    .event--content--wrap{
+        display: flex;
+        border-radius: 35px;
+        border: 3px solid #0152DC;
+        background-color: #fff;
+        flex:1;
+        position: relative;
+        & .box--item{
+            flex:1;
+        }
+        &::after{
+            content:"";
+            position: absolute;
+            top: 0;
+            left:50%;
+            transform: translateX(-50% - 5px);
+            width:10px;
+            height:100%;
+            border-left: 2px dashed #0152DC;
+        }
+    }   
+
+    .box--column{
+        position: relative;
+    }
+
+    .box--column--tip{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding:90px 30px;
+    }
+    .tip--item--content{
+       display: block;
+       padding: 15px 30px;
+    }
+    .tip--item--title{
+        display: inline-flex;
+        padding: 3px 9px;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        border-radius: 10px;
+        background: #0052DC;
+        color: #FFF;
+        text-align: center;
+        font-family: "SB Aggro";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.7px;
+    }
+
+    .event--user--input{
+        width:50%;
+    }
+
+    .box--column--input{
+        width:100%;
+        height:var(--inputHeight);
+    }
+
+    .event--user--input{
+        padding: 30px;
+        position: absolute;
+        bottom: var(--posY);
+        height: 210px;
+    }
+
+    .event--user--input--inner{
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        gap: 14px;
+        height:100%;
+    }
+
+    .form--item--wrap{
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+        height: 100%;
+    }
+
+    .form--item--input{
+        border-radius: 12px;
+        border: 2px solid #0051E1;
+        background: #FFF;
+        box-shadow: 0px 2px 0px 0px #0052DC;
+        width:100%;
+    }
+
+    .form--item{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        & .form--item--label{
+            width:70px;
+            font-size: 18px;
+            color: #0052DC;
+            text-align: right;
+            font-weight: 700;
+        }
+        .form--item--input{
+            flex:1;
+        }
+    }
+
+    .api--btn{
+        width: 100px;
+        height: 100%;
+        border-radius: 12px;
+        border: 2px solid #0051E1;
+        background: #69D9FF;
+        box-shadow: 0px 2px 0px 0px #0052DC;
+        height:100%;
+        color: #0051E1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #agreeWrap{
+        justify-content: flex-end;
+        a{  
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+            i{
+                color: red;
+            }
+        };
+        #agree{
+            border: 2px solid #0051E1;
+            box-shadow: 0px 2px 0px 0px #0052DC;
+            display: flex;
+            width: 28px;
+            height: 28px;
+            align-items: center;
+            flex-shrink: 0;
+            opacity: 1;
+            border-radius: 50%;
+            padding:0;
+            position: relative;
+        }
+        #agree:checked::after{
+            content:"";
+            position: absolute;
+            top: 50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            background-color: #0052DC;
+            width:14px;
+            height:14px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0px 2px 0px 0px #fff;
+        }
+    }
+
+}
+
+
+/* 팝업 오버레이 */
+.simple-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .simple-popup-overlay.show {
+    display: flex;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* 팝업 컨테이너 */
+  .simple-popup {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* 팝업 헤더 */
+  .simple-popup-header {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .simple-popup-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .simple-popup-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .simple-popup-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* 팝업 내용 */
+  .simple-popup-content {
+    padding: 25px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .privacy-text h4 {
+    color: #333;
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .privacy-text p {
+    margin: 15px 0;
+    line-height: 1.6;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .privacy-text strong {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* 팝업 푸터 */
+  .simple-popup-footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  /* 버튼 스타일 */
+  .simple-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+  }
+  
+  .simple-btn-confirm {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+  }
+  
+  .simple-btn-confirm:hover {
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  }
+  
+  /* 스크롤바 스타일 */
+  .simple-popup-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .simple-popup-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .simple-popup-content::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 3px;
+  }
+  
+  .simple-popup-content::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .simple-popup {
+      width: 95%;
+      margin: 20px;
+    }
+  
+    .simple-popup-header {
+      padding: 15px;
+    }
+  
+    .simple-popup-header h3 {
+      font-size: 16px;
+    }
+  
+    .simple-popup-content {
+      padding: 20px;
+    }
+  
+    .privacy-text h4 {
+      font-size: 15px;
+    }
+  
+    .privacy-text p {
+      font-size: 13px;
+    }
+  
+    .simple-popup-footer {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .event--user--input {
+      margin: 20px;
+      padding: 15px;
+    }
+  
+    .simple-popup {
+      width: 98%;
+      margin: 10px;
+    }
+  
+    .simple-popup-content {
+      padding: 15px;
+    }
+  }
+  
+  /* 접근성 개선 */
+  /* .simple-popup:focus-within {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  } */
+  
+  /* 애니메이션 효과 */
+  .privacy-text p {
+    opacity: 0;
+    animation: slideInLeft 0.5s ease-out forwards;
+  }
+  
+  .privacy-text p:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .privacy-text p:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .privacy-text p:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .privacy-text p:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .privacy-text p:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+

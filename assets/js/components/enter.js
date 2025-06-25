@@ -88,8 +88,6 @@ const animateSixthGrid = async () => {
     );
 };
 
-
-
 async function pageTransition() {
   // 인트로
   const intro = document.querySelector(".hero--intro");
@@ -283,6 +281,7 @@ function animeButtons() {
         particles.disintegrate();
         buttonVisible = !buttonVisible;
       }
+      
       pageTransition();
     });
   });

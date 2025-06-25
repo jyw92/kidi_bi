@@ -26,11 +26,13 @@
     />
     <title>빅인데이터</title>
 
-    <link
-      rel="shortcut icon"
-      href="https://bigin.kidi.or.kr:9443/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="https://bigin.kidi.or.kr:9443/favicon.png" type="image/x-icon" />
+      
+      
+      
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
     <link rel="stylesheet" href="/assets/css/base/reset.css" />
     <link rel="stylesheet" href="/assets/css/base/root.css" />
     <link rel="stylesheet" href="/assets/css/base/custom.css" />
@@ -38,10 +40,8 @@
 
     <!-- vendors -->
     <link rel="stylesheet" href="/assets/plugin/pqgrid/pqgrid.min.css" />
-    <link
-      rel="stylesheet"
-      href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css"
-    />
+    <link rel="stylesheet" href="/assets/plugin/pqgrid/themes/steelblue/pqgrid.css" />
+    
     <link rel="stylesheet" href="/assets/css/lib/swiper.min.css" />
     <link rel="stylesheet" href="/assets/css/common.css" />
     <link rel="stylesheet" href="/assets/css/sub.css" />
@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="/assets/css/mo_sub.css" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/pre_load.css" />
+
     <script
       type="text/javascript"
       src="/assets/plugin/lenis/lenis.min.js"
@@ -91,10 +92,6 @@
     <!-- <script
       type="text/javascript"
       src="https://code.highcharts.com/themes/grid.js"
-    ></script> -->
-    <!-- <script
-      type="text/javascript"
-      src="https://code.highcharts.com/themes/dark-unica.js"
     ></script> -->
     <script
       type="text/javascript"
@@ -177,9 +174,11 @@
         opacity: 0;
       }
     </style>
+
+    <!-- <script type="text/javascript" src="/assets/plugin/highchart/code/theme/dark-unica.js" id="themeScript"></script> -->
   </head>
-  <body>
-    <div class="intro--wrap">
+  <body class="chart--page">
+    <!-- <div class="intro--wrap">
       <div class="intro">
         <div class="intro__content">
           <img
@@ -193,14 +192,18 @@
           </h3>
         </div>
       </div>
-      <div class="PageTransitionCover_cover__pYL_k PageTransitionCover_light__KK8K0 active">
-        <div class="Container_container__WBa4B PageTransitionCover_container__TPOjX" >
+      <div
+        class="PageTransitionCover_cover__pYL_k PageTransitionCover_light__KK8K0 active"
+      >
+        <div
+          class="Container_container__WBa4B PageTransitionCover_container__TPOjX"
+        >
           <div class="status--wrap">
             <div class="loader--logo">
-                <span class="loader--icon">
-                    <span class="loader--icon--inner"></span>
-                </span>
-                <h2 class="loader--text">0%</h2>
+              <span class="loader--icon">
+                <span class="loader--icon--inner"></span>
+              </span>
+              <h2 class="loader--text">0%</h2>
             </div>
             <div class="progress-bar-container">
               <progress class="progress-bar" max="7" value="0"></progress>
@@ -424,27 +427,24 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="overlay"></div>
+    </div> -->
+    <!-- <div class="overlay"></div> -->
     <div id="wrap">
       <header id="header" class="main_header">
         <!-- header -->
         <div class="header_top">
-          <div class="inner flex-b-c">
+          <div class="flex-b-c" style="max-width: 1600px; margin: 0 auto">
+            <!-- ----------------------------------------------------------------------- -->
             <h1 class="logo">
               <a href="../overwrite/index.html" class="flex--c">
                 <img
-                  src="../assets/img/common/logo_fff.png"
+                  src="../assets/img/common/logo.png"
                   alt="BIGIN 보험정보 빅데이터 플랫폼 로고"
                 />
-                <!--<picture>
-                        <source media="(max-width: 768px)" srcset="../assets/img/common/logo.png"/>
-                        <img src="../assets/img/common/logo.png" alt="보험개발원 보험정보 빅데이터 플랫폼 로고">
-                    </picture>-->
                 <span>보험정보 빅데이터 플랫폼</span>
               </a>
             </h1>
-
+            <!-- ----------------------------------------------------------------------- -->
             <nav id="gnb" class="gnb_list">
               <ul class="menu-01">
                 <li class="has_depth3">
@@ -665,8 +665,9 @@
                 </li>
               </ul>
             </nav>
-
+            <!-- ----------------------------------------------------------------------- -->
             <div class="flex--c h_btn_area">
+              <!-- <button id="chartOptionBtn">차트설정</button> -->
               <div class="search_btn_form_set">
                 <button
                   type="button"
@@ -674,7 +675,6 @@
                   title="검색창 열기"
                   aria-label="검색창 열기"
                 ></button>
-
                 <div id="h_search" class="h_search" aria-labelledby="검색창">
                   <div class="inner">
                     <div class="h_search_box">
@@ -724,23 +724,15 @@
                         </div>
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      class="search_close"
-                      title="검색창 닫기"
-                      aria-label="검색창 닫기"
-                    ></button>
                   </div>
                 </div>
               </div>
-              <button
-                type="button"
-                class="header_btn ham_btn"
-                title="전체메뉴 열기"
-                aria-label="전체메뉴 열기"
-              ></button>
+              <div class="header--option">
+                <button type="button" class="header_btn ham_btn" title="전체메뉴 열기" 	aria-label="전체메뉴 열기"></button>
+                <button type="button" class="ham_close" title="전체메뉴 닫기" aria-label="전체메뉴 닫기"></button>
+              </div>
             </div>
-            <button id="chartOptionBtn">차트설정버튼</button>
+            <!-- ----------------------------------------------------------------------- -->
           </div>
         </div>
         <div
@@ -752,83 +744,1032 @@
             <div>
               <!-- 전체메뉴 스크립트로 불러옴 -->
             </div>
-            <button
-              type="button"
-              class="ham_close"
-              title="전체메뉴 닫기"
-              aria-label="전체메뉴 닫기"
-            ></button>
+            
           </div>
         </div>
-        <div class="bg"></div>
       </header>
-
+      <div class="bg"></div>
       <!-- container -->
       <main id="container">
-        <section id="section01" class="seciton section01">
-          <div class="hero--action hero--intro">
-            <video
-              playsinline=""
-              autoplay=""
-              loop=""
-              muted=""
-              preload=""
-              poster="../assets/img/main/videoframe_0.png"
-            >
-              <source
-                src="../assets/img/video/슬로건.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div class="hero--action--text">
-                <span data-text-effect>보험정보빅데이터 플랫폼</span>
-                <h2 data-text-effect>보험의가치를 발굴하다.</h2>
-                <!-- <span>미래를 여는 보험 데이터</span>
-                <h2>당신의 삶을 풍요롭게, 데이터를 통해.</h2> -->
-                <div class="grid__item theme-6 particles-button--wrapper" style="margin-top: 50px;">
-                  <button type="button" id="startButton" class="particles-button" >Enter</button>
-                </div>
-            </div>
+        <aside class="shortcut--area">
+          <div class="shortcut--item">
+            <div class="shortcut--item--header">자주 이용하는 메뉴</div>
+            <ul class="shortcut--item--body">
+              <li>
+                <a href="#/">차량기준가액<span>(국산)</span></a>
+              </li>
+              <li>
+                <a href="#/">차량기준가액<span>(국산)</span></a>
+              </li>
+              <li>
+                <a href="#/">실손24<span>(국산)</span></a>
+              </li>
+              <li>
+                <a href="#/">주요질환예측정보<span>(국산)</span></a>
+              </li>
+              <li>
+                <a href="#/">나의 시민안전보험<span>(국산)</span></a>
+              </li>
+            </ul>
           </div>
-          <div class="content--wrap" style="width:100vw;height:100vh;display: flex;justify-content: center;align-items: center;">
-            <p class="content">
-              <img width="50" height="50" src="https://picsum.photos/1240/840?random=0.09932009439193579"  style="opacity: 0;pointer-events: none;position: absolute;left:-9999em">
+        </aside>
+        <section id="section01">
+          <div class="content--wrap">
+          <aside class="banner-area">
+            <a href="#/" class="banner--item">
+              <p>내 라이프 스타일과 알맞는<br />보험을 찾고싶을 땐?</p>
+              <strong>라이프스타일<br />추천보험</strong>
+            </a>
+          </aside>
+            <div class="content">
               <div class="content--main">
-                <video
-                  playsinline=""
-                  autoplay=""
-                  loop=""
-                  muted=""
-                  preload=""
-                  poster="../assets/img/main/videoframe_0.png"
-                >
-                  <source 
-                    src="../assets/img/video/배경모션.mp4"
-                    type="video/mp4"
-                  />
-                </video>
+                <div class="quick--area">
+                  <button type="button" class="quick--chart--button" style="--back-image:url('/assets/img/main/ico_quick01_back.svg')" id="boheomSaneobBtn">
+                    <div class="front">
+                      <img src="../assets/img/main/ico_quick01.svg" alt="">
+                      보험산업
+                    </div>
+                    <ul class="back" data-back-title="보험산업">
+                      <li>자산 / 부채 / 자본</li>
+                      <li>보험 점포 및 대리점 현황</li>
+                      <li>임직원 수 및 보험설계사 수</li>
+                    </ul>
+                  </button>
+                  <button type="button" class="quick--chart--button"  style="--back-image:url('/assets/img/main/ico_quick02_back.svg')">
+                    <div class="front">
+                      <img src="../assets/img/main/ico_quick02.svg" alt="">
+                      보험실적
+                    </div>
+                    <ul class="back" data-back-title="보험실적">
+                      <li>총 수입보험료</li>
+                      <li>총 지급보험금</li>
+                      <li>지급여력비율</li>
+                      <li>운용자산이익률</li>
+                    </ul>
+                  </button>
+                  <button type="button" class="quick--chart--button"   style="--back-image:url('/assets/img/main/ico_quick03_back.svg')">
+                    <div class="front">
+                      <img src="../assets/img/main/ico_quick03.svg" alt="">
+                      건강
+                    </div>
+                    <ul class="back" data-back-title="건강" >
+                      <li>만성질환 보유 여부</li>
+                      <li>연도별/성별 당뇨병 유병율</li>
+                      <li>연도별/성별 고혈압 유병률</li>
+                    </ul>
+                  </button>
+                  <button type="button" class="quick--chart--button"   style="--back-image:url('/assets/img/main/ico_quick04_back.svg')">
+                    <div class="front">
+                      <img src="../assets/img/main/ico_quick04.svg" alt="">
+                      퇴직
+                    </div>
+                    <ul class="back" data-back-title="퇴직">
+                      <li>1인당 퇴직급여액</li>
+                      <li>은퇴시 퇴직급여 예상 사용처</li>
+                      <li>노후 최소생활비 및 적정생활비</li>
+                    </ul>
+                  </button>
+                  <button id="chartOptionBtn">
+                    나만의 통계차트를<br> 만들어보세요!
+                    <img src="../assets/img/main/ico_quick05.svg" alt="">
+                  </button>
+                  <button type="button" class="refresh" id="refresh">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path  class="icon" fill="#555" d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160 352 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l111.5 0c0 0 0 0 0 0l.4 0c17.7 0 32-14.3 32-32l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1L16 432c0 17.7 14.3 32 32 32s32-14.3 32-32l0-35.1 17.6 17.5c0 0 0 0 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.8c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352l34.4 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L48.4 288c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+                    </svg>
+                  </button>
+                </div>
                 <div class="content--main--info content--padded">
-                  <div class="grid" data-grid-second style="grid-template-columns: 1fr; grid-template-rows: 1fr;">
+                  <div
+                    class="grid change"
+                    data-grid-second
+                    style="grid-template-columns: 1fr; grid-template-rows: 1fr"
+                  >
                     <div class="grid--item" data-grid-type="chart">
                       <div class="chart--item inner--item">
                         <h3 class="grid--title">50대 주요 지표</h3>
                         <div class="grid--info--area"></div>
                       </div>
                     </div>
-                   
                   </div>
                 </div>
               </div>
-            </p>
+            </div>
           </div>
         </section>
-        <section style="height:100vh;width:100%;background-color: yellowgreen;">
-        </section>
-      </main>
-      <dialog id="chartSettingDialog">
 
-        <button class="theme-toggle" id="themeToggle">🌙</button>
-        <button class="help-toggle" id="helpToggle">❓</button>
+        <section id="section02" class="insurance_news_sect section">
+          <div class="inner">
+            <div class="main_ttl_box">
+              <h2 class="main_ttl">보험소식</h2>
+            </div>
+            <div class="ins_new_wrap">
+              <div
+                class="insurance_news_tab"
+                role="tablist"
+                id="insurance_news_tab"
+              >
+                <button
+                  type="button"
+                  value="active01"
+                  class="active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="tabPanel1"
+                  onclick="location.href='/user/nd00017.do'"
+                >
+                  보도자료
+                </button>
+                <button
+                  type="button"
+                  value="active02"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tabPanel2"
+                  onclick="location.href='/user/nd00084.do'"
+                >
+                  New-Tech 트렌드
+                </button>
+                <button
+                  type="button"
+                  value="active03"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tabPanel3"
+                  onclick="location.href='/user/nd00068.do'"
+                >
+                  Monthly KIDI Brief
+                </button>
+                <button
+                  type="button"
+                  value="active04"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tabPanel4"
+                  onclick="location.href='/user/nd00083.do'"
+                >
+                  국내보험동향
+                </button>
+              </div>
+              <div class="insurance_news_cont">
+                <!-- 보험뉴스 -->
+                <div
+                  class="swiper-container insurance_news_slider active01 active"
+                  role="tabpanel"
+                  id="tabPanel1"
+                  aria-hidden="false"
+                >
+                  <div class="swiper-wrapper card_list border">
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00017_6376" class="card">
+                        <div class="text_box">
+                          <p>보도자료</p>
+                          <p class="subject lg">보험 판매수수료 개편 방안</p>
+                          <p class="desc">
+                            금융위, 금감원, 보험업계가 6개월 이상의 논의를 거쳐
+                            이해관계자간 합의를 통해 보험 판매수수료 개편안 확정
+                            -하반기 중 규정 개정 ① (설계사 보수) 선지급 보수는
+                            일정 수준으로 제한하되, 계약유지율에 따른
+                          </p>
+                        </div>
+                        <p class="date">2025.06.02</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00017_6375" class="card">
+                        <div class="text_box">
+                          <p>보도자료</p>
+                          <p class="subject lg">
+                            2025년 1분기 보험회사 경영실적(잠정)
+                          </p>
+                          <p class="desc">
+                            25년 1분기 보험회사(생보사 22개, 손보사 31개)
+                            당기순이익은 4조 967억원으로 전년동기 대비
+                            7,699억원(△15.8%) 감소 (생보) 1조 6,956억원으로
+                            전년동기 대비 2,083억원(△10.9%) 감소,손실부담비용
+                            증가 및 금
+                          </p>
+                        </div>
+                        <p class="date">2025.05.27</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00017_6374" class="card">
+                        <div class="text_box">
+                          <p>보도자료</p>
+                          <p class="subject lg">
+                            25.3월말 보험회사 대출채권 현황
+                          </p>
+                          <p class="desc">
+                            25.3월말 보험회사 대출채권 현황 - 대출채권 잔액은
+                            267.8조원(전분기말比 1.8조원 감소) - 대출채권
+                            연체율은 0.66%(전분기말比 0.05%p 증가) -
+                            부실채권비율은 0.91%(전분기말比 0.27%p 증가)
+                            연체율과 부�
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00017_6373" class="card">
+                        <div class="text_box">
+                          <p>보도자료</p>
+                          <p class="subject lg">
+                            지속가능한 의료개혁을 위한 필수특화 분야 강화, 과잉
+                            비급여 관리 등 추진
+                          </p>
+                          <p class="desc">
+                            보건복지부는 5월 22일(목) 2025년 제10차
+                            건강보험정책심의 위원회를 개최하여 과잉 우려 큰
+                            비급여에 대한 적정 관리체계 신설 등을 논의 과잉 우려
+                            큰 일부 비급여를 치료에 필수적인 일반적인 급여와
+                            다르게 적
+                          </p>
+                        </div>
+                        <p class="date">2025.05.22</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00017_6372" class="card">
+                        <div class="text_box">
+                          <p>보도자료</p>
+                          <p class="subject lg">
+                            GA 개인정보 침해사고(해킹) 발생 경과 및 향후 계획
+                          </p>
+                          <p class="desc">
+                            (A법인보험대리점) 고객 및 임직원 등 908명(고객
+                            349명, 임직원/설계사 559명)의 개인정보가
+                            유출되었으며, 일부 고객정보(128명)의 경우 가입한
+                            보험계약의 종류, 보험회사, 증권번호, 보험료 등
+                            신용정보주체의 �
+                          </p>
+                        </div>
+                        <p class="date">2025.05.20</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!--  New-Tech 트렌드 -->
+                <div
+                  class="swiper-container insurance_news_slider active02"
+                  role="tabpanel"
+                  id="tabPanel2"
+                  aria-hidden="true"
+                >
+                  <div class="swiper-wrapper card_list border">
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00084_58" class="card">
+                        <div class="text_box">
+                          <p>new tech</p>
+                          <p class="subject lg">
+                            New-Tech 트렌드(2025년 5월)-통합본
+                          </p>
+                          <p class="desc">
+                            [2025-5월호] 테마동향 뇌와 컴퓨터의 연결, BCI 기술과
+                            다가오는 사이보그의 등장 BCI(뇌-컴퓨터 인터페이스)
+                            기술은 뇌파를 분석해 기기를 제어하는 기술로, 미국은
+                            뉴럴링크 등의 기업이 상용화를 추진 중이
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00084_57" class="card">
+                        <div class="text_box">
+                          <p>new tech</p>
+                          <p class="subject lg">
+                            New-Tech 트렌드(2025년 5월)- 글로벌AI
+                          </p>
+                          <p class="desc">
+                            글로벌AI 해외 내 마음을 구독합니다애착만큼 커지는
+                            글로벌 AI 멘탈케어 시장 #감정형AI #AI멘탈케어
+                            #심리상담AI #정서지능AI #캐릭터AI #심리상담자동화
+                            #AI자기돌봄 #정신건강AI #구글인수합병 #AI공감기술
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00084_56" class="card">
+                        <div class="text_box">
+                          <p>new tech</p>
+                          <p class="subject lg">
+                            New-Tech 트렌드(2025년 5월)- 모빌리티
+                          </p>
+                          <p class="desc">
+                            모빌리티 해외 1분기 글로벌 전기차 인도량 5대 중 1대
+                            中 BYD글로벌 점유율 1위 #BYD #전기차판매 #중국
+                            #2025년1분기 #EV점유율 #테슬라 #전기차수출
+                            #글로벌전기차시장 #배터리가격 #공급망이슈 #EV경쟁
+                            #전�
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00084_55" class="card">
+                        <div class="text_box">
+                          <p>new tech</p>
+                          <p class="subject lg">
+                            New-Tech 트렌드(2025년 5월)-인슈어테크
+                          </p>
+                          <p class="desc">
+                            인슈어테크 해외 美 인슈어테크 기업 ZestyAI, AI 기반
+                            언더라이팅 기술 공식 승인 #ZestyAI #보험언더라이팅
+                            #AI인증 #CID모델 #리스크분석 #허리케인 #폭풍우 #HAIL
+                            #Z-WIND #Z-STORM #기후위험예측 #AI인프라
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00084_54" class="card">
+                        <div class="text_box">
+                          <p>new tech</p>
+                          <p class="subject lg">
+                            New-Tech 트렌드(2025년 5월)-빅데이터
+                          </p>
+                          <p class="desc">
+                            빅데이터 해외 美, UAE에 초대형 데이터센터 구축
+                            협력... 중동과 AI동맹 강화 #UAE #미국 #데이터센터
+                            #AI인프라 #중동협력 #에너지자원 #G42 #5GW #엔비디아
+                            #사우디 #AI동맹 #수출규제 #첨단기술 #정치경제 #
+                          </p>
+                        </div>
+                        <p class="date">2025.05.26</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!--  Monthly KIDI Brief -->
+                <div
+                  class="swiper-container insurance_news_slider active03"
+                  role="tabpanel"
+                  id="tabPanel3"
+                  aria-hidden="true"
+                >
+                  <div class="swiper-wrapper card_list border">
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00068_134" class="card">
+                        <div class="text_box">
+                          <p>Monthly KIDI Brief</p>
+                          <p class="subject lg">
+                            보험개발원 Monthly KIDI BRIEF(2025년 5월)
+                          </p>
+                          <p class="desc">
+                            보험트렌드 생명보험 중국의 소액단기보험 및
+                            인슈어테크를 활용한 건강보험 사례 중국 보험시장의
+                            경우, IT기술의 활용 확대 및 온라인 플랫폼 유통채널
+                            등을 통한 판매채널의 다변화... 자세히보기 손해�
+                          </p>
+                        </div>
+                        <p class="date">2025.05.28</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00068_133" class="card">
+                        <div class="text_box">
+                          <p>Monthly KIDI Brief</p>
+                          <p class="subject lg">
+                            보험개발원 Monthly KIDI BRIEF(2025년 4월)
+                          </p>
+                          <p class="desc">
+                            보험트렌드 생명보험 일본 소액단기보험 개발 현황(4)
+                            최근 KIDI BRIEF에서는 일본 대표 소액단기보험사를
+                            순차적으로 선정하여... 자세히보기 손해보험 2024년
+                            글로벌 자연재해 피해와 보험금 양상 2024�
+                          </p>
+                        </div>
+                        <p class="date">2025.05.02</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00068_132" class="card">
+                        <div class="text_box">
+                          <p>Monthly KIDI Brief</p>
+                          <p class="subject lg">
+                            보험개발원 Monthly KIDI BRIEF(2025년 3월)
+                          </p>
+                          <p class="desc">
+                            보험트렌드 생명보험 일본 소액단기보험 개발 현황(3)
+                            최근 KIDI BRIEF에서는 일본 대표 소액단기보험사를
+                            순차적으로 선정하여... 자세히보기 손해보험
+                            화재배상책임보험 관련 법률 개요 연혁)73.2.6.에
+                          </p>
+                        </div>
+                        <p class="date">2025.03.28</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00068_131" class="card">
+                        <div class="text_box">
+                          <p>Monthly KIDI Brief</p>
+                          <p class="subject lg">
+                            보험개발원 Monthly KIDI BRIEF(2025년 2월)
+                          </p>
+                          <p class="desc">
+                            보험트렌드 생명보험 일본 소액단기보험 개발 현황(2)
+                            지난 月 보고서에서는 아이아루社의 상품을
+                            소개하였으며 금번 보고서에서는... 자세히보기
+                            손해보험 가스사고배상책임보험 의무가입 보상한도 변경
+                          </p>
+                        </div>
+                        <p class="date">2025.03.05</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00068_130" class="card">
+                        <div class="text_box">
+                          <p>Monthly KIDI Brief</p>
+                          <p class="subject lg">
+                            보험개발원 Monthly KIDI BRIEF(2025년 1월)
+                          </p>
+                          <p class="desc">
+                            보험트렌드 생명보험 일본 소액단기보험 개발 현황 1인
+                            가구 증가 등으로 임차인의 고독사로 인한 임대인의
+                            피해가 사회적 문제... 자세히보기 손해보험 2025년
+                            손해보험 트렌드 프로세스 혁신 2023년에서
+                          </p>
+                        </div>
+                        <p class="date">2025.02.03</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- 기업성보험 통계보고서에서 국내보험동향으로 변경 -->
+                <div
+                  class="swiper-container insurance_news_slider active04"
+                  role="tabpanel"
+                  id="tabPanel4"
+                  aria-hidden="true"
+                >
+                  <div class="swiper-wrapper card_list border">
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00083_180" class="card">
+                        <div class="text_box">
+                          <p>국내보험동향</p>
+                          <p class="subject lg">
+                            [안진Deloitte] Insights: 보험산업의 미래, 디지털
+                            혁신과 헬스케어 패러다임 전환
+                          </p>
+                          <p class="desc">
+                            안진Deloitte Deloitte Insights 보험산업의 미래,
+                            디지털 혁신과 헬스케어 패러다임 전환 보험 산업은
+                            저출산고령화, 시장 포화, 소비자 기대 변화 등
+                            복합적인 도전에 직면해 있습니다. 기존의 단순 보장
+                            중심
+                          </p>
+                        </div>
+                        <p class="date">2025.06.04</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00083_179" class="card">
+                        <div class="text_box">
+                          <p>국내보험동향</p>
+                          <p class="subject lg">
+                            [삼정KPMG] 보험 리부트(Re:Boot), 보험산업의 미래
+                            비즈니스 방향은?
+                          </p>
+                          <p class="desc">
+                            삼정KPMG:보험 리부트(Re:Boot), 보험산업의 미래
+                            비즈니스 방향은? (발간일 2025-05-28) Issue Monitor
+                            보험 리부트(Re:Boot), 보험산업의 미래 비즈니스
+                            방향은? 국내 보험산업은 저성장, 저출산, 고령화 등 �
+                          </p>
+                        </div>
+                        <p class="date">2025.06.04</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00083_178" class="card">
+                        <div class="text_box">
+                          <p>국내보험동향</p>
+                          <p class="subject lg">
+                            [손해보험협회] 월간손해보험 2025년 5월호: 기후변화
+                            적응을 위한 손해보험회사의 역할(下) 등
+                          </p>
+                          <p class="desc">
+                            손해보험협회: 월간손해보험 2025년 05월호 통권
+                            제678호 주요이슈 암보험 시장의 현황과 향후 암 발생률
+                            예측 암보험은 1990년대 후반 단순히 암 진단 시
+                            일시금을 지급하는 구조로 시작해, 치료 기술의 발전과
+                          </p>
+                        </div>
+                        <p class="date">2025.06.04</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00083_177" class="card">
+                        <div class="text_box">
+                          <p>국내보험동향</p>
+                          <p class="subject lg">
+                            [한국보험학회] 보험학회지 142권 시스템적 사이버
+                            리스크 분류체계 및 통계적 특성 연구 등
+                          </p>
+                          <p class="desc">
+                            한국보험학회: 보험학회지 142권 (발간월 2025-04)
+                            시스템적 사이버 리스크 분류체계 및 통계적 특성 연구
+                            KCI 등재 정광민 ( Kwangmin Jung ) , 배기웅 (
+                            Keywoong Bae ) 2025 보험학회지 한국보험학회 142 1
+                          </p>
+                        </div>
+                        <p class="date">2025.06.04</p>
+                      </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                      <a href="/boarddetail/nd00083_176" class="card">
+                        <div class="text_box">
+                          <p>국내보험동향</p>
+                          <p class="subject lg">
+                            [손해보험협회] 배타적사용권 신청사항 및 심의 결과
+                          </p>
+                          <p class="desc">
+                            손해보험협회: 25년 5월 배타적사용권 신청사항 및
+                            심의결과 DB손해보험 개물림사고 벌금(실손),
+                            개물림사고 벌금(동물보호법)(실손) 심의일자: 25년 5월
+                            28일 종목: 장기 신청사항: (새로운 위험담보) 반려�
+                          </p>
+                        </div>
+                        <p class="date">2025.06.04</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <a href="#insurance_news_tab" class="goto-control"
+                  >탭으로 돌아가기</a
+                >
+              </div>
+              <div class="insurance_news_slider_btns">
+                <div class="swiper-slide-btn active01 active">
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+                <div class="swiper-slide-btn active02">
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+                <div class="swiper-slide-btn active03">
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+                <div class="swiper-slide-btn active04">
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- // 보험소식 -->
+        <section id="section03" class="insurance_statistics_sect section">
+          <div class="inner">
+            <div class="main_ttl_box">
+              <h2 class="main_ttl text-green">
+                <span>보험통계</span>
+              </h2>
+            </div>
+
+            <div class="main--sub--header">
+              <h3>50대 주요보험지표</h3>
+              <a href="" class="more">더보기</a>
+            </div>
+
+            <div class="swiper indicators-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <a href="" class="indicator-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_indicators01.jpg"
+                        alt="자동차 등록 현황"
+                      />
+                      <div class="image--overlay"></div>
+                      <div class="card-image--content">
+                        <span class="year-badge">2024년 기준</span>
+                        <p class="main-stat">2,844 <span class="unit">만대</span></p>
+                      </div>
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자동차 등록대수</div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="" class="indicator-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_indicators02.png"
+                        alt="노령화 지수"
+                      />
+                      <div class="image--overlay"></div>
+                      <div class="card-image--content">
+                        <span class="year-badge">2024년 기준</span>
+                        <p class="main-stat">165.4 <span class="unit">%</span></p>
+                      </div>
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자동차 등록대수</div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="" class="indicator-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_indicators03.png"
+                        alt="기대수명"
+                      />
+                      <div class="image--overlay"></div>
+                      <div class="card-image--content">
+                        <span class="year-badge">2024년 기준</span>
+                        <p class="main-stat">83.5 <span class="unit">세</span></p>
+                      </div>
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자동차 등록대수</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="inner">
+            <div class="main--sub--header">
+              <h3>인기정보 서비스</h3>
+            </div>
+            <div class="supplementary--list">
+              <a href="#/" class="supplementary--list--item">KIDI <br>은퇴시장 리포트</a>
+              <a href="#/" class="supplementary--list--item">보험통계조회서비스</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="section04" class="useful_insurance_sect section">
+          <div class="inner">
+            <div class="main_ttl_box">
+              <h2 class="main_ttl text-red point">
+                <span>알쓸보험</span>
+              </h2>
+            </div>
+            <div class="main--sub--header">
+              <h3>알쓸보험상식</h3>
+              <a href="" class="more">더보기</a>
+            </div>
+            <div class="swiper useful-swiper">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                  <a href="" class="useful-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_useful01.png"
+                        alt="자동차 등록 현황"
+                      />
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자기신체손해와 자동차상해의 차이 </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="" class="useful-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_useful02.png"
+                        alt="노령화 지수"
+                      />
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">기타</div>
+                      <div class="stat-label">자동차사고 발생 시 대처요령 </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="" class="useful-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_useful03.png"
+                        alt="기대수명"
+                      />
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자동차보험 유용한 특약</div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="" class="useful-card">
+                    <div class="card-image">
+                      <img
+                        src="/assets/img/sample_img/bg_useful04.png"
+                        alt="기대수명"
+                      />
+                    </div>
+                    <div class="card-category">
+                      <div class="category-badge">자동차보험</div>
+                      <div class="stat-label">자동차보험 담보 구성, 보험요율 산출 방식</div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="inner">
+            <div class="supplementary_information_box">
+              <div class="main--sub--header">
+                <h3>알아두면 쓸모 있는 자동차보험 정보</h3>
+              </div>
+              <div class="slider_wrap">
+                <div class="swiper-container supplementary_information_slider">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide" role="group">
+                      <a href="/user/nd00044.action" class="supplementary_card pink">
+                        <span class="ico ico01"></span>
+                        <div class="text_box">
+                          <p>
+                            차량기준<br class="only_mo">가액
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swiper-slide" role="group">
+                      <a href="/user/nd00054.do" class="supplementary_card pink">
+                        <span class="ico ico02"></span>
+                        <div class="text_box">
+                          <p>
+                            경미손상수리<br class="only_mo">기준
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swiper-slide" role="group">
+                      <a href="/user/nd00051.do" class="supplementary_card pink">
+                        <span class="ico ico03"></span>
+                        <div class="text_box">
+                          <p>
+                            자동차보험 광역도시별<br> 교통사고 현황
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swiper-slide" role="group">
+                      <a href="/user/nd00074.action" class="supplementary_card pink">
+                        <span class="ico ico04"></span>
+                        <div class="text_box">
+                          <p>
+                            차량모델<br class="only_mo" />등급
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="swiper-slide" role="group">
+                      <a href="/user/nd00071.do" class="supplementary_card pink">
+                        <span class="ico ico05"></span>
+                        <div class="text_box">
+                          <p>
+                            자동차보험금<br class="only_mo" /> 원가지수
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-button-option">
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section05" class="my-insurance-container">
+          <div class="feature-banner__visual" aria-hidden="true"></div>
+          <div class="inner">
+            <div class="my-insurance-header">
+                <h2 class="my-insurance-header__title">MY보험</h2>
+                <p class="my-insurance-header__description">실생활에 도움이 되는 나만을 위한 서비스를 확인해보세요.</p>
+            </div>
+        
+            <div class="feature-banner">
+              <div class="feature-banner__text-content">
+                  <h3 class="feature-banner__sub-title">건강상태별 질환 발병<br>가능성 간편 확인 서비스</h3>
+                  <a href="" class="feature-banner__title">
+                    <span>자발적으로 건강관리를 할 수 있는</span>
+                    <strong>연령대별 만성질환 발생률 예측 서비스</strong> 
+                  </a>
+              </div>
+             
+            </div>
+        
+            <div class="service-section-container">
+        
+                <article class="service-section">
+                    <div class="service-section__header">
+                        <p class="service-section__title measure">
+                          돈을 아끼는<br>자동차보험 주요서비스
+                        </p>
+                    </div>
+                    <ul class="service-grid">
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link">
+                                <img src="../assets/img/main/carimg.png" alt="">
+                                <p>내차보험 찾기</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link">
+                                <img src="../assets/img/main/readMore_img.png" alt="">
+                                <p>자동차보험 과납보험료 및<br>휴면보험금 조회시스템</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/kkalkalcon.png" alt="">
+                                <p>자동차사고이력정보<br>(CarHistory)</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/card.png" alt="">
+                                <p>대리운전자보험<br>조회시스템</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link">
+                                <img src="../assets/img/main/contactimg.png" alt="">
+                                <p>자동차보험정보 고객센터</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link">
+                                <img src="../assets/img/main/calculatorimg.png" alt="">
+                                <p>자동차보험<br>할인할증요인 조회</p>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+        
+                <article class="service-section">
+                    <div class="service-section__header">
+                        <p class="service-section__title calc">나에게 도움이 되는<br>주요서비스</p>
+                    </div>
+                    <ul class="service-grid">
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/silson24_new.png" alt="">
+                                <p>실손보험 청구 전산화 시스템</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/jaenan24_new.jpg" alt="">
+                                <p>재난보험 24</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/ecos.jpg" alt="">
+                                <p>한국은행경제통계시스템</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/kosis.jpg" alt="">
+                                <p>국가통계포털</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/guide.jpg" alt="">
+                                <p>네이버 사장님 보험가이드</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                            <a href="#" class="service-grid__link service-grid__link--external">
+                                <img src="../assets/img/main/zoom.jpg" alt="">
+                                <p>내 보험 찾아줌</p>
+                            </a>
+                        </li>
+                        <li class="service-grid__item">
+                          <a href="#" class="service-grid__link service-grid__link--external">
+                              <img src="../assets/img/main/zoom.jpg" alt="">
+                              <p>보험다모아</p>
+                          </a>
+                      </li>
+                    </ul>
+                </article>
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <footer id="footer"><!-- footer -->
+        <!-- <nav> -->
+        <!--   <ul id="fnb" class="inner_1120"> -->
+        <!--     <li><a href="#!" class="text-point">개인정보 처리방침</a></li> -->
+        <!--     <li><a href="#!">사이트 이용약관</a></li> -->
+        <!--     <li><a href="#!">오시는 길</a></li> -->
+        <!--     <li><a href="#!">서민금융1332</a></li> -->
+        <!--     <li><a href="#!">보험범죄 신고센터</a></li> -->
+        <!--   </ul> -->
+        <!-- </nav> -->
+        <div class="footer_info">
+          <div class="inner_1120">
+            <div class="footer_area">
+              <div class="footer_top flex-b-c">
+                <a class="logo" href="/"> <img
+                  src="../assets/img/common/logo.png" alt="BIGIN 보험정보 빅데이터 플랫폼 로고">
+                </a>
+                <div class="right_logo_wrap">
+                  <a class="before_logo" href="https://www.kidi.or.kr"
+                    target="_blank" title="새창열림"> 
+                    <img src="../assets/img/common/f_logo_before.png"
+                    alt="보험개발원 보험정보 빅데이터 플랫폼  변경전 로고" />
+                  </a> 
+                  <a
+                    href="https://wa.or.kr/board/list.asp?search=total&SearchString=%BA%B8%C7%E8%B0%B3%B9%DF%BF%F8&BoardID=0006"
+                    target="_blank" title="새창열림" class="wa_logo only_web"><img
+                    src="../assets/img/common/wa_logo.png"
+                    alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2024.04.15~2025.04.14"
+                    title="WA 품질인증 마크, 웹와치(WebWatch) 2024.04.15~2025.04.14" /></a>
+                </div>
+              </div>
+        
+              <div class="footer_bot">
+        
+                <address>
+                  <span>보험개발원</span> <span> (우) 07328 서울시 영등포구 국제금융로6길 38</span> <span
+                    class="bar ">사업자등록번호: 116-82-03536</span> <span class="bar mo_bar">대표전화:
+                    02-368-4000</span> <span class="bar">관련문의: bigin@kidi.or.kr</span>
+                  <span class="bar"><a href="/user/nd00088.do">이메일무단수집거부</a></span>
+                  </address>
+                <span class="copyright"> COPYRIGHT 2024 KIDI ALL RIGHTS
+                  RESERVED. </span>
+              </div>
+              <div class="bot_logo_wrap">
+                    <a href="https://wa.or.kr/board/list.asp?search=total&SearchString=%BA%B8%C7%E8%B0%B3%B9%DF%BF%F8&BoardID=0006"
+                      target="_blank"
+                      title="새창열림"
+                      class="wa_logo">
+                      <img src="../assets/img/common/wa_logo.png"
+                        alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2024.04.15~2025.04.14"
+                        title="WA 품질인증 마크, 웹와치(WebWatch) 2024.04.15~2025.04.14"
+                    /></a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- // footer -->
+      </footer>
+      <dialog id="chartSettingDialog">
+        <!-- 보험개발원이 추천하는 이런 테마는 어떠세요?
+        나의 맞춤형 대시보드 -->
+        <div class="dialog--header">
+          <h2 class="dialog--header--title">나의 맞춤형 대시보드</h2>
+          <!-- <div class="dialog--header--options">
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+            <button class="help-toggle" id="helpToggle">❓</button>
+          </div> -->
+        </div>
 
         <!-- Help modal -->
         <div class="modal" id="helpModal">
@@ -931,13 +1872,25 @@
             </div>
 
             <div class="help-footer">
-              <button class="dialog--btn help-close-btn" onclick="closeHelpModal()">
+              <button
+                class="dialog--btn help-close-btn"
+                onclick="closeHelpModal()"
+              >
                 Got it!
               </button>
             </div>
           </div>
         </div>
-        <div class="container">
+        <div
+          class="container"
+          style="display: flex; flex-direction: column; gap: 1rem"
+        >
+          <!-- <div id="shortcutCharts" data-shortCut-title="보험개발원이 추천하는 이런 테마는 어떠세요?">
+            <button class="dialog--btn" type="button" id="boheomSaneobBtn">보험산업</button>
+            <button class="dialog--btn" type="button">보험시장</button> 
+            <button class="dialog--btn" type="button">건강</button>
+            <button class="dialog--btn" type="button">퇴직</button>
+          </div> -->
           <div class="board">
             <div class="column" id="type01">
               <div class="task-list">
@@ -968,30 +1921,44 @@
             <button class="modal__close" type="button">&times;</button>
             <h2>새 차트</h2>
             <form class="task-form" id="taskForm">
+              <div class="form-group row">
+                <div class="color-picker">
+                  <input type="color" id="taskColor" value="#215285" />
+                  <span>배경색 설정</span>
+                </div>
+              </div>
               <input type="hidden" id="editTaskId" />
               <input type="hidden" id="columnType" />
-              <input type="hidden" id="chartType"/>
+              <input type="hidden" id="chartType" />
               <div class="form-group row" id="chartRequestOptions">
-                <button class="dialog--btn" type="button" data-chart-type="chart-1">50대주요지표</button>
-                <button class="dialog--btn" type="button" data-chart-type="chart-2">발간물 데이터</button>
-                <button class="dialog--btn" type="button" data-chart-type="chart-3">월간보험통계</button>
+                <button
+                  class="dialog--btn"
+                  type="button"
+                  data-chart-type="chart-1"
+                >
+                  50대 주요 보험지표
+                </button>
+                <button
+                  class="dialog--btn"
+                  type="button"
+                  data-chart-type="chart-2"
+                >
+                  국민생활 데이터
+                </button>
+                <button
+                  class="dialog--btn"
+                  type="button"
+                  data-chart-type="chart-3"
+                >
+                  보험실적 데이터
+                </button>
               </div>
               <div class="form-group">
                 <label for="taskTitle">타이틀</label>
                 <input type="text" id="taskTitle" required />
               </div>
-
-              <div class="form-group--wrapper">
-                
-              </div>
-
-              <div class="form-group row">
-                <div class="color-picker">
-                  <input type="color" id="taskColor" value="#3a86ff" />
-                  <span>배경색 설정</span>
-                </div>
-              </div>
-              <button type="submit" class="dialog--btn">Add Chart</button>
+              <div class="form-group--wrapper"></div>
+              <button type="submit" class="dialog--btn primary">Add Chart</button>
             </form>
           </div>
         </div>
@@ -1006,9 +1973,9 @@
 
         <!-- Delete confirmation modal -->
         <div class="modal" id="deleteConfirmationModal">
-          <div class="modal__content" style="width:auto;">
-            <h3>Confirm Deletion</h3>
-            <p>설명</p>
+          <div class="modal__content" style="width: auto">
+            <h3>정말로 삭제하시겠습니까?</h3>
+            <p></p>
             <div
               style="
                 display: flex;
@@ -1017,33 +1984,36 @@
                 margin-top: 1.5rem;
               "
             >
-              <button class="dialog--btn" id="cancelDeleteBtn">Cancel</button>
+              <button class="dialog--btn" id="cancelDeleteBtn">취소</button>
               <button
                 class="dialog--btn"
-                style="background: var(--accent)"
+                style="background: var(--accent);color:#fff;"
                 id="confirmDeleteBtn"
               >
-                Delete
+                삭제
               </button>
             </div>
           </div>
         </div>
-        <form method="dialog" style="display: flex;justify-content: center;gap:10px;">
-          <button id="settingBtn" class="dialog--btn" type="button">Setting</button>
-          <button id="cancelBtn" class="dialog--btn" type="button">Cancel</button>
+        <form
+          method="dialog"
+          style="display: flex; justify-content: center; gap: 10px"
+        >
+          <button id="settingBtn" class="dialog--btn primary" type="button">설정</button>
+          <button id="cancelBtn" class="dialog--btn" type="button">취소</button>
         </form>
-
       </dialog>
-      <footer id="footer"></footer>
     </div>
     <script src="../assets/plugin/axios/axios.js"></script>
     <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
     <script src="../assets/plugin/gsap/gsap.min.js"></script>
     <script src="../assets/plugin/gsap/SplitType.js"></script>
-    <script src='../assets/plugin/anime/anime.min.js'></script>
-    <script src='../assets/plugin/particles/particles.js'></script>
+    <script src="../assets/plugin/anime/anime.min.js"></script>
+    <script src="../assets/plugin/particles/particles.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <script src="/assets/js/intro.js" defer></script>
-    <script src="../assets/js/main.js" type="module"></script>
+    <!-- <script src="/assets/js/intro.js" defer></script> -->
+    <script src="/assets/js/header.js"></script>
+    <script src="../assets/js/dashBoard.js" type="module"></script>
+    <script src="../assets/js/main.js"></script>
   </body>
 </html>

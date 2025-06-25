@@ -156,7 +156,7 @@ https://codepen.io/mickaellherminez/pen/dPypGXb
 grid
 https://tympanus.net/Development/MenuToGrid/
 
-알림림
+알림
 https://codepen.io/dannymoerkerke/pen/wBwYzRe
 
 버블
@@ -164,143 +164,25 @@ https://codepen.io/glitchworker/pen/jENZGOV
 
 블러처리
 https://codepen.io/bernethe/pen/bNbGOqQ
-"step4": [
-    {
-      "id": "1",
-      "name": "운동을 자주 해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "2",
-      "name": "반려동물이 있어요",
-      "image": "bg_lf_2.svg"
-    },
-    {
-      "id": "3",
-      "name": "여행을 좋아해요",
-      "image": "bg_lf_3.svg"
-    },
-    {
-      "id": "4",
-      "name": "독서를 즐겨요",
-      "image": "bg_lf_4.svg"
-    },
-    {
-      "id": "5",
-      "name": "영화 관람을 즐겨요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "6",
-      "name": "음악 감상을 좋아해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "7",
-      "name": "요리에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "8",
-      "name": "쇼핑을 자주 해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "9",
-      "name": "사회 활동에 참여해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "10",
-      "name": "자원봉사 활동",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "11",
-      "name": "패션에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "12",
-      "name": "자동차를 소유해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "13",
-      "name": "기술에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "14",
-      "name": "건강 관리를 중시해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "15",
-      "name": "가족과의 시간이 중요해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "16",
-      "name": "와인/커피 애호가",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "17",
-      "name": "예술 전시회를 방문해요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "18",
-      "name": "비즈니스에 관심 있어요",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "19",
-      "name": "주말 레저 활동",
-      "image": "bg_lf_1.svg"
-    },
-    {
-      "id": "20",
-      "name": "취미 생활에 열정적이에요",
-      "image": "bg_lf_1.svg"
-    }
-  ],
-// "step4":[
-  //   {
-  //     "id":0,
-  //     "name":"금융",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["은행&카드"]
-  //   },
-  //   {
-  //     "id":1,
-  //     "name":"레저&엔터",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["웹툰"]
-  //   },
-  //   {
-  //     "id":2,
-  //     "name":"쇼핑",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["해외직구", "패션&뷰티"]
-  //   },
-  //   {
-  //     "id":3,
-  //     "name":"생활",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["카라이프", "퀴즈"]
-  //   },
-  //   {
-  //     "id":4,
-  //     "name":"정보",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["카라이프", "보험"]
-  //   },
-  //   {
-  //     "id":5,
-  //     "name":"커뮤뮤",
-  //     "image":"bg_lf_1.svg",
-  //     "children":["카라이프", "보험"]
-  //   }
-  // ],
+
+
+
+https://codepen.io/takaneichinose/pen/yLVJEWm
+
+https://codepen.io/syndicatefx/pen/OJBZpV
+
+
+
+
+로딩
+https://codepen.io/filipz/pen/wBvVKZj
+
+refresh
+https://codepen.io/ionic/pen/oNgeMZ
+
+
+
+https://kisdi40history.re.kr/
+
+
+https://codepen.io/FacepalmRobot/pen/ZrGjER

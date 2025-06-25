@@ -1,0 +1,157 @@
+@use '../../abstracts/' as *;
+
+#section03{
+    background-color: #edf3ff;
+}
+.indicators-swiper{
+    width:100%;
+    overflow: hidden;
+    .indicator-card{
+        width:100%;
+        height:100%;
+    }
+    //임시
+    // .swiper-wrapper{
+    //     display: grid;
+    //     grid-template-columns: repeat(3, 1fr);
+    //     gap: rem(20);
+    // }
+
+    .swiper-slide{
+        border-radius: rem(35);
+        border: rem(1) solid #E2E2E2;
+        background: #FFF;
+        height:rem(500);
+        position: relative;
+        overflow: hidden;
+        .card-image{
+            position: relative;
+            width:100%;
+            height:100%;
+            overflow: hidden;
+            will-change: clip-path;
+            clip-path: circle(35% at 50% 40%);
+            transition: all .5s ease-in-out;
+            img{
+                width:100%;
+                height:100%;
+            }
+            .image--overlay{ 
+                position: absolute;
+                z-index: 1;
+                opacity: 0.5;
+                background-color: #000;
+                width:100%;
+                height:100%;
+                top:0;
+                transition: all .5s;
+            }
+            &--content{
+                position: absolute;
+                top:50%;
+                color:#fff;
+                left:50%;
+                transform: translateX(-50%);
+                text-shadow: rem(2) rem(2) 0 #333;
+                z-index: 2;
+                transition: all .5s;
+                .year-badge{
+                    font-size: rem(14);
+                }
+                .main-stat{
+                    font-size: rem(50);
+                    display: flex;
+                }
+            }
+        }
+
+        &:hover{
+            .card-image{
+                will-change: clip-path;
+                clip-path: circle(100% at 50% 50%);
+                .image--overlay{ /* Note: Typo "ovelay" was in the original, kept as is */
+                    opacity: 0;
+                }
+                &--content{
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+        .card-category{
+            position: absolute;
+            bottom:rem(0); /* Converted from 0px */
+            left:0;
+            width:100%;
+            background-color: #fff;
+            padding-block: rem(20);
+            .category-badge{
+                border-radius: rem(28);
+                background: #58A47B;
+                display: inline-flex;
+                padding: rem(4) rem(12);
+                justify-content: center;
+                align-items: center;
+                gap: rem(8);
+                color: #FFF;
+                font-size: rem(12);
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: rem(-0.224);
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 0;
+            }
+            .stat-label{
+                color: #252525;
+                font-size: rem(20);
+                font-weight: 600;
+                line-height: normal;
+                letter-spacing: rem(-0.4);
+                margin-block-start: rem(8);
+            }
+        }
+    }
+}
+
+.supplementary--list{
+    display: flex;
+    gap: rem(20);
+    height:rem(168);
+    width:100%;
+    &--item{
+        border-radius: rem(35);
+        height:100%;
+        flex:1;
+        display: flex;
+        align-items: center;
+        padding-inline: rem(52);
+        background-repeat: no-repeat !important;
+        color: #333;
+        font-size: rem(24); /* This was already in rem format */
+        font-weight: 600;
+        line-height: normal;
+        transition:  all .5s;
+        &:nth-child(1){
+            border: rem(1) solid #A3A3CA;
+            background: #CACAE6;
+            justify-content: flex-end;
+            background-image: url('/assets/img/main/bg_data.png');
+            text-align: right;
+        }
+        &:nth-child(2){
+            border: rem(1) solid #57B4D3;
+            background: #92E4FF;
+            justify-content: flex-start;
+            background-image: url('/assets/img/main/bg_chart.png');
+            text-align: left;
+        }
+        &:hover {
+            transform: translateY(rem(-2));
+            box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.2);
+        }
+    }
+}
+
+// will-change: clip-path;
+// clip-path: circle(20% at 50% 50%);

@@ -1,0 +1,94 @@
+/* header */
+#header {
+    /* border-bottom: .0625rem solid #eeeeee; */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: #fff;
+    z-index: 60;
+  }
+  .gnb_in #header,
+  .gnb_in #header .header_top,
+  .show_search #header .header_top,
+  .show_search #header,
+  .gnbOpen #header {
+    background: #fff !important;
+    color: #333 !important;
+  }
+  
+  .logo img {
+    width: 180px;
+  }
+  
+  #header .logo span {
+    font-size: 1.375rem;
+  }
+  
+  .logo span {
+    display: block;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  
+  #header .header_top {
+    padding: 0 0;
+    border-bottom: 0.0625rem solid #eeeeee;
+    position: relative;
+    background-color: #fff;
+    z-index: inherit;
+    min-height: 90px;
+  }
+  #header .header_top .inner {
+    min-height: inherit;
+    position: static;
+  }
+  
+  #header > .header_top > .flex-b-c{
+      padding-inline:20px;
+  }
+  
+  #header .flex--c.h_btn_area{
+    gap: 20px;
+  }
+  #header .h_btn_area .header_btn {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: no-repeat center;
+    flex-shrink: 0;
+  }
+  
+  #header .h_btn_area .head_search_btn{
+    background-image: url('../img/common/ico_search.svg');
+  }
+  
+  #header .h_btn_area .head_search_btn.on{
+    background-image: url('../img/common/ico_search_close.svg');
+  }
+  
+  .header--option{
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  #header .h_btn_area .ham_btn {
+    margin-left: 1.25rem;
+    background-image: url(../img/btn/header_ham.png);
+  }
+  
+  .gnbOpen #header .h_btn_area .ham_btn {
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .gnbOpen #header .h_btn_area .ham_close {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: no-repeat center;
+    background-image: url(../img/btn/header_close.png);
+    position: absolute;
+    right:0;
+  }

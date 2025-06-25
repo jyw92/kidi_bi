@@ -1104,23 +1104,76 @@ body.can-scroll {
   text-shadow: 0 -3rem 0 #748ffc, 0 0 0 #fff;
 }
 
-/* 선택 목록 버튼 스타일 */
-#selectList button {
-  height: 60px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
+#header #chartOptionBtn {
+  color: #fff;
+  border-radius: 11.5px;
+  border: 1.15px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, #2973D6 0%, #544FC5 100%);
+  block-size: 40px;
+  padding-inline: 23px;
+  font-size: 18px;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  display: none;
+}
+#header #chartOptionBtn::before {
+  content: "";
+  inline-size: 18px;
+  block-size: 18px;
+  background-image: url("/assets/img/main/ico_chartOption.svg");
+  background-repeat: no-repeat;
+}
+
+body.chart--page #header.main_header #chartOptionBtn {
+  display: flex;
+}
+
+#nav-icon {
+  width: 30px;
+  height: 22.5px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
-#selectList button:hover {
-  background-color: #5f7efa;
+#nav-icon span {
+  display: block;
+  position: absolute;
+  height: 4.5px;
+  width: 100%;
+  background: #333;
+  border-radius: 4.5px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
 }
-#selectList button.selected {
-  background-color: #4a6cf7;
-  color: white;
-  border-color: #3a5bd9;
+#nav-icon span:nth-child(1) {
+  top: 0px;
+}
+#nav-icon span:nth-child(2), #nav-icon span:nth-child(3) {
+  top: 9px;
+}
+#nav-icon span:nth-child(4) {
+  top: 18px;
+}
+#nav-icon.open span:nth-child(1) {
+  top: 9px;
+  width: 0%;
+  left: 50%;
+}
+#nav-icon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+#nav-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+#nav-icon.open span:nth-child(4) {
+  top: 9px;
+  width: 0%;
+  left: 50%;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -3573,15 +3626,16 @@ a .icon-flip-vertical:before {
   --modal-height: 100vh;
   --modal-padding: 16px;
   --primary: #3a86ff;
-  --secondary: #8338ec;
+  --secondary: #215285;
   --accent: #ff006e;
   --bg: #f8fafc;
   --card: #ffffff;
   --text: #1e293b;
-  --border: #e2e8f0;
-  --column-bg: #f1f5f9;
+  --border: #193a98;
+  --column-bg: #edf3ff;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --radius: 8px;
+  --radius: 4px;
+  --bs-input-height:40px;
   --header-pattern: repeating-linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.05) 0px,
@@ -3618,6 +3672,78 @@ dialog[open] {
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
+}
+
+#shortcutCharts {
+  width: 100%;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+#shortcutCharts::before {
+  content: attr(data-shortcut-title);
+  grid-column: 1/5;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dialog--header {
+  position: relative;
+  inline-size: 100%;
+  padding: 1.375rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.dialog--header--options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Help button styles */
+.help-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.help-toggle:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .dialog--title {
@@ -3698,7 +3824,7 @@ dialog::backdrop {
   --column-bg: #1e293b;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
   --primary: #60a5fa;
-  --secondary: #818cf8;
+  --secondary: #047857;
   --accent: #f472b6;
   --text-light: #94a3b8;
   --header-pattern: repeating-linear-gradient(
@@ -3754,7 +3880,7 @@ dialog::backdrop {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-#selectList,
+[data-theme=dark] #selectList,
 [data-theme=dark] .form-group select,
 [data-theme=dark] .form-group input,
 [data-theme=dark] .form-group textarea {
@@ -3763,13 +3889,17 @@ dialog::backdrop {
   border-color: var(--border);
 }
 
-#selectList,
+[data-theme=dark] #selectList,
 [data-theme=dark] .form-group select:focus,
 [data-theme=dark] .form-group input:focus,
 [data-theme=dark] .form-group textarea:focus {
   border-color: var(--primary);
   outline: none;
   box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+}
+
+[data-theme=dark] .form-group select {
+  background-image: url("/assets/img/ico/ico__arrow__down-white.svg") !important;
 }
 
 [data-theme=dark] .task__date {
@@ -3876,7 +4006,7 @@ dialog::backdrop {
 .container {
   /* max-width: 1600px;
   	margin: 2rem auto; */
-  padding: 2rem;
+  padding: 1.25rem 2rem 0;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -3886,7 +4016,7 @@ dialog::backdrop {
 .board {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -4050,9 +4180,14 @@ dialog::backdrop {
   background: white;
   padding: 2rem;
   border-radius: var(--radius);
-  max-width: 700px;
   position: relative;
   width: 90%;
+}
+
+#taskModal .modal__content {
+  width: 100%;
+  height: 98vh;
+  background-color: #fff;
 }
 
 .modal__close {
@@ -4070,16 +4205,13 @@ dialog::backdrop {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.form-group:nth-of-type(1) {
-  margin-top: 20px;
 }
 
 .form-group.row {
@@ -4100,6 +4232,23 @@ dialog::backdrop {
   gap: 10px;
   flex: 1;
 }
+.form-group.row .row--item.search--area {
+  position: relative;
+}
+.form-group.row .row--item.search--area #listSearch {
+  width: 100%;
+  padding-right: 40px;
+}
+.form-group.row .row--item.search--area #dialog--search {
+  position: absolute;
+  background-image: url(../img/common/ico_search.svg);
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-indent: -9999em;
+}
 
 .form-group label {
   font-weight: 600;
@@ -4107,7 +4256,7 @@ dialog::backdrop {
 }
 
 .form-group select {
-  background-image: url("/assets/img/ico/ico__arrow__down-white.svg") !important;
+  background-image: url("/assets/img/ico/ico__arrow__down.svg") !important;
   background-repeat: no-repeat !important;
   background-position-y: 50% !important;
   background-position-x: calc(100% - 10px) !important;
@@ -4115,33 +4264,55 @@ dialog::backdrop {
 
 .form-group select,
 .form-group input,
-.form-group textarea,
-#selectList {
+.form-group textarea {
   padding: 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid #f5f5f5;
   border-radius: var(--radius);
   font-family: inherit;
+  background-color: #f5f5f5;
+}
+
+#selectListLabel.error::after {
+  content: "리스트을 선택하여 주세요!";
+  color: #ff006e;
+  font-size: 12px;
+  margin-left: 10px;
 }
 
 #selectList {
-  height: 250px;
+  height: 400px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 1fr);
   gap: 5px;
   overflow-y: auto;
   margin-top: 10px;
+  background-color: #e5e5e5;
+  padding: 5px;
+  border: 1px solid #ddd;
+  /* 선택 목록 버튼 스타일 */
+}
+#selectList.error {
+  border: 3px dashed #ff006e;
 }
 #selectList button {
-  background: #2a4065;
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
-  font-size: 14px;
-  padding: 10px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  background-color: #fff;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+#selectList button:hover {
+  background-color: #f8f8f8;
+}
+#selectList button.selected {
+  position: sticky;
+  top: 0px;
+  bottom: 0px;
+  background-color: #215285;
+  color: #fff;
+  font-weight: 700;
+  border-color: #215285;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25), 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .form-group--wrapper {
@@ -4165,8 +4336,8 @@ dialog::backdrop {
 input[type=color] {
   -webkit-appearance: none;
   appearance: none;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   padding: 0;
   border: none;
   border-radius: 50%;
@@ -4202,18 +4373,26 @@ input[type=color]:hover {
 
 .dialog--btn {
   padding: 0.75rem 1.5rem;
-  background: var(--primary);
-  color: white;
-  border: none;
+  background: #fff;
+  color: #555;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
 }
+.dialog--btn:not(.primary, .--active):hover {
+  background-color: #ddd;
+}
+.dialog--btn.primary {
+  background-color: #215285;
+  color: #fff;
+  border: 1px solid #215285;
+}
 
-.dialog--btn:hover,
 .dialog--btn.--active {
   background: var(--secondary);
+  color: #fff;
 }
 
 .task__image {
@@ -4229,30 +4408,6 @@ input[type=color]:hover {
     grid-template-columns: repeat(2, minmax(400px, 1fr));
   }
 }
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
-}
-
 /* Footer styles */
 .footer {
   margin-top: auto;
@@ -4405,32 +4560,6 @@ input[type=color]:hover {
   color: var(--text);
 }
 
-/* Help button styles */
-.help-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 4rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-
-.help-toggle:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.2);
-}
-
 /* Help modal styles */
 .help-modal__content {
   max-width: 650px;
@@ -4565,6 +4694,394 @@ input[type=color]:hover {
 /* 드롭 영역 스타일 */
 .tasks {
   min-height: 50px; /* 빈 열에도 드롭할 수 있도록 최소 높이 설정 */
+}
+
+.range-group {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.range-group.row {
+  flex-direction: row;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-section {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #3b82f6;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #60a5fa;
+  font-size: 14px;
+}
+
+.date-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+}
+
+.date-group {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.date-group.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.insurance-tree-section {
+  padding: 0;
+}
+
+.tree-container {
+  width: 100%;
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #FFF;
+}
+
+.tree-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text);
+  text-align: left;
+  position: sticky;
+}
+
+.tree-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.control-btn {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.tree-node {
+  user-select: none;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px 8px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2px 0;
+}
+
+.tree-item.level-1 {
+  font-weight: 600;
+  color: #0069F6;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.1254901961), rgba(30, 64, 175, 0.0823529412));
+}
+
+.tree-item.level-2 {
+  font-weight: 500;
+  color: green;
+}
+
+.tree-item.level-3 {
+  color: rgb(255, 0, 0);
+}
+
+.tree-item.selected {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  transform: translateX(8px);
+}
+
+.tree-checkbox {
+  width: 0px;
+  height: 0px;
+  margin-right: 8px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  color: #0069F6;
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotated {
+  transform: rotate(90deg);
+}
+
+.chevron-placeholder {
+  width: 24px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  color: currentColor;
+}
+
+.tree-item-title {
+  font-size: 13px;
+  flex-grow: 1;
+}
+
+.tree-children {
+  margin-left: 15px;
+  padding-left: 10px;
+  border-left: 2px solid #0069F6;
+}
+
+.result-section {
+  padding: 20px;
+  background-color: #edf3ff;
+  border-radius: 10px;
+  border: 1px solid #3b82f6;
+  margin-bottom: 20px;
+}
+
+.result-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 15px;
+}
+
+.result-content {
+  border-radius: 6px;
+  color: #0069F6;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.selected-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.selected-item {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.remove-item {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  cursor: pointer;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #215285;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #215285;
+}
+
+.banner-area {
+  --banner-block-start: 0rem;
+  position: absolute;
+  inset-block-start: var(--banner-block-start);
+  left: calc((100% - 1348px) / 2 - 180px);
+  z-index: 1;
+  inline-size: 10.1875rem;
+  min-block-size: 27.5rem;
+  block-size: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0px 4px 23.4px 0px rgba(0, 0, 0, 0.15);
+}
+.banner-area .banner--item {
+  position: relative;
+  padding-block-start: 3.5625rem;
+  isolation: isolate;
+  overflow: hidden;
+  flex: 1;
+  border-radius: 0.3125rem;
+  border: 1px solid #193a98;
+  background: linear-gradient(to bottom, #20ced8 0%, #294caf 57.39%);
+  container-type: inline-size;
+}
+.banner-area .banner--item:focus-visible {
+  outline: 2px solid #20ced8;
+  outline-offset: 2px;
+}
+.banner-area .banner--item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  inline-size: 100%;
+  block-size: 15.625rem;
+  background-image: url("/assets/img/main/bg_banner.png");
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+@media (prefers-color-scheme: dark) {
+  .banner-area .banner--item {
+    border-color: #4a6cf7;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .banner-area .banner--item:hover {
+    transform: translateY(-0.125rem);
+  }
+}
+.banner-area .banner--item > * {
+  text-shadow: 1px 1px 0 #333;
+}
+.banner-area .banner--item p {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+.banner-area .banner--item strong {
+  display: block;
+  margin-top: 5px;
+  color: #FFF;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.shortcut--area {
+  position: fixed;
+  right: calc((100% - 1348px) / 2 - 180px);
+  bottom: calc(20vh + 1.25rem);
+  z-index: 1;
+}
+.shortcut--area .shortcut--item {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25), 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+}
+@media (prefers-color-scheme: dark) {
+  .shortcut--area .shortcut--item {
+    border-color: #4a6cf7;
+    box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25), 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.2);
+  }
+}
+.shortcut--area .shortcut--item--header {
+  border-radius: 0.3125rem 0.3125rem 0 0;
+  background: linear-gradient(180deg, #2973D6 0%, #544FC5 100%);
+  display: flex;
+  inline-size: 100%;
+  block-size: 5.125rem;
+  padding: 6px 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  color: #fff;
+}
+.shortcut--area .shortcut--item--header::before {
+  content: "";
+  block-size: 0.9375rem;
+  inline-size: 0.9375rem;
+  background-image: url("/assets/img/main/ico_star.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.shortcut--area .shortcut--item--body {
+  display: flex;
+  flex-direction: column;
+}
+.shortcut--area .shortcut--item--body li a {
+  display: block;
+  padding-block: 0.75rem;
+  font-size: 0.875rem;
+  color: #464646;
+  font-weight: 600;
+}
+.shortcut--area .shortcut--item--body li a span {
+  display: block;
+  margin-top: 5px;
+  color: #7F7F7F;
+  font-weight: 400;
+}
+.shortcut--area .shortcut--item--body li a:hover {
+  background-color: #544FC5;
+  color: #fff;
+}
+.shortcut--area .shortcut--item--body li a:hover span {
+  color: #fff;
 }
 
 /* -------------------------------------------------------------------------- */

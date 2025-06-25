@@ -490,6 +490,8 @@
 
 .intro--wrap {
     position: relative;
+    z-index: 100;
+    opacity: 0;
 }
 
 .intro {
