@@ -1,10 +1,10 @@
-import ChartConfigManager from "./ChartConfigManager.js"
-import { fetchData } from "./fetchData.js"
-import Dialog from "./dialog.js"
-import renderGrid from "./renderGrid/renderGrid.js"
-import showConfirmation from "./confirmation/confirmation.js"
-import addController from "./addController/addController.js"
-import { getTypeText } from "./utils/localStorageUtils.js"
+import ChartConfigManager from "../ChartConfigManager.js"
+import { fetchData } from "../fetchData.js"
+import Dialog from "../dialog.js"
+import renderGrid from "../renderGrid/renderGrid.js"
+import showConfirmation from "../confirmation/confirmation.js"
+import addController from "../addController/addController.js"
+import { getTypeText } from "../utils/localStorageUtils.js"
 // import Highcharts from "highcharts"
 
 /* -------------------------------------------------------------------------- */
