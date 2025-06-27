@@ -1,22 +1,18 @@
 @font-face {
-    font-family: 'SEBANG Gothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'SEBANG Gothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
-    font-weight: bold; /* Bold 체는 font-weight를 bold로 설정 */
-    font-style: normal;
-}
-@font-face {
     font-family: 'SB Aggro'; /* Light */
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+  font-family: 'SEBANG Gothic'; /* 사용할 폰트 이름 */
+  src: url('../css/fonts/sebang-gothic/SEBANG_Gothic_Bold.ttf') format('truetype'),
+       url('../css/fonts/sebang-gothic/SEBANG_Gothic_OTF_Bold.otf') format('opentype');
+  font-weight: normal; /* 폰트의 기본 두께 (normal, bold, 또는 숫자 100-900) */
+  font-style: normal;  /* 폰트의 스타일 (normal, italic) */
+  font-display: swap;  /* 폰트 로딩 전략 (선택 사항이지만 권장) */
+}
 
 
 .event--wrap{

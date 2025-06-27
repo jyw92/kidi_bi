@@ -17,6 +17,16 @@
     flex-direction: column;
     gap: rem(20);
     box-shadow: 0px 4px 23.4px 0px rgba(0, 0, 0, 0.15);
+
+    @include mq('md'){
+        position: static;
+        order: 2;
+        inline-size: 100%;
+        margin:0 auto;
+        min-block-size: 100px;
+        block-size: 100px;
+    }
+
     .banner--item {
         position: relative;
         padding-block-start: rem(57);
@@ -34,6 +44,16 @@
         // 컨테이너 쿼리 지원 (미래 대비)
         container-type: inline-size;
 
+        @include mq('md'){
+            padding-block-start:0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-inline-start: 12px;
+            background: linear-gradient(95deg, #20CED8 -19.48%, #294CAF 75.16%);
+        }
+
         // 접근성 개선
         &:focus-visible {
         outline: 2px solid #20ced8;
@@ -50,6 +70,16 @@
             background-image: url('/assets/img/main/bg_banner.png');
             background-repeat: no-repeat;
             z-index: -1;
+            @include mq('md'){
+                background-image: url('/assets/img/main/bg_banner_m.png');
+                left: unset;
+                bottom: 0;
+                right: 0;
+                inline-size: 100%;
+                block-size: 100%;
+                background-repeat: no-repeat;
+                background-position-x: 100%;
+            }
         }
         // 다크 모드 지원
         @media (prefers-color-scheme: dark) {
@@ -75,6 +105,11 @@
             text-align: center;
             font-size: 14px;
             font-weight: 400;
+            @include mq('md'){
+                br{
+                    display: none;
+                }
+            }
         }
         strong{
             display: block;
@@ -83,22 +118,59 @@
             text-align: center;
             font-size: 24px;
             font-weight: 800;
+            @include mq('md'){
+                br{
+                    display: none;
+                }
+            }
         }
     }
 }
+
+.page--option--overlay{
+    display: none;
+    &.on{
+        @include mq('md'){
+            display: block;
+            position: fixed;
+            bottom: 0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background: rgba(0, 0, 0, 0.30);
+            z-index: -1;
+        }
+    }
+  }
 
 .shortcut--area{
     position: fixed;
     right:calc(((100% - 1348px) / 2) - 180px);
     bottom:calc(20vh + rem(20));
     z-index: 1;
+    z-index: 1000;
     .shortcut--item{
         flex:1;
         background-color: #fff;
         border-radius: rem(5);
         // 모던 박스 섀도우
         box-shadow: 0 rem(4) rem(4) 0 rgb(0 0 0 / 0.25), 0 rem(1) rem(2) 0 rgb(0 0 0 / 0.1);
-        
+        &.on{
+            @include mq('md'){
+                bottom: 0;
+            }
+        }
+        @include mq('md'){
+            position: fixed;
+            bottom:-100%;
+            left:0;
+            width:100%;
+            box-shadow: 0px 2.4px 21.112px 0px rgba(0, 0, 0, 0.15) !important;
+            border-radius: 15px 15px 0 0 !important;
+            overflow: hidden;
+            transition: all .5s;
+        }
+
         // 다크 모드 지원
         @media (prefers-color-scheme: dark) {
             border-color: #4a6cf7;
@@ -117,6 +189,13 @@
             align-items: center;
             gap: 9px;
             color: #fff;
+            @include mq('md'){
+                height:50px;
+                background:#fff;
+                color: #464646;
+                flex-direction: row;
+                
+            }
             &::before{
                 content:"";
                 block-size: rem(15);
@@ -124,6 +203,9 @@
                 background-image: url('/assets/img/main/ico_star.svg');
                 background-repeat: no-repeat;
                 background-size: contain;
+                @include mq('md'){
+                    background-image: url('/assets/img/main/ico_bookmark2.svg');
+                }
             }
         }
         &--body{
@@ -136,12 +218,21 @@
                     font-size: rem(14);
                     color: #464646;
                     font-weight: 600;
-                   
+                    @include mq('md'){
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: rem(5);
+                        border-bottom: 1px solid #ccc;
+                    }
                     span{
                         display: block;
                         margin-top: 5px;
                         color: #7F7F7F;
                         font-weight: 400;
+                        @include mq('md'){
+                            margin-top: 0;
+                        }
                     }
                     &:hover{
                         background-color: #544FC5;

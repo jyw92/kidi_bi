@@ -43,6 +43,18 @@ dialog {
   form[method="dialog"]{
     padding:20px 0
   }
+  @include mq('md'){
+    width: 100vw;
+  }
+
+  .container{
+    @include mq('md'){
+      overflow: auto;
+      max-height: 75vh;
+      justify-content: flex-start;
+    }
+  }
+
 }
 dialog[open] {
   animation-play-state: running;
@@ -79,6 +91,12 @@ dialog::backdrop {
     @include flex-center-x;
     gap: 10px;
   }
+
+  @include mq('md'){
+    padding:rem(10);
+    font-size: rem(14);
+  }
+
 }
 
 
@@ -417,6 +435,9 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
   align-items: center;
+  @include mq('md'){
+    padding: rem(10);
+  }
 }
 
 .board {
@@ -424,6 +445,10 @@ dialog::backdrop {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1rem;
   width: 100%;
+  @include mq('md'){
+    gap:0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
 }
 
 .column {
@@ -432,6 +457,9 @@ dialog::backdrop {
   padding: 1.5rem;
   // min-height: 400px;
   transition: background-color 0.2s;
+  @include mq('md'){
+    padding:0;
+  }
 }
 
 .column.drag-over {
@@ -461,6 +489,10 @@ dialog::backdrop {
   padding: 0.5rem;
   transition: padding 0.2s;
   height: 100%;
+  @include mq('md'){
+    padding:0;
+    min-height: rem(120);
+  }
 }
 
 .task-list.drag-over {
@@ -483,6 +515,9 @@ dialog::backdrop {
   display: flex;
   align-items: center;
   justify-content: center;
+  @include mq('md'){
+    padding:0;
+  }
 }
 
 .task.dragging {
@@ -503,6 +538,7 @@ dialog::backdrop {
   font-size: 1.2rem;
   color: #666;
   cursor: pointer;
+  display: none;
 }
 
 .task.dragging::after {
@@ -521,6 +557,10 @@ dialog::backdrop {
   align-items: center;
   gap: 10px;
   flex-direction: column;
+  padding:0 rem(20);
+  @include mq('md'){
+    font-size: rem(16) !important;
+  }
 }
 
 .task__title {
@@ -590,11 +630,17 @@ dialog::backdrop {
   // max-width: 700px;
   position: relative;
   width:90%;
+  @include mq('md'){
+    padding: 1rem;
+  }
 }
 #taskModal .modal__content{
   width:100%;
   height: 98vh;
   background-color: #fff;
+  @include mq('md'){
+    width:100vw;
+  }
 }
 
 .modal__close {
@@ -631,6 +677,9 @@ dialog::backdrop {
     flex-direction: column;
     gap: 10px;
     flex:1;
+    @include mq('md'){
+      margin-top: rem(20);
+    }
   }
   .row--item{
     display: flex;
@@ -691,6 +740,7 @@ dialog::backdrop {
 }
 #selectList{
   height: 400px;
+  
   display: grid;
   // grid-template-columns: repeat(3, 1fr);
   // grid-template-rows: repeat(6, 1fr);
@@ -700,7 +750,13 @@ dialog::backdrop {
   background-color: #e5e5e5;
   padding: 5px;
   border: 1px solid #ddd;
-  
+  @include mq('md'){
+    overflow-y: visible;
+    height:auto;
+    background-color: transparent; 
+    padding: 0;
+    border: none;
+  }
   &.error{
     border:3px dashed#ff006e;
   }
@@ -731,10 +787,63 @@ dialog::backdrop {
   }
 }
 
+#chart-settings-container{
+  & div{
+    @include mq('md'){
+      
+      border: none !important;
+      &:not(.selectStateAddress){
+        padding:0 !important;
+        background: transparent !important;
+      }
+    }
+    
+  }
+  .selectStateAddress{
+    @include mq('md'){
+      padding:rem(10);
+    }
+  }
+}
+
+.form-group select, .form-group input, .form-group textarea{
+  @include mq('md'){
+    font-size: rem(14);
+  }
+}
+#state-items-container{
+  &>div{
+    border: none;
+  }
+}
+
 .form-group--wrapper{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @include mq('md'){
+    display: block;
+    height:50vh;
+  }
+  & > div{
+    @include mq('md'){
+      display: block !important;
+      min-height: auto !important;
+      margin-top: rem(20);
+    }
+  }
+}
+
+.form-section{
+  @include mq('md'){
+    margin-top: rem(10);
+  }
+}
+
+.result-section{
+  @include mq('md'){
+    margin-top: rem(10);
+  }
 }
 
 .picker-group {
@@ -904,9 +1013,32 @@ input[type="color"]:hover {
 .task__actions {
   position: absolute;
   top: 0.5rem;
-  right: 1.5rem;
+  right: 0.5rem;
   display: none;
   gap: 0.5rem;
+  @include mq('md'){
+    display: flex;
+    .action-btn{
+      font-weight: 600;
+      font-size: 0px;
+      color: #ffffff;
+    }
+    .action-btn::after{
+      font-size: rem(12);
+    }
+    .edit-btn{
+      background-color: #215285;
+      &::after{
+        content:"수정";
+      }
+    }
+    .delete-btn{
+      background-color:#ff006e;
+      &::after{
+        content:"삭제";
+      }
+    }
+  }
 }
 
 .task:hover .task__actions {
@@ -1124,4 +1256,184 @@ input[type="color"]:hover {
 /* 드롭 영역 스타일 */
 .tasks {
     min-height: 50px; /* 빈 열에도 드롭할 수 있도록 최소 높이 설정 */
+}
+
+#chartRequestOptions{
+  .dialog--btn{
+    font-size: rem(14);
+  }
+}
+
+
+#selectList {
+  position: relative;
+  @include mq('md'){
+    margin-top: 0;
+  }
+  // PC에서는 기존 버튼 리스트 형태 유지
+    gap: rem(8);
+    button {
+      padding: rem(8) rem(12);
+      border: 1px solid #ddd;
+      border-radius: rem(4);
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &:hover {
+        background: #f5f5f5;
+        border-color: #0069F6;
+      }
+      
+      &.selected {
+        background: #0069F6;
+        color: white;
+        border-color: #0069F6;
+      }
+    }
+  
+  // 모바일에서는 select combo박스 형태
+  @media (max-width: 769px) {
+    // 기존 버튼들 숨기기
+    button {
+      display: none;
+    }
+    
+    // 가상의 select 박스 생성
+    &::before {
+      content: attr(data-selected-text);
+      display: block;
+      width: 100%;
+      padding: rem(12) rem(40) rem(12) rem(16);
+      border: 2px solid #ddd;
+      border-radius: rem(8);
+      background: #fff;
+      font-size: rem(16);
+      color: #333;
+      cursor: pointer;
+      position: relative;
+      min-height: rem(48); // 터치 친화적 높이
+      line-height: 1.5;
+      
+      // 드롭다운 화살표
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right rem(12) center;
+      background-repeat: no-repeat;
+      background-size: rem(16) rem(16);
+    }
+    
+    // 활성화 상태
+    &.active {
+      &::before {
+        border-color: #0069F6;
+        box-shadow: 0 0 0 3px rgba(0, 105, 246, 0.1);
+      }
+      
+      .mobile-dropdown {
+        transform: translateY(0);
+        bottom:rem(-130);
+      }
+    }
+    
+    // 드롭다운 리스트
+    .mobile-dropdown {
+      position: fixed;
+      bottom:-100%;
+      left:rem(-20);
+      width:100vw;
+      z-index: 1000;
+      background: #fff;
+      border: 2px solid #0069F6;
+      border-radius: rem(8) rem(8) 0 0 ;
+      height: rem(300);
+      overflow-y: auto;
+      transition: all 0.2s ease;
+      box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
+      
+      
+      // 스크롤바 스타일링
+      &::-webkit-scrollbar {
+        width: rem(6);
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: rem(3);
+      }
+      
+      button {
+        display: block !important;
+        width: 100%;
+        padding: rem(12) rem(16);
+        border: none;
+        background: #fff;
+        text-align: left;
+        font-size: rem(14);
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        border-bottom: 1px solid #f0f0f0;
+        
+        &:hover {
+          background: #f8f9fa;
+        }
+        
+        &.selected {
+          background: #0069F6;
+          color: white;
+        }
+        
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    
+    // 에러 상태
+    &.error {
+      &::before {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+      }
+    }
+  }
+}
+
+// 모바일 전용 오버레이 (드롭다운 외부 클릭 감지용)
+.mobile-select-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: transparent;
+  
+  @media (max-width: 769px) {
+    &.active {
+      display: block;
+    }
+  }
+}
+
+// 라벨 스타일 (selectListLabel)
+#selectListLabel {
+  font-size: rem(14);
+  font-weight: 600;
+  color: #333;
+  margin-bottom: rem(8);
+  
+  @media (max-width: 769px) {
+    font-size: rem(16);
+    margin-bottom: rem(12);
+  }
+  
+  &.error {
+    color: #dc3545;
+  }
 }

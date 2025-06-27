@@ -126,7 +126,7 @@ var Main = {
   },
   mainTopinformationF: function () {
     mainTopInforSwiper = new Swiper(".supplementary_information_slider", {
-      slidesPerView: 3,
+      slidesPerView: 1.2,
       spaceBetween: 15,
       //  loop: true,
       roundLengths: true,
@@ -147,7 +147,8 @@ var Main = {
       },
       watchOverflow: true,
       breakpoints: {
-        768: {
+        769: {
+          slidesPerView: 3,
           spaceBetween: 20,
         },
       },
@@ -257,7 +258,7 @@ var Main = {
         }
 
         insuranceSwiper = new Swiper(`.insurance_news_slider-${index}`, {
-          slidesPerView: "auto",
+          slidesPerView: 1,
           spaceBetween: 15,
           roundLengths: true,
           slidesOffsetAfter: 2,
@@ -278,8 +279,8 @@ var Main = {
               slidesPerView: 3,
               spaceBetween: 20,
             },
-            768: {
-              slidesPerView: 2.5,
+            769: {
+              slidesPerView: 2,
               spaceBetween: 15,
             },
           },
@@ -324,16 +325,18 @@ var Main = {
   },
   indicatorsF: function (){
     indicatorsSwiper = new Swiper(".indicators-swiper", {
-      slidesPerView: 1,
-      spaceBetween: 0,
+      slidesPerView: 1.7,
+      spaceBetween: 20,
+      touchRatio:1,
       navigation: {
         nextEl: ".indicators-swiper .swiper-button-next",
         prevEl: ".indicators-swiper .swiper-button-prev",
       },
       breakpoints: {
-        768: {
+        769: {
           slidesPerView: 3,
           spaceBetween: 20,
+          touchRatio:0
         },
       },
     });
@@ -347,16 +350,18 @@ var Main = {
   },
   usefulF: function (){
     usefulSwiper = new Swiper('.useful-swiper',{
-      slidesPerView: 1,
-      spaceBetween: 0,
+      slidesPerView: 1.5,
+      spaceBetween: 20,
+      touchRatio: 1,
       navigation: {
         nextEl: ".useful-swiper .swiper-button-next",
         prevEl: ".useful-swiper .swiper-button-prev",
       },
       breakpoints: {
-        768: {
+        769: {
           slidesPerView: 4,
           spaceBetween: 20,
+          touchRatio: 0
         },
       },
     })

@@ -74,7 +74,37 @@ function resizeScrollCenter() {
   $box.animate({scrollLeft: pos}, 300);
 }
 
+function goToTop() {
+  const topBtn = document.querySelector('.btn--top');
+  if (topBtn) {
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // This makes the scroll animated
+      });
+    });
+  }
+}
+
+function moBookmark(){
+    const bookmarkBtn = document.querySelector('.btn--bookmark');
+    const bookmarkList = document.querySelector('.shortcut--item');
+    const bookmarkOverlay = document.querySelector('.page--option--overlay');
+
+    bookmarkBtn.addEventListener('click', () => {
+      bookmarkList.classList.add('on');
+      bookmarkOverlay.classList.add('on');
+    })
+
+    bookmarkOverlay.addEventListener('click', () => {
+      bookmarkList.classList.remove('on');
+      bookmarkOverlay.classList.remove('on');
+    })
+}
+
 $(function () {
+  goToTop();
+  moBookmark();
   const NowStepText = '<p class="text-hidden">현재 단계</p>';
   $('.step_wrap ul li.active').append(NowStepText);
 

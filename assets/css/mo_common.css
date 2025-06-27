@@ -1,9 +1,10 @@
 /* mobile */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
   html {
     font-size: 3.889vw;
     /* font-size: 28px; */
+    /* font-size: 18px; */
   }
 
   [class^="inner"] {
@@ -76,7 +77,8 @@
 
   .all_menu_wrap,
   .h_search {
-    top: 3.6071rem;
+    /* top: 3.6071rem; */
+    top:70px;
     border-top: 1px solid #eeeeee;
   }
 

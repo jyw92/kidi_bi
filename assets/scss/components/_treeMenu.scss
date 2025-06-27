@@ -1,4 +1,4 @@
-
+@use '../abstracts/' as *;
 
 
 .range-group{
@@ -99,6 +99,9 @@
     height: 100%;
     overflow-y: auto;
     background-color: #FFF;
+    @include mq('md'){
+        height: rem(300);
+    }
 }
 
 .tree-title {

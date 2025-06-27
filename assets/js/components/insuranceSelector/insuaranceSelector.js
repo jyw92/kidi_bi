@@ -1342,7 +1342,9 @@ function createInsuranceSelector(containerId = "insurance-tree", autoInit = fals
         display: flex;
         align-items: center;
         justify-content: space-between;
-      ">
+      "
+        class="selectStateAddress"
+        >
         <span>🛡️ ${fullPath}</span>
         
       </div>

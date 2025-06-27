@@ -44,8 +44,9 @@ export default function ChartTaskManager() {
   }
 
   // 창 크기 조정 시 차트 다시 렌더링
-  window.addEventListener("resize", () => {
-    renderCharts()
+  window.addEventListener("resize", async () => {
+    renderGrid(tasks);
+    await renderCharts()
   })
 
   // 로컬스토리지 완전 정리 함수 추가
@@ -494,8 +495,7 @@ export default function ChartTaskManager() {
 
         // chart-3 타입 task들에 combinationChart 데이터 저장
         // 삭제
-
-
+        
 
         // 그리드 렌더링 및 차트 업데이트
         //20250528추가&수정
@@ -717,6 +717,16 @@ export default function ChartTaskManager() {
       combinationChart = rawData ? JSON.parse(JSON.stringify(rawData)) : null
       console.log("보험 선택기 데이터 저장 (깊은 복사):", combinationChart)
     }
+
+    if(chartType === "chart-3"){
+      if(!combinationChart.chartCombinations.length > 0){
+        alert('선택하지 않은 항목들이 있습니다.')
+        return;
+      }
+    }
+    
+  
+
 
     if (taskId) {
       // 기존 작업 수정
@@ -981,18 +991,28 @@ export default function ChartTaskManager() {
     <div class="task__body" style="font-size:18px;font-weight:700;">
       <span>${
         task.chartType === "chart-3" && task.combinationChart && task.combinationChart.chartCombinations
-          ? `<div style="display:flex;gap:5px;justify-content: center;">
+          ? `
+            <div style="display:flex;color:#666;gap:3px;align-items:center;font-weight:500;margin:10px 0;justify-content:center">
+                <div style="font-size:12px;">${task.combinationChart.yearFrom}${task.combinationChart.monthFrom ? '. ' : ''}</div>
+                <div style="font-size:12px;">${task.combinationChart.monthFrom}</div>
+                <span style="font-size:12px;">~</span>
+                <div style="font-size:12px;">${task.combinationChart.yearTo}${task.combinationChart.monthTo ? '. ' : ''}</div>
+                <div style="font-size:12px;">${task.combinationChart.monthTo}</div>
+            </div>
+            <div style="display:flex;gap:5px;justify-content: center;">
               ${[...new Set(task.combinationChart.chartCombinations.map((item) => item.title))]
                 .map((title) => `<span style="font-weight:bold;">${title}</span>`)
-                .join("&nbsp;")}</div>
-              <div style="display:flex;gap:5px;margin-top:10px;">
+                .join("&nbsp;")}
+              </div>
+              <div style="display:flex;gap:5px;margin-top:10px;justify-content: center;">
                 ${[...new Set(task.combinationChart.chartCombinations.map((item) => item.stateItemName))]
                   .map(
                     (stateName) =>
                       `<span style="display:flex;border-radius:15px;background-color:#dfdfdf;padding:5px 10px;font-size:12px;font-weight:500;color:#333;">${stateName}</span>`,
                   )
                   .join("")}
-              </div>`
+              </div>
+              `
           : task.buttonTitle || "데이터 없음"
       }</span>
     </div>

@@ -29,7 +29,7 @@ function renderGrid(tasks) {
       (uniqueColumns.includes("type02") && uniqueColumns.includes("type04"))
     ) {
      
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 769) {
         quickArea.classList.remove("gridx3")
       }else{
         quickArea.classList.add("gridx3")
@@ -41,7 +41,7 @@ function renderGrid(tasks) {
   // 3개 컬럼일 때
   else if (uniqueColumns.length === 3) {
     renderThreeColumnGrid(grid, uniqueColumns, tasks)
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 769) {
       quickArea.classList.remove("gridx3")
     }else{
       quickArea.classList.add("gridx3")
@@ -50,7 +50,7 @@ function renderGrid(tasks) {
   // 4개 이상 컬럼일 때
   else if (uniqueColumns.length >= 4) {
     renderFourColumnGrid(grid, uniqueColumns, tasks)
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 769) {
       quickArea.classList.remove("gridx3")
     }else{
       quickArea.classList.add("gridx3")
@@ -328,7 +328,7 @@ function dispatchGridRenderEvent(tasks) {
 
 function gridMobil(grid){
   // 모바일 768미만일 때
-  if (window.innerWidth < 768) {
+  if (window.innerWidth < 769) {
     grid.style.gridTemplateColumns = '1fr';
     grid.style.gridTemplateRows = 'auto';
   }
@@ -423,9 +423,20 @@ function renderTwoColumnGrid(grid, uniqueColumns, tasks) {
 
 // 3개 컬럼 그리드 렌더링 - 새로운 레이아웃 적용
 function renderThreeColumnGrid(grid, uniqueColumns, tasks) {
-  grid.style.gridTemplateColumns = `repeat(2, 1fr)`
-  grid.style.gridTemplateRows = `repeat(2, 1fr)`
-  gridMobil();
+  // 모바일 768미만일 때 한 줄로 표시
+  if (window.innerWidth < 769) {
+    grid.style.gridTemplateColumns = `1fr`;
+    grid.style.gridTemplateRows = `repeat(3, auto)`;
+    grid.innerHTML =
+      createGridItemHTML(uniqueColumns[0], tasks) +
+      createGridItemHTML(uniqueColumns[1], tasks) +
+      createGridItemHTML(uniqueColumns[2], tasks);
+    return;
+  }
+
+  grid.style.gridTemplateColumns = `repeat(2, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(2, 1fr)`;
+
   // 레이아웃 설정 배열 - 새로운 grid positioning 적용
   const layoutConfigs = [
     {
@@ -460,32 +471,32 @@ function renderThreeColumnGrid(grid, uniqueColumns, tasks) {
         { type: "type04", gridColumn: "2/3", gridRow: "2/3" },
       ],
     },
-  ]
+  ];
 
   // 현재 컬럼 조합에 맞는 레이아웃 찾기
-  let matchedLayout = null
+  let matchedLayout = null;
 
   layoutConfigs.forEach((config) => {
     if (hasColumnCombination(uniqueColumns, config.columns)) {
-      matchedLayout = config.layout
+      matchedLayout = config.layout;
     }
-  })
+  });
 
   // 일치하는 레이아웃이 있으면 사용, 없으면 기본 레이아웃 사용
   if (matchedLayout) {
-    let gridHTML = ""
+    let gridHTML = "";
 
     matchedLayout.forEach((item) => {
-      gridHTML += createGridItemHTML(item.type, tasks, false, item.gridColumn, item.gridRow)
-    })
+      gridHTML += createGridItemHTML(item.type, tasks, false, item.gridColumn, item.gridRow);
+    });
 
-    grid.innerHTML = gridHTML
+    grid.innerHTML = gridHTML;
   } else {
     // 기본 레이아웃
     grid.innerHTML =
       createGridItemHTML(uniqueColumns[0], tasks, false, "1/2", "1/2") +
       createGridItemHTML(uniqueColumns[1], tasks, false, "2/3", "1/2") +
-      createGridItemHTML(uniqueColumns[2], tasks, false, "1/3", "2/3")
+      createGridItemHTML(uniqueColumns[2], tasks, false, "1/3", "2/3");
   }
 }
 

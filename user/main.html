@@ -47,9 +47,10 @@
     <link rel="stylesheet" href="/assets/css/sub.css" />
 
     <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/mo_common.css" />
     <link rel="stylesheet" href="/assets/css/mo_sub.css" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main_responsive.css">
     <link rel="stylesheet" href="/assets/css/pre_load.css" />
 
     <script
@@ -752,6 +753,7 @@
       <!-- container -->
       <main id="container">
         <aside class="shortcut--area">
+          <div class="page--option--overlay"></div>
           <div class="shortcut--item">
             <div class="shortcut--item--header">자주 이용하는 메뉴</div>
             <ul class="shortcut--item--body">
@@ -876,7 +878,7 @@
                   role="tab"
                   aria-selected="true"
                   aria-controls="tabPanel1"
-                  onclick="location.href='/user/nd00017.do'"
+                 
                 >
                   보도자료
                 </button>
@@ -886,7 +888,7 @@
                   role="tab"
                   aria-selected="false"
                   aria-controls="tabPanel2"
-                  onclick="location.href='/user/nd00084.do'"
+                  
                 >
                   New-Tech 트렌드
                 </button>
@@ -896,7 +898,7 @@
                   role="tab"
                   aria-selected="false"
                   aria-controls="tabPanel3"
-                  onclick="location.href='/user/nd00068.do'"
+                  
                 >
                   Monthly KIDI Brief
                 </button>
@@ -906,11 +908,17 @@
                   role="tab"
                   aria-selected="false"
                   aria-controls="tabPanel4"
-                  onclick="location.href='/user/nd00083.do'"
+                  
                 >
                   국내보험동향
                 </button>
               </div>
+
+              <!-- onclick="location.href='/user/nd00017.do'"
+              onclick="location.href='/user/nd00084.do'"
+              onclick="location.href='/user/nd00068.do'"
+              onclick="location.href='/user/nd00083.do'" -->
+
               <div class="insurance_news_cont">
                 <!-- 보험뉴스 -->
                 <div
@@ -919,6 +927,7 @@
                   id="tabPanel1"
                   aria-hidden="false"
                 >
+                  <a href="/user/nd00017.do" class="more">더보기</a>
                   <div class="swiper-wrapper card_list border">
                     <div class="swiper-slide">
                       <a href="/boarddetail/nd00017_6376" class="card">
@@ -1021,6 +1030,7 @@
                   id="tabPanel2"
                   aria-hidden="true"
                 >
+                  <a href="/user/nd00084.do" class="more">더보기</a>
                   <div class="swiper-wrapper card_list border">
                     <div class="swiper-slide">
                       <a href="/boarddetail/nd00084_58" class="card">
@@ -1121,6 +1131,7 @@
                   id="tabPanel3"
                   aria-hidden="true"
                 >
+                  <a href="/user/nd00068.do" class="more">더보기</a>
                   <div class="swiper-wrapper card_list border">
                     <div class="swiper-slide">
                       <a href="/boarddetail/nd00068_134" class="card">
@@ -1220,6 +1231,7 @@
                   id="tabPanel4"
                   aria-hidden="true"
                 >
+                  <a href="/user/nd00083.do" class="more">더보기</a>
                   <div class="swiper-wrapper card_list border">
                     <div class="swiper-slide">
                       <a href="/boarddetail/nd00083_180" class="card">
@@ -1525,7 +1537,7 @@
                         <span class="ico ico01"></span>
                         <div class="text_box">
                           <p>
-                            차량기준<br class="only_mo">가액
+                            차량기준<br>가액
                           </p>
                         </div>
                       </a>
@@ -1535,7 +1547,7 @@
                         <span class="ico ico02"></span>
                         <div class="text_box">
                           <p>
-                            경미손상수리<br class="only_mo">기준
+                            경미손상수리<br>기준
                           </p>
                         </div>
                       </a>
@@ -1555,7 +1567,7 @@
                         <span class="ico ico04"></span>
                         <div class="text_box">
                           <p>
-                            차량모델<br class="only_mo" />등급
+                            차량모델<br/>등급
                           </p>
                         </div>
                       </a>
@@ -1565,16 +1577,18 @@
                         <span class="ico ico05"></span>
                         <div class="text_box">
                           <p>
-                            자동차보험금<br class="only_mo" /> 원가지수
+                            자동차보험금<br/> 원가지수
                           </p>
                         </div>
                       </a>
                     </div>
                   </div>
                 </div>
-                <div class="swiper-button-option">
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
+                <div class="mo-slide-box">
+                  <div class="swiper-button-option">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2003,7 +2017,16 @@
           <button id="cancelBtn" class="dialog--btn" type="button">취소</button>
         </form>
       </dialog>
+
+      
+      
+
     </div>
+    <div class="page--option">
+      <button type="button" class="btn--bookmark">즐겨찾기</button>
+      <button type="button" class="btn--top">상단으로가기</button>
+    </div>  
+
     <script src="../assets/plugin/axios/axios.js"></script>
     <script src="../assets/plugin/gsap/scrollTrigger.js"></script>
     <script src="../assets/plugin/gsap/gsap.min.js"></script>

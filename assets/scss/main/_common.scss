@@ -1,17 +1,17 @@
 @use "../abstracts/" as *;
 
-
 #header.main_header {
   position: fixed;
   top: 0;
   left: 0;
   background-color: transparent;
-  border-bottom: 1px solid transparent;
+  border-bottom: rem(1) solid transparent; // rem(1) 변환됨
 }
 
-.scrolling #header{
+.scrolling #header {
   background-color: #fff;
-  box-shadow: 0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.125), 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.125);
+  box-shadow: 0 rem(0.125) rem(0.125) 0 rgba(0, 0, 0, 0.125), // rem(0.125) 변환됨
+    0 rem(0.0625) rem(0.125) 0 rgba(0, 0, 0, 0.125); // rem(0.0625), rem(0.125) 변환됨
 }
 
 #header.main_header .header_top {
@@ -19,8 +19,7 @@
   border-color: transparent;
 }
 
-
-.gnb_in #header.main_header #gnb .has_depth3 .dep1{
+.gnb_in #header.main_header #gnb .has_depth3 .dep1 {
   color: #333;
 }
 
@@ -57,21 +56,21 @@ body.fonts-timeout {
 .board {
   transform: translateZ(0); /* GPU 가속 활성화 */
   backface-visibility: hidden; /* 뒷면 숨김 */
-  perspective: 1000px; /* 3D 렌더링 최적화 */
+  perspective: rem(1000); /* rem(1000) 변환됨 (3D 렌더링 최적화) */
 }
 
 /* 텍스트 선명도 향상 */
 .task-title,
 .board-title {
-  text-shadow: 0 0 1px transparent; /* 미세한 텍스트 선명화 */
+  text-shadow: 0 0 rem(1) transparent; /* rem(1) 변환됨 (미세한 텍스트 선명화) */
   font-weight: 500; /* 적절한 폰트 굵기 */
 }
 
 .main_ttl {
   font-size: rem(36);
   font-weight: 800;
-  margin-block-end: rem(33);
-  padding-block-start: rem(33);
+  margin-block-end: rem(33); // rem(33) 변환됨
+  padding-block-start: rem(33); // rem(33) 변환됨
   inline-size: 100%;
   text-align: left;
 }
@@ -80,27 +79,28 @@ body.fonts-timeout {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-block-end: rem(30);
+  padding-block-end: rem(30); // rem(30) 변환됨
   h3 {
     color: #252525;
-    font-size: 24px;
+    font-size: rem(24); // rem(24) 변환됨
     font-weight: 600;
   }
-  .more {
-    display: inline-flex;
-    padding: 6px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 50px;
-    background: #ebebeb;
-  }
+}
+
+.more {
+  display: inline-flex;
+  padding: rem(6) rem(10); // rem(6), rem(10) 변환됨
+  justify-content: center;
+  align-items: center;
+  gap: rem(10); // rem(10) 변환됨
+  border-radius: rem(50); // rem(50) 변환됨
+  background: #ebebeb;
 }
 
 .section {
   // margin-block: rem(90);
-  padding-block: rem(65);
+  padding-block: rem(65); // rem(65) 변환됨
   .inner:nth-child(2) {
-    margin-top: 50px;
+    margin-top: rem(50); // rem(50) 변환됨
   }
 }
