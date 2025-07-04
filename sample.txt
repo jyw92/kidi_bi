@@ -186,3 +186,9 @@ https://kisdi40history.re.kr/
 
 
 https://codepen.io/FacepalmRobot/pen/ZrGjER
+
+
+
+https://slawomir-zaziablo.github.io/range-slider/
+https://github.com/slawomir-zaziablo/range-slider/blob/master/index.html
+linear-gradient(45deg, #36FB60, #F3E82F, #FF9D0D, #FF570B, #9D0C38)

@@ -663,19 +663,31 @@
                 </ul>
                 <div class="barba-container" data-barba="container" data-barba-namespace="step3">
                   <div class="card--step--wrapper">
-                    <span class="step--badge">STEP4.</span>
-                    <p><em>라이프 스타일</em> 선택</p>
+                    <span class="step--badge">STEP3.</span>
+                    <p>나의 <em>[카드 소비]패턴</em>입력</p>
                   </div>
                   <div class="instruction">
-                    <p>
-                      메인 관심사를 <strong>최대 6개</strong>와 해당 서브카테고리를
-                      <strong>각각 1개씩</strong> 선택하세요.
+                    <p style="line-height: 1.5;">
+                      아래는 나의 월 평균 소비금액을 기반으로 <strong>동일 성연령대의 업종별 소비 비중을 나타낸 금액</strong>입니다. <br>
+                      이를 참고하여 <strong>실제 본인의 소비 수준</strong>을 <strong>업종별로 체크</strong>해주세요.
                     </p>
                   </div>
-                  <div class="card--container" style="--column: 3"></div>
+                  <div class="card--header">
+                    <p>나의 <strong>월 평균 소비금액 &#40;카드값&#41;</strong>을 입력해주세요.</p>
+                    <div class="card--header--inner">
+                      <div class="input--group">
+                        <input type="number"  placeholder="금액을 입력해주세요." required>
+                        <span class="unit">만원</span>
+                      </div>
+                      <button type="button" class="btn" id="requestButton">적용</button>
+                    </div>
+                    <span class="card--header--guide">* [20대 남자]의 평균 월 소비 금액은 100만원입니다.</span>
+                  </div>
+                  <div class="card--container" style="--column: 2">
+                    
+                  </div>
                   <div class="card--step--option">
                     <button class="prev-button card-paging-button">이전</button>
-                    <button class="select-button card-paging-button">결정</button>
                     <button class="next-button card-paging-button">결과보기</button>
                   </div>
                 </div>

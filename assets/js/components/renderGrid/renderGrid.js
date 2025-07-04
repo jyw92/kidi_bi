@@ -623,6 +623,7 @@ function createGridItemHTML(columnType, tasks, isFullWidth = false, gridColumn =
   return `
     <div class="grid--item" data-grid-type="chart" data-column-type="${columnType}" style="${style}">
       <div class="chart--item inner--item" data-comment="${comment}">
+        <button id="fullscreen-btn-${taskId}">전체화면 보기/나가기</button>
         <div class="grid--info--area" id="chart-${taskId}"></div>
         
       </div>

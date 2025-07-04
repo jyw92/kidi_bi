@@ -173,26 +173,26 @@
 // ------------------------------------------
 // btn
 // ------------------------------------------
-$btn-bg: #fff;
-$btn-hover-bg: #3b5bdb;
-$btn-color: #000;
-$btn-hover-color: #fff;
+// $btn-bg: #fff;
+// $btn-hover-bg: #3b5bdb;
+// $btn-color: #000;
+// $btn-hover-color: #fff;
 
-.btn {
-  padding: 1em 1.5em;
-  background-color: $btn-bg;
-  cursor: pointer;
-  border-radius: 3px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0);
-  text-shadow: 0 0 0 $btn-color, 0 3rem 0 $btn-hover-color;
-  transition: background-color 150ms, text-shadow 200ms;
-  font-size: 1.1rem;
-  &:hover {
-    background-color: $btn-hover-bg;
-    text-shadow: 0 -4rem 0 $btn-color, 0 0 0 $btn-hover-color;
-  }
-}
+// .btn {
+//   padding: 1em 1.5em;
+//   background-color: $btn-bg;
+//   cursor: pointer;
+//   border-radius: 3px;
+//   overflow: hidden;
+//   color: rgba(0, 0, 0, 0);
+//   text-shadow: 0 0 0 $btn-color, 0 3rem 0 $btn-hover-color;
+//   transition: background-color 150ms, text-shadow 200ms;
+//   font-size: 1.1rem;
+//   &:hover {
+//     background-color: $btn-hover-bg;
+//     text-shadow: 0 -4rem 0 $btn-color, 0 0 0 $btn-hover-color;
+//   }
+// }
 
 // ------------------------------------------
 // Link
@@ -213,8 +213,35 @@ $link-hover-color: #fff;
   }
 }
 
+// ------------------------------------------
+// btn
+// ------------------------------------------
+.btn {
+  display: inline-block;
+  padding: 0.5rem 0.1rem;
+  max-height: rem(60);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: rem(100);
+  &:hover {
+    background: linear-gradient(120deg, #2575fc, #6a11cb);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
 
-
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
 
 
 $nav-icon-width: math.div(60px, 2); // 30px
@@ -353,3 +380,7 @@ body.chart--page #header.main_header #chartOptionBtn{
     }
   }
 }
+
+
+
+

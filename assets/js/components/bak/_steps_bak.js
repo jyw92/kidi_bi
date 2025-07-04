@@ -381,258 +381,226 @@ async function setupStep2Events() {
 //   });
 // }
 
-// async function setupStep3Events() {
-//   // 선택된 카테고리와 서브카테고리 저장
-//   let selectedData = [];
-
-//   const state = store.getState();
-//   const restored = state.selectedSubcategories || [];
-//   const cardContainer = document.querySelector('.card--container');
-//   console.log('step03/state', state);
-
-//   skeletonUI('step03', cardContainer, 6);
-//   await delay(1000);
-//   const data = await fetchStep04Data(state.type, state.gender, state.ageGroup);
-//   cardContainer.innerHTML = '';
-//   await createCards('step04', data);
-
-//   const cards = document.querySelectorAll('[data-barba-namespace="step3"] .category-card');
-//   const nextButton = document.querySelector('.next-button');
-//   const prevButton = document.querySelector('.prev-button');
-//   const selectButton = document.querySelector('.select-button');
-//   const guidTextBox = document.querySelector('.instruction');
-//   let selectedLifeCard = null;
-//   nextButton.style.display = 'none';
- 
-//   // 뒤로 가기로 돌아왔을 때 선택 상태 복원
-//   if (state.lifeStyle) {
-//     cards.forEach((card) => {
-//       const checkbox = card.querySelector('.category-checkbox');
-//       const radioButtons = card.querySelectorAll('.subcategory-radio');
-
-//       if (checkbox.checked) {
-//         // 체크박스가 선택되어 있다면 모든 라디오 버튼 활성화
-//         radioButtons.forEach((radio) => {
-//           radio.disabled = false;
-//           const match = restored.find((item) => item.id === radio.dataset.id);
-//           if (match) {
-//             radio.checked = true;
-//             card.classList.add('selected');
-//             // change 이벤트 수동 발생 (필요 시)
-//             const event = new Event('change');
-//             radio.dispatchEvent(event);
-//           }
-//         });
-//       } else {
-//         // 체크박스가 선택되어 있지 않다면 라디오 버튼 비활성화 (혹시 모를 상태를 대비)
-//         radioButtons.forEach((radio) => {
-//           radio.disabled = true;
-//           radio.checked = false;
-//         });
-//         card.classList.remove('selected');
-//       }
-//     });
-//   } else {
-//     // 초기 로딩 시 선택 상태 초기화
-//     cards.forEach((card) => {
-//       card.classList.remove('selected');
-//     });
-//   }
-
-//   cards.forEach((card, cardIndex) => {
-//     const header = card.querySelector('.category-header');
-//     const checkbox = header.querySelector('input[type="checkbox"]');
-//     const radioButtons = card.querySelectorAll('.subcategory-radio');
-
-//     // 카테고리 체크박스 이벤트
-//     checkbox.addEventListener('change', function () {
-//       const isChecked = this.checked;
-
-//       // 카드 스타일 변경
-//       if (isChecked) {
-//         card.classList.add('selected');
-
-//         // 라디오 버튼이 하나만 있는 경우 자동으로 체크
-//         if (radioButtons.length === 1) {
-//           radioButtons[0].checked = true;
-
-//           // change 이벤트 수동 발생 (데이터 저장 등의 로직이 있는 경우를 위해)
-//           const radioEvent = new Event('change');
-//           radioButtons[0].dispatchEvent(radioEvent);
-//         }
-//       } else {
-//         card.classList.remove('selected');
-//         card.classList.remove('error');
-//         // 카드 선택 해제 시 라디오 버튼도 해제 (선택 사항)
-//         radioButtons.forEach((radio) => {
-//           radio.checked = false;
-//         });
-//       }
-
-//       // 서브카테고리 라디오 버튼 활성화/비활성화
-//       radioButtons.forEach((radio) => {
-//         radio.disabled = !isChecked;
-//       });
-//     });
-
-//     // 헤더 클릭 시 체크박스 토글
-//     header.addEventListener('click', function (e) {
-//       if (e.target !== checkbox) {
-//         checkbox.checked = !checkbox.checked;
-
-//         // change 이벤트 수동 발생
-//         const event = new Event('change');
-//         checkbox.dispatchEvent(event);
-//       }
-//     });
-
-//     // 각 서브카테고리에 이벤트 리스너 추가
-//     const subcategories = card.querySelectorAll('.subcategory');
-//     subcategories.forEach((subcategory) => {
-//       const radio = subcategory.querySelector('.subcategory-radio');
-//       radio.addEventListener('change', () => {
-//         const card = radio.closest('.category-card');
-//         const anyChecked = card.querySelector('.subcategory-radio:checked');
-//         if (anyChecked) {
-//           card.classList.remove('error');
-//         }
-//       });
-//       subcategory.addEventListener('click', function (e) {
-//         if (!radio.disabled && e.target !== radio) {
-//           radio.checked = !radio.checked; // 토글 가능하게 (선택적)
-//           const event = new Event('change');
-//           radio.dispatchEvent(event);
-//         }
-//       });
-//     });
-//   });
-//   if (selectedData) {
-//     selectButton.addEventListener('click', async () => {
-//       function validateCategoryCards() {
-//         const selectedCards = document.querySelectorAll('.category-card.selected');
-//         selectedCards.forEach((card) => {
-//           const checked = card.querySelector('.subcategory-radio:checked');
-//           if (!checked) {
-//             card.classList.add('error');
-//             return;
-//           } else {
-//             card.classList.remove('error');
-//           }
-//         });
-//       }
-//       validateCategoryCards();
-
-//       // 에러가 있으면 진행 차단
-//       const hasError = document.querySelector('.category-card.error');
-//       if (hasError) {
-//         alert('모든 카테고리에서 하나 이상의 앱을 선택해주세요.');
-//         return;
-//       }
-//       selectedData = [];
-//       const checkedRadios = document.querySelectorAll('.subcategory-radio:checked');
-//       checkedRadios.forEach((item) => {
-//         selectedData.push({
-//           id: item.dataset.id,
-//           name: item.value,
-//           image: item.dataset.image,
-//         });
-//       });
-//       store.dispatch({
-//         type: 'SET_SELECTED_SUBCATEGORIES',
-//         payload: selectedData,
-//       });
-
-//       if (selectedData.length === 1) {
-//         selectedLifeCard = checkedRadios[0];
-//         console.log('selectedLifeCard', selectedLifeCard);
-//         nextButton.click();
-//       } else {
-//         // 카드 렌더링
-//         skeletonUI('step03', cardContainer, selectedData.length);
-//         await delay(1000);
-//         guidTextBox.innerHTML =
-//           '<p><strong>선택한 목록 중</strong>, 본인의 평소 관심사에 보다 <strong>더 가깝다고 생각하는 앱</strong>을 골라주세요.</p>';
-//         const selectTemplate = selectedData
-//           .map((item) => {
-//             return `<button class="card" data-life-style="${item.id}" data-life-style-name="${item.name}">
-//             <p>${item.name}</p>
-//             <img src="../assets/img/lifeStyle/${item.image}" alt="${item.name}">
-//             <span class="card__body-cover-checkbox">
-//               <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
-//                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-//               </svg>
-//             </span>
-//           </button>`;
-//           })
-//           .join('');
-
-//         cardContainer.innerHTML = selectTemplate;
-//         selectButton.style.display = 'none';
-//         nextButton.style.display = 'flex';
-//         const lastCards = document.querySelectorAll('[data-barba-namespace="step3"] .card');
-//         lastCards.forEach((card) => {
-//           card.addEventListener('click', function () {
-//             if (selectedLifeCard) selectedLifeCard.classList.remove('selected');
-//             this.classList.add('selected');
-//             selectedLifeCard = this;
-//           });
-//         });
-//       }
-//     });
-//   }
-//   prevButton.addEventListener('click', () => {
-//     barba.go('step2.html');
-//   });
-
-//   nextButton.addEventListener('click', () => {
-//     if (selectedLifeCard) {
-//       const lifeStyle = selectedLifeCard.dataset.lifeStyle;
-//       const lifeStyleName = selectedLifeCard.dataset.lifeStyleName;
-//       store.dispatch({
-//         type: 'SET_LIFESTYLE',
-//         payload: {lifeStyle, lifeStyleName},
-//       });
-//       barba.go('step4.html');
-//       // incrementCurrent();
-//     } else {
-//       alert('라이프스타일을 선택해주세요.');
-//     }
-//   });
-// }
-
-async function setupStep3Events(){
-  
+async function setupStep3Events() {
   // 선택된 카테고리와 서브카테고리 저장
   let selectedData = [];
 
   const state = store.getState();
   const restored = state.selectedSubcategories || [];
   const cardContainer = document.querySelector('.card--container');
-  const cardHeader = document.querySelector('.card--header');
-  let data;
   console.log('step03/state', state);
 
-  //앱인지 카드인지 구분 조건
-  if(state.type === '23'){
-    cardHeader.style.display = 'none';
-    skeletonUI('step03', cardContainer, 6);
-    await delay(1000);
+  skeletonUI('step03', cardContainer, 6);
+  await delay(1000);
+  const data = await fetchStep04Data(state.type, state.gender, state.ageGroup);
+  cardContainer.innerHTML = '';
+  await createCards('step04', data);
 
-    data = await fetchStep04Data(state.type, state.gender, state.ageGroup);
-    cardContainer.innerHTML = '';
-    await createCards('step04', data);
-  }else if(state.type === '24'){
-    
-  }else{
-    alert('')
+  const cards = document.querySelectorAll('[data-barba-namespace="step3"] .category-card');
+  const nextButton = document.querySelector('.next-button');
+  const prevButton = document.querySelector('.prev-button');
+  const selectButton = document.querySelector('.select-button');
+  const guidTextBox = document.querySelector('.instruction');
+  let selectedLifeCard = null;
+  nextButton.style.display = 'none';
+ 
+  // 뒤로 가기로 돌아왔을 때 선택 상태 복원
+  if (state.lifeStyle) {
+    cards.forEach((card) => {
+      const checkbox = card.querySelector('.category-checkbox');
+      const radioButtons = card.querySelectorAll('.subcategory-radio');
+
+      if (checkbox.checked) {
+        // 체크박스가 선택되어 있다면 모든 라디오 버튼 활성화
+        radioButtons.forEach((radio) => {
+          radio.disabled = false;
+          const match = restored.find((item) => item.id === radio.dataset.id);
+          if (match) {
+            radio.checked = true;
+            card.classList.add('selected');
+            // change 이벤트 수동 발생 (필요 시)
+            const event = new Event('change');
+            radio.dispatchEvent(event);
+          }
+        });
+      } else {
+        // 체크박스가 선택되어 있지 않다면 라디오 버튼 비활성화 (혹시 모를 상태를 대비)
+        radioButtons.forEach((radio) => {
+          radio.disabled = true;
+          radio.checked = false;
+        });
+        card.classList.remove('selected');
+      }
+    });
+  } else {
+    // 초기 로딩 시 선택 상태 초기화
+    cards.forEach((card) => {
+      card.classList.remove('selected');
+    });
   }
 
+  cards.forEach((card, cardIndex) => {
+    const header = card.querySelector('.category-header');
+    const checkbox = header.querySelector('input[type="checkbox"]');
+    const radioButtons = card.querySelectorAll('.subcategory-radio');
 
+    // 카테고리 체크박스 이벤트
+    checkbox.addEventListener('change', function () {
+      const isChecked = this.checked;
 
+      // 카드 스타일 변경
+      if (isChecked) {
+        card.classList.add('selected');
 
-  
+        // 라디오 버튼이 하나만 있는 경우 자동으로 체크
+        if (radioButtons.length === 1) {
+          radioButtons[0].checked = true;
 
+          // change 이벤트 수동 발생 (데이터 저장 등의 로직이 있는 경우를 위해)
+          const radioEvent = new Event('change');
+          radioButtons[0].dispatchEvent(radioEvent);
+        }
+      } else {
+        card.classList.remove('selected');
+        card.classList.remove('error');
+        // 카드 선택 해제 시 라디오 버튼도 해제 (선택 사항)
+        radioButtons.forEach((radio) => {
+          radio.checked = false;
+        });
+      }
+
+      // 서브카테고리 라디오 버튼 활성화/비활성화
+      radioButtons.forEach((radio) => {
+        radio.disabled = !isChecked;
+      });
+    });
+
+    // 헤더 클릭 시 체크박스 토글
+    header.addEventListener('click', function (e) {
+      if (e.target !== checkbox) {
+        checkbox.checked = !checkbox.checked;
+
+        // change 이벤트 수동 발생
+        const event = new Event('change');
+        checkbox.dispatchEvent(event);
+      }
+    });
+
+    // 각 서브카테고리에 이벤트 리스너 추가
+    const subcategories = card.querySelectorAll('.subcategory');
+    subcategories.forEach((subcategory) => {
+      const radio = subcategory.querySelector('.subcategory-radio');
+      radio.addEventListener('change', () => {
+        const card = radio.closest('.category-card');
+        const anyChecked = card.querySelector('.subcategory-radio:checked');
+        if (anyChecked) {
+          card.classList.remove('error');
+        }
+      });
+      subcategory.addEventListener('click', function (e) {
+        if (!radio.disabled && e.target !== radio) {
+          radio.checked = !radio.checked; // 토글 가능하게 (선택적)
+          const event = new Event('change');
+          radio.dispatchEvent(event);
+        }
+      });
+    });
+  });
+  if (selectedData) {
+    selectButton.addEventListener('click', async () => {
+      function validateCategoryCards() {
+        const selectedCards = document.querySelectorAll('.category-card.selected');
+        selectedCards.forEach((card) => {
+          const checked = card.querySelector('.subcategory-radio:checked');
+          if (!checked) {
+            card.classList.add('error');
+            return;
+          } else {
+            card.classList.remove('error');
+          }
+        });
+      }
+      validateCategoryCards();
+
+      // 에러가 있으면 진행 차단
+      const hasError = document.querySelector('.category-card.error');
+      if (hasError) {
+        alert('모든 카테고리에서 하나 이상의 앱을 선택해주세요.');
+        return;
+      }
+      selectedData = [];
+      const checkedRadios = document.querySelectorAll('.subcategory-radio:checked');
+      checkedRadios.forEach((item) => {
+        selectedData.push({
+          id: item.dataset.id,
+          name: item.value,
+          image: item.dataset.image,
+        });
+      });
+      store.dispatch({
+        type: 'SET_SELECTED_SUBCATEGORIES',
+        payload: selectedData,
+      });
+
+      if (selectedData.length === 1) {
+        selectedLifeCard = checkedRadios[0];
+        console.log('selectedLifeCard', selectedLifeCard);
+        nextButton.click();
+      } else {
+        // 카드 렌더링
+        skeletonUI('step03', cardContainer, selectedData.length);
+        await delay(1000);
+        guidTextBox.innerHTML =
+          '<p><strong>선택한 목록 중</strong>, 본인의 평소 관심사에 보다 <strong>더 가깝다고 생각하는 앱</strong>을 골라주세요.</p>';
+        const selectTemplate = selectedData
+          .map((item) => {
+            return `<button class="card" data-life-style="${item.id}" data-life-style-name="${item.name}">
+            <p>${item.name}</p>
+            <img src="../assets/img/lifeStyle/${item.image}" alt="${item.name}">
+            <span class="card__body-cover-checkbox">
+              <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+              </svg>
+            </span>
+          </button>`;
+          })
+          .join('');
+
+        cardContainer.innerHTML = selectTemplate;
+        selectButton.style.display = 'none';
+        nextButton.style.display = 'flex';
+        const lastCards = document.querySelectorAll('[data-barba-namespace="step3"] .card');
+        lastCards.forEach((card) => {
+          card.addEventListener('click', function () {
+            if (selectedLifeCard) selectedLifeCard.classList.remove('selected');
+            this.classList.add('selected');
+            selectedLifeCard = this;
+          });
+        });
+      }
+    });
+  }
+  prevButton.addEventListener('click', () => {
+    barba.go('step2.html');
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (selectedLifeCard) {
+      const lifeStyle = selectedLifeCard.dataset.lifeStyle;
+      const lifeStyleName = selectedLifeCard.dataset.lifeStyleName;
+      store.dispatch({
+        type: 'SET_LIFESTYLE',
+        payload: {lifeStyle, lifeStyleName},
+      });
+      barba.go('step4.html');
+      // incrementCurrent();
+    } else {
+      alert('라이프스타일을 선택해주세요.');
+    }
+  });
 }
+
+
 
 
 async function setupResultEvents() {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Single Range Slider</title>
+    <link rel="stylesheet" href="./range.css">
+</head>
+<body>
+    <h1>rSlider 예제</h1>
+    <div class="column" style="width:100%;">
+        <div id="sampleSlider" class="slider"></div>
+        <div id="sampleSlider2" class="slider"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 요청하신 방식으로 rSlider를 생성합니다.
+            const mySlider = new rSlider({
+                target: '#sampleSlider',
+                values: ["8회", "9회", "10회", "11회", "11회초과"],
+                tooltip: true,
+                scale: true,
+                labels: true,
+                initialValueIndex: 2,
+                // gradient:["#36FB60", "#9f8d00", "#FF9D0D", "#f44336", "#f44336"]
+                gradient: ["#0097A7", "#0083B0", "#2196F3", "#3F51B5", "#673AB7"]
+            });
+
+            const mySlider2 = new rSlider({
+                target: '#sampleSlider2',
+                values: ["8회", "9회", "10회", "11회", "11회초과"],
+                tooltip: true,
+                scale: true,
+                labels: true,
+                initialValueIndex: 2,
+                // gradient:["#36FB60", "#9f8d00", "#FF9D0D", "#f44336", "#f44336"]
+                gradient: ["#0097A7", "#0083B0", "#2196F3", "#3F51B5", "#673AB7"]
+            });
+            
+            // 슬라이더 값 변경 시 이벤트를 수신합니다.
+            document.getElementById('sampleSlider').addEventListener('sliderChange', (e) => {
+                console.log('슬라이더 값이 변경되었습니다:', e.detail);
+            });
+            
+            // 외부에서 슬라이더를 제어하는 예시
+            // window.mySlider = mySlider; 
+            // setTimeout(() => mySlider.setValueByIndex(7), 2000); // 2초 후 2015로 변경
+        });
+    </script>
+
+    <script src="range.js"></script>
+</body>
+</html>

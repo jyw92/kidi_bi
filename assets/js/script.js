@@ -83,6 +83,8 @@ function goToTop() {
         behavior: 'smooth' // This makes the scroll animated
       });
     });
+  }else{
+    return;
   }
 }
 
@@ -90,7 +92,9 @@ function moBookmark(){
     const bookmarkBtn = document.querySelector('.btn--bookmark');
     const bookmarkList = document.querySelector('.shortcut--item');
     const bookmarkOverlay = document.querySelector('.page--option--overlay');
-
+    if(!bookmarkBtn){
+      return;
+    }
     bookmarkBtn.addEventListener('click', () => {
       bookmarkList.classList.add('on');
       bookmarkOverlay.classList.add('on');
@@ -103,8 +107,7 @@ function moBookmark(){
 }
 
 $(function () {
-  goToTop();
-  moBookmark();
+  
   const NowStepText = '<p class="text-hidden">현재 단계</p>';
   $('.step_wrap ul li.active').append(NowStepText);
 
@@ -140,6 +143,12 @@ $(function () {
     }
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function(){
+  goToTop();
+  moBookmark();
+})
 
 // $(document).ready(function() {
 //   var nav_group = $('.nav_group');

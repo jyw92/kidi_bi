@@ -49,38 +49,7 @@ const cardConfig = {
     dataAttribute: 'life-style',
     dataAttributeName: 'life-style-name',
     template: (item) => `
-     <div class="category-header">
-        <div class="checkbox-wrapper">
-          <input type="checkbox" class="category-checkbox" id="checkbox-life">
-          <span class="checkmark"></span>
-        </div>
-        <span class="category-name">${item.name}</span>
-      </div>
-      <div class="subcategories">
-        ${item.children
-          .map((radio, index) => {
-            return `
-            <div class="subcategory">
-              <div class="radio-wrapper">
-                <input
-                  type="radio"
-                  class="subcategory-radio"
-                  name="subcategory-${item.id}"
-                  id="radio-${item.id}${index}"
-                  data-id="${radio.id}"
-                  value="${radio.name}"
-                  data-image="${radio.image}"
-                  data-life-style="${radio.id}" 
-                  data-life-style-name="${radio.name}"
-                  disabled=""
-                /><span class="radio-mark"></span>
-              </div>
-              <label class="subcategory-name" for="radio-${item.id}${index}">${radio.name}</label>
-            </div>
-          `;
-          })
-          .join('')}
-      </div>
+      <div id="${item.id}" class="range--item"></div>
     `,
   },
 };

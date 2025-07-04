@@ -1895,22 +1895,6 @@ body.fonts-timeout {
   transform: rotate(180deg);
 }
 
-.btn {
-  padding: 1em 1.5em;
-  background-color: #fff;
-  cursor: pointer;
-  border-radius: 3px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0);
-  text-shadow: 0 0 0 #000, 0 3rem 0 #fff;
-  transition: background-color 150ms, text-shadow 200ms;
-  font-size: 1.1rem;
-}
-.btn:hover {
-  background-color: #3b5bdb;
-  text-shadow: 0 -4rem 0 #000, 0 0 0 #fff;
-}
-
 .link {
   display: inline-block;
   text-decoration: none;
@@ -1923,6 +1907,32 @@ body.fonts-timeout {
 }
 .link:hover {
   text-shadow: 0 -3rem 0 #748ffc, 0 0 0 #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 0.1rem;
+  max-height: 3.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 6.25rem;
+}
+.btn:hover {
+  background: linear-gradient(120deg, #2575fc, #6a11cb);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #header #chartOptionBtn {

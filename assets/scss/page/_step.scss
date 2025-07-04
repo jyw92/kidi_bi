@@ -31,6 +31,82 @@
   }
 }
 
+.card--header{
+  width:30vw;
+  margin:0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  .card--header--guide{
+    color: red;
+    font-weight: 700;
+    margin-top: rem(20);
+    font-size: 12px;
+    display: block;
+    text-align: right;
+  }
+  border: rem(2) solid #0069f6;
+  padding: rem(20);
+  border-radius: rem(10);
+  box-shadow: 0 rem(4) rem(10) rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f9f9f9, #e6f7ff);
+}
+
+.card--header--inner{
+  display:flex;
+  gap: 10px;
+  .input--group{
+    width:100%;
+    position: relative;
+    .unit{
+      position: absolute;
+      top:50%;
+      transform: translateY(-50%);
+      right:10px;
+      color: #333;
+      font-weight: 800;
+    }
+  }
+  input[type='number']{
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    /* Firefox  */
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+    &::placeholder{
+      color: #B9B9B9;
+    }
+    width: 100%;
+    padding: rem(10) rem(40) rem(10) rem(10);
+    border: rem(1) solid #ccc;
+    background-color: #F9F9F9;
+    border-radius: rem(5);
+    font-size: rem(16);
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+    height:rem(60);
+    text-align: right;
+    &:focus {
+      border-color: #0069f6;
+      box-shadow: 0 0 rem(5) rgba(0, 105, 246, 0.5);
+    }
+    &:hover {
+      border-color: #888;
+    }
+  }
+  
+}
+
+
+
 .card--step--option {
   @include flexCenter();
   gap: rem(10);
