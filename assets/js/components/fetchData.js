@@ -22,7 +22,7 @@ async function fetchStep03Data(gender) {
   return await fetchData("http://localhost:3000/step3", { gender });
 }
 
-async function fetchStep04Data(type, gender, ageGroup) {
+async function fetchStep04Data(type, gender, ageGroup, cost=null) {
   return await fetchData("http://localhost:3000/rangeState", {
     type,
     gender,

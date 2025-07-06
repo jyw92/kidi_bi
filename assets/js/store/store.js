@@ -10,7 +10,9 @@ const initialState = {
   lifeStyleName: null,
   result: null,
   current: 0,
+  cost:0,
   selectedSubcategories: [],
+  euclideanData:[] 
 };
 
 /* -------------------------------- 리듀서 함수 정의 ------------------------------- */
@@ -36,6 +38,10 @@ function reducer(state = initialState, action) {
       return {...state, current: action.payload};
     case 'SET_SELECTED_SUBCATEGORIES':
       return {...state, selectedSubcategories: action.payload};
+    case 'SET_COST':
+      return {...state, cost:action.payload.cost};
+    case 'SET_EUCLIDEAN':
+      return {...state, euclideanData:action.payload.euclideanData};
     default:
       return state;
   }

@@ -32,12 +32,18 @@
 }
 
 .card--header{
-  width:30vw;
-  margin:0 auto;
+  width: 100%;
+  /* margin: 0 auto; */
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: center;
+  border: 0.125rem solid #0069f6;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f9f9f9, #e6f7ff);
+  align-items: center;
   .card--header--guide{
     color: red;
     font-weight: 700;
@@ -56,6 +62,8 @@
 .card--header--inner{
   display:flex;
   gap: 10px;
+  width:100%;
+  max-width: 600px;
   .input--group{
     width:100%;
     position: relative;
@@ -143,3 +151,32 @@
     font-weight: 700;
   }
 }
+
+
+/* 아이폰 스타일 커스텀 알림창 */
+  .custom-notification {
+    position: fixed; /* 화면에 고정 */
+    left: 50%;
+    transform: translateX(-50%); /* 수평 중앙 정렬 */
+    bottom: -100px; /* 초기에는 화면 아래에 숨김 */
+
+    background-color: rgba(220, 38, 38, 0.85); /* 반투명 레드 배경 */
+    color: white;
+    padding: 14px 25px;
+    border-radius: 25px; /* 둥근 모서리 */
+    font-size: 15px;
+    font-weight: 500;
+    z-index: 10000; /* 다른 요소들 위에 표시 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* 배경 블러 효과 (지원 브라우저) */
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: all .5s /* 부드러운 애니메이션 효과 */
+  }
+  
+  /* 알림창을 보여줄 때 적용될 클래스 */
+  .custom-notification.show {
+    transform: translate(-50%, 0);
+    bottom: 30px; /* 화면 하단에서 30px 위로 이동 */
+   
+  }

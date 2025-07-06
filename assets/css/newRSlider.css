@@ -1,17 +1,17 @@
-
-
-
-
-
-
-
 /* 슬라이더 컨테이너 */
-.slider {
-    width: 50%;
-    margin: 50px auto;
+.rslider {
+    width:100%;
     position: relative;
-    padding: 20px 0;
+    padding:20px 0;
+    &.app--type{
+        margin: 50px auto;
+    }
+    &.card--type{
+        margin: 50px auto 20px;
+    }
 }
+
+
 
 /* 툴팁 (선택된 값 표시) */
 .slider-tooltip {
@@ -62,7 +62,7 @@
     cursor: pointer;
     transition: transform 0.2s, border-color 0.2s;
     outline: none; /* 키보드 포커스 시 기본 아웃라인 제거 */
-}
+} 
 
 .slider-point:hover {
     transform: translate(-50%, -50%) scale(1.1);
@@ -79,8 +79,14 @@
     box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
 }
 
+.slider-labels-container{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 /* 슬라이더 라벨 */
-.slider-labels {
+.slider-labels, .slider-sub-labels {
     position: relative;
     width: 100%;
     margin-top: 15px;
@@ -88,7 +94,24 @@
     color: #555;
 }
 
-.slider-label {
+.rslider.card--type{
+    & > .slider-labels-container > *::before{
+        position: absolute;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        left:-50px;
+        font-weight: 700;
+        color:#333;
+    }
+    .slider-labels::before{
+        content:"월";
+    }
+    .slider-sub-labels::before{
+        content:"연 평균";
+    }
+} 
+
+.slider-label, .slider-sub-label {
     position: absolute;
     transform: translateX(-50%);
     white-space: nowrap;

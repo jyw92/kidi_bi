@@ -49,7 +49,13 @@ const cardConfig = {
     dataAttribute: 'life-style',
     dataAttributeName: 'life-style-name',
     template: (item) => `
-      <div id="${item.id}" class="range--item"></div>
+      <div class="life-style-header">
+        <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="0.400391" width="10" height="10" rx="2" fill="#A3A3A3"/>
+        </svg>
+        <p>${item.name}</p>
+      </div>
+      <div id="${item.id}" class="range--item rslider"></div>
     `,
   },
 };
