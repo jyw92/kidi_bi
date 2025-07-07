@@ -16,7 +16,7 @@
 /* 툴팁 (선택된 값 표시) */
 .slider-tooltip {
     position: absolute;
-    top: -20px;
+    top: -25px;
     transform: translateX(-50%);
     background-color: #333;
     color: white;
